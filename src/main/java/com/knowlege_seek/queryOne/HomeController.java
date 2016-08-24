@@ -33,7 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		logger.debug("git¼º°ø?");
-		return "home";
+		return "index";
 	}
 	
 }

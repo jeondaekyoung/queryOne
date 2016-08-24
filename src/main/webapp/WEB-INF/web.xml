@@ -13,14 +13,7 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	<filter>
-		<filter-name>encodingFilter</filter-name>
-		<filter-class>org.spingframework.web.filter.CharacterEncodingfilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>utf-8</param-value>
-		</init-param>
-	</filter>
+	
 
 
 	<!-- Processes application requests -->
@@ -32,6 +25,7 @@
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		
 	</servlet>
 	<context-param>
     <param-name>contextConfigLocation</param-name>
