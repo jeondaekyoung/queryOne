@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.contoller;
+package com.knowlege_seek.queryOne.adminContoller;
 
 import java.util.Map;
 
@@ -15,18 +15,15 @@ import com.knowlege_seek.queryOne.service.impl.LoginServiceImpl;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
-	
-	
-	
+public class loginController {
 	@Resource(name="loginService")
 	LoginServiceImpl login;
 	
-	@RequestMapping("/loginForm")
+	@RequestMapping("/loginForm.do")
 	public String loginForm(){
 		return "admin/login";
 	}
-	@RequestMapping(value ="/login" ,method = RequestMethod.POST)
+	@RequestMapping("/login.do") 
 	public String login(@RequestParam Map map,HttpSession session,Model model){
 		System.out.println("관리자 ID:"+map.get("adminId"));
 		boolean bFlag=login.isAdmin(map);
@@ -34,12 +31,16 @@ public class AdminController {
 		
 		if(bFlag) {//회원
 			//로그인 처리를 위해 세션에 아이디 저장
-			session.setAttribute("USERID", map.get("admid"));
+			session.setAttribute("USERID", map.get("adminId"));
 			
 		} else {//비회원
 			model.addAttribute("loginError", "아이디와 비번이 불일치");
 			return "/admin/login";
 		}
+		return "admin/index";
+	}
+	@RequestMapping("/index.do")
+	public String index(){
 		return "admin/index";
 	}
 	

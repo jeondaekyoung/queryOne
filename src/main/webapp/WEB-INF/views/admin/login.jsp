@@ -5,7 +5,32 @@
 <html lang="ko-KR" class="app">
 <head>
 	<!-- head -->
-    <jsp:include page="include/include-head.jsp" flush="false" />
+    <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="description" content="쿼리원 관리자 페이지" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+<title>관리자 페이지</title>
+<link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.css'/>" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/resources/css/animate.css'/>" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/resources/css/font-awesome.min.css'/>" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/resources/css/font.css'/>" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/resources/js/datepicker/datepicker.css'/>" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/resources/css/app.css'/>" type="text/css" />
+
+<style>
+  *{font-size: 14px}
+  .admin {width:100%}
+  .admin th {background-color:#eee; height:40px;}
+  .admin td {background-color:#fff; height: 35px}
+  .admin th, .admin td {text-align:center; border:1px solid #ccc;}
+  .admin td>a {display: inline-block; width: 100%; line-height: 35px;}
+</style>
+  
+<!--[if lt IE 9]>
+  <script src="<c:url value='/resources/js/ie/html5shiv.js'/>"></script>
+  <script src="<c:url value='/resources/js/ie/respond.min.js'/>"></script>
+  <script src="<c:url value='/resources/js/ie/excanvas.js'/>"></script>
+<![endif]-->	
     <script>
     /* addClass : .active */
     
@@ -21,7 +46,7 @@
         <header class="panel-heading text-center">
           <strong>Admin Login</strong>
         </header>
-        <form action="<c:url value='/admin/login' />" class="panel-body wrapper-lg" method="post">
+        <form action="<c:url value='/admin/login.do' />" class="panel-body wrapper-lg" method="post">
           <div class="form-group">
             <label class="control-label">아이디</label>
             <input type="text" name="adminId"  class="form-control input-lg">

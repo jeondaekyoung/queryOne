@@ -8,7 +8,7 @@
 <title>QueryOne</title>
 </head>
 <body>
-	<a href="<c:url value='/admin/loginForm' />">관리자페이지</a>
+	<a href="<c:url value='/admin/loginForm.do' />">관리자페이지</a>
 	
 </body>
 </html>
