@@ -24,15 +24,15 @@
         <form action="<c:url value='/admin/login' />" class="panel-body wrapper-lg" method="post">
           <div class="form-group">
             <label class="control-label">아이디</label>
-            <input type="text" id="adminId"  class="form-control input-lg">
+            <input type="text" name="adminId"  class="form-control input-lg">
           </div>
           <div class="form-group">
             <label class="control-label">비밀번호</label>
-            <input type="password" id="adminPwd" class="form-control input-lg">
+            <input type="password" name="adminPwd" class="form-control input-lg">
           </div>
           <div class="checkbox">
             <label>
-              <input type="checkbox"> ID 저장
+              <input type="checkbox"> ID 저장 <font color="red">${loginError}</font>
             </label>
           </div>
           
