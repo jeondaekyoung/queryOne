@@ -8,23 +8,25 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knowlege_seek.queryOne.service.impl.LoginServiceImpl;
 
 @Controller
 @RequestMapping("/admin")
-public class loginController {
+public class LoginController {
 	@Resource(name="loginService")
 	LoginServiceImpl login;
 	
+	//로그인 폼
 	@RequestMapping("/loginForm.do")
-	public String loginForm(){
+	public String loginForm() throws Exception{
 		return "admin/login";
 	}
+	//로그인
 	@RequestMapping("/login.do") 
-	public String login(@RequestParam Map map,HttpSession session,Model model){
+	public String login(@RequestParam Map map,HttpSession session,Model model) throws Exception{
 		System.out.println("관리자 ID:"+map.get("adminId"));
 		boolean bFlag=login.isAdmin(map);
 		System.out.println("관리자 인가?:"+bFlag);
@@ -39,9 +41,17 @@ public class loginController {
 		}
 		return "admin/index";
 	}
+	//인덱스로
 	@RequestMapping("/index.do")
-	public String index(){
+	public String index() throws Exception{
 		return "admin/index";
 	}
+	
+	//관리자 로그아웃 처리...
+		@RequestMapping("/logout.do")
+		public String logout(HttpSession session) throws Exception {
+			session.invalidate();
+			return "admin/login";
+		} ///////////////////////
 	
 }
