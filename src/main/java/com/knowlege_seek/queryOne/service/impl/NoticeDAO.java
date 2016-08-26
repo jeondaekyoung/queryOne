@@ -1,5 +1,5 @@
 package com.knowlege_seek.queryOne.service.impl;
 
-public class NewsDAO {
+public class NoticeDAO {
 
 }

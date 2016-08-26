@@ -8,7 +8,7 @@
 	<mapper resource="mybatis/Download.xml"/>
 	<mapper resource="mybatis/Licence.xml"/>
 	<mapper resource="mybatis/Video.xml"/> -->
-	<mapper resource="mybatis/News.xml"/>
+	<mapper resource="mybatis/Notice.xml"/>
 	
 	
 	</mappers>
