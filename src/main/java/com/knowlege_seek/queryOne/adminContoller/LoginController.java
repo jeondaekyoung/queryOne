@@ -27,18 +27,16 @@ public class LoginController {
 	//로그인
 	@RequestMapping("/login.do") 
 	public String login(@RequestParam Map map,HttpSession session,Model model) throws Exception{
-		System.out.println("관리자 ID:"+map.get("adminId"));
 		boolean bFlag=login.isAdmin(map);
-		System.out.println("관리자 인가?:"+bFlag);
 		
-		if(bFlag) {//회원
+		/*if(bFlag) {//회원
 			//로그인 처리를 위해 세션에 아이디 저장
 			session.setAttribute("USERID", map.get("adminId"));
 			
 		} else {//비회원
 			model.addAttribute("loginError", "아이디와 비번이 불일치");
 			return "/admin/login";
-		}
+		}*/
 		return "admin/index";
 	}
 	//인덱스로

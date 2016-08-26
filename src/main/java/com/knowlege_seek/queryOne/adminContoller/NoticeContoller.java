@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class NoticeContoller {
 	@RequestMapping("/list.do")
 	public String list(){
+		
 		return "/admin/notice";
 	}
 
