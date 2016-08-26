@@ -2,19 +2,19 @@ package com.knowlege_seek.queryOne.domain;
 
 import java.sql.Date;
 
-public class Notice {
-	
-	private String notiNo;
+public class Download {
+	private String DownNo;
 	private String title;
 	private String writer;
 	private String content;
 	private Date createDate;
 	private int hits;
-	public String getNotiNo() {
-		return notiNo;
+	private String fileName;
+	public String getDownNo() {
+		return DownNo;
 	}
-	public void setNotiNo(String notiNo) {
-		this.notiNo = notiNo;
+	public void setDownNo(String downNo) {
+		DownNo = downNo;
 	}
 	public String getTitle() {
 		return title;
@@ -45,6 +45,12 @@ public class Notice {
 	}
 	public void setHits(int hits) {
 		this.hits = hits;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 	
 }

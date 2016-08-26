@@ -12,14 +12,14 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/font.css'/>" type="text/css" />
 <link rel="stylesheet" href="<c:url value='/resources/js/datepicker/datepicker.css'/>" type="text/css" />
 <link rel="stylesheet" href="<c:url value='/resources/css/app.css'/>" type="text/css" />
-<!-- 관리자 접근 가능 스크립트  -->
+<%-- <!-- 관리자 접근 가능 스크립트  -->
 <c:if test="${sessionScope.USERID != 'admin'}" >
 	<script>
 		alert("관리자용 페이지 입니다. ");
 		location.href="<c:url value='/admin/loginForm.do'/>";
 	</script>
 </c:if>
-
+ --%>
 <style>
   *{font-size: 14px}
   .admin {width:100%}

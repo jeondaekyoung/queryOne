@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko-KR" class="app">
 <head>
@@ -35,13 +36,13 @@
             </header>
             
             <section class="scrollable wrapper w-f">                
-                <form action="" method="post" id="adForm" class="form-horizontal" enctype="multipart/form-data">
+                <form action="<c:url value='/noti/write.do' />" method="post" id="adForm" class="form-horizontal" enctype="multipart/form-data">
                                         
                     <!--제목-->
                     <div class="form-group">
                       <label class="col-sm-2 control-label">제목</label>
                       <div class="col-sm-10">
-                        <input type="text"  class="form-control">
+                        <input type="text" name="title"  class="form-control">
                       </div>
                     </div>
                     <!--제목 끝-->                    
@@ -51,9 +52,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">내용</label>
                         <div class="col-sm-10">
-                            <div id="editor" class="form-control" style="overflow:scroll;height:450px;max-height:450px" contenteditable="true">
-                              Go ahead&hellip;
-                            </div>
+                            <textarea id="editor" name="content" class="form-control" style="overflow:scroll;height:450px;max-height:450px" contenteditable="true"></textarea>
                         </div>
                     </div>
                     <!--내용 끝-->
@@ -63,7 +62,7 @@
                     <div class="form-group">
                       <label class="col-sm-2 control-label">첨부파일</label>
                       <div class="col-sm-10">
-                        <input type="file" class="filestyle" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
+                        <input type="file" class="filestyle" name="fileName" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
                       </div>
                     </div>
                     <!--첨부파일 끝-->

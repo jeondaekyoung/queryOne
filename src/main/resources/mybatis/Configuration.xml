@@ -3,6 +3,13 @@
 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
+	<typeAliases>
+		<typeAlias alias="Download" type="com.knowlege_seek.queryOne.domain.Download"/>
+		<typeAlias alias="LicenceKey" type="com.knowlege_seek.queryOne.domain.Licencekey"/>
+		<typeAlias alias="Notice" type="com.knowlege_seek.queryOne.domain.Notice"/>
+		
+	</typeAliases>
 	<mappers>
 	<mapper resource="mybatis/Login.xml"/><!-- 
 	<mapper resource="mybatis/Download.xml"/>

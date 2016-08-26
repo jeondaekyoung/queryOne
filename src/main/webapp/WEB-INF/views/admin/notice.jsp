@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko-KR" class="app">
 <head>
@@ -46,15 +47,27 @@
                             </tr>
                         </thead>
                         <tbody>    <!--   한 페이지에 10개씩 보여준다    -->      
-                            <tr>
-                                <td>1</td>
-                                <td><a href="view.jsp">여러개의 쿼리를 작성할 때 문장 구분은 어떻게 하나요?</a></td>
-                                <td>2015-06-18</td>
-                                <td>2015</td>
-                            </tr>
+                          <c:choose>
+											<c:when test="${empty lists }">
+												<tr bgcolor="white" align="center">
+													<td colspan="4">등록된 메모가 없어요</td>
+												</tr>
+											</c:when>
+											<c:otherwise>
+												 <c:forEach items="${lists}" var="list" varStatus="status">
+												 <tr>
+													<td>1</td>
+													<td><a href="<c:url value='/noti/view.do?no=${notiNo}'/>">${list.title}</a></td>
+													<td>${list.createDate}</td>
+													<td>${list.hits}</td>
+												</tr>
+												 </c:forEach>
+												
+											</c:otherwise>
+										</c:choose>
                         </tbody>
 	                </table>                
-                    <a href="noticeWrite.jsp" class="btn btn-primary" style="margin-top:20px"><i class="fa fa-pencil"></i> 글쓰기</a>
+                    <a href="<c:url value='/noti/writeForm.do'/>" class="btn btn-primary" style="margin-top:20px"><i class="fa fa-pencil"></i> 글쓰기</a>
                 </form>
             </section>
               

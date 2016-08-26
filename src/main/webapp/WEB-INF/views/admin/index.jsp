@@ -34,28 +34,7 @@
             </header>
             
        			     <section class="scrollable wrapper w-f">
-                <form action="" method="post" id="adForm" enctype="multipart/form-data">
-	                <table class="admin">
-	                    <colgroup><col style="width:10%"><col style="width:60%"><col style="width:20%"><col style="width:10%"></colgroup>
-	                    <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>제목</th>
-                                <th>작성일</th>
-                                <th>조회수</th>
-                            </tr>
-                        </thead>
-                        <tbody>    <!--   한 페이지에 10개씩 보여준다    -->      
-                            <tr>
-                                <td>1</td>
-                                <td><a href="view.jsp">여러개의 쿼리를 작성할 때 문장 구분은 어떻게 하나요?</a></td>
-                                <td>2015-06-18</td>
-                                <td>2015</td>
-                            </tr>
-                        </tbody>
-	                </table>                
-                    <a href="downloadWrite.jsp" class="btn btn-primary" style="margin-top:20px"><i class="fa fa-pencil"></i> 글쓰기</a>
-                </form>
+              인덱스 페이지입니다.
             </section>
               
             <footer class="panel-footer">
