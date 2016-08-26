@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DownloadController {
 	@RequestMapping("/list.do")
 	public String list(){
+		
 		return "/admin/download";
 	}
 }
