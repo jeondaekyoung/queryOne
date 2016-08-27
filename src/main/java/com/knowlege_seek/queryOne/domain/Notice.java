@@ -10,6 +10,7 @@ public class Notice {
 	private String content;
 	private Date createDate;
 	private int hits;
+	private String fileName;
 	public String getNotiNo() {
 		return notiNo;
 	}
@@ -45,6 +46,12 @@ public class Notice {
 	}
 	public void setHits(int hits) {
 		this.hits = hits;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 	
 }

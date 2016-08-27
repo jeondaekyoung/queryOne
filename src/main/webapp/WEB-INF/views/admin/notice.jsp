@@ -56,8 +56,8 @@
 											<c:otherwise>
 												 <c:forEach items="${lists}" var="list" varStatus="status">
 												 <tr>
-													<td>1</td>
-													<td><a href="<c:url value='/noti/view.do?no=${notiNo}'/>">${list.title}</a></td>
+													<td>${list.notiNo}</td>
+													<td><a href="<c:url value='/noti/view.do?notiNo=${list.notiNo}'/>">${list.title}</a></td>
 													<td>${list.createDate}</td>
 													<td>${list.hits}</td>
 												</tr>

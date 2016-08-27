@@ -26,8 +26,14 @@ public class NoticeContoller {
 		return "/admin/notice";
 	}
 	@RequestMapping("/view.do")
-	public String view(){
-	
+	public String view(Notice notice,Model model){
+		System.out.println(notice.getNotiNo());
+		notice=noti.selectOne(notice);
+		//띄워쓰기 jsp에 맞게 변환
+		if(notice.getContent()!=null)
+			notice.setContent(notice.getContent().replace("\r\n","<br/>"));
+		System.out.println(notice.getFileName());
+		model.addAttribute("notice", notice);
 		return "/admin/noticeView";
 	}
 	@RequestMapping("/writeForm.do")
@@ -36,9 +42,16 @@ public class NoticeContoller {
 		return "/admin/noticeWrite";
 	}
 	@RequestMapping("/write.do")
-	public String write(){
+	public String write(Notice notice){
 		
+		noti.insert(notice);
+	
 		return "forward:/noti/list.do";
+	}
+	@RequestMapping("/editForm.do")
+	public String updateForm(){
+		
+		return "/admin/noticeEdit";
 	}
 	@RequestMapping("/edit.do")
 	public String update(){

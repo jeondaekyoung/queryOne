@@ -8,12 +8,12 @@
 		select * from Notice
 	</select>
 	
-	<select id="notiSelectOne" parameterType="java.util.Map" resultType="Notice">
-	
+	<select id="notiSelectOne" parameterType="Notice" resultType="Notice">
+		select * from Notice where NotiNo=#{notiNo}
 	</select>
 	
 	<insert id="notiInsert" parameterType="Notice">
-	
+		insert into notice values(default,#{title},#{writer},#{content},default ,default);
 	</insert>	
 	
 	<update id="notiUpdate" parameterType="Notice">
