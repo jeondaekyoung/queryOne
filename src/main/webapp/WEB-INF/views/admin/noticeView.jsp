@@ -96,9 +96,12 @@
                 <div class="line line-dashed line-lg pull-in"></div>
                 <div class="clearfix form-group">
                   <div class="col-sm-4 col-sm-offset-2">
+                  <form action="<c:url value='/noti/delete.do'/>" method="post">
+                  	<input type="hidden" name="notiNo" value="${notice.notiNo}"/>
                     <button type="submit" class="btn btn-danger"><i class="fa fa-minus-circle"></i> 삭제</button>
+                    <a href="<c:url value='/noti/editForm.do?notiNo=${notice.notiNo }'/>" class="btn btn-primary"><i class="fa fa-edit"></i> 수정</a>
+                  </form>
                     
-                    <a href="<c:url value='/noti/list.do'/>" class="btn btn-primary"><i class="fa fa-edit"></i> 수정</a>
                   </div>
                 </div>
                 <!--버튼그룹 끝-->

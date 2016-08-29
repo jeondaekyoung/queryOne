@@ -37,7 +37,8 @@
             
             <section class="scrollable wrapper w-f">                
                 <form action="<c:url value='/noti/write.do' />" method="post" id="adForm" class="form-horizontal" enctype="multipart/form-data">
-                                        
+                     <!-- 작성자 -->
+                     <input type="hidden" name="writer" value="${sessionScope.USERID}" class="form-control">
                     <!--제목-->
                     <div class="form-group">
                       <label class="col-sm-2 control-label">제목</label>
@@ -62,7 +63,7 @@
                     <div class="form-group">
                       <label class="col-sm-2 control-label">첨부파일</label>
                       <div class="col-sm-10">
-                        <input type="file" class="filestyle" name="fileName" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
+                        <input type="file" class="filestyle" name="file" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
                       </div>
                     </div>
                     <!--첨부파일 끝-->

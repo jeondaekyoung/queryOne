@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko-KR" class="app">
 <head>
@@ -35,13 +36,16 @@
             </header>
             
             <section class="scrollable wrapper w-f">                
-                <form action="" method="post" id="adForm" class="form-horizontal" enctype="multipart/form-data">
-                                        
+                
+                <form action="<c:url value="/noti/edit.do"/>" method="post" id="adForm" class="form-horizontal" enctype="multipart/form-data">
+                            <!-- 작성자 -->
+                     <input type="hidden" name="writer" value="${sessionScope.USERID}" class="form-control">
+                     <input type="hidden" name="notiNo" value="${notice.notiNo}" class="form-control">                        
                     <!--제목-->
                     <div class="form-group">
                       <label class="col-sm-2 control-label">제목</label>
                       <div class="col-sm-10">
-                        <input type="text"  class="form-control">
+                        <input type="text" value="${notice.title}" name="title"  class="form-control">
                       </div>
                     </div>
                     <!--제목 끝-->                    
@@ -51,19 +55,20 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">내용</label>
                         <div class="col-sm-10">
-                            <div id="editor" class="form-control" style="overflow:scroll;height:450px;max-height:450px" contenteditable="true">
-                              Go ahead&hellip;
-                            </div>
+                            <textarea id="editor" name="content" class="form-control" style="overflow:scroll;height:450px;max-height:450px" contenteditable="true" >${notice.content}</textarea>
                         </div>
                     </div>
                     <!--내용 끝-->
                     
                     <!--첨부파일-->
-                    <div class="line line-dashed line-lg pull-in"></div>
+                    <div class="line line-dashed line-lg pull-in">
+                    </div>
                     <div class="form-group">
                       <label class="col-sm-2 control-label">첨부파일</label>
+                      
                       <div class="col-sm-10">
-                        <input type="file" class="filestyle" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
+                        <input type="file"  class="filestyle" name="file" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
+                        이전 파일 : ${notice.fileName}
                       </div>
                     </div>
                     <!--첨부파일 끝-->

@@ -2,6 +2,8 @@ package com.knowlege_seek.queryOne.domain;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Notice {
 	
 	private String notiNo;
@@ -10,6 +12,8 @@ public class Notice {
 	private String content;
 	private Date createDate;
 	private int hits;
+	private MultipartFile file;
+	//file 네임 받기
 	private String fileName;
 	public String getNotiNo() {
 		return notiNo;
@@ -46,6 +50,14 @@ public class Notice {
 	}
 	public void setHits(int hits) {
 		this.hits = hits;
+	}
+	public MultipartFile getFile() {
+		
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+		setFileName(file.getOriginalFilename());
 	}
 	public String getFileName() {
 		return fileName;

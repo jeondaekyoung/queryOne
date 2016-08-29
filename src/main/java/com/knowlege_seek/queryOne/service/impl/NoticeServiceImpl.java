@@ -34,6 +34,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int insert(Notice notice) {
+		notice.getFileName();
 		return dao.insert(notice);
 	}
 
