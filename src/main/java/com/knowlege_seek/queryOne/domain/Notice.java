@@ -57,7 +57,6 @@ public class Notice {
 	}
 	public void setFile(MultipartFile file) {
 		this.file = file;
-		setFileName(file.getOriginalFilename());
 	}
 	public String getFileName() {
 		return fileName;
