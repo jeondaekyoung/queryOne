@@ -10,6 +10,15 @@ public class Download {
 	private Date createDate;
 	private int hits;
 	private String fileName;
+	private String file_id;
+
+	public String getFile_id() {
+		return file_id;
+	}
+	public void setFile_id(String file_id) {
+		this.file_id = file_id;
+	}
+	
 	public String getDownNo() {
 		return DownNo;
 	}

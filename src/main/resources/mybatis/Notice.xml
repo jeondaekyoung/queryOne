@@ -13,11 +13,15 @@
 	</select>
 	
 	<insert id="notiInsert" parameterType="Notice">
-		insert into notice values(default,#{title},#{writer},#{content},default ,default,#{fileName});
+		insert into notice values(default,#{title},#{writer},#{content},default ,default,#{fileName},#{file_id});
 	</insert>	
 	
 	<update id="notiUpdate" parameterType="Notice">
-		update notice set title=#{title},content=#{content},fileName=#{fileName} where notiNo=#{notiNo}
+		if(
+		isnull(#{file_id}),
+		(update notice set title=#{title},content=#{content},fileName=#{fileName} where notiNo=#{notiNo}),
+		(update notice set title=#{title},content=#{content},fileName=#{fileName},file_id=#{file_id} where notiNo=#{notiNo})
+		)
 	</update>
 	
 	<delete id="notiDelete" parameterType="Notice">

@@ -67,7 +67,7 @@ public class NoticeContoller {
 		}
 		
 		int result=noti.insert(notice);
-		logger.debug("write insert {}",result==1?"성공":"실패");
+		System.out.println(result==1?"성공":"실패");
 		
 		return "forward:/noti/list.do";
 	}
@@ -81,9 +81,11 @@ public class NoticeContoller {
 	@RequestMapping("/edit.do")
 	public String update(Notice notice){
 		notice=noti.selectOne(notice);
-
-		//int result=noti.update(notice);
-		//logger.debug("write update {}",result==1?"성공":"실패");
+		int result=noti.update(notice);
+		
+		
+		
+		System.out.println(result==1?"성공":"실패");
 		
 		return "redirect:/noti/list.do";
 	}
@@ -95,7 +97,9 @@ public class NoticeContoller {
 			FileDTO dto =fileServiceImpl.selectFileDetail(notice.getFile_id());
 			System.out.println(fileServiceImpl.update(notice.getFile(), dto));
 			int result=noti.delete(notice);
+			System.out.println(result==1?"성공":"실패");
 		}*/
+		
 		return "redirect:/noti/list.do";
 	}
 	
