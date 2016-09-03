@@ -12,9 +12,10 @@ public class Notice {
 	private String content;
 	private Date createDate;
 	private int hits;
-	private MultipartFile file;
 	//file 네임 받기
 	private String fileName;
+	
+	private MultipartFile file;
 	public String getNotiNo() {
 		return notiNo;
 	}

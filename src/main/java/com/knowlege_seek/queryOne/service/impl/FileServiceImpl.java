@@ -20,19 +20,33 @@ import org.springframework.web.multipart.MultipartFile;
 import com.knowlege_seek.queryOne.domain.FileDTO;
 import com.knowlege_seek.queryOne.service.FileService;
 
-@Service
+@Service("fileService")
 public class FileServiceImpl implements FileService {
+	
 	private static Logger log = LoggerFactory.getLogger(FileServiceImpl.class);
 	@Autowired FileDao fileDao;
-	private String fileSaveRoot = "/var/data/file";
+	//private String fileSaveRoot = "/var/data/file";
+	private String fileSaveRoot = "D:/queryOne/upload";
 	
 	@Override
-	public String save(MultipartFile file) {
+	public String save(MultipartFile file,String no,int categoryId) {
 		FileDTO fileDTO = new FileDTO();
 		String originalFileName = file.getOriginalFilename();
 		fileDTO.setFile_real_name(originalFileName);
 		fileDTO.setFile_content_type(file.getContentType());
 		fileDTO.setFile_size(file.getSize());
+		switch (categoryId) {
+		case 2://자료실
+			fileDTO.setDownNo(no);
+			break;
+		case 3://공지사항
+			fileDTO.setNotiNo(no);
+			break;
+		
+		default:
+			break;
+		}
+		
 		String[] fileNameSplit = StringUtils.split(originalFileName, ".");
 		if(fileNameSplit != null){
 			fileDTO.setFile_ext(fileNameSplit[fileNameSplit.length - 1]);	
@@ -41,14 +55,14 @@ public class FileServiceImpl implements FileService {
 		Calendar cal = Calendar.getInstance();
 		
 		File dir = new File(fileSaveRoot + 
-				File.pathSeparator + 
+				"/" + 
 							new SimpleDateFormat("yyyy/MM/dd").format(cal.getTime()));
 		dir.mkdirs();
-
-		String fileId = fileDao.insert(fileDTO);
+		
+		String fileId = fileDao.insert(fileDTO);//저장후 필드 id 가지고옴?
 		
 		String fileName = new SimpleDateFormat("yyyyMMddHHmm").format(cal.getTime()) + StringUtils.leftPad(fileId, 10, '0') + "." + fileDTO.getFile_ext();
-		String fileNameWithPath = dir.getAbsolutePath() + File.pathSeparator + fileName;
+		String fileNameWithPath = dir.getAbsolutePath() + "/" + fileName;
 		File f = new File(fileNameWithPath);
 		FileOutputStream fos = null;
 		try {
@@ -70,7 +84,9 @@ public class FileServiceImpl implements FileService {
 		
 		return fileId;
 	}
-
+	
+	
+	
 	@Override
 	public FileDTO selectFileDetail(String fileId) {
 		return fileDao.selectFile(fileId);
@@ -156,6 +172,17 @@ public class FileServiceImpl implements FileService {
 		System.out.println(check);
 		return check;
 	
+	}
+
+
+
+	@Override
+	public String update(MultipartFile file,FileDTO dto) {
+		
+		File fileObj = new File(dto.getFile_path());
+		
+		return String.valueOf(fileObj.delete());
+		
 	}
 
 }

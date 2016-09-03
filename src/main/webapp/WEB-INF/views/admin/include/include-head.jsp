@@ -8,7 +8,7 @@
 <title>관리자 페이지</title>
 <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.css'/>" type="text/css" />
 <link rel="stylesheet" href="<c:url value='/resources/css/animate.css'/>" type="text/css" />
-<link rel="stylesheet" href="<c:url value='/resources/css/font-awesome.min.css'/>" type="text/css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="<c:url value='/resources/css/font.css'/>" type="text/css" />
 <link rel="stylesheet" href="<c:url value='/resources/js/datepicker/datepicker.css'/>" type="text/css" />
 <link rel="stylesheet" href="<c:url value='/resources/css/app.css'/>" type="text/css" />

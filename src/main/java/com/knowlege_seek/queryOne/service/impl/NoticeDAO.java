@@ -18,8 +18,6 @@ public class NoticeDAO implements NoticeService {
 
 	@Override
 	public List<Notice> selectList(Map map) {
-		
-		
 		return sqlTemplate.selectList("notiSelectList",map); 
 	}
 

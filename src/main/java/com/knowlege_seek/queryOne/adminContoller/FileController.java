@@ -32,11 +32,11 @@ public class FileController {
 	@RequestMapping("/down/{file_id}")
 	@ResponseBody
 	public ResponseEntity<FileSystemResource> down(@PathVariable("file_id") String fileId){
-		FileDTO filedto = fileService.selectFileDetail(fileId);
+		FileDTO fileDto = fileService.selectFileDetail(fileId);
 		
-		File file = new File(filedto.getFile_path());
+		File file = new File(fileDto.getFile_path());
 		
-		return downloadContent(filedto, file, true);
+		return downloadContent(fileDto, file, true);
 	}
 	
 	@RequestMapping("/down/image/{file_id}")

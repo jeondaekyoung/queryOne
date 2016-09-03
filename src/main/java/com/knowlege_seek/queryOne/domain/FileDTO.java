@@ -1,5 +1,7 @@
 package com.knowlege_seek.queryOne.domain;
 
+import java.sql.Date;
+
 public class FileDTO {
 	private String file_id;
 	private String file_name;
@@ -8,7 +10,22 @@ public class FileDTO {
 	private String file_ext;
 	private String file_content_type;
 	private long file_size;
-	private String reg_date;
+	private Date reg_date;
+	private String notiNo;
+	private String DownNo;
+	
+	public String getNotiNo() {
+		return notiNo;
+	}
+	public void setNotiNo(String notiNo) {
+		this.notiNo = notiNo;
+	}
+	public String getDownNo() {
+		return DownNo;
+	}
+	public void setDownNo(String downNo) {
+		DownNo = downNo;
+	}
 	public String getFile_id() {
 		return file_id;
 	}
@@ -51,10 +68,10 @@ public class FileDTO {
 	public void setFile_size(long file_size) {
 		this.file_size = file_size;
 	}
-	public String getReg_date() {
+	public Date getReg_date() {
 		return reg_date;
 	}
-	public void setReg_date(String reg_date) {
+	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
 	

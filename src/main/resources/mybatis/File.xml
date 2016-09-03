@@ -6,16 +6,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 <mapper namespace="mybatis.File">
 
-	<insert id="insertFile" parameterType="fileVO" useGeneratedKeys="true" keyProperty="file_id">
-		INSERT INTO TB_FILE (
-			FILE_ID, FILE_NAME, FILE_REAL_NAME, FILE_PATH, FILE_EXT, FILE_CONTENT_TYPE, FILE_SIZE, REG_DATE
+	<insert id="insertFile" parameterType="fileDTO" useGeneratedKeys="true" keyProperty="file_id">
+		INSERT INTO FILE (
+			FILE_ID, FILE_NAME, FILE_REAL_NAME, FILE_PATH, FILE_EXT, FILE_CONTENT_TYPE, FILE_SIZE, REG_DATE,notiNo,downNo
 		) VALUES (
-			#{file_id}, #{file_name}, #{file_real_name}, #{file_path}, #{file_ext}, #{file_content_type}, #{file_size}, now()
+			#{file_id}, #{file_name}, #{file_real_name}, #{file_path}, #{file_ext}, #{file_content_type}, #{file_size}, now(),#{notiNo},#{downNo}
+			
 		)
 	</insert>
 
-	<update id="updateFile" parameterType="fileVO">
-		UPDATE TB_FILE 
+	<update id="updateFile" parameterType="fileDTO">
+		UPDATE FILE 
 		SET FILE_NAME = #{file_name},
 			FILE_REAL_NAME = #{file_real_name},
 			FILE_PATH = #{file_path},
@@ -24,11 +25,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE FILE_ID = #{file_id}
 	</update>
 	
-	<select id="selectFile" parameterType="string" resultType="fileVO">
+	<select id="selectFile" parameterType="string" resultType="fileDTO">
 		SELECT
 			FILE_ID, FILE_NAME, FILE_REAL_NAME, FILE_PATH, 
 			FILE_EXT, FILE_CONTENT_TYPE, FILE_SIZE, REG_DATE
-		FROM TB_FILE
+		FROM FILE
 		WHERE FILE_ID = #{file_id}
 	</select>
 </mapper>

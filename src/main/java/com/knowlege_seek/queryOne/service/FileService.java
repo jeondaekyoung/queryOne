@@ -13,8 +13,10 @@ public interface FileService {
 	 * @param file
 	 * @return 파일 저장 ID
 	 */
-	String save(MultipartFile file);
-
+	String save(MultipartFile file,String no,int categoryId);//어떤게시판에 몇번게시물인지
+	
+	String update(MultipartFile file, FileDTO dto);
+	
 	FileDTO selectFileDetail(String fileId);
 	
 	File loadFileThumbnail(String fileId, String width);
@@ -22,4 +24,6 @@ public interface FileService {
 	public boolean checkFile(MultipartFile file, String type);
 	
 	public boolean checkFileSize(MultipartFile file, String type);
+
+	
 }
