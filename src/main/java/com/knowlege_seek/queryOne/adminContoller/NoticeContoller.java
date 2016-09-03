@@ -29,7 +29,6 @@ import com.knowlege_seek.queryOne.util.FileUpDownUtils;
 public class NoticeContoller {
 
 	private static final Logger logger = LoggerFactory.getLogger(NoticeContoller.class);
-	private final int CATEGORYID = 3;
 	
 	@Resource(name="notiService")
 	NoticeServiceImpl noti; 
@@ -60,11 +59,11 @@ public class NoticeContoller {
 
 	@RequestMapping(value ="/write.do",method =RequestMethod.POST)
 	public String write(Notice notice){
+		
 		if(notice.getFile().getSize()!=0){
 		MultipartFile multpartfile = notice.getFile();
 		notice.setFileName(multpartfile.getOriginalFilename());
-		fileServiceImpl.save(multpartfile,notice.getNotiNo(),CATEGORYID);
-		
+		fileServiceImpl.save(multpartfile);
 		}
 		
 		int result=noti.insert(notice);

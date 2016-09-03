@@ -8,10 +8,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="insertFile" parameterType="fileDTO" useGeneratedKeys="true" keyProperty="file_id">
 		INSERT INTO FILE (
-			FILE_ID, FILE_NAME, FILE_REAL_NAME, FILE_PATH, FILE_EXT, FILE_CONTENT_TYPE, FILE_SIZE, REG_DATE,notiNo,downNo
+			FILE_ID, FILE_NAME, FILE_REAL_NAME, FILE_PATH, FILE_EXT, FILE_CONTENT_TYPE, FILE_SIZE, REG_DATE
 		) VALUES (
-			#{file_id}, #{file_name}, #{file_real_name}, #{file_path}, #{file_ext}, #{file_content_type}, #{file_size}, now(),#{notiNo},#{downNo}
-			
+			#{file_id}, #{file_name}, #{file_real_name}, #{file_path}, #{file_ext}, #{file_content_type}, #{file_size}, now()
 		)
 	</insert>
 

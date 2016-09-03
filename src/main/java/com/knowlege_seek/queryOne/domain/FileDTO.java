@@ -11,21 +11,7 @@ public class FileDTO {
 	private String file_content_type;
 	private long file_size;
 	private Date reg_date;
-	private String notiNo;
-	private String DownNo;
 	
-	public String getNotiNo() {
-		return notiNo;
-	}
-	public void setNotiNo(String notiNo) {
-		this.notiNo = notiNo;
-	}
-	public String getDownNo() {
-		return DownNo;
-	}
-	public void setDownNo(String downNo) {
-		DownNo = downNo;
-	}
 	public String getFile_id() {
 		return file_id;
 	}

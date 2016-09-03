@@ -29,23 +29,12 @@ public class FileServiceImpl implements FileService {
 	private String fileSaveRoot = "D:/queryOne/upload";
 	
 	@Override
-	public String save(MultipartFile file,String no,int categoryId) {
+	public String save(MultipartFile file) {
 		FileDTO fileDTO = new FileDTO();
 		String originalFileName = file.getOriginalFilename();
 		fileDTO.setFile_real_name(originalFileName);
 		fileDTO.setFile_content_type(file.getContentType());
 		fileDTO.setFile_size(file.getSize());
-		switch (categoryId) {
-		case 2://자료실
-			fileDTO.setDownNo(no);
-			break;
-		case 3://공지사항
-			fileDTO.setNotiNo(no);
-			break;
-		
-		default:
-			break;
-		}
 		
 		String[] fileNameSplit = StringUtils.split(originalFileName, ".");
 		if(fileNameSplit != null){
