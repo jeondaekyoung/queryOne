@@ -24,6 +24,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE FILE_ID = #{file_id}
 	</update>
 	
+	<delete id="deleteFile" parameterType="fileDTO">
+		DELETE FROM FILE WHERE FILE_ID=#{file_id}
+		
+	</delete>
+	
+	
 	<select id="selectFile" parameterType="string" resultType="fileDTO">
 		SELECT
 			FILE_ID, FILE_NAME, FILE_REAL_NAME, FILE_PATH, 

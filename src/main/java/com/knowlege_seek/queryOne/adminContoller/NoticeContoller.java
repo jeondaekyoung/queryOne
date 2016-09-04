@@ -29,19 +29,19 @@ import com.knowlege_seek.queryOne.util.FileUpDownUtils;
 public class NoticeContoller {
 
 	private static final Logger logger = LoggerFactory.getLogger(NoticeContoller.class);
-	
+
 	@Resource(name="notiService")
 	NoticeServiceImpl noti; 
 	@Resource(name="fileService")
 	FileServiceImpl fileServiceImpl;
-	
+
 	@RequestMapping("/list.do")
 	public String list(@RequestParam Map map,Model model){ 
 		List<Notice> lists=noti.selectList(map);
 		model.addAttribute("lists",lists);
 		return "/admin/notice";
 	}
-	
+
 	@RequestMapping("/view.do")
 	public String view(Notice notice,Model model){
 		notice=noti.selectOne(notice);
@@ -51,7 +51,7 @@ public class NoticeContoller {
 		model.addAttribute("notice", notice);
 		return "/admin/noticeView";
 	}
-	
+
 	@RequestMapping("/writeForm.do")
 	public String writeForm(){
 		return "/admin/noticeWrite";
@@ -59,16 +59,17 @@ public class NoticeContoller {
 
 	@RequestMapping(value ="/write.do",method =RequestMethod.POST)
 	public String write(Notice notice){
-		
+
 		if(notice.getFile().getSize()!=0){
-		MultipartFile multpartfile = notice.getFile();
-		notice.setFileName(multpartfile.getOriginalFilename());
-		fileServiceImpl.save(multpartfile);
+			MultipartFile multpartfile = notice.getFile();
+			notice.setFileName(multpartfile.getOriginalFilename());
+			notice.setFile_id(fileServiceImpl.save(multpartfile));
+
 		}
-		
+
 		int result=noti.insert(notice);
 		System.out.println(result==1?"성공":"실패");
-		
+
 		return "forward:/noti/list.do";
 	}
 	@RequestMapping("/editForm.do")
@@ -80,29 +81,35 @@ public class NoticeContoller {
 	}
 	@RequestMapping("/edit.do")
 	public String update(Notice notice){
-		notice=noti.selectOne(notice);
+		System.out.println("notice.getFile().getSize():"+notice.getFile().getSize());
+		if(notice.getFile_id()!=null&&notice.getFile().getSize()!=0){
+			//올린파일 mutipartFile 객체에 저장, 파일 이름 저장
+			MultipartFile multpartfile = notice.getFile();
+			notice.setFileName(multpartfile.getOriginalFilename()); 
+			FileDTO FileDto =fileServiceImpl.selectFileDetail(notice.getFile_id());//fileId로 정보가지고오기
+			//객체가 존재할때 파일 업데이트
+				notice.setFile_id(fileServiceImpl.update(multpartfile, FileDto));	
+		}
 		int result=noti.update(notice);
-		
-		
-		
+
 		System.out.println(result==1?"성공":"실패");
-		
-		return "redirect:/noti/list.do";
-	}
-	@RequestMapping("/delete.do")
-	public String delete(Notice notice){
-		notice=noti.selectOne(notice);
-		/*if(notice.getFile_id()!=null){
-			//기존파일 삭제 
-			FileDTO dto =fileServiceImpl.selectFileDetail(notice.getFile_id());
-			System.out.println(fileServiceImpl.update(notice.getFile(), dto));
-			int result=noti.delete(notice);
-			System.out.println(result==1?"성공":"실패");
-		}*/
-		
+
 		return "redirect:/noti/list.do";
 	}
 	
+	@RequestMapping("/delete.do")
+	public String delete(Notice notice){
+		notice=noti.selectOne(notice);
+		int result=noti.delete(notice);
+		if(notice.getFile_id()!=null){
+			//파일 삭제 
+			FileDTO FileDto =fileServiceImpl.selectFileDetail(notice.getFile_id());
+			System.out.println(fileServiceImpl.delete(notice.getFile(), FileDto));
+		}
+		System.out.println(result==1?"성공":"실패");
+		return "redirect:/noti/list.do";
+	}
+
 
 
 }

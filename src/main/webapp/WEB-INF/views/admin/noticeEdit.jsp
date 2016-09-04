@@ -40,7 +40,8 @@
                 <form action="<c:url value="/noti/edit.do"/>" method="post" id="adForm" class="form-horizontal" enctype="multipart/form-data">
                             <!-- 작성자 -->
                      <input type="hidden" name="writer" value="${sessionScope.USERID}" class="form-control">
-                     <input type="hidden" name="notiNo" value="${notice.notiNo}" class="form-control">                        
+                     <input type="hidden" name="notiNo" value="${notice.notiNo}" class="form-control">
+                     <input type="hidden" name="file_id" value="${notice.file_id}" class="form-control">                           
                     <!--제목-->
                     <div class="form-group">
                       <label class="col-sm-2 control-label">제목</label>

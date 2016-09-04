@@ -17,6 +17,8 @@ public interface FileService {
 	
 	String update(MultipartFile file, FileDTO dto);
 	
+    String delete(MultipartFile file,FileDTO dto) ;
+	
 	FileDTO selectFileDetail(String fileId);
 	
 	File loadFileThumbnail(String fileId, String width);

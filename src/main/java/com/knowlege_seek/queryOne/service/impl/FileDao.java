@@ -18,9 +18,14 @@ public class FileDao {
 		return fileDto.getFile_id();
 	}
 	
-	public void update(FileDTO fileVO){
-		sqlSessionTemplate.update("updateFile", fileVO);
+	public void update(FileDTO fileDto){
+		sqlSessionTemplate.update("updateFile", fileDto);
 	}
+
+	public void delete(FileDTO fileDto){
+		sqlSessionTemplate.update("deleteFile", fileDto);
+	}
+	
 
 	public FileDTO selectFile(String fileId) {
 		return sqlSessionTemplate.selectOne("selectFile", fileId);

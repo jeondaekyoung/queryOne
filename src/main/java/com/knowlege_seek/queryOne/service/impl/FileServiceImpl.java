@@ -166,12 +166,65 @@ public class FileServiceImpl implements FileService {
 
 
 	@Override
-	public String update(MultipartFile file,FileDTO dto) {
+	public String delete(MultipartFile file,FileDTO dto) {
 		
 		File fileObj = new File(dto.getFile_path());
-		
+		System.out.println("삭제할 파일아이디:"+dto.getFile_id());
+		fileDao.delete(dto);
 		return String.valueOf(fileObj.delete());
 		
 	}
+
+
+
+	@Override
+	public String update(MultipartFile file, FileDTO dto) {
+		if(dto!=null){
+			new File(dto.getFile_path()).delete();
+		}
+		else{
+			return this.save(file);
+		}
+		
+		String originalFileName = file.getOriginalFilename();
+		dto.setFile_real_name(originalFileName);
+		dto.setFile_content_type(file.getContentType());
+		dto.setFile_size(file.getSize());
+		String[] fileNameSplit = StringUtils.split(originalFileName, ".");
+		if(fileNameSplit != null){
+			dto.setFile_ext(fileNameSplit[fileNameSplit.length - 1]);	
+		}
+		
+		Calendar cal = Calendar.getInstance();
+		
+		File dir = new File(fileSaveRoot + 
+				"/" + 
+							new SimpleDateFormat("yyyy/MM/dd").format(cal.getTime()));
+		dir.mkdirs();
+
+		String fileName = new SimpleDateFormat("yyyyMMddHHmm").format(cal.getTime()) + StringUtils.leftPad(dto.getFile_id(), 10, '0') + "." + dto.getFile_ext();
+		String fileNameWithPath = dir.getAbsolutePath() + "/" + fileName;
+		File f = new File(fileNameWithPath);
+		FileOutputStream fos = null;
+		try {
+			byte[] fileBytes = file.getBytes();
+			fos = new FileOutputStream(f);
+			fos.write(fileBytes);
+		} catch (FileNotFoundException e) {
+			log.error("error", e);
+		} catch (IOException e) {
+			log.error("error", e);
+		} finally {
+			if(fos != null) try {fos.close();} catch (IOException e) {}
+		}
+		
+		dto.setFile_name(fileName);
+		dto.setFile_path(fileNameWithPath);
+		
+		fileDao.update(dto);
+		
+		return dto.getFile_id();
+	}
+	
 
 }

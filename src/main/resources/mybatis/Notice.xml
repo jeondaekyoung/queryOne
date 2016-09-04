@@ -17,11 +17,11 @@
 	</insert>	
 	
 	<update id="notiUpdate" parameterType="Notice">
-		if(
-		isnull(#{file_id}),
-		(update notice set title=#{title},content=#{content},fileName=#{fileName} where notiNo=#{notiNo}),
-		(update notice set title=#{title},content=#{content},fileName=#{fileName},file_id=#{file_id} where notiNo=#{notiNo})
-		)
+		update notice set title=#{title},content=#{content},
+		fileName=if(isnull(#{fileName}),fileName,#{fileName}),
+		file_id= if(isnull(#{file_id}),file_id,#{file_id})
+		 where notiNo=#{notiNo}
+		
 	</update>
 	
 	<delete id="notiDelete" parameterType="Notice">
