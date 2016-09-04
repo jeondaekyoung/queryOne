@@ -28,51 +28,6 @@ public class FileServiceImpl implements FileService {
 	//private String fileSaveRoot = "/var/data/file";
 	private String fileSaveRoot = "D:/queryOne/upload";
 	
-	@Override
-	public String save(MultipartFile file) {
-		FileDTO fileDTO = new FileDTO();
-		String originalFileName = file.getOriginalFilename();
-		fileDTO.setFile_real_name(originalFileName);
-		fileDTO.setFile_content_type(file.getContentType());
-		fileDTO.setFile_size(file.getSize());
-		
-		String[] fileNameSplit = StringUtils.split(originalFileName, ".");
-		if(fileNameSplit != null){
-			fileDTO.setFile_ext(fileNameSplit[fileNameSplit.length - 1]);	
-		}
-		
-		Calendar cal = Calendar.getInstance();
-		
-		File dir = new File(fileSaveRoot + 
-				"/" + 
-							new SimpleDateFormat("yyyy/MM/dd").format(cal.getTime()));
-		dir.mkdirs();
-		
-		String fileId = fileDao.insert(fileDTO);//저장후 필드 id 가지고옴?
-		
-		String fileName = new SimpleDateFormat("yyyyMMddHHmm").format(cal.getTime()) + StringUtils.leftPad(fileId, 10, '0') + "." + fileDTO.getFile_ext();
-		String fileNameWithPath = dir.getAbsolutePath() + "/" + fileName;
-		File f = new File(fileNameWithPath);
-		FileOutputStream fos = null;
-		try {
-			byte[] fileBytes = file.getBytes();
-			fos = new FileOutputStream(f);
-			fos.write(fileBytes);
-		} catch (FileNotFoundException e) {
-			log.error("error", e);
-		} catch (IOException e) {
-			log.error("error", e);
-		} finally {
-			if(fos != null) try {fos.close();} catch (IOException e) {}
-		}
-		
-		fileDTO.setFile_name(fileName);
-		fileDTO.setFile_path(fileNameWithPath);
-		
-		fileDao.update(fileDTO);
-		
-		return fileId;
-	}
 	
 	
 	
@@ -162,8 +117,49 @@ public class FileServiceImpl implements FileService {
 		return check;
 	
 	}
-
-
+	
+	@Override
+	public String save(MultipartFile file) {
+		FileDTO fileDTO = new FileDTO();
+		dtoSet(file, fileDTO);
+		
+		Calendar cal = Calendar.getInstance();
+		
+		File dir = new File(fileSaveRoot + 
+				"/" + 
+							new SimpleDateFormat("yyyy/MM/dd").format(cal.getTime()));
+		dir.mkdirs();
+		
+		String fileId = fileDao.insert(fileDTO);//저장후 필드 id 가지고옴?
+		
+		new_fileSet(file, fileDTO, cal, dir, fileId);
+		
+		fileDao.update(fileDTO);
+		
+		return fileId;
+	}
+	
+	@Override
+	public String update(MultipartFile file, FileDTO dto) {
+		if(dto!=null){
+			new File(dto.getFile_path()).delete();
+		}
+		else{
+			return this.save(file);
+		}
+		
+		dtoSet(file, dto);
+		
+		Calendar cal = Calendar.getInstance();
+		
+		File dir = new File(fileSaveRoot + "/" +new SimpleDateFormat("yyyy/MM/dd").format(cal.getTime()));
+		dir.mkdirs();
+		
+		new_fileSet(file, dto, cal, dir, dto.getFile_id());
+		fileDao.update(dto);
+		
+		return dto.getFile_id();
+	}
 
 	@Override
 	public String delete(MultipartFile file,FileDTO dto) {
@@ -174,36 +170,13 @@ public class FileServiceImpl implements FileService {
 		return String.valueOf(fileObj.delete());
 		
 	}
-
-
-
-	@Override
-	public String update(MultipartFile file, FileDTO dto) {
-		if(dto!=null){
-			new File(dto.getFile_path()).delete();
-		}
-		else{
-			return this.save(file);
-		}
-		
-		String originalFileName = file.getOriginalFilename();
-		dto.setFile_real_name(originalFileName);
-		dto.setFile_content_type(file.getContentType());
-		dto.setFile_size(file.getSize());
-		String[] fileNameSplit = StringUtils.split(originalFileName, ".");
-		if(fileNameSplit != null){
-			dto.setFile_ext(fileNameSplit[fileNameSplit.length - 1]);	
-		}
-		
-		Calendar cal = Calendar.getInstance();
-		
-		File dir = new File(fileSaveRoot + 
-				"/" + 
-							new SimpleDateFormat("yyyy/MM/dd").format(cal.getTime()));
-		dir.mkdirs();
-
-		String fileName = new SimpleDateFormat("yyyyMMddHHmm").format(cal.getTime()) + StringUtils.leftPad(dto.getFile_id(), 10, '0') + "." + dto.getFile_ext();
-		String fileNameWithPath = dir.getAbsolutePath() + "/" + fileName;
+	
+	//리펙토링 목록
+	private void new_fileSet(MultipartFile file, FileDTO fileDTO, Calendar cal, File dir, String fileId) {
+		String fileName;
+		String fileNameWithPath;
+		fileName = new SimpleDateFormat("yyyyMMddHHmm").format(cal.getTime()) + StringUtils.leftPad(fileId, 10, '0') + "." + fileDTO.getFile_ext();
+		fileNameWithPath = dir.getAbsolutePath() + "/" + fileName;
 		File f = new File(fileNameWithPath);
 		FileOutputStream fos = null;
 		try {
@@ -218,13 +191,25 @@ public class FileServiceImpl implements FileService {
 			if(fos != null) try {fos.close();} catch (IOException e) {}
 		}
 		
-		dto.setFile_name(fileName);
-		dto.setFile_path(fileNameWithPath);
-		
-		fileDao.update(dto);
-		
-		return dto.getFile_id();
+		fileDTO.setFile_name(fileName);
+		fileDTO.setFile_path(fileNameWithPath);
 	}
+	
+	private void dtoSet(MultipartFile file, FileDTO fileDTO) {
+		String originalFileName = file.getOriginalFilename();
+		fileDTO.setFile_real_name(originalFileName);
+		fileDTO.setFile_content_type(file.getContentType());
+		fileDTO.setFile_size(file.getSize());
+		
+		String[] fileNameSplit = StringUtils.split(originalFileName, ".");
+		if(fileNameSplit != null){
+			fileDTO.setFile_ext(fileNameSplit[fileNameSplit.length - 1]);	
+		}
+	}
+	
+
+
+	
 	
 
 }
