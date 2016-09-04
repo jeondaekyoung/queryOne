@@ -3,6 +3,28 @@
 <!DOCTYPE mapper
 			PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
-
+<mapper  namespace="mybatis.Download">
+	<select id="downSelectList" parameterType="java.util.Map" resultType="Download">
+		select * from Download
+	</select>
+	
+	<select id="downSelectOne" parameterType="Download" resultType="Download">
+		select * from Download where downNo=#{downNo}
+	</select>
+	
+	<insert id="downInsert" parameterType="Download">
+		insert into Download values(default,#{title},#{writer},#{content},default ,default,#{fileName},#{file_id});
+	</insert>	
+	
+	<update id="downUpdate" parameterType="Download">
+		update Download set title=#{title},content=#{content},
+		fileName=if(isnull(#{fileName}),fileName,#{fileName}),
+		file_id= if(isnull(#{file_id}),file_id,#{file_id})
+		 where downNo=#{downNo}
+		
+	</update>
+	
+	<delete id="downDelete" parameterType="Download">
+		delete from Download where downNo=#{downNo}
+	</delete>
 </mapper>

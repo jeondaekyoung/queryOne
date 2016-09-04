@@ -11,10 +11,8 @@
 		<typeAlias alias="FileDTO" type="com.knowlege_seek.queryOne.domain.FileDTO"/>
 	</typeAliases>
 	<mappers>
-	<mapper resource="mybatis/Login.xml"/><!-- 
+	<mapper resource="mybatis/Login.xml"/> 
 	<mapper resource="mybatis/Download.xml"/>
-	<mapper resource="mybatis/Licence.xml"/>
-	<mapper resource="mybatis/Video.xml"/> -->
 	<mapper resource="mybatis/Notice.xml"/>
 	<mapper resource="mybatis/File.xml"/>
 	

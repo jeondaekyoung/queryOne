@@ -28,9 +28,6 @@ public class FileServiceImpl implements FileService {
 	//private String fileSaveRoot = "/var/data/file";
 	private String fileSaveRoot = "D:/queryOne/upload";
 	
-	
-	
-	
 	@Override
 	public FileDTO selectFileDetail(String fileId) {
 		return fileDao.selectFile(fileId);

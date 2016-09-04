@@ -12,7 +12,6 @@ public class Notice {
 	private String content;
 	private Date createDate;
 	private int hits;
-	//file 네임 받기
 	private String fileName;
 	
 	private MultipartFile file;

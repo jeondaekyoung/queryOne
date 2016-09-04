@@ -2,6 +2,8 @@ package com.knowlege_seek.queryOne.domain;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Download {
 	private String DownNo;
 	private String title;
@@ -10,8 +12,16 @@ public class Download {
 	private Date createDate;
 	private int hits;
 	private String fileName;
+	
+	private MultipartFile file;
 	private String file_id;
 
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 	public String getFile_id() {
 		return file_id;
 	}
