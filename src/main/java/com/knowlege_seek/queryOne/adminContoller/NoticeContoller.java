@@ -81,11 +81,10 @@ public class NoticeContoller {
 	}
 	@RequestMapping("/edit.do")
 	public String update(Notice notice){
-		System.out.println("notice.getFile().getSize():"+notice.getFile().getSize());
-		if(notice.getFile_id()!=null&&notice.getFile().getSize()!=0){
+		if(notice.getFile().getSize()!=0){
 			//올린파일 mutipartFile 객체에 저장, 파일 이름 저장
 			MultipartFile multpartfile = notice.getFile();
-			notice.setFileName(multpartfile.getOriginalFilename()); 
+			notice.setFileName(multpartfile.getOriginalFilename());
 			FileDTO FileDto =fileServiceImpl.selectFileDetail(notice.getFile_id());//fileId로 정보가지고오기
 			//객체가 존재할때 파일 업데이트
 				notice.setFile_id(fileServiceImpl.update(multpartfile, FileDto));	
