@@ -10,5 +10,6 @@ public class VideoController {
 	public String list(){
 		return "/admin/video";
 	}
+	
 
 }

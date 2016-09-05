@@ -32,9 +32,11 @@
             <header class="header bg-white b-b b-light">
               <p>최근 게시물</p>
             </header>
-            
-       			     <section class="scrollable wrapper w-f">
-              인덱스 페이지입니다.
+       		 <section class="scrollable wrapper w-f">
+       		 <div><iframe width="560" height="315" src="https://www.youtube.com/embed/HtwK5wzmb5E" frameborder="0" allowfullscreen ></iframe></div>
+              <div><iframe width="560" height="315" src="https://www.youtube.com/embed/p4XTMvagQ2Q" frameborder="0" allowfullscreen></iframe></div>
+              <div><iframe width="560" height="315" src="https://www.youtube.com/embed/Ibb5RhoKfzE" frameborder="0" allowfullscreen></iframe></div>
+              <div><iframe width="560" height="315" src="https://www.youtube.com/embed/42Gtm4-Ax2U" frameborder="0" allowfullscreen></iframe></div>
             </section>
               
             <footer class="panel-footer">

@@ -32,7 +32,23 @@
             <header class="header bg-white b-b b-light">
               <p>동영상</p>
             </header>
-            
+            <script>
+function othersubmit(n){
+if(n==1){
+	alert("등록");
+ document.adForm.action="";
+ }
+if(n==2){
+	alert("수정");
+ document.adForm.action="";
+}
+if(n==3){
+	alert("삭제");
+	 document.adForm.action="";
+}
+document.other.submit();
+}
+</script>
             <section class="scrollable wrapper w-f">
                 <form action="" method="post" id="adForm" enctype="multipart/form-data">
 	                <table class="admin">
@@ -46,15 +62,17 @@
                         </thead>
                         <tbody>                
                             <tr><!--   한 페이지에 10개씩 보여준다    -->  
-                                <td><input type="text" class="form-control"></td>
-                                <td><input type="text" class="form-control"></td>
-                                <td><button type="submit" class="btn btn-default"><i class="fa fa-plus-circle"></i> 등록</button></td>
-                            </tr>                        
+                            	
+                                <td><input type="text" name="title" class="form-control"></td>
+                                <td><input type="text" name="youtube_URL" class="form-control"></td>
+                                <td><button type="submit" onclick="othersubmit(1)" class="btn btn-default"><i class="fa fa-plus-circle"></i> 등록</button></td>
+                            </tr>      
+                                              
                             <tr>
                                 <td><input type="text" class="form-control" value="BLACKPINK​ - '붐바야(BOOMBAYAH)' 0821 SBS Inkigayo : '휘파람(WHISTLE)' NO.1 OF THE WEEK"></td>
                                 <td><input type="text" class="form-control" value="https://youtu.be/RGmL76BBGZk"></td>
-                                <td><button type="submit" class="btn btn-info m-r-xs"><i class="fa fa-edit"></i> 수정</button>
-                                    <button type="submit" class="btn btn-danger"><i class="fa fa-minus-circle"></i> 삭제</button></td>
+                                <td><button type="submit" onclick="othersubmit(2)" class="btn btn-info m-r-xs"><i class="fa fa-edit"></i> 수정</button>
+                                    <button type="submit" onclick="othersubmit(3)" class="btn btn-danger"><i class="fa fa-minus-circle"></i> 삭제</button></td>
                             </tr>
                         </tbody>
 	                </table>
