@@ -87,7 +87,7 @@
 										<p class="form-control-static">-</p>
 									</c:if>
 									<c:if test="${!result}">
-										<p class="form-control-static">${notice.fileName}</p>
+										<p class="form-control-static">${download.fileName}</p>
 									</c:if>
 								</div>
 							</div>

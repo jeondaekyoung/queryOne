@@ -81,6 +81,7 @@ public class DownloadController {
 			//올린파일 mutipartFile 객체에 저장, 파일 이름 저장
 			MultipartFile multpartfile = download.getFile();
 			download.setFileName(multpartfile.getOriginalFilename());
+			System.out.println(download.getFile_id());
 			FileDTO FileDto =fileServiceImpl.selectFileDetail(download.getFile_id());//fileId로 정보가지고오기
 			//객체가 존재할때 파일 업데이트
 				download.setFile_id(fileServiceImpl.update(multpartfile, FileDto));	
