@@ -81,6 +81,11 @@ public class NoticeContoller {
 	}
 	@RequestMapping("/edit.do")
 	public String update(Notice notice){
+		if(notice.getFile_id().length()==0){
+			System.out.println(notice.getFile_id()==null?"널임":"널아님");
+			notice.setFile_id(null);
+		}
+		
 		if(notice.getFile().getSize()!=0){
 			//올린파일 mutipartFile 객체에 저장, 파일 이름 저장
 			MultipartFile multpartfile = notice.getFile();

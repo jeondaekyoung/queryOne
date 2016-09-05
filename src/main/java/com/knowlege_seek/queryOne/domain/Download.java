@@ -12,10 +12,16 @@ public class Download {
 	private Date createDate;
 	private int hits;
 	private String fileName;
-	
+	private String account;
 	private MultipartFile file;
 	private String file_id;
 
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
 	public MultipartFile getFile() {
 		return file;
 	}

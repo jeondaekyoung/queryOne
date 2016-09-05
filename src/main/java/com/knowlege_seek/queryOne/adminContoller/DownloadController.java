@@ -34,7 +34,7 @@ public class DownloadController {
 	
 	@RequestMapping("/list.do")
 	public String list(@RequestParam Map map,Model model){
-		List<Download> lists=down.selectList(map);
+		List<Download> lists=down.selectList(map);//map은 페이징을 위한..
 		model.addAttribute("lists",lists);
 		return "/admin/download";
 	}
@@ -55,7 +55,6 @@ public class DownloadController {
 
 	@RequestMapping(value ="/write.do",method =RequestMethod.POST)
 	public String write(Download download){
-
 		if(download.getFile().getSize()!=0){
 			MultipartFile multpartfile = download.getFile();
 			download.setFileName(multpartfile.getOriginalFilename());
@@ -77,6 +76,10 @@ public class DownloadController {
 	}
 	@RequestMapping("/edit.do")
 	public String update(Download download){
+		if(download.getFile_id().length()==0){
+			System.out.println(download.getFile_id()==null?"널임":"널아님");
+			download.setFile_id(null);
+		}
 		if(download.getFile().getSize()!=0){
 			//올린파일 mutipartFile 객체에 저장, 파일 이름 저장
 			MultipartFile multpartfile = download.getFile();
@@ -86,6 +89,7 @@ public class DownloadController {
 			//객체가 존재할때 파일 업데이트
 				download.setFile_id(fileServiceImpl.update(multpartfile, FileDto));	
 		}
+		
 		int result=down.update(download);
 
 		System.out.println(result==1?"성공":"실패");

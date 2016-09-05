@@ -65,8 +65,7 @@
 												<c:forEach items="${lists }" var="list" varStatus="status">
 													<tr>
 														<td>${list.downNo }</td>
-														<td><a
-															href="<c:url value='/down/view.do?downNo=${list.downNo}'/>">${list.title}</a></td>
+														<td><a href="<c:url value='/down/view.do?downNo=${list.downNo}'/>">[${list.account}]${list.title}</a></td>
 														<td>${list.createDate}</td>
 														<td>${list.hits }</td>
 													</tr>

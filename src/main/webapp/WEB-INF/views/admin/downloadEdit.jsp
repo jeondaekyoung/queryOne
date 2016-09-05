@@ -51,8 +51,18 @@
 									<label class="col-sm-2 control-label">구분</label>
 									<div class="col-sm-10">
 										<select name="account" class="form-control col-lg-4">
-											<option>패치</option>
+										<c:set value="" var="account_patch"/>
+										<c:choose>
+											<c:when test="${download.account eq '패치'}">
+											<option selected="selected" >패치</option>
 											<option>문서</option>
+											</c:when>
+											<c:otherwise>
+											<option>패치</option>
+											<option selected="selected">문서</option>
+											</c:otherwise>
+										</c:choose>
+											
 										</select>
 									</div>
 								</div>

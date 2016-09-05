@@ -36,7 +36,13 @@
 						</header>
 
 						<section class="scrollable wrapper w-f">
-
+							<div class="clearfix form-group">
+								<label class="col-sm-2 control-label">구분</label>
+								<div class="col-sm-10">
+									<p class="form-control-static">[${download.account}]</p>
+								</div>
+							</div>
+							<div class="line line-dashed line-lg pull-in"></div>
 							<!--조회수-->
 							<div class="clearfix form-group">
 								<label class="col-sm-2 control-label">조회수</label>

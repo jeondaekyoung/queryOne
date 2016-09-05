@@ -13,11 +13,11 @@
 	</select>
 	
 	<insert id="downInsert" parameterType="Download">
-		insert into Download values(default,#{title},#{writer},#{content},default ,default,#{fileName},#{file_id});
+		insert into Download values(default,#{title},#{writer},#{content},default ,default,#{fileName},#{file_id},#{account})
 	</insert>	
 	
 	<update id="downUpdate" parameterType="Download">
-		update Download set title=#{title},content=#{content},
+		update Download set title=#{title},content=#{content},account=#{account},
 		fileName=if(isnull(#{fileName}),fileName,#{fileName}),
 		file_id= if(isnull(#{file_id}),file_id,#{file_id})
 		 where downNo=#{downNo}
