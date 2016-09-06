@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko-KR" class="app">
 <head>
@@ -32,25 +33,13 @@
             <header class="header bg-white b-b b-light">
               <p>동영상</p>
             </header>
-            <script>
-function othersubmit(n){
-if(n==1){
-	alert("등록");
- document.adForm.action="";
- }
-if(n==2){
-	alert("수정");
- document.adForm.action="";
-}
-if(n==3){
-	alert("삭제");
-	 document.adForm.action="";
-}
-document.other.submit();
-}
-</script>
+  
+
             <section class="scrollable wrapper w-f">
-                <form action="" method="post" id="adForm" enctype="multipart/form-data">
+                <form action="<c:url value='/noti/list.do'/>" method="post" id="adForm" name="adForm" enctype="multipart/form-data">
+	                <!-- 작성자 -->
+								<input type="hidden" name="writer"
+									value="${sessionScope.USERID}" class="form-control">
 	                <table class="admin">
 	                    <colgroup><col style="width:30%"><col style="width:50%"><col style="width:20%"></colgroup>
 	                    <thead>
@@ -65,19 +54,52 @@ document.other.submit();
                             	
                                 <td><input type="text" name="title" class="form-control"></td>
                                 <td><input type="text" name="youtube_URL" class="form-control"></td>
-                                <td><button type="submit" onclick="othersubmit(1)" class="btn btn-default"><i class="fa fa-plus-circle"></i> 등록</button></td>
+                                <td><button type="button" onclick="othersubmit(1)" class="btn btn-default"><i class="fa fa-plus-circle"></i> 등록</button></td>
                             </tr>      
-                                              
-                            <tr>
-                                <td><input type="text" class="form-control" value="BLACKPINK​ - '붐바야(BOOMBAYAH)' 0821 SBS Inkigayo : '휘파람(WHISTLE)' NO.1 OF THE WEEK"></td>
-                                <td><input type="text" class="form-control" value="https://youtu.be/RGmL76BBGZk"></td>
-                                <td><button type="submit" onclick="othersubmit(2)" class="btn btn-info m-r-xs"><i class="fa fa-edit"></i> 수정</button>
-                                    <button type="submit" onclick="othersubmit(3)" class="btn btn-danger"><i class="fa fa-minus-circle"></i> 삭제</button></td>
-                            </tr>
+                                    <c:choose>
+											<c:when test="${empty lists }">
+											<td colspan="4">등록된 게시물이 없어요</td>
+											</c:when>
+											<c:otherwise>
+												<c:forEach items="${lists}" var="list" varStatus="status">
+														
+													<tr>
+														<td><input type="text" name="title_edit${list.videoNo }" class="form-control" value="${list.title }"></td>
+														<td><input type="text"  name="youtube_URL_edit${list.videoNo }"  class="form-control" value="${list.youtube_URL}">
+														</td>
+														<td>
+														<button type="button" onclick="othersubmit(2,${list.videoNo})"class="btn btn-info m-r-xs"><i class="fa fa-edit"></i> 수정</button>
+														<button type="button" onclick="othersubmit(3,${list.videoNo})"class="btn btn-danger">	<i class="fa fa-minus-circle"></i> 삭제</button>
+														</td>
+													</tr>
+												</c:forEach>
+											</c:otherwise>
+											</c:choose>
+											          
+                            
                         </tbody>
 	                </table>
                 </form>
+                <h3>※유의사항※</h3>
+            <h4>유튜브에서 해당 동영상의 공유 URL은 소스코드에 있는 src속성에 있는 URL를 등록하셔야 합니다.</h4>
+            
             </section>
+            
+            
+                      <script>
+function othersubmit(n,videoNo){
+if(n==1){
+ document.adForm.action="<c:url value='/video/write.do'/>";
+ }
+if(n==2){
+ document.adForm.action="<c:url value='/video/update.do?videoNo="+videoNo+"'/>";
+}
+if(n==3){
+ document.adForm.action="<c:url value='/video/delete.do?videoNo="+videoNo+"'/>";
+}
+document.adForm.submit();
+}
+</script>
               
             <footer class="panel-footer">
               <div class="row">

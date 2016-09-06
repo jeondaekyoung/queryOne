@@ -9,12 +9,14 @@
 		<typeAlias alias="LicenceKey" type="com.knowlege_seek.queryOne.domain.Licencekey"/>
 		<typeAlias alias="Notice" type="com.knowlege_seek.queryOne.domain.Notice"/>
 		<typeAlias alias="FileDTO" type="com.knowlege_seek.queryOne.domain.FileDTO"/>
+		<typeAlias alias="Video" type="com.knowlege_seek.queryOne.domain.Video"/>
 	</typeAliases>
 	<mappers>
 	<mapper resource="mybatis/Login.xml"/> 
 	<mapper resource="mybatis/Download.xml"/>
 	<mapper resource="mybatis/Notice.xml"/>
 	<mapper resource="mybatis/File.xml"/>
+	<mapper resource="mybatis/Video.xml"/>
 	
 	
 	</mappers>

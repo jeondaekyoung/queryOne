@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko-KR" class="app">
 <head>
@@ -83,15 +84,28 @@
                                 <th>발급횟수</th>
                             </tr>
                         </thead>
-                        <tbody><!--   한 페이지에 30개씩 보여준다    -->    
-                            <tr>
-                                <td>okevary</td>
-                                <td>2016-08-18 14:12:24</td>
-                                <td>QueryOne</td>
-                                <td>YSCHOI@DAESUNGIS.CO.KR</td>
-                                <td>55</td>
-                            </tr>  
-                        </tbody>
+                        <tbody><!--   한 페이지에 30개씩 보여준다    -->
+								<c:choose>
+									<c:when test="${empty notiLists }">
+										<tr bgcolor="white" align="center">
+											<td colspan="4">등록된 메모가 없어요</td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<c:forEach items="${notiLists}" begin="0" end="9" var="list"
+											varStatus="status">
+											<tr>
+												<td>okevary</td>
+												<td>2016-08-18 14:12:24</td>
+												<td>QueryOne</td>
+												<td>YSCHOI@DAESUNGIS.CO.KR</td>
+												<td>55</td>
+											</tr>
+										</c:forEach>
+
+									</c:otherwise>
+								</c:choose>
+						</tbody>
 	                </table>
                 </form>
             </section>

@@ -3,6 +3,26 @@
 <!DOCTYPE mapper
 			PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="mybatis.Video">
+<select id="videoSelectList" parameterType="java.util.Map" resultType="Video">
+		select * from Video order by VideoNo DESC
+	</select>
+	
+	<select id="videoSelectOne" parameterType="Video" resultType="Video">
+		select * from Video where videoNo=#{videoNo}
+	</select>
+	
+	<insert id="videoInsert" parameterType="Video">
+		insert into Video values(default,#{title},#{writer},#{youtube_URL},default);
+	</insert>	
+	
+	<update id="videoUpdate" parameterType="Video">
+		update Video set title=#{title},youtube_URL=#{youtube_URL} where videoNo=#{videoNo}
+		
+	</update>
+	
+	<delete id="videoDelete" parameterType="Video">
+		delete from Video where videoNo=#{videoNo}
+	</delete>
 
 </mapper>

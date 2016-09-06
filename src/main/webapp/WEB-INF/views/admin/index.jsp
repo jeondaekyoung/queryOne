@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko-KR" class="app">
 <head>
@@ -33,16 +34,133 @@
               <p>최근 게시물</p>
             </header>
        		 <section class="scrollable wrapper w-f">
-       		 <div><iframe width="560" height="315" src="https://www.youtube.com/embed/HtwK5wzmb5E" frameborder="0" allowfullscreen ></iframe></div>
-              <div><iframe width="560" height="315" src="https://www.youtube.com/embed/p4XTMvagQ2Q" frameborder="0" allowfullscreen></iframe></div>
-              <div><iframe width="560" height="315" src="https://www.youtube.com/embed/Ibb5RhoKfzE" frameborder="0" allowfullscreen></iframe></div>
-              <div><iframe width="560" height="315" src="https://www.youtube.com/embed/42Gtm4-Ax2U" frameborder="0" allowfullscreen></iframe></div>
-            </section>
+							<table class="admin" style="margin-bottom:20px">
+							<caption>자료실</caption>
+									<colgroup>
+										<col style="width: 10%">
+										<col style="width: 60%">
+										<col style="width: 20%">
+										<col style="width: 10%">
+									</colgroup>
+									<thead>
+										<tr>
+											<th>No.</th>
+											<th>제목</th>
+											<th>작성일</th>
+											<th>조회수</th>
+										</tr>
+									</thead>
+									<tbody>
+										<!--   한 페이지에 10개씩 보여준다    -->
+										<c:choose>
+											<c:when test="${empty downLists }">
+												<tr bgcolor="white" align="center">
+													<td colspan="4">등록된 메모가 없어요</td>
+												</tr>
+											</c:when>
+											<c:otherwise>
+												<c:forEach items="${downLists }" begin="0" end="9" var="list" varStatus="status">
+													<tr>
+														<td>${list.downNo }</td>
+														<td><a href="<c:url value='/down/view.do?downNo=${list.downNo}'/>">[${list.account}]${list.title}</a></td>
+														<td>${list.createDate}</td>
+														<td>${list.hits }</td>
+													</tr>
+												</c:forEach>
+
+											</c:otherwise>
+										</c:choose>
+									</tbody>
+								</table>
+								<table class="admin" style="margin-bottom:20px">
+									<caption>공지사항</caption>
+									<colgroup>
+										<col style="width: 10%">
+										<col style="width: 60%">
+										<col style="width: 20%">
+										<col style="width: 10%">
+									</colgroup>
+									<thead>
+										<tr>
+											<th>No.</th>
+											<th>제목</th>
+											<th>작성일</th>
+											<th>조회수</th>
+										</tr>
+									</thead>
+									<tbody>
+										<!--   한 페이지에 10개씩 보여준다    -->
+										<c:choose>
+											<c:when test="${empty notiLists }">
+												<tr bgcolor="white" align="center">
+													<td colspan="4">등록된 메모가 없어요</td>
+												</tr>
+											</c:when>
+											<c:otherwise>
+												<c:forEach items="${notiLists}" begin="0" end="9" var="list" varStatus="status">
+													<tr>
+														<td>${list.notiNo}</td>
+														<td><a
+															href="<c:url value='/noti/view.do?notiNo=${list.notiNo}'/>">${list.title}</a></td>
+														<td>${list.createDate}</td>
+														<td>${list.hits}</td>
+													</tr>
+												</c:forEach>
+
+											</c:otherwise>
+										</c:choose>
+									</tbody>
+								</table>
+							<table class="admin" style="margin-bottom:20px">
+									<caption>동영상</caption>
+									<colgroup>
+										<col style="width: 10%">
+										<col style="width: 10%">
+										<col style="width: 10%">
+										<col style="width: 15%">
+										<col style="width: 40%">
+									</colgroup>
+									<thead>
+										<tr>
+											<th>No.</th>
+											<th>제목</th>
+											<th>작성일</th>
+											<th>유튜브 URL</th>
+											<th>영상</th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										<!--   한 페이지에 10개씩 보여준다    -->
+										<c:choose>
+											<c:when test="${empty videoLists }">
+												<tr bgcolor="white" align="center">
+													<td colspan="4">등록된 메모가 없어요</td>
+												</tr>
+											</c:when>
+											<c:otherwise>
+												<c:forEach items="${videoLists}" begin="0" end="9" var="list" varStatus="status">
+													<tr>
+														<td>${list.videoNo}</td>
+														<td>${list.title}</td>
+														<td>${list.createDate}</td>
+														<td>${list.youtube_URL}</td>
+												<td><iframe width="450" height="150" src="${list.youtube_URL}" frameborder="0" allowfullscreen></iframe></td>
+													</tr>
+												</c:forEach>
+
+											</c:otherwise>
+										</c:choose>
+									</tbody>
+								</table>
+							
+ 
+				</section>
               
             <footer class="panel-footer">
               <div class="row">
                 <!--페이징-->
-                <div class="col-sm-9 text-center text-center-xs">                
+                <!-- <div class="col-sm-9 text-center text-center-xs">                
                   <ul class="pagination pagination-sm m-t-none m-b-none">
                     <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
                     <li><a href="#">1</a></li>
@@ -52,7 +170,7 @@
                     <li><a href="#">5</a></li>
                     <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
                   </ul>
-                </div>
+                </div> -->
                 <!--페이징 끝-->
                 
                 <!--검색-->

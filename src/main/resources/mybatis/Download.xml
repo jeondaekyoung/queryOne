@@ -5,7 +5,7 @@
 			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper  namespace="mybatis.Download">
 	<select id="downSelectList" parameterType="java.util.Map" resultType="Download">
-		select * from Download
+		select * from Download order by downNo DESC
 	</select>
 	
 	<select id="downSelectOne" parameterType="Download" resultType="Download">

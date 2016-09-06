@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko-KR" class="app">
 <head>
@@ -8,6 +9,7 @@
     
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
+    
     /* addClass : .active */
     $(document).ready(function(){
         $("li.menu-1").addClass("active");
@@ -44,6 +46,7 @@
                                 <th>라이선스 KEY</th>
                                 <th>관리</th>
                             </tr>
+                           
                         </thead>
                         <tbody>      <!--   한 페이지에 10개씩 보여준다    -->            
                             <tr>
@@ -54,18 +57,36 @@
                                 </td>
                                 <td><input type="text" class="form-control"></td>
                                 <td><button type="submit" class="btn btn-default"><i class="fa fa-plus-circle"></i> 등록</button></td>
-                            </tr>                        
-                            <tr>
-                                <td><input type="text" class="form-control" value="2016-08-17" disabled></td>
-                                <td><select name="account" class="form-control">
-                                      <option>Q01</option>
-                                    </select>
-                                </td>
-                                <td><input type="text" class="form-control" value="6154675F183C44757C6A97C8E39E02E8"></td>
-                                <td><button type="submit" class="btn btn-info m-r-xs"><i class="fa fa-edit"></i> 수정</button>
-                                    <button type="submit" class="btn btn-danger"><i class="fa fa-minus-circle"></i> 삭제</button></td>
                             </tr>
-                        </tbody>
+										<c:choose>
+											<c:when test="${empty notiLists }">
+												<tr bgcolor="white" align="center">
+													<td colspan="4">등록된 메모가 없어요</td>
+												</tr>
+											</c:when>
+											<c:otherwise>
+												<c:forEach items="${notiLists}" begin="0" end="9" var="list"
+													varStatus="status">
+													<tr>
+														<td><input type="text" class="form-control"
+															value="2016-08-17" disabled></td>
+														<td><select name="account" class="form-control">
+																<option>Q01</option>
+														</select></td>
+														<td><input type="text" class="form-control"
+															value="6154675F183C44757C6A97C8E39E02E8"></td>
+														<td><button type="submit" class="btn btn-info m-r-xs">
+																<i class="fa fa-edit"></i> 수정
+															</button>
+															<button type="submit" class="btn btn-danger">
+																<i class="fa fa-minus-circle"></i> 삭제
+															</button></td>
+													</tr>
+												</c:forEach>
+
+											</c:otherwise>
+										</c:choose>
+									</tbody>
 	                </table>
                 </form>
             </section>

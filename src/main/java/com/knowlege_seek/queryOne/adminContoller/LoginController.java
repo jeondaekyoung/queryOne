@@ -1,5 +1,6 @@
 package com.knowlege_seek.queryOne.adminContoller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -11,13 +12,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.knowlege_seek.queryOne.domain.Download;
+import com.knowlege_seek.queryOne.domain.Notice;
+import com.knowlege_seek.queryOne.domain.Video;
+import com.knowlege_seek.queryOne.service.impl.DownServiceImpl;
 import com.knowlege_seek.queryOne.service.impl.LoginServiceImpl;
+import com.knowlege_seek.queryOne.service.impl.NoticeServiceImpl;
+import com.knowlege_seek.queryOne.service.impl.VideoServiceImpl;
 
 @Controller
 @RequestMapping("/admin")
 public class LoginController {
+	
 	@Resource(name="loginService")
 	LoginServiceImpl login;
+	
+	@Resource(name="downService")
+	DownServiceImpl down; 
+	
+	@Resource(name="notiService")
+	NoticeServiceImpl noti; 
+	
+	@Resource(name="videoService")
+	VideoServiceImpl videoService; 
+	
 	
 	//·Î±×ÀÎ Æû
 	@RequestMapping("/loginForm.do")
@@ -41,7 +59,18 @@ public class LoginController {
 	}
 	//ÀÎµ¦½º·Î
 	@RequestMapping("/index.do")
-	public String index() throws Exception{
+	public String index(Map map,Model model) throws Exception{
+		
+		List<Notice> notiLists=noti.selectList(map);
+		model.addAttribute("notiLists",notiLists);
+		
+		
+		List<Download> downLists=down.selectList(map);
+		model.addAttribute("downLists",downLists);
+		
+		
+		List<Video> videoLists=videoService.selectList(map);
+		model.addAttribute("videoLists",videoLists);
 		return "admin/index";
 	}
 	
