@@ -55,7 +55,7 @@ public class LoginController {
 			model.addAttribute("loginError", "아이디와 비번이 불일치");
 			return "/admin/login";
 		}*/
-		return "admin/index";
+		return "redirect:/admin/index.do";
 	}
 	//인덱스로
 	@RequestMapping("/index.do")

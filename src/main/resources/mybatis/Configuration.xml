@@ -17,6 +17,7 @@
 	<mapper resource="mybatis/Notice.xml"/>
 	<mapper resource="mybatis/File.xml"/>
 	<mapper resource="mybatis/Video.xml"/>
+	<mapper resource="mybatis/Licence.xml"/>
 	
 	
 	</mappers>

@@ -14,39 +14,55 @@
         $("li.menu-1").addClass("active");
 	});
     <!--
-		  function eclick(pstr,pval1){
-			var f=document.myform;
+    function othersubmit(n,videoNo){
+    	if(n==1){
+    	 document.adForm.action="<c:url value='/lice/write.do'/>";
+    	 }
+    	if(n==2){
+    	 document.adForm.action="<c:url value='/lice/update.do?videoNo="+videoNo+"'/>";
+    	}
+    	if(n==3){
+    	 document.adForm.action="<c:url value='/lice/delete.do?videoNo="+videoNo+"'/>";
+    	}
+    	document.adForm.submit();
+    	}
+	  //-->
+		  function eclick(pstr,liceNo){
+			var f=document.adForm;
 			switch (pstr){	
 				case 'new':
-					if(!f.Product_ID.value){
+					if(!f.product_id.value){
 					   alert("제품ID를 입력하세요");
-					   f.Product_ID.focus();
+					   f.product_id.focus();
 					   return false;
 					}
-					if(!f.Product_Name.value){
+					if(!f.product_name.value){
 					   alert("제품명을 입력하세요");
-					   f.Product_Name.focus();
+					   f.product_name.focus();
 					   return false;
 					}
-					if(!f.up_file.value){
+					if(!f.file.value){
 					   alert("다운로드파일을 입력하세요");
-					   f.up_file.focus();
+					   f.file.focus();
 					   return false;
 					}
-					f.inc.value = pstr;
-					f.action="product_manager_proc.php";
-					f.encoding = "multipart/form-data"
+					f.action="<c:url value='/lice/write.do?who=product'/>";
 					f.submit();	
 					break;
 				case 'mod':
-					tstr = eval("f.Product_ID"+pval1);
-				    tstr1 = eval("f.Product_Name"+pval1);
-					tstr2 = eval("f.up_file"+pval1);
+					var1 ="f.product_id"+liceNo;
+					var2="f.product_name"+liceNo;
+					var3="f.file"+liceNo;
+					tstr = eval(var1);
+				    tstr1 = eval(var2);
+					tstr2 = eval(var3);
 					if(!tstr.value)	{
+						
 					   alert("제품ID를 입력하세요");
 					   tstr.focus();
 					   return false;
 					}
+					
 					if(!tstr1.value)	{
 					   alert("제품명을 입력하세요");
 					   tstr1.focus();
@@ -57,16 +73,13 @@
 					   tstr2.focus();
 					   return false;
 					}
-					f.inc.value = pstr;
-					f.Pro_No.value=pval1;
-					f.action="product_manager_proc.php";
-					f.encoding = "multipart/form-data"
+					tstr.disabled =false;
+					f.action="<c:url value='/lice/updete.do?liceNo="+liceNo+"&who=product'/>";			
 					f.submit();	
 					break;
 				case 'del':
 					if (confirm("정말로 삭제하시겠습니까?")!=1) {return false;}
-					f.inc.value = pstr;
-					f.Pro_No.value=pval1;
+					f.action="<c:url value='/lice/delete.do?liceNo="+liceNo+"&who=product'/>";
 					f.submit();
 					break;
 			}
@@ -75,7 +88,7 @@
 			if((event.keyCode<48)||(event.keyCode>57)) 
 			event.returnValue=false; 
 		}
-	  //-->
+
 
     </script>
     <!-- //head -->
@@ -99,7 +112,7 @@
             </header>
             
             <section class="scrollable wrapper w-f">
-                <form action="" method="post" id="adForm" enctype="multipart/form-data">
+                <form action="" method="post" name="adForm" id="adForm" enctype="multipart/form-data">
 	                <table class="admin">
 	                    <colgroup><col style="width:15%"><col style="width:15%"><col style="width:50%"><col style="width:20%"></colgroup>
 	                    <thead>
@@ -112,35 +125,32 @@
                         </thead>
                         
                         <tbody>                
-                            <tr><!--   한 페이지에 10개씩 보여준다    -->  
-                                <td><input type="text" class="form-control"></td>
-                                <td><input type="text" class="form-control"></td>
-                                <td><input type="file" class="filestyle" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s"></td>
-                                <td><button type="submit" class="btn btn-default"><i class="fa fa-plus-circle"></i> 등록</button></td>
+                            <tr ><!--   한 페이지에 10개씩 보여준다    -->  
+                                <td><input type="text"  name="product_id" class="form-control"></td>
+                                <td><input type="text" name ="product_name" class="form-control"></td>
+                                <td><input type="file" name="file" class="filestyle" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s"></td>
+                                <td><button type="button" onclick="eclick('new','')" class="btn btn-default"><i class="fa fa-plus-circle"></i> 등록</button></td>
                             </tr>
 										<c:choose>
-											<c:when test="${empty notiLists }">
+											<c:when test="${empty lists }">
 												<tr bgcolor="white" align="center">
 													<td colspan="4">등록된 메모가 없어요</td>
 												</tr>
 											</c:when>
 											<c:otherwise>
-												<c:forEach items="${notiLists}" begin="0" end="9" var="list"
+												<c:forEach items="${lists}" begin="0" end="9" var="list"
 													varStatus="status">
 													<tr>
-														<td><input type="text" class="form-control"
-															value="Q01" disabled></td>
-														<td><input type="text" class="form-control"
-															value="QueryOne"></td>
-														<td><input type="file" class="filestyle"
-															data-icon="false" data-classButton="btn btn-default"
-															data-classInput="form-control inline input-s"></td>
-														<td><button type="submit" class="btn btn-info m-r-xs">
-																<i class="fa fa-edit"></i> 수정
-															</button>
-															<button type="submit" class="btn btn-danger">
-																<i class="fa fa-minus-circle"></i> 삭제
-															</button></td>
+														<td><input type="text" name="product_id${list.liceNo}" class="form-control"
+															value="${list.product_id}" disabled="disabled" ></td>
+														<td><input type="text" name="product_name${list.liceNo}" class="form-control"
+															value="${list.product_name }"></td>
+														<td><input type="file" name="file${list.liceNo}"  class="filestyle" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
+																<br>이전파일:${list.file_name }
+														</td>
+														<td><button type="button" onclick="eclick('mod','${list.liceNo}')" class="btn btn-info m-r-xs"><i class="fa fa-edit"></i> 수정	</button>
+															<button type="button" onclick="eclick('del','${list.liceNo}')" class="btn btn-danger"><i class="fa fa-minus-circle"></i> 삭제</button>
+														 </td>
 													</tr>
 												</c:forEach>
 

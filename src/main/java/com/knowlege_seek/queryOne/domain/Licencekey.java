@@ -2,17 +2,22 @@ package com.knowlege_seek.queryOne.domain;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Licencekey {
-	private String licenceNo;
+	private String liceNo;
 	private String product_id;
 	private String product_name;
+	private String writer;
 	private String file_name;
 	private Date createDate;
-	public String getLicenceNo() {
-		return licenceNo;
+	private String file_id;
+	private MultipartFile file;
+	public String getLiceNo() {
+		return liceNo;
 	}
-	public void setLicenceNo(String licenceNo) {
-		this.licenceNo = licenceNo;
+	public void setLiceNo(String licenceNo) {
+		this.liceNo = licenceNo;
 	}
 	public String getProduct_id() {
 		return product_id;
@@ -26,6 +31,12 @@ public class Licencekey {
 	public void setProduct_name(String product_name) {
 		this.product_name = product_name;
 	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
 	public String getFile_name() {
 		return file_name;
 	}
@@ -38,5 +49,18 @@ public class Licencekey {
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
+	public String getFile_id() {
+		return file_id;
+	}
+	public void setFile_id(String file_id) {
+		this.file_id = file_id;
+	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 	
-}
+	
+	}
