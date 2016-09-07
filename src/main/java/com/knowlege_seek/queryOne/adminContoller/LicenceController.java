@@ -5,11 +5,14 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.knowlege_seek.queryOne.domain.FileDTO;
 import com.knowlege_seek.queryOne.domain.Licencekey;
@@ -57,19 +60,25 @@ public class LicenceController {
 		int result=lice.insert(licencekey);
 		System.out.println(result==1?"등록 성공":"실패");
 				
-		return "/admin/key-"+who;
+		return "redirect:/lice/product.do";
 	}
 	@RequestMapping("/updete.do")
-	public String updete(@RequestParam Map map,@RequestParam("liceNo") String liceNo){
+	public String updete(@RequestParam Map map,Licencekey licencekey,@RequestParam("liceNo") String liceNo,MultipartRequest mReq){
 		System.out.println("수정");
-		System.out.println("번호:"+liceNo+" 제품ID:"+map.get("product_id"+liceNo)+" 제품 명:"+map.get("product_name"+liceNo));
+		System.out.println("번호:"+liceNo+
+				" 제품ID:"+map.get("product_id"+liceNo)+
+				" 제품 명:"+map.get("product_name"+liceNo)+ 
+				" file:"+mReq.getFile("file"+liceNo).getOriginalFilename()
+				+" fileId:"+map.get("file_id"+liceNo)
+				);
 		/*if(licencekey.getFile_id().length()==0){
 			System.out.println(licencekey.getFile_id()==null?"널임":"널아님");
 			licencekey.setFile_id(null);
 		}*/
-		
-		
-		/*Licencekey licencekey=new Licencekey();
+		licencekey.setProduct_id(map.get("product_id"+liceNo).toString());
+		licencekey.setProduct_name(map.get("product_name"+liceNo).toString());
+		licencekey.setFile(mReq.getFile("file"+liceNo));
+		licencekey.setFile_id(map.get("file_id"+liceNo).toString());
 		if(licencekey.getFile().getSize()!=0){
 			//올린파일 mutipartFile 객체에 저장, 파일 이름 저장
 			MultipartFile multpartfile = licencekey.getFile();
@@ -79,14 +88,23 @@ public class LicenceController {
 				licencekey.setFile_id(fileServiceImpl.update(multpartfile, FileDto));	
 		}
 		int result=lice.update(licencekey);
-		return "/admin/key-"+who;*/
+		System.out.println(result==1?"수정 성공":"실패");
 		return "redirect:/lice/product.do";
 	}
 	@RequestMapping("/delete.do")
-	public String delete(@RequestParam("who") String who){
+	public String delete(@RequestParam Map map,Licencekey licencekey,@RequestParam("liceNo") String liceNo,@RequestParam("who") String who){
 		System.out.println("삭제");
+		System.out.println(" fileId:"+map.get("file_id"+liceNo));
+		licencekey.setFile_id(map.get("file_id"+liceNo).toString());
+		licencekey=lice.selectOne(licencekey);
+		int result=lice.delete(licencekey);
+		if(licencekey.getFile_id()!=null){
+			//파일 삭제 
+			FileDTO FileDto =fileServiceImpl.selectFileDetail(licencekey.getFile_id());
+			System.out.println(fileServiceImpl.delete(licencekey.getFile(), FileDto));
+		}
+		System.out.println(result==1?"삭제 성공":"실패");
 		
-		
-		return "/admin/key-"+who;
+		return "redirect:/lice/product.do";
 	}
 }

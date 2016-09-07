@@ -17,8 +17,8 @@
 	</insert>	
 	
 	<update id="liceUpdate" parameterType="LicenceKey">
-		update LicenceKey set title=#{title},content=#{content},
-		fileName=if(isnull(#{fileName}),fileName,#{fileName}),
+		update LicenceKey set product_id=#{product_id},product_name=#{product_name},
+		file_name=if(isnull(#{file_name}),file_name,#{file_name}),
 		file_id= if(isnull(#{file_id}),file_id,#{file_id})
 		 where liceNo=#{liceNo}
 		

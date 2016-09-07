@@ -113,7 +113,10 @@
             
             <section class="scrollable wrapper w-f">
                 <form action="" method="post" name="adForm" id="adForm" enctype="multipart/form-data">
+	                <input type="hidden" name="writer"	value="${sessionScope.USERID}" class="form-control">  
+					
 	                <table class="admin">
+	                
 	                    <colgroup><col style="width:15%"><col style="width:15%"><col style="width:50%"><col style="width:20%"></colgroup>
 	                    <thead>
                             <tr>
@@ -146,6 +149,7 @@
 														<td><input type="text" name="product_name${list.liceNo}" class="form-control"
 															value="${list.product_name }"></td>
 														<td><input type="file" name="file${list.liceNo}"  class="filestyle" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
+																<input type="hidden"	name="file_id${list.liceNo}" value="${list.file_id}" class="form-control">
 																<br>이전파일:${list.file_name }
 														</td>
 														<td><button type="button" onclick="eclick('mod','${list.liceNo}')" class="btn btn-info m-r-xs"><i class="fa fa-edit"></i> 수정	</button>
