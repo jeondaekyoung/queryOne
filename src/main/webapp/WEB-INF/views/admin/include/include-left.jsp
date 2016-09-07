@@ -19,12 +19,12 @@
               </a>
               <ul class="nav bg">
                 <li >
-                  <a href="<c:url value='/lice/product.do'/>" >
+                  <a href="<c:url value='/pro/list.do'/>" >
                     <i class="fa fa-angle-right"></i><span>제품분류 관리</span>
                   </a>
                 </li>
                 <li >
-                  <a href="<c:url value='/lice/license.do'/>" >
+                  <a href="<c:url value='/lice/list.do'/>" >
                     <i class="fa fa-angle-right"></i><span>라이센스 키 관리</span>
                   </a>
                 </li>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+			PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.Product">
+	<select id="proSelectList" parameterType="java.util.Map" resultType="Product">
+		select * from Product order by proNo DESC
+	</select>
+	
+	<select id="proSelectOne" parameterType="Product" resultType="Product">
+		select * from Product where proNo=#{proNo}
+	</select>
+	
+	<select id="proSelectOne_lice" parameterType="Product" resultType="Product">
+		select * from Product where product_id=#{product_id}
+	</select>
+	
+	<insert id="proInsert" parameterType="Product">
+		insert into Product values(default,#{product_id},#{product_name},#{writer},#{file_name},default,#{file_id});
+	</insert>	
+	
+	<update id="proUpdate" parameterType="Product">
+		update Product set product_id=#{product_id},product_name=#{product_name},
+		file_name=if(isnull(#{file_name}),file_name,#{file_name}),
+		file_id= if(isnull(#{file_id}),file_id,#{file_id})
+		 where proNo=#{proNo}
+		
+	</update>
+	
+	<delete id="proDelete" parameterType="Product">
+		delete from Product where proNo=#{proNo}
+	</delete>
+</mapper>

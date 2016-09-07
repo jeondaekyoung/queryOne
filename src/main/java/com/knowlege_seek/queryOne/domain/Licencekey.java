@@ -6,30 +6,31 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Licencekey {
 	private String liceNo;
-	private String product_id;
-	private String product_name;
+	private String lice_key;
 	private String writer;
-	private String file_name;
 	private Date createDate;
-	private String file_id;
-	private MultipartFile file;
-	public String getLiceNo() {
-		return liceNo;
-	}
-	public void setLiceNo(String licenceNo) {
-		this.liceNo = licenceNo;
-	}
+	private String proNo;
+	
+	//proNo을 위한 속성
+	private String product_id;
+	
 	public String getProduct_id() {
 		return product_id;
 	}
 	public void setProduct_id(String product_id) {
 		this.product_id = product_id;
 	}
-	public String getProduct_name() {
-		return product_name;
+	public String getLiceNo() {
+		return liceNo;
 	}
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
+	public void setLiceNo(String liceNo) {
+		this.liceNo = liceNo;
+	}
+	public String getLice_key() {
+		return lice_key;
+	}
+	public void setLice_key(String lice_key) {
+		this.lice_key = lice_key;
 	}
 	public String getWriter() {
 		return writer;
@@ -37,30 +38,16 @@ public class Licencekey {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public String getFile_name() {
-		return file_name;
-	}
-	public void setFile_name(String file_name) {
-		this.file_name = file_name;
-	}
 	public Date getCreateDate() {
 		return createDate;
 	}
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
-	public String getFile_id() {
-		return file_id;
+	public String getProNo() {
+		return proNo;
 	}
-	public void setFile_id(String file_id) {
-		this.file_id = file_id;
+	public void setProNo(String proNo) {
+		this.proNo = proNo;
 	}
-	public MultipartFile getFile() {
-		return file;
-	}
-	public void setFile(MultipartFile file) {
-		this.file = file;
-	}
-	
-	
-	}
+}

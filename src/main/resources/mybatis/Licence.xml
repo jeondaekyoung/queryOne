@@ -5,7 +5,7 @@
 			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.Licence">
 	<select id="liceSelectList" parameterType="java.util.Map" resultType="LicenceKey">
-		select * from LicenceKey order by liceNo DESC
+		select liceNo,lice_key,L.writer,L.createDate,L.proNo,product_id from LicenceKey as L join product ON product.ProNo = L.ProNo  order by liceNo DESC
 	</select>
 	
 	<select id="liceSelectOne" parameterType="LicenceKey" resultType="LicenceKey">
@@ -13,18 +13,27 @@
 	</select>
 	
 	<insert id="liceInsert" parameterType="LicenceKey">
-		insert into LicenceKey values(default,#{product_id},#{product_name},#{writer},#{file_name},default,#{file_id});
+	
+		insert into LicenceKey values(default,#{lice_key},#{writer},#{createDate},#{proNo});
+		
 	</insert>	
 	
+	
+	<update id="liceUpdate_create" parameterType="LicenceKey">
+	UPDATE LICENCEKEY SET createDate =  ADDTIME(CREATEDATE,CURTIME()) WHERE LICENO =#{liceNo}
+		
+	</update>
 	<update id="liceUpdate" parameterType="LicenceKey">
-		update LicenceKey set product_id=#{product_id},product_name=#{product_name},
-		file_name=if(isnull(#{file_name}),file_name,#{file_name}),
-		file_id= if(isnull(#{file_id}),file_id,#{file_id})
-		 where liceNo=#{liceNo}
+		update LicenceKey set lice_key=#{lice_key},writer=#{writer},createDate=#{createDate},proNo=#{proNo} WHERE LICENO =#{liceNo}
 		
 	</update>
 	
 	<delete id="liceDelete" parameterType="LicenceKey">
 		delete from LicenceKey where liceNo=#{liceNo}
 	</delete>
+	
+	<delete id="liceDelete_product" parameterType="java.util.Map">
+		delete from LicenceKey where proNo=#{proNo}
+	</delete>
+	
 </mapper>

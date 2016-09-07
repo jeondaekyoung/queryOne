@@ -16,18 +16,18 @@
     <!--
     function othersubmit(n,videoNo){
     	if(n==1){
-    	 document.adForm.action="<c:url value='/lice/write.do'/>";
+    	 document.adForm.action="<c:url value='/pro/write.do'/>";
     	 }
     	if(n==2){
-    	 document.adForm.action="<c:url value='/lice/update.do?videoNo="+videoNo+"'/>";
+    	 document.adForm.action="<c:url value='/pro/update.do?videoNo="+videoNo+"'/>";
     	}
     	if(n==3){
-    	 document.adForm.action="<c:url value='/lice/delete.do?videoNo="+videoNo+"'/>";
+    	 document.adForm.action="<c:url value='/pro/delete.do?videoNo="+videoNo+"'/>";
     	}
     	document.adForm.submit();
     	}
 	  //-->
-		  function eclick(pstr,liceNo){
+		  function eclick(pstr,proNo){
 			var f=document.adForm;
 			switch (pstr){	
 				case 'new':
@@ -46,13 +46,13 @@
 					   f.file.focus();
 					   return false;
 					}
-					f.action="<c:url value='/lice/write.do?who=product'/>";
+					f.action="<c:url value='/pro/write.do'/>";
 					f.submit();	
 					break;
 				case 'mod':
-					var1 ="f.product_id"+liceNo;
-					var2="f.product_name"+liceNo;
-					var3="f.file"+liceNo;
+					var1 ="f.product_id"+proNo;
+					var2="f.product_name"+proNo;
+					var3="f.file"+proNo;
 					tstr = eval(var1);
 				    tstr1 = eval(var2);
 					tstr2 = eval(var3);
@@ -74,12 +74,12 @@
 					   return false;
 					}
 					tstr.disabled =false;
-					f.action="<c:url value='/lice/updete.do?liceNo="+liceNo+"&who=product'/>";			
+					f.action="<c:url value='/pro/updete.do?proNo="+proNo+"'/>";			
 					f.submit();	
 					break;
 				case 'del':
-					if (confirm("정말로 삭제하시겠습니까?")!=1) {return false;}
-					f.action="<c:url value='/lice/delete.do?liceNo="+liceNo+"&who=product'/>";
+					if (confirm("정말로 삭제하시겠습니까? 등록했던 라이센스 KEY도 같이 삭제됩니다.")!=1) {return false;}
+					f.action="<c:url value='/pro/delete.do?proNo="+proNo+"'/>";
 					f.submit();
 					break;
 			}
@@ -144,16 +144,16 @@
 												<c:forEach items="${lists}" begin="0" end="9" var="list"
 													varStatus="status">
 													<tr>
-														<td><input type="text" name="product_id${list.liceNo}" class="form-control"
+														<td><input type="text" name="product_id${list.proNo}" class="form-control"
 															value="${list.product_id}" disabled="disabled" ></td>
-														<td><input type="text" name="product_name${list.liceNo}" class="form-control"
+														<td><input type="text" name="product_name${list.proNo}" class="form-control"
 															value="${list.product_name }"></td>
-														<td><input type="file" name="file${list.liceNo}"  class="filestyle" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
-																<input type="hidden"	name="file_id${list.liceNo}" value="${list.file_id}" class="form-control">
+														<td><input type="file" name="file${list.proNo}"  class="filestyle" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
+																<input type="hidden"	name="file_id${list.proNo}" value="${list.file_id}" class="form-control">
 																<br>이전파일:${list.file_name }
 														</td>
-														<td><button type="button" onclick="eclick('mod','${list.liceNo}')" class="btn btn-info m-r-xs"><i class="fa fa-edit"></i> 수정	</button>
-															<button type="button" onclick="eclick('del','${list.liceNo}')" class="btn btn-danger"><i class="fa fa-minus-circle"></i> 삭제</button>
+														<td><button type="button" onclick="eclick('mod','${list.proNo}')" class="btn btn-info m-r-xs"><i class="fa fa-edit"></i> 수정</button>
+															<button type="button" onclick="eclick('del','${list.proNo}')" class="btn btn-danger"><i class="fa fa-minus-circle"></i> 삭제</button>
 														 </td>
 													</tr>
 												</c:forEach>

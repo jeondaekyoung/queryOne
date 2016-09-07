@@ -47,4 +47,11 @@ public class LicenceServiceImpl implements LicenceService {
 		return dao.delete(Licencekey);
 	}
 
+	public int delete_product(Map map) {
+
+		return dao.delete_product(map);
+	}
+
+	
+
 }

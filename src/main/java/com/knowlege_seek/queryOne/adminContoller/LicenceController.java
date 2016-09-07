@@ -1,14 +1,19 @@
 package com.knowlege_seek.queryOne.adminContoller;
 
+
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.springframework.context.annotation.ComponentScan.Filter;
+import org.apache.log4j.lf5.util.DateFormatManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,8 +21,10 @@ import org.springframework.web.multipart.MultipartRequest;
 
 import com.knowlege_seek.queryOne.domain.FileDTO;
 import com.knowlege_seek.queryOne.domain.Licencekey;
+import com.knowlege_seek.queryOne.domain.Product;
 import com.knowlege_seek.queryOne.service.impl.FileServiceImpl;
 import com.knowlege_seek.queryOne.service.impl.LicenceServiceImpl;
+import com.knowlege_seek.queryOne.service.impl.ProductServiceImpl;
 
 
 @Controller
@@ -25,21 +32,15 @@ import com.knowlege_seek.queryOne.service.impl.LicenceServiceImpl;
 public class LicenceController {
 	@Resource(name="liceService")
 	LicenceServiceImpl lice;
+	@Resource(name="productService")
+	ProductServiceImpl pro;
 	
-	@Resource(name="fileService")
-	FileServiceImpl fileServiceImpl;
-	
-	@RequestMapping("/product.do")
-	public String prodect(@RequestParam Map map,Model model){
+	@RequestMapping("/list.do")
+	public String list(@RequestParam Map map,Model model){
 		List<Licencekey> lists=lice.selectList(map);
+		List<Product> proLists=pro.selectList(map);
 		model.addAttribute("lists",lists);
-		return "/admin/key-product";
-	}
-	
-	@RequestMapping("/license.do")
-	public String license(@RequestParam Map map,Model model){
-		List<Licencekey> lists=lice.selectList(map);
-		model.addAttribute("lists",lists);
+		model.addAttribute("proLists",proLists);
 		return "/admin/key-license";
 	}
 	
@@ -49,62 +50,45 @@ public class LicenceController {
 		return "/admin/key-history";
 	}
 	@RequestMapping("/write.do")
-	public String write(@RequestParam("who") String who,Licencekey licencekey){
-		if(licencekey.getFile()!=null){
-			MultipartFile multpartfile = licencekey.getFile();
-			licencekey.setFile_name(multpartfile.getOriginalFilename());
-			licencekey.setFile_id(fileServiceImpl.save(multpartfile));
-			System.out.println("파일이 있음");
-		}
-		System.out.println("등록");
+	public String write(Licencekey licencekey){
+			System.out.println("키 등록 날짜:"+licencekey.getCreateDate()+"제품ID: "+licencekey.getProduct_id()+" 라이선스 키: "+licencekey.getLice_key());
+			Product product=new Product();
+			product.setProduct_id(licencekey.getProduct_id());
+			product=pro.selectOne_lice(product);
+			licencekey.setProNo(product.getProNo());
 		int result=lice.insert(licencekey);
-		System.out.println(result==1?"등록 성공":"실패");
-				
-		return "redirect:/lice/product.do";
+					
+		System.out.println(result==1?"성공":"실패");
+		return "redirect:/lice/list.do";
 	}
 	@RequestMapping("/updete.do")
-	public String updete(@RequestParam Map map,Licencekey licencekey,@RequestParam("liceNo") String liceNo,MultipartRequest mReq){
+	public String updete(@RequestParam Map map,@RequestParam("liceNo") String liceNo, Licencekey licencekey){
+		System.out.println("키 수정");
 		System.out.println("수정");
 		System.out.println("번호:"+liceNo+
+				"날짜:" +map.get("createDate"+liceNo)+
 				" 제품ID:"+map.get("product_id"+liceNo)+
-				" 제품 명:"+map.get("product_name"+liceNo)+ 
-				" file:"+mReq.getFile("file"+liceNo).getOriginalFilename()
-				+" fileId:"+map.get("file_id"+liceNo)
-				);
-		/*if(licencekey.getFile_id().length()==0){
-			System.out.println(licencekey.getFile_id()==null?"널임":"널아님");
-			licencekey.setFile_id(null);
-		}*/
+				" 제품 명:"+map.get("lice_key"+liceNo));
+		
+		licencekey.setCreateDate(Date.valueOf(map.get("createDate"+liceNo).toString()));
 		licencekey.setProduct_id(map.get("product_id"+liceNo).toString());
-		licencekey.setProduct_name(map.get("product_name"+liceNo).toString());
-		licencekey.setFile(mReq.getFile("file"+liceNo));
-		licencekey.setFile_id(map.get("file_id"+liceNo).toString());
-		if(licencekey.getFile().getSize()!=0){
-			//올린파일 mutipartFile 객체에 저장, 파일 이름 저장
-			MultipartFile multpartfile = licencekey.getFile();
-			licencekey.setFile_name(multpartfile.getOriginalFilename());
-			FileDTO FileDto =fileServiceImpl.selectFileDetail(licencekey.getFile_id());//fileId로 정보가지고오기
-			//객체가 존재할때 파일 업데이트
-				licencekey.setFile_id(fileServiceImpl.update(multpartfile, FileDto));	
-		}
+		licencekey.setLice_key(map.get("lice_key"+liceNo).toString());
+		Product product=new Product();
+		product.setProduct_id(licencekey.getProduct_id());
+		product=pro.selectOne_lice(product);
+		licencekey.setProNo(product.getProNo());
 		int result=lice.update(licencekey);
-		System.out.println(result==1?"수정 성공":"실패");
-		return "redirect:/lice/product.do";
+		
+		System.out.println(result==1?"성공":"실패");
+		return "redirect:/lice/list.do";
 	}
 	@RequestMapping("/delete.do")
-	public String delete(@RequestParam Map map,Licencekey licencekey,@RequestParam("liceNo") String liceNo,@RequestParam("who") String who){
-		System.out.println("삭제");
-		System.out.println(" fileId:"+map.get("file_id"+liceNo));
-		licencekey.setFile_id(map.get("file_id"+liceNo).toString());
-		licencekey=lice.selectOne(licencekey);
-		int result=lice.delete(licencekey);
-		if(licencekey.getFile_id()!=null){
-			//파일 삭제 
-			FileDTO FileDto =fileServiceImpl.selectFileDetail(licencekey.getFile_id());
-			System.out.println(fileServiceImpl.delete(licencekey.getFile(), FileDto));
-		}
-		System.out.println(result==1?"삭제 성공":"실패");
+	public String delete(@RequestParam Map map,Licencekey licencekey){
+		System.out.println("키 삭제");
 		
-		return "redirect:/lice/product.do";
+		int result=lice.delete(licencekey);
+		
+		System.out.println(result==1?"성공":"실패");
+		return "redirect:/lice/list.do";
 	}
 }

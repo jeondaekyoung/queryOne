@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    <jsp:useBean id="now" class="java.util.Date"/>
 <!DOCTYPE html>
 <html lang="ko-KR" class="app">
 <head>
@@ -14,6 +16,67 @@
     $(document).ready(function(){
         $("li.menu-1").addClass("active");
 	});
+    
+    	  function eclick(pstr,liceNo){
+			var f=document.adForm;
+			switch (pstr){	
+				case 'new':
+					/* if (confirm("맞는 날짜입니까?")!=1) {return false;} */
+					
+					if(f.product_id.value =="제품ID"){
+					   alert("제품아이디을 선택하세요");
+					
+					   return false;
+					}
+					if(!f.lice_key.value){
+					   alert("라이선스 KEY 입력하세요");
+					
+					   return false;
+					}
+					
+					f.action="<c:url value='/lice/write.do'/>";
+					f.submit();	
+					break;
+				case 'mod':
+					var1="f.createDate"+liceNo;
+					var2 ="f.product_id"+liceNo;
+					var3="f.lice_key"+liceNo;
+					
+					tstr = eval(var1);
+				    tstr1 = eval(var2);
+					tstr2 = eval(var3);
+					if(!tstr.value)	{
+						
+					   alert("제품ID를 입력하세요");
+					   tstr.focus();
+					   return false;
+					}
+					
+					if(!tstr1.value)	{
+					   alert("제품명을 입력하세요");
+					   tstr1.focus();
+					   return false;
+					}
+					if(!tstr2.value){
+					   alert("라이선스 KEY를 입력하세요");
+					   tstr2.focus();
+					   return false;
+					}
+					tstr.disabled =false;
+					f.action="<c:url value='/lice/updete.do?liceNo="+liceNo+"'/>";			
+					f.submit();	
+					break;
+				case 'del':
+					if (confirm("정말로 삭제하시겠습니까?")!=1) {return false;}
+					f.action="<c:url value='/lice/delete.do?liceNo="+liceNo+"'/>";
+					f.submit();
+					break;
+			}
+		  }
+		function onlyNumber(){ 
+			if((event.keyCode<48)||(event.keyCode>57)) 
+			event.returnValue=false; 
+		}
     </script>
     <!-- //head -->
 </head>
@@ -36,7 +99,8 @@
             </header>
             
             <section class="scrollable wrapper w-f">
-                <form action="" method="post" id="adForm" enctype="multipart/form-data">
+                <form action="" method="post" id="adForm" name="adForm" enctype="multipart/form-data">
+                <input type="hidden" name="writer"	value="${sessionScope.USERID}" class="form-control"> 
 	                <table class="admin">
 	                    <colgroup><col style="width:15%"><col style="width:15%"><col style="width:50%"><col style="width:20%"></colgroup>
 	                    <thead>
@@ -50,35 +114,51 @@
                         </thead>
                         <tbody>      <!--   한 페이지에 10개씩 보여준다    -->            
                             <tr>
-                                <td><input type="text" class="form-control"></td>
-                                <td><select name="account" class="form-control">
-                                      <option>Q01</option>
-                                    </select>
+                                <td><input type="date" name="createDate" value="<fmt:formatDate value="${now}" type="date" pattern="yyyy-MM-dd"/>" class="form-control" ></td>
+                                <td><select name="product_id" class="form-control">
+                                      <!-- 제품ID가 없을때 제품 등록부터 하게 유도하기 -->
+                                      <option selected="selected">제품ID</option>
+                                      <c:forEach items="${proLists }" var="list" >
+                                      	<option>${list.product_id }</option>
+                                      	
+                                      </c:forEach>
+                                      </select>
                                 </td>
-                                <td><input type="text" class="form-control"></td>
-                                <td><button type="submit" class="btn btn-default"><i class="fa fa-plus-circle"></i> 등록</button></td>
+                                <td><input type="text" name="lice_key" class="form-control"></td>
+                                <td><button type="button" onclick="eclick('new','')" class="btn btn-default"><i class="fa fa-plus-circle"></i> 등록</button></td>
                             </tr>
 										<c:choose>
-											<c:when test="${empty notiLists }">
+											<c:when test="${empty lists }">
 												<tr bgcolor="white" align="center">
-													<td colspan="4">등록된 메모가 없어요</td>
+													<td colspan="4">등록된 라이선스 KEY가 없어요</td>
 												</tr>
 											</c:when>
 											<c:otherwise>
-												<c:forEach items="${notiLists}" begin="0" end="9" var="list"
+												<c:forEach items="${lists}" begin="0" end="9" var="list"
 													varStatus="status">
 													<tr>
-														<td><input type="text" class="form-control"
-															value="2016-08-17" disabled></td>
-														<td><select name="account" class="form-control">
-																<option>Q01</option>
+														<td><input type="date" name="createDate${list.liceNo}" class="form-control"
+															value="${list.createDate }"></td>
+														<td><select name="product_id${list.liceNo}" class="form-control">
+																 <c:forEach items="${proLists }" var="prolist" >
+                                								      	<c:choose>
+                                								      		<c:when test="${prolist.product_id eq list.product_id}">
+                                								      		<option selected="selected">${prolist.product_id }</option>
+                                								      		</c:when>
+                                								      		<c:otherwise>
+                                								      		<option >${prolist.product_id }</option>
+                                								      		</c:otherwise>
+                                								      	</c:choose>
+                                								      	
+                               										</c:forEach>
+															
 														</select></td>
-														<td><input type="text" class="form-control"
-															value="6154675F183C44757C6A97C8E39E02E8"></td>
-														<td><button type="submit" class="btn btn-info m-r-xs">
+														<td><input name="lice_key${list.liceNo}" type="text" class="form-control"
+															value="${list.lice_key }"></td><!-- 6154675F183C44757C6A97C8E39E02E8 -->
+														<td><button type="button" onclick="eclick('mod',${list.liceNo})" class="btn btn-info m-r-xs">
 																<i class="fa fa-edit"></i> 수정
 															</button>
-															<button type="submit" class="btn btn-danger">
+															<button type="button" onclick="eclick('del',${list.liceNo})" class="btn btn-danger">
 																<i class="fa fa-minus-circle"></i> 삭제
 															</button></td>
 													</tr>
