@@ -41,9 +41,15 @@
 								<input type="hidden" name="writer"
 									value="${sessionScope.USERID}" class="form-control">
 	                <table class="admin">
-	                    <colgroup><col style="width:30%"><col style="width:50%"><col style="width:20%"></colgroup>
+	                    <colgroup>
+	                    <col style="width:20%">
+	                    <col style="width:30%">
+	                    <col style="width:30%">
+	                    <col style="width:20%">
+	                    </colgroup>
 	                    <thead>
                             <tr>
+                            	<th>No.</th>
                                 <th>제목</th>
                                 <th>유튜브 URL</th>
                                 <th>관리</th>
@@ -51,7 +57,7 @@
                         </thead>
                         <tbody>                
                             <tr><!--   한 페이지에 10개씩 보여준다    -->  
-                            	
+                            	<td>-</td>
                                 <td><input type="text" name="title" class="form-control"></td>
                                 <td><input type="text" name="youtube_URL" class="form-control"></td>
                                 <td><button type="button" onclick="othersubmit(1)" class="btn btn-default"><i class="fa fa-plus-circle"></i> 등록</button></td>
@@ -64,12 +70,13 @@
 												<c:forEach items="${lists}" var="list" varStatus="status">
 														
 													<tr>
+														<td>${totalRecordCount - (((nowPage - 1) * pageSize) + status.index)}</td>
 														<td><input type="text" name="title_edit${list.videoNo }" class="form-control" value="${list.title }"></td>
 														<td><input type="text"  name="youtube_URL_edit${list.videoNo }"  class="form-control" value="${list.youtube_URL}">
 														</td>
 														<td>
-														<button type="button" onclick="othersubmit(2,${list.videoNo})"class="btn btn-info m-r-xs"><i class="fa fa-edit"></i> 수정</button>
-														<button type="button" onclick="othersubmit(3,${list.videoNo})"class="btn btn-danger">	<i class="fa fa-minus-circle"></i> 삭제</button>
+														<button type="button" onclick="othersubmit(2,'${list.videoNo}')"class="btn btn-info m-r-xs"><i class="fa fa-edit"></i> 수정</button>
+														<button type="button" onclick="othersubmit(3,'${list.videoNo}')"class="btn btn-danger">	<i class="fa fa-minus-circle"></i> 삭제</button>
 														</td>
 													</tr>
 												</c:forEach>
@@ -105,15 +112,7 @@ document.adForm.submit();
               <div class="row">
                 <!--페이징-->
                 <div class="col-sm-9 text-center text-center-xs">                
-                  <ul class="pagination pagination-sm m-t-none m-b-none">
-                    <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-                  </ul>
+                  ${pagingString}			
                 </div>
                 <!--페이징 끝-->
                 

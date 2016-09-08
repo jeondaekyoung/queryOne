@@ -25,7 +25,7 @@ public class VideoServiceImpl implements VideoService {
 	@Override
 	public int getTotalRecordCount(Map map) {
 	
-		return 0;
+		return dao.getTotalRecordCount(map);
 	}
 
 	@Override

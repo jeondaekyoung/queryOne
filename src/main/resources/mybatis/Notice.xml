@@ -32,5 +32,25 @@
 	<select id="NotiTotalCount" resultType="int" parameterType="java.util.Map">
 	SELECT COUNT(*) FROM NOTICE
 	</select>	
+	
+	<select id="notiSearch" parameterType="java.util.Map" resultType="Notice">
+	
+			select * from (select notice.*,@rownum:=@rownum+1 as r from notice, (SELECT @rownum:=0) r order by notiNo desc) a where r between  #{start} and #{end}
+		<choose>
+				<when test="search_account == 0">
+			and title LIKE '%#{search_text}%'
+				</when>
+				<when test="search_account == 1">
+			and content LIKE '%#{search_text}%'	
+				</when>
+				<when test="search_account == 2">
+			and title LIKE '%#{search_text}%' or content LIKE '%#{search_text}%'
+				</when>
+			
+			</choose>
+			
+			
+			
+	</select>
 		
 </mapper>

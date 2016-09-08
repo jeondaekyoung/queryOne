@@ -57,15 +57,20 @@
 										<c:choose>
 											<c:when test="${empty downLists }">
 												<tr bgcolor="white" align="center">
-													<td colspan="4">등록된 메모가 없어요</td>
+													<td colspan="5">등록된 게시물이 없습니다.</td>
 												</tr>
 											</c:when>
 											<c:otherwise>
 												<c:forEach items="${downLists }" begin="0" end="9" var="list" varStatus="status">
 													<tr>
-														<td>${totalRecordCount - status.index}</td>
+														<td>${status.index+1}</td>
 														<td><a href="<c:url value='/down/view.do?downNo=${list.downNo}'/>">[${list.account}]${list.title}</a></td>
-														<td><a href='<c:url value="/file/down/${list.file_id}"></c:url>'>${list.fileName}</a></td>
+														<td>
+														<c:if test="${empty list.file_id}">
+															-
+														</c:if>
+														<a href='<c:url value="/file/down/${list.file_id}"></c:url>'>${list.fileName}</a>
+														</td>
 														<td>${list.createDate}</td>
 														<td>${list.hits }</td>
 													</tr>
@@ -98,16 +103,21 @@
 										<c:choose>
 											<c:when test="${empty notiLists }">
 												<tr bgcolor="white" align="center">
-													<td colspan="4">등록된 메모가 없어요</td>
+													<td colspan="5">등록된 게시물이 없습니다.</td>
 												</tr>
 											</c:when>
 											<c:otherwise>
 												<c:forEach items="${notiLists}" begin="0" end="9" var="list" varStatus="status">
 													<tr>
-														<td>${totalRecordCount - status.index}</td>
+														<td>${status.index+1}</td>
 														<td><a
 															href="<c:url value='/noti/view.do?notiNo=${list.notiNo}'/>">${list.title}</a></td>
-																<td><a href='<c:url value="/file/down/${list.file_id}"></c:url>'>${list.fileName}</a></td>
+																<td>
+																	<c:if test="${empty list.file_id}">
+																		-
+																	</c:if>
+																<a href='<c:url value="/file/down/${list.file_id}"></c:url>'>${list.fileName}</a>
+																</td>
 														<td>${list.createDate}</td>
 														<td>${list.hits}</td>
 													</tr>
@@ -147,7 +157,7 @@
 											<c:otherwise>
 												<c:forEach items="${videoLists}" begin="0" end="9" var="list" varStatus="status">
 													<tr>
-														<td>${totalRecordCount - status.index}</td>
+														<td>${status.index+1}</td>
 														<td>${list.title}</td>
 														<td>${list.createDate}</td>
 														<td>${list.youtube_URL}</td>

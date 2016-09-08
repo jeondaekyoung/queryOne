@@ -70,7 +70,7 @@ public class LoginController {
 		
 		List<Video> videoLists=videoService.selectList(map);
 		model.addAttribute("videoLists",videoLists);
-		model.addAttribute("totalRecordCount", 10);
+		
 		return "admin/index";
 	}
 	

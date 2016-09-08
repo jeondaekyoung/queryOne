@@ -46,6 +46,12 @@ public class NoticeDAO implements NoticeService {
 	public int delete(Notice notice) {
 		return sqlTemplate.delete("notiDelete",notice);
 	}
+
+	@Override
+	public List<Notice> search(Map map) {
+
+		return sqlTemplate.selectList("notiSearch", map);
+	}
 	
 	
 }

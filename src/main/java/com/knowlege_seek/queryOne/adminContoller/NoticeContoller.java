@@ -56,9 +56,8 @@ public class NoticeContoller {
 		map.put("start", start);
 		map.put("end",end);
 		
-		System.out.println("페이지사이즈: "+pageSize+" 블록사이즈"+blockPage +"전체페이지:"+totalPage);
 		List<Notice> lists=noti.selectList(map);
-		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/noti/list.do?");
+		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/noti/serach.do?");
 		
 		model.addAttribute("lists",lists);
 		model.addAttribute("pagingString",pagingString);
@@ -66,7 +65,6 @@ public class NoticeContoller {
 		model.addAttribute("nowPage",nowPage);
 		model.addAttribute("totalRecordCount",totalRecordCount);
 		model.addAttribute("pageSize",pageSize);
-		
 		return "/admin/notice";
 	}
 
@@ -141,6 +139,35 @@ public class NoticeContoller {
 		System.out.println(result==1?"삭제 성공":"실패");
 		return "redirect:/noti/list.do";
 	}
+	@RequestMapping("/search.do")
+	public String search(@RequestParam Map map,Model model,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage
+			,HttpServletRequest req){
+		
+		int totalRecordCount =noti.getTotalRecordCount(map);
+		int totalPage= (int)(Math.ceil(((double)totalRecordCount/pageSize)));
+		
+		//시작 및 끝 ROWNUM구하기]
+		int start= (nowPage-1)*pageSize+1;
+		int end = nowPage*pageSize;		
+		map.put("start", start);
+		map.put("end",end);
+		System.out.println("검색"+"account:"+map.get("search_account")+" text:"+map.get("search_text")+" s:"+map.get("start")+" e:"+map.get("end"));
+		List<Notice> lists=noti.search(map);
+		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/noti/serach.do?");
+		
+		model.addAttribute("lists",lists);
+		model.addAttribute("pagingString",pagingString);
+		model.addAttribute("totalPage",totalPage);
+		model.addAttribute("nowPage",nowPage);
+		model.addAttribute("totalRecordCount",totalRecordCount);
+		model.addAttribute("pageSize",pageSize);
+		
+
+		
+		return "/admin/notice";
+	}
+	
+	
 
 
 

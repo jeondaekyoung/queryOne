@@ -178,31 +178,11 @@
                   <ul class="pagination pagination-sm m-t-none m-b-none">
                     <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
                     <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
                     <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
                   </ul>
                 </div>
                 <!--페이징 끝-->
-                
-                <!--검색-->
-                <div class="col-sm-3">
-                    <div class="input-group">
-                      <!--<select class="input-sm">
-                        <option value="0">제목</option>
-                        <option value="1">작성자</option>
-                        <option value="2">내용</option>
-                        <option value="3">제목+내용</option>
-                      </select>-->
-                      <input type="text" class="input-sm form-control" placeholder="Search">
-                      <span class="input-group-btn">
-                        <button class="btn btn-sm btn-default" type="button">검색</button>
-                      </span>
-                    </div>
-                </div>
-                <!--검색 끝-->
+            
               </div>
             </footer>
               

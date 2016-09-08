@@ -10,6 +10,8 @@ public interface NoticeService {
 	//목록용
 		List<Notice> selectList(Map map);
 				
+		List<Notice> search(Map map);
+		
 		//전체 레코드 수
 		int getTotalRecordCount(Map map);
 		
@@ -22,4 +24,6 @@ public interface NoticeService {
 		int update(Notice notice);
 		
 		int delete(Notice notice);
+		
+		
 }

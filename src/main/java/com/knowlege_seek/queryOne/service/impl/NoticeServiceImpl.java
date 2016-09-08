@@ -47,4 +47,10 @@ public class NoticeServiceImpl implements NoticeService {
 		return dao.delete(notice);
 	}
 
+	@Override
+	public List<Notice> search(Map map) {
+		// TODO Auto-generated method stub
+		return dao.search(map);
+	}
+
 }
