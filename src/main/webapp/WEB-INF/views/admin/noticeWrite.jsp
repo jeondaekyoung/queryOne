@@ -14,6 +14,36 @@
     $(document).ready(function(){
         $("li.menu-3").addClass("active");
 	});
+		  function eclick(pstr,liceNo){
+			var f=document.adForm;
+			switch (pstr){	
+				case 'new':
+					/* if (confirm("맞는 날짜입니까?")!=1) {return false;} */
+					
+					if(f.product_id.value =="제품ID"){
+					   alert("제품아이디을 선택하세요");
+					
+					   return false;
+					}
+					if(!f.lice_key.value){
+					   alert("라이선스 KEY 입력하세요");
+					
+					   return false;
+					}
+					
+					f.action="<c:url value='/lice/write.do'/>";
+					f.submit();	
+					break;
+				case 'cancel':
+					history.back();
+					
+			}
+		  }
+		function onlyNumber(){ 
+			if((event.keyCode<48)||(event.keyCode>57)) 
+			event.returnValue=false; 
+		}
+
     </script>
 <!-- //head -->
 </head>
@@ -80,7 +110,7 @@
 								<div class="line line-dashed line-lg pull-in"></div>
 								<div class="form-group">
 									<div class="col-sm-4 col-sm-offset-2">
-										<button type="submit" class="btn btn-default">
+										<button type="button" onclick="eclick('cancel')" class="btn btn-default">
 											<i class="fa fa-times"></i> 취소
 										</button>
 										<button type="submit" class="btn btn-primary">

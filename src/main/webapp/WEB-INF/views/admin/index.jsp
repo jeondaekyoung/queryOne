@@ -35,10 +35,11 @@
             </header>
        		 <section class="scrollable wrapper w-f">
 							<table class="admin" style="margin-bottom:20px">
-							<caption>자료실</caption>
+							<caption >자료실</caption>
 									<colgroup>
 										<col style="width: 10%">
-										<col style="width: 60%">
+										<col style="width: 30%">
+										<col style="width: 30%">
 										<col style="width: 20%">
 										<col style="width: 10%">
 									</colgroup>
@@ -46,6 +47,7 @@
 										<tr>
 											<th>No.</th>
 											<th>제목</th>
+											<th>파일</th>
 											<th>작성일</th>
 											<th>조회수</th>
 										</tr>
@@ -63,6 +65,7 @@
 													<tr>
 														<td>${list.downNo }</td>
 														<td><a href="<c:url value='/down/view.do?downNo=${list.downNo}'/>">[${list.account}]${list.title}</a></td>
+														<td><a href='<c:url value="/file/down/${list.file_id}"></c:url>'>${list.fileName}</a></td>
 														<td>${list.createDate}</td>
 														<td>${list.hits }</td>
 													</tr>
@@ -76,7 +79,8 @@
 									<caption>공지사항</caption>
 									<colgroup>
 										<col style="width: 10%">
-										<col style="width: 60%">
+										<col style="width: 30%">
+										<col style="width: 30%">
 										<col style="width: 20%">
 										<col style="width: 10%">
 									</colgroup>
@@ -84,6 +88,7 @@
 										<tr>
 											<th>No.</th>
 											<th>제목</th>
+											<th>파일</th>
 											<th>작성일</th>
 											<th>조회수</th>
 										</tr>
@@ -102,6 +107,7 @@
 														<td>${list.notiNo}</td>
 														<td><a
 															href="<c:url value='/noti/view.do?notiNo=${list.notiNo}'/>">${list.title}</a></td>
+																<td><a href='<c:url value="/file/down/${list.file_id}"></c:url>'>${list.fileName}</a></td>
 														<td>${list.createDate}</td>
 														<td>${list.hits}</td>
 													</tr>

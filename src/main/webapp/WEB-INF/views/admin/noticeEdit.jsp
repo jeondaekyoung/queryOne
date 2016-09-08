@@ -14,6 +14,28 @@
     $(document).ready(function(){
         $("li.menu-3").addClass("active");
 	});
+	function eclick(pstr) {
+		var f = document.adForm;
+		switch (pstr) {
+		case 'mod':
+			if (!f.title.value) {
+				alert("제목을 입력하세요.");
+
+				return false;
+			}
+			if (!f.content.value) {
+				alert("내용을 입력하세요.");
+
+				return false;
+			}
+			f.submit();
+			break;
+		case 'cancel':
+			history.back();
+
+		}
+	}
+	
     </script>
 <!-- //head -->
 </head>
@@ -39,7 +61,7 @@
 						<section class="scrollable wrapper w-f">
 
 							<form action="<c:url value="/noti/edit.do"/>" method="post"
-								id="adForm" class="form-horizontal"
+								id="adForm" name="adForm" class="form-horizontal"
 								enctype="multipart/form-data">
 								<!-- 작성자 -->
 								<input type="hidden" name="writer"	value="${sessionScope.USERID}" class="form-control"> 
@@ -72,10 +94,14 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label">첨부파일</label>
 									<div class="col-sm-10">
-										<input type="file" class="filestyle" name="file"
-											data-icon="false" data-classButton="btn btn-default"
-											data-classInput="form-control inline input-s"> 이전 파일
-										: ${notice.fileName}
+										<input type="file" class="filestyle" name="file" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s"> 
+										이전파일 :
+										<c:if test="${empty notice.fileName}" var="result">
+											 -
+											</c:if>
+										<c:if test="${!result}">
+											<a href='<c:url value="/file/down/${notice.file_id}" />'	class="btn btn-info"><i class="fa fa-notice"></i>${notice.fileName} 다운로드</a>
+										</c:if>
 									</div>
 								</div>
 								<!--첨부파일 끝-->
@@ -84,10 +110,10 @@
 								<div class="line line-dashed line-lg pull-in"></div>
 								<div class="form-group">
 									<div class="col-sm-4 col-sm-offset-2">
-										<button type="submit" class="btn btn-default">
+										<button type="button" onclick="eclick('cancel')" class="btn btn-default">
 											<i class="fa fa-times"></i> 취소
 										</button>
-										<button type="submit" class="btn btn-primary">
+										<button type="button" onclick="eclick('mod')" class="btn btn-primary">
 											<i class="fa fa-pencil"></i> 등록
 										</button>
 									</div>

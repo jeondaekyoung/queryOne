@@ -12,8 +12,41 @@
 <script>
     /* addClass : .active */
     $(document).ready(function(){
-        $("li.menu-3").addClass("active");
+        $("li.menu-2").addClass("active");
 	});
+		  function eclick(pstr){
+			var f=document.adForm;
+			switch (pstr){	
+				case 'new':
+					/* if (confirm("맞는 날짜입니까?")!=1) {return false;} */
+					
+					if(f.account.value =="구분"){
+					   alert("구분을 선택하세요");
+					
+					   return false;
+					}
+					if(!f.title.value){
+					   alert("제목을 입력하세요.");
+					
+					   return false;
+					}
+					if(!f.content.value){
+					   alert("내용을 입력하세요.");
+					
+					   return false;
+					}
+					f.submit();	
+					break;
+				case 'cancel':
+					history.back();
+					
+			}
+		  }
+		function onlyNumber(){ 
+			if((event.keyCode<48)||(event.keyCode>57)) 
+			event.returnValue=false; 
+		}
+
     </script>
 <!-- //head -->
 </head>
@@ -38,7 +71,7 @@
 
 						<section class="scrollable wrapper w-f">
 							<form action="<c:url value='/down/write.do' />" method="post"
-								id="adForm" class="form-horizontal"
+								id="adForm" name="adForm" class="form-horizontal"
 								enctype="multipart/form-data">
 								<!-- 작성자 -->
 								<input type="hidden" name="writer"
@@ -48,6 +81,7 @@
 									<label class="col-sm-2 control-label">구분</label>
 									<div class="col-sm-10">
 										<select name="account" class="form-control col-lg-4">
+											<option>구분</option>
 											<option>패치</option>
 											<option>문서</option>
 										</select>
@@ -93,10 +127,10 @@
 								<div class="line line-dashed line-lg pull-in"></div>
 								<div class="form-group">
 									<div class="col-sm-4 col-sm-offset-2">
-										<button type="submit" class="btn btn-default">
+										<button type="button" onclick="eclick('cancel')" class="btn btn-default">
 											<i class="fa fa-times"></i> 취소
 										</button>
-										<button type="submit" class="btn btn-primary">
+										<button type="button" onclick="eclick('new')" class="btn btn-primary">
 											<i class="fa fa-pencil"></i> 등록
 										</button>
 									</div>

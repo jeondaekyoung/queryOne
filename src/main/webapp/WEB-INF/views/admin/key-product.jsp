@@ -117,12 +117,18 @@
 					
 	                <table class="admin">
 	                
-	                    <colgroup><col style="width:15%"><col style="width:15%"><col style="width:50%"><col style="width:20%"></colgroup>
+	                    <colgroup>
+	                    <col style="width:15%">
+	                    <col style="width:15%">
+	                    <col style="width:25%">
+	                    <col style="width:25%">
+	                    <col style="width:20%"></colgroup>
 	                    <thead>
                             <tr>
                                 <th>제품ID</th>
                                 <th>제품명</th>
                                 <th>다운로드 파일</th>
+                                <th>이전 파일</th>
                                 <th>관리</th>
                             </tr>
                         </thead>
@@ -132,6 +138,7 @@
                                 <td><input type="text"  name="product_id" class="form-control"></td>
                                 <td><input type="text" name ="product_name" class="form-control"></td>
                                 <td><input type="file" name="file" class="filestyle" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s"></td>
+                                <td></td>
                                 <td><button type="button" onclick="eclick('new','')" class="btn btn-default"><i class="fa fa-plus-circle"></i> 등록</button></td>
                             </tr>
 										<c:choose>
@@ -150,8 +157,9 @@
 															value="${list.product_name }"></td>
 														<td><input type="file" name="file${list.proNo}"  class="filestyle" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
 																<input type="hidden"	name="file_id${list.proNo}" value="${list.file_id}" class="form-control">
-																<br>이전파일:${list.file_name }
+																
 														</td>
+														<td><a href='<c:url value="/file/down/${list.file_id}"></c:url>'>이전파일: ${list.file_name }</a></td>
 														<td><button type="button" onclick="eclick('mod','${list.proNo}')" class="btn btn-info m-r-xs"><i class="fa fa-edit"></i> 수정</button>
 															<button type="button" onclick="eclick('del','${list.proNo}')" class="btn btn-danger"><i class="fa fa-minus-circle"></i> 삭제</button>
 														 </td>

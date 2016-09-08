@@ -14,6 +14,12 @@
     $(document).ready(function(){
         $("li.menu-2").addClass("active");
 	});
+    function del_click() {
+    	var f =document.delForm;
+    	 if (confirm("정말 이 게시물을 삭제하시겠습니까?")!=1) {return false;}
+    	 f.submit();
+    }
+	
     </script>
 <!-- //head -->
 </head>
@@ -93,7 +99,7 @@
 										<p class="form-control-static">-</p>
 									</c:if>
 									<c:if test="${!result}">
-										<p class="form-control-static">${download.fileName}</p>
+										<p class="form-control-static"><a href='<c:url value="/file/down/${download.file_id}" />' class="btn btn-info"><i class="fa fa-download"></i>${download.fileName} 다운로드</a></p>
 									</c:if>
 								</div>
 							</div>
@@ -103,14 +109,12 @@
 							<div class="line line-dashed line-lg pull-in"></div>
 							<div class="clearfix form-group">
 								<div class="col-sm-4 col-sm-offset-2">
-							<form action="<c:url value='/down/delete.do'/>" method="post">
+							<form name="delForm" action="<c:url value='/down/delete.do'/>" method="post">
+											<a href="<c:url value='/down/list.do'/>"	class="btn btn-primary"><i class="fa fa-list-ul"></i> 목록</a>
 										<input type="hidden" name="downNo" value="${download.downNo}" />
-										<button type="submit" class="btn btn-danger">
-											<i class="fa fa-minus-circle"></i> 삭제
-										</button>
-										<a
-											href="<c:url value='/down/editForm.do?downNo=${download.downNo }'/>"
-											class="btn btn-primary"><i class="fa fa-edit"></i> 수정</a>
+										<button type="button" onclick="del_click()" class="btn btn-danger"><i class="fa fa-minus-circle"></i> 삭제</button>
+										<a	href="<c:url value='/down/editForm.do?downNo=${download.downNo }'/>"class="btn btn-primary"><i class="fa fa-edit"></i> 수정</a>
+										<a href="<c:url value='/down/writeForm.do'/>"	class="btn btn-primary" ><i class="fa fa-pencil"></i> 글쓰기</a>
 									</form>
 
 								</div>
