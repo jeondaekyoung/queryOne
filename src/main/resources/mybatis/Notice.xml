@@ -5,7 +5,8 @@
 			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.Notice">
 	<select id="notiSelectList" parameterType="java.util.Map" resultType="Notice">
-		select * from Notice order by notiNo DESC
+	
+			select * from (select notice.*,@rownum:=@rownum+1 as r from notice, (SELECT @rownum:=0) r order by notino desc) a where r between  #{start} and #{end}
 	</select>
 	
 	<select id="notiSelectOne" parameterType="Notice" resultType="Notice">
@@ -27,5 +28,9 @@
 	<delete id="notiDelete" parameterType="Notice">
 		delete from notice where notiNo=#{notiNo}
 	</delete>
+		
+	<select id="TotalCount" resultType="int" parameterType="java.util.Map">
+	SELECT COUNT(*) FROM NOTICE
+	</select>	
 		
 </mapper>

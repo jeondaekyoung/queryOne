@@ -23,8 +23,8 @@ public class NoticeDAO implements NoticeService {
 
 	@Override
 	public int getTotalRecordCount(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlTemplate.selectOne("TotalCount", map);
 	}
 
 	@Override

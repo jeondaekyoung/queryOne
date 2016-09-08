@@ -35,5 +35,6 @@
             <beans:property name="defaultEncoding" value="UTF-8" />
       </beans:bean>
 	
+	<context:property-placeholder location="classpath:/resource.properties"/>
 	
 </beans:beans>

@@ -130,7 +130,7 @@
 										<c:choose>
 											<c:when test="${empty lists }">
 												<tr bgcolor="white" align="center">
-													<td colspan="4">등록된 라이선스 KEY가 없어요</td>
+													<td colspan="5">등록된 라이선스 KEY가 없어요</td>
 												</tr>
 											</c:when>
 											<c:otherwise>
