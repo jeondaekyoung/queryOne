@@ -55,6 +55,7 @@ public class NoticeContoller {
 		int end = nowPage*pageSize;		
 		map.put("start", start);
 		map.put("end",end);
+		
 		System.out.println("페이지사이즈: "+pageSize+" 블록사이즈"+blockPage +"전체페이지:"+totalPage);
 		List<Notice> lists=noti.selectList(map);
 		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/noti/list.do?");

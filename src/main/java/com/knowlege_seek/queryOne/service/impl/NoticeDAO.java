@@ -24,7 +24,7 @@ public class NoticeDAO implements NoticeService {
 	@Override
 	public int getTotalRecordCount(Map map) {
 		
-		return sqlTemplate.selectOne("TotalCount", map);
+		return sqlTemplate.selectOne("NotiTotalCount", map);
 	}
 
 	@Override

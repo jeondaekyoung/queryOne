@@ -23,8 +23,8 @@ public class DownServiceImpl implements downService {
 
 	@Override
 	public int getTotalRecordCount(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return dao.getTotalRecordCount(map);
 	}
 
 	@Override

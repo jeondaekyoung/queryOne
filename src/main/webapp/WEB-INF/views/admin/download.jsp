@@ -64,7 +64,7 @@
 											<c:otherwise>
 												<c:forEach items="${lists }" var="list" varStatus="status">
 													<tr>
-														<td>${list.downNo }</td>
+														<td>${totalRecordCount - (((nowPage - 1) * pageSize) + status.index)}</td>
 														<td><a href="<c:url value='/down/view.do?downNo=${list.downNo}'/>">[${list.account}]${list.title}</a></td>
 														<td>${list.createDate}</td>
 														<td>${list.hits }</td>
@@ -85,15 +85,7 @@
 							<div class="row">
 								<!--페이징-->
 								<div class="col-sm-9 text-center text-center-xs">
-									<ul class="pagination pagination-sm m-t-none m-b-none">
-										<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-										<li><a href="#">1</a></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#">4</a></li>
-										<li><a href="#">5</a></li>
-										<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-									</ul>
+									 ${pagingString}
 								</div>
 								<!--페이징 끝-->
 

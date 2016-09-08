@@ -60,17 +60,17 @@ public class LoginController {
 	//¿Œµ¶Ω∫∑Œ
 	@RequestMapping("/index.do")
 	public String index(Map map,Model model) throws Exception{
-		
+		map.put("start",1);
+		map.put("end",10);
 		List<Notice> notiLists=noti.selectList(map);
 		model.addAttribute("notiLists",notiLists);
-		
 		
 		List<Download> downLists=down.selectList(map);
 		model.addAttribute("downLists",downLists);
 		
-		
 		List<Video> videoLists=videoService.selectList(map);
 		model.addAttribute("videoLists",videoLists);
+		model.addAttribute("totalRecordCount", 10);
 		return "admin/index";
 	}
 	

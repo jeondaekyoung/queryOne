@@ -26,8 +26,8 @@ public class DownloadDAO  implements downService{
 
 	@Override
 	public int getTotalRecordCount(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return sqlTemplate.selectOne("DownTotalCount", map);
 	}
 
 	@Override

@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,7 @@ import com.knowlege_seek.queryOne.domain.Download;
 import com.knowlege_seek.queryOne.domain.FileDTO;
 import com.knowlege_seek.queryOne.domain.Notice;
 import com.knowlege_seek.queryOne.service.impl.FileServiceImpl;
+import com.knowlege_seek.queryOne.util.PagingUtil;
 import com.knowlege_seek.queryOne.service.impl.DownServiceImpl;
 
 
@@ -26,6 +29,12 @@ import com.knowlege_seek.queryOne.service.impl.DownServiceImpl;
 public class DownloadController {
 	private static final Logger logger = LoggerFactory.getLogger(DownloadController.class);
 	
+
+	@Value("${PAGESIZE}")
+	private int pageSize; 
+	@Value("${BLOCKPAGE}")
+	private int blockPage;
+	
 	@Resource(name="downService")
 	DownServiceImpl down; 
 	
@@ -33,9 +42,26 @@ public class DownloadController {
 	FileServiceImpl fileServiceImpl;
 	
 	@RequestMapping("/list.do")
-	public String list(@RequestParam Map map,Model model){
-		List<Download> lists=down.selectList(map);//map은 페이징을 위한..
+	public String list(@RequestParam Map map,Model model,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage
+			,HttpServletRequest req){
+		int totalRecordCount =down.getTotalRecordCount(map);
+		int totalPage= (int)(Math.ceil(((double)totalRecordCount/pageSize)));
+		
+		//시작 및 끝 ROWNUM구하기]
+				int start= (nowPage-1)*pageSize+1;
+				int end = nowPage*pageSize;		
+				map.put("start", start);
+				map.put("end",end);
+		
+		List<Download> lists=down.selectList(map);
+		
+		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/down/list.do?");
 		model.addAttribute("lists",lists);
+		model.addAttribute("pagingString",pagingString);
+		model.addAttribute("totalPage",totalPage);
+		model.addAttribute("nowPage",nowPage);
+		model.addAttribute("totalRecordCount",totalRecordCount);
+		model.addAttribute("pageSize",pageSize);
 		return "/admin/download";
 	}
 	@RequestMapping("/view.do")

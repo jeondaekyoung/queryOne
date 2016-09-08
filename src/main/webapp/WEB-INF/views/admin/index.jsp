@@ -63,7 +63,7 @@
 											<c:otherwise>
 												<c:forEach items="${downLists }" begin="0" end="9" var="list" varStatus="status">
 													<tr>
-														<td>${list.downNo }</td>
+														<td>${totalRecordCount - status.index}</td>
 														<td><a href="<c:url value='/down/view.do?downNo=${list.downNo}'/>">[${list.account}]${list.title}</a></td>
 														<td><a href='<c:url value="/file/down/${list.file_id}"></c:url>'>${list.fileName}</a></td>
 														<td>${list.createDate}</td>
@@ -104,7 +104,7 @@
 											<c:otherwise>
 												<c:forEach items="${notiLists}" begin="0" end="9" var="list" varStatus="status">
 													<tr>
-														<td>${list.notiNo}</td>
+														<td>${totalRecordCount - status.index}</td>
 														<td><a
 															href="<c:url value='/noti/view.do?notiNo=${list.notiNo}'/>">${list.title}</a></td>
 																<td><a href='<c:url value="/file/down/${list.file_id}"></c:url>'>${list.fileName}</a></td>
@@ -147,7 +147,7 @@
 											<c:otherwise>
 												<c:forEach items="${videoLists}" begin="0" end="9" var="list" varStatus="status">
 													<tr>
-														<td>${list.videoNo}</td>
+														<td>${totalRecordCount - status.index}</td>
 														<td>${list.title}</td>
 														<td>${list.createDate}</td>
 														<td>${list.youtube_URL}</td>

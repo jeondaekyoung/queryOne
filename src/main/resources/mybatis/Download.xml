@@ -5,7 +5,7 @@
 			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper  namespace="mybatis.Download">
 	<select id="downSelectList" parameterType="java.util.Map" resultType="Download">
-		select * from Download order by downNo DESC
+		select * from (select download.*,@rownum:=@rownum+1 as r from download, (SELECT @rownum:=0) r order by downNo desc) a where r between #{start} and #{end}
 	</select>
 	
 	<select id="downSelectOne" parameterType="Download" resultType="Download">
@@ -27,4 +27,8 @@
 	<delete id="downDelete" parameterType="Download">
 		delete from Download where downNo=#{downNo}
 	</delete>
+	<select id="DownTotalCount" resultType="int" parameterType="java.util.Map">
+	SELECT COUNT(*) FROM DOWNLOAD
+	</select>	
+	
 </mapper>
