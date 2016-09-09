@@ -39,7 +39,7 @@ public class LoginController {
 	
 	//로그인 폼
 	@RequestMapping("/loginForm.do")
-	public String loginForm() throws Exception{
+	public String loginForm(){
 		return "admin/login";
 	}
 	//로그인
@@ -59,9 +59,10 @@ public class LoginController {
 	}
 	//인덱스로
 	@RequestMapping("/index.do")
-	public String index(Map map,Model model) throws Exception{
+	public String index(@RequestParam Map map,Model model) {
 		map.put("start",1);
 		map.put("end",10);
+		
 		List<Notice> notiLists=noti.selectList(map);
 		model.addAttribute("notiLists",notiLists);
 		
@@ -73,6 +74,24 @@ public class LoginController {
 		
 		return "admin/index";
 	}
+	@RequestMapping("/indexSearch.do")
+	public String indexSeach(@RequestParam Map map,Model model) throws Exception{
+		map.put("start",1);
+		map.put("end",10);
+		System.out.println("검색"+"account:"+map.get("search_account")+" text:"+map.get("search_text")+" s:"+map.get("start")+" e:"+map.get("end"));
+		List<Notice> notiLists=noti.search(map);
+		model.addAttribute("notiLists",notiLists);
+		
+		List<Download> downLists=down.search(map);
+		model.addAttribute("downLists",downLists);
+		
+		List<Video> videoLists=videoService.search(map);
+		model.addAttribute("videoLists",videoLists);
+		
+		return "admin/index";
+	}
+	
+	
 	
 	//관리자 로그아웃 처리...
 		@RequestMapping("/logout.do")

@@ -50,6 +50,16 @@ public class DownloadDAO  implements downService{
 	public int delete(Download download) {
 		return sqlTemplate.delete("downDelete",download);
 	}
+
+	@Override
+	public List<Download> search(Map map) {
+		return sqlTemplate.selectList("downSearch", map);
+	}
+
+	@Override
+	public int getTotalRecordCount_search(Map map) {
+		return sqlTemplate.selectOne("downGetTotalRecordCount_search", map);
+	}
 	
 
 }

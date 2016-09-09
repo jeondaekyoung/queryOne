@@ -30,5 +30,36 @@
 	<select id="DownTotalCount" resultType="int" parameterType="java.util.Map">
 	SELECT COUNT(*) FROM DOWNLOAD
 	</select>	
+	<select id="downSearch" parameterType="java.util.Map" resultType="download">
+	select * from (select download.*,@rownum:=@rownum+1 as r from download, (SELECT @rownum:=0) r
+	<choose>
+				<when test="search_account == 0 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%'
+				</when>
+				<when test="search_account == 1 and search_text != null and search_text !='' ">
+where content LIKE '%${search_text}%'	
+				</when>
+				<when test="search_account == 2 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%' or content LIKE '%${search_text}%'
+				</when>
+	</choose>
+	  order by downNo desc) a where r between  #{start} and #{end}
+	</select>
+	
+	<select id="downGetTotalRecordCount_search" parameterType="java.util.Map" resultType="int">
+	select count(*) from (select download.*,@rownum:=@rownum+1 as r from download, (SELECT @rownum:=0) r
+	<choose>
+				<when test="search_account == 0 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%'
+				</when>
+				<when test="search_account == 1 and search_text != null and search_text !='' ">
+where content LIKE '%${search_text}%'	
+				</when>
+				<when test="search_account == 2 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%' or content LIKE '%${search_text}%'
+				</when>
+	</choose>
+	  order by downNo desc) a 
+	</select>
 	
 </mapper>

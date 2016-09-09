@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.knowlege_seek.queryOne.domain.Notice;
 import com.knowlege_seek.queryOne.domain.Video;
 import com.knowlege_seek.queryOne.service.impl.VideoServiceImpl;
 import com.knowlege_seek.queryOne.util.PagingUtil;
@@ -23,8 +24,8 @@ import com.knowlege_seek.queryOne.util.PagingUtil;
 @RequestMapping("/video")
 public class VideoController {
 	
-	
-	private int pageSize = 1; 
+	@Value("${PAGESIZE}")
+	private int pageSize; 
 	@Value("${BLOCKPAGE}")
 	private int blockPage;
 	
@@ -85,6 +86,36 @@ public class VideoController {
 		System.out.println(result==1?"삭제 성공":"실패");
 		return "redirect:/video/list.do";
 	}
-	
+	@RequestMapping("/search.do")
+	public String search(@RequestParam Map map,Model model,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage
+			,HttpServletRequest req){
+		
+		int totalRecordCount =videoService.getTotalRecordCount_search(map);
+		
+		int totalPage= (int)(Math.ceil(((double)totalRecordCount/pageSize)));
+		
+		//시작 및 끝 ROWNUM구하기]
+		int start= (nowPage-1)*pageSize+1;
+		int end = nowPage*pageSize;		
+		map.put("start", start);
+		map.put("end",end);
+		System.out.println("totalRecordCount:"+totalRecordCount);
+		System.out.println("동영상 검색"+"account:"+map.get("search_account")+" text:"+map.get("search_text")+" s:"+map.get("start")+" e:"+map.get("end"));
+		List<Video> lists=videoService.search(map);
+		
+		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, 
+				req.getContextPath()+"/video/search.do?search_account="+map.get("search_account")+"&search_text="+map.get("search_text")+"&");
+		
+		model.addAttribute("lists",lists);
+		model.addAttribute("pagingString",pagingString);
+		model.addAttribute("totalPage",totalPage);
+		model.addAttribute("nowPage",nowPage);
+		model.addAttribute("totalRecordCount",totalRecordCount);
+		model.addAttribute("pageSize",pageSize);
+		
+
+		
+		return "/admin/video";
+	}
 
 }

@@ -34,23 +34,36 @@
 	</select>	
 	
 	<select id="notiSearch" parameterType="java.util.Map" resultType="Notice">
-	
-			select * from (select notice.*,@rownum:=@rownum+1 as r from notice, (SELECT @rownum:=0) r order by notiNo desc) a where r between  #{start} and #{end}
+	select * from (select notice.*,@rownum:=@rownum+1 as r from notice, (SELECT @rownum:=0) r 
 		<choose>
-				<when test="search_account == 0">
-			and title LIKE '%#{search_text}%'
+				<when test="search_account == 0 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%'
 				</when>
-				<when test="search_account == 1">
-			and content LIKE '%#{search_text}%'	
+				<when test="search_account == 1 and search_text != null and search_text !='' ">
+where content LIKE '%${search_text}%'	
 				</when>
-				<when test="search_account == 2">
-			and title LIKE '%#{search_text}%' or content LIKE '%#{search_text}%'
+				<when test="search_account == 2 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%' or content LIKE '%${search_text}%'
 				</when>
-			
-			</choose>
-			
-			
-			
+	</choose>
+	  order by notiNo desc) a where r between  #{start} and #{end}
 	</select>
+	
+	<select id="notiGetTotalRecordCount_search" parameterType="java.util.Map" resultType="int">
+	select count(*) from (select notice.*,@rownum:=@rownum+1 as r from notice, (SELECT @rownum:=0) r 
+	<choose>
+				<when test="search_account == 0 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%'
+				</when>
+				<when test="search_account == 1 and search_text != null and search_text !='' ">
+where content LIKE '%${search_text}%'	
+				</when>
+				<when test="search_account == 2 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%' or content LIKE '%${search_text}%'
+				</when>
+	</choose>
+	  order by notiNo desc) a 
+	</select>
+	
 		
 </mapper>

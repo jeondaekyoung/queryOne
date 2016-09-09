@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.knowlege_seek.queryOne.domain.Download;
 import com.knowlege_seek.queryOne.domain.FileDTO;
-import com.knowlege_seek.queryOne.domain.Notice;
+
 import com.knowlege_seek.queryOne.service.impl.FileServiceImpl;
 import com.knowlege_seek.queryOne.util.PagingUtil;
 import com.knowlege_seek.queryOne.service.impl.DownServiceImpl;
@@ -134,6 +134,31 @@ public class DownloadController {
 		}
 		System.out.println(result==1?"성공":"실패");
 		return "redirect:/down/list.do";
+	}
+	@RequestMapping("/search.do")
+	public String search(@RequestParam Map map,Model model,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage
+			,HttpServletRequest req){
+		
+		int totalRecordCount =down.getTotalRecordCount_search(map);
+		int totalPage= (int)(Math.ceil(((double)totalRecordCount/pageSize)));
+		//시작 및 끝 ROWNUM구하기]
+		int start= (nowPage-1)*pageSize+1;
+		int end = nowPage*pageSize;		
+		map.put("start", start);
+		map.put("end",end);
+		System.out.println("totalRecordCount:"+totalRecordCount);
+		System.out.println("검색"+"account:"+map.get("search_account")+" text:"+map.get("search_text")+" s:"+map.get("start")+" e:"+map.get("end"));
+		List<Download> lists=down.search(map);
+		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, 
+				req.getContextPath()+"/down/search.do?search_account="+map.get("search_account")+"&search_text="+map.get("search_text")+"&");
+		model.addAttribute("lists",lists);
+		model.addAttribute("pagingString",pagingString);
+		model.addAttribute("totalPage",totalPage);
+		model.addAttribute("nowPage",nowPage);
+		model.addAttribute("totalRecordCount",totalRecordCount);
+		model.addAttribute("pageSize",pageSize);
+		
+		return "/admin/download";
 	}
 	
 }

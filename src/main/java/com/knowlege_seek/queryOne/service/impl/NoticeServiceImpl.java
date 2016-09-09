@@ -52,5 +52,10 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		return dao.search(map);
 	}
+	@Override
+	public int getTotalRecordCount_search(Map map) {
+
+		return dao.getTotalRecordCount_search(map);
+	}
 
 }

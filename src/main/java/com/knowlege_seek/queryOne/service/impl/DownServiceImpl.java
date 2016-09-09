@@ -47,4 +47,16 @@ public class DownServiceImpl implements downService {
 		return dao.delete(download);
 	}
 
+	@Override
+	public List<Download> search(Map map) {
+
+		return dao.search(map);
+	}
+
+	@Override
+	public int getTotalRecordCount_search(Map map) {
+		
+		return dao.getTotalRecordCount_search(map);
+	}
+
 }

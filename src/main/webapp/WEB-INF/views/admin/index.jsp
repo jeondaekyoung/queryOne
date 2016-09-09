@@ -31,7 +31,31 @@
         <section id="content">
           <section class="vbox">
             <header class="header bg-white b-b b-light">
-              <p>최근 게시물</p>
+               <div class="row" style="padding:5px 0">
+                 <div class="col-sm-9"><p style="line-height:4rem;margin-bottom:0;">최근 게시물</p></div>
+              
+                
+                
+                <!--검색-->
+                <div class="col-sm-3">
+                <form action='<c:url value="/admin/indexSearch.do"/>' method="post" >
+                    <div class="input-group">
+                      <!--<select class="input-sm">
+                        <option value="0">제목</option>
+                        <option value="1">작성자</option>
+                        <option value="2">내용</option>
+                        <option value="3">제목+내용</option>
+                      </select>-->
+                      <input type="text" name="search_text" class="form-control" placeholder="Search">
+                      <input type="hidden" name ="search_account"  value="2">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">검색</button>
+                      </span>
+                      </div>
+                    </form>
+                </div>
+                <!--검색 끝-->
+              </div>
             </header>
        		 <section class="scrollable wrapper w-f">
 							<table class="admin" style="margin-bottom:20px">
@@ -57,7 +81,7 @@
 										<c:choose>
 											<c:when test="${empty downLists }">
 												<tr bgcolor="white" align="center">
-													<td colspan="5">등록된 게시물이 없습니다.</td>
+													<td colspan="5">등록된 게시물이 없거나 검색한 결과가 없습니다.</td>
 												</tr>
 											</c:when>
 											<c:otherwise>
@@ -103,7 +127,7 @@
 										<c:choose>
 											<c:when test="${empty notiLists }">
 												<tr bgcolor="white" align="center">
-													<td colspan="5">등록된 게시물이 없습니다.</td>
+													<td colspan="5">등록된 게시물이 없거나 검색한 결과가 없습니다.</td>
 												</tr>
 											</c:when>
 											<c:otherwise>
@@ -151,7 +175,7 @@
 										<c:choose>
 											<c:when test="${empty videoLists }">
 												<tr bgcolor="white" align="center">
-													<td colspan="4">등록된 메모가 없어요</td>
+													<td colspan="5">등록된 게시물이 없거나 검색한 결과가 없습니다.</td>
 												</tr>
 											</c:when>
 											<c:otherwise>
@@ -172,7 +196,7 @@
 							
  
 				</section>
-              
+  
             <footer class="panel-footer">
               <div class="row">
                 <!--페이징-->
@@ -189,22 +213,13 @@
                 </div> -->
                 <!--페이징 끝-->
                 
-                <!--검색-->
-                <div class="col-sm-3">
-                    <div class="input-group">
-                      <!--<select class="input-sm">
-                        <option value="0">제목</option>
-                        <option value="1">작성자</option>
-                        <option value="2">내용</option>
-                        <option value="3">제목+내용</option>
-                      </select>-->
-                      <input type="text" class="input-sm form-control" placeholder="Search">
-                      <span class="input-group-btn">
-                        <button class="btn btn-sm btn-default" type="button">검색</button>
-                      </span>
-                    </div>
-                </div>
-                <!--검색 끝-->
+         
+                	<div class="text-center padder">
+											<p>
+												<small>copyright 2016. all rights reserved
+													SOFTGARDEN Co. Ltd.</small>
+											</p>
+										</div>
               </div>
             </footer>
               

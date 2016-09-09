@@ -4,11 +4,17 @@ import java.util.List;
 import java.util.Map;
 
 import com.knowlege_seek.queryOne.domain.Download;
+import com.knowlege_seek.queryOne.domain.Notice;
 
 public interface downService {
 	//목록용
 	List<Download> selectList(Map map);
 			
+	//검색용
+			List<Download> search(Map map);
+
+			int getTotalRecordCount_search(Map map);
+	
 	//전체 레코드 수
 	int getTotalRecordCount(Map map);
 	

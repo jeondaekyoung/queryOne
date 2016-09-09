@@ -1,13 +1,12 @@
 package com.knowlege_seek.queryOne.adminContoller;
 
-import java.io.File;
-import java.io.IOException;
+
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +22,7 @@ import com.knowlege_seek.queryOne.domain.FileDTO;
 import com.knowlege_seek.queryOne.domain.Notice;
 import com.knowlege_seek.queryOne.service.impl.FileServiceImpl;
 import com.knowlege_seek.queryOne.service.impl.NoticeServiceImpl;
-import com.knowlege_seek.queryOne.util.FileUpDownUtils;
+
 import com.knowlege_seek.queryOne.util.PagingUtil;
 
 
@@ -57,7 +56,7 @@ public class NoticeContoller {
 		map.put("end",end);
 		
 		List<Notice> lists=noti.selectList(map);
-		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/noti/serach.do?");
+		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/noti/list.do?");
 		
 		model.addAttribute("lists",lists);
 		model.addAttribute("pagingString",pagingString);
@@ -143,7 +142,8 @@ public class NoticeContoller {
 	public String search(@RequestParam Map map,Model model,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage
 			,HttpServletRequest req){
 		
-		int totalRecordCount =noti.getTotalRecordCount(map);
+		int totalRecordCount =noti.getTotalRecordCount_search(map);
+		
 		int totalPage= (int)(Math.ceil(((double)totalRecordCount/pageSize)));
 		
 		//시작 및 끝 ROWNUM구하기]
@@ -151,9 +151,12 @@ public class NoticeContoller {
 		int end = nowPage*pageSize;		
 		map.put("start", start);
 		map.put("end",end);
+		System.out.println("totalRecordCount:"+totalRecordCount);
 		System.out.println("검색"+"account:"+map.get("search_account")+" text:"+map.get("search_text")+" s:"+map.get("start")+" e:"+map.get("end"));
 		List<Notice> lists=noti.search(map);
-		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/noti/serach.do?");
+		
+		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, 
+				req.getContextPath()+"/noti/search.do?search_account="+map.get("search_account")+"&search_text="+map.get("search_text")+"&");
 		
 		model.addAttribute("lists",lists);
 		model.addAttribute("pagingString",pagingString);

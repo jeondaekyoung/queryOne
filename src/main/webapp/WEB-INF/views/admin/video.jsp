@@ -36,7 +36,7 @@
   
 
             <section class="scrollable wrapper w-f">
-                <form action="<c:url value='/noti/list.do'/>" method="post" id="adForm" name="adForm" enctype="multipart/form-data">
+                <form action="<c:url value='/video/list.do'/>" method="post" id="adForm" name="adForm" enctype="multipart/form-data">
 	                <!-- 작성자 -->
 								<input type="hidden" name="writer"
 									value="${sessionScope.USERID}" class="form-control">
@@ -64,7 +64,7 @@
                             </tr>      
                                     <c:choose>
 											<c:when test="${empty lists }">
-											<td colspan="4">등록된 게시물이 없어요</td>
+											<td colspan="4">등록된 게시물이 없거나 검색한 결과가 없습니다.</td>
 											</c:when>
 											<c:otherwise>
 												<c:forEach items="${lists}" var="list" varStatus="status">
@@ -117,21 +117,24 @@ document.adForm.submit();
                 <!--페이징 끝-->
                 
                 <!--검색-->
-                <div class="col-sm-3">
-                    <div class="input-group">
-                      <!--<select class="input-sm">
-                        <option value="0">제목</option>
-                        <option value="1">작성자</option>
-                        <option value="2">내용</option>
-                        <option value="3">제목+내용</option>
-                      </select>-->
-                      <input type="text" class="input-sm form-control" placeholder="Search">
-                      <span class="input-group-btn">
-                        <button class="btn btn-sm btn-default" type="button">검색</button>
-                      </span>
-                    </div>
-                </div>
-                <!--검색 끝-->
+								<div class="col-sm-3">
+								<form action='<c:url value="/video/search.do"/>' method="post" >
+									<select name ="search_account" class="input-sm">
+										<option value="0">제목</option>
+										<option value="1">유튜브 URL</option>
+										<option value="2">제목+유튜브 URL</option>
+									</select>
+									<div class="input-group">
+							
+										<input type="text" name="search_text" class="input-sm form-control"
+											placeholder="Search"> <span class="input-group-btn">
+											<button class="btn btn-sm btn-default" type="submit">검색</button>
+										</span>
+										
+									</div>
+									</form>
+								</div>
+								<!--검색 끝-->
               </div>
             </footer>
               

@@ -7,10 +7,13 @@ import com.knowlege_seek.queryOne.domain.Notice;
 
 public interface NoticeService {
 	
-	//목록용
+		//목록용
 		List<Notice> selectList(Map map);
 				
+		//검색용
 		List<Notice> search(Map map);
+
+		int getTotalRecordCount_search(Map map);
 		
 		//전체 레코드 수
 		int getTotalRecordCount(Map map);

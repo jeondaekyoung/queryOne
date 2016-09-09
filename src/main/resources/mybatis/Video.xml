@@ -28,5 +28,38 @@
 		<select id="videoTotalCount" resultType="int" parameterType="java.util.Map">
 	SELECT COUNT(*) FROM Video
 	</select>	
+	
+	<select id="videoSearch" parameterType="java.util.Map" resultType="video">
+	select * from (select video.*,@rownum:=@rownum+1 as r from video, (SELECT @rownum:=0) r 
+		<choose>
+				<when test="search_account == 0 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%'
+				</when>
+				<when test="search_account == 1 and search_text != null and search_text !='' ">
+where youtube_URL LIKE '%${search_text}%'	
+				</when>
+				<when test="search_account == 2 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%' or youtube_URL LIKE '%${search_text}%'
+				</when>
+	</choose>
+	  order by videoNo desc) a where r between  #{start} and #{end}
+	</select>
+	
+	<select id="videoGetTotalRecordCount_search" parameterType="java.util.Map" resultType="int">
+	select count(*) from (select video.*,@rownum:=@rownum+1 as r from video, (SELECT @rownum:=0) r 
+	<choose>
+				<when test="search_account == 0 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%'
+				</when>
+				<when test="search_account == 1 and search_text != null and search_text !='' ">
+where youtube_URL LIKE '%${search_text}%'	
+				</when>
+				<when test="search_account == 2 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%' or youtube_URL LIKE '%${search_text}%'
+				</when>
+	</choose>
+	  order by videoNo desc) a 
+	</select>
+	
 
 </mapper>

@@ -48,4 +48,14 @@ public class VideoServiceImpl implements VideoService {
 		return dao.delete(video);
 	}
 
+	@Override
+	public List<Video> search(Map map) {
+		return dao.search(map);
+	}
+
+	@Override
+	public int getTotalRecordCount_search(Map map) {
+		return dao.getTotalRecordCount_search(map);
+	}
+
 }

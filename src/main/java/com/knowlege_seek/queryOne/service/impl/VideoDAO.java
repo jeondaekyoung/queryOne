@@ -50,4 +50,14 @@ public class VideoDAO implements VideoService {
 		return sqlTemplate.delete("videoDelete",video);
 	}
 
+	@Override
+	public List<Video> search(Map map) {
+		return sqlTemplate.selectList("videoSearch", map);
+	}
+
+	@Override
+	public int getTotalRecordCount_search(Map map) {
+		return sqlTemplate.selectOne("videoGetTotalRecordCount_search", map);
+	}
+
 }
