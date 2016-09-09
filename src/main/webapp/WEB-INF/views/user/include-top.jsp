@@ -13,12 +13,14 @@
     <!-- 내비게이션 영역 -->
     <nav class="page-gnb">
       <ul class="clearfix">
-        <li class=""><a href="queryone/queryone.html">QueryOne</a></li>
-        <li><a href="queryone/queryone-s.html">QueryOne S</a></li>
-        <li><a href="queryone/video.html">Video</a></li>
-        <li><a href="queryone/download.html">Download</a></li>
-        <li><a href="queryone/news.html">News</a></li>
-        <li><a href="queryone/contact.html">Contact</a></li>
+        <li class=""><a href="/index">QueryOne</a></li>
+        
+        <li><a href="<c:url value='/user/queryone-s.do'/>">QueryOne S</a></li>
+        <li><a href="<c:url value='/user/video.do'/>">Video</a></li>
+        <li><a href="<c:url value='/user/download.do'/>">Download</a></li>
+        <li><a href="  <c:url value='/user/news.do'/>">News</a></li>
+        <li><a href="<c:url value='/user/contact.do'/>">Contact</a></li>
+        
       </ul>
     </nav>
     <!-- 끝: 내비게이션 영역 -->

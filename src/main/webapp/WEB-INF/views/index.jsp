@@ -4,12 +4,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="ko-KR">
 <head>
-  	<jsp:include page="queryone/include-head.jsp" flush="false" />
+  	<jsp:include page="user/include-head.jsp" flush="false" />
 </head>
 <body class="container show-grid">
 
   <!-- 시작: .page-header -->
-  <jsp:include page="queryone/include-top.jsp" flush="false" />
+  <jsp:include page="user/include-top.jsp" flush="false" />
   <!-- 끝: .page-header -->
 
   <!-- 시작: .page-container -->
@@ -378,6 +378,6 @@
   </div>
   <!-- 끝: .page-container -->
 
-  <jsp:include page="queryone/include-bottom.jsp" flush="false" />
+  <jsp:include page="user/include-bottom.jsp" flush="false" />
 </body>
 </html>
