@@ -54,6 +54,11 @@ public class ProductDAO implements ProductService {
 		
 		return sqlTemplate.selectOne("proSelectOne_lice", product);
 	}
+
+	public Product selectOne_newest() {
+		
+		return sqlTemplate.selectOne("proselectOne_newest");
+	}
 	
 	
 }

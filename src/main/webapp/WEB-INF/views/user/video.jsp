@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko-KR">
 <head>
@@ -23,39 +24,33 @@
 	      	</div>
       	</div>
       </div>
-
+	
 	    <div class="row">
-	      <div class="col-14 prefix-1">
+	    <div class="col-14 prefix-1">
+	    <c:choose>
+			<c:when test="${empty lists }">
+			<div align="center" class="col-16">
+							<h2>등록한 동영상이 없습니다.</h2>
+			</div>
+			</c:when>
+			<c:otherwise>	 
+          <c:forEach items="${lists}" var="list" varStatus="status">
           <div class="col-4">
-            <iframe width="100%" height="264" src="https://www.youtube.com/embed/8pMhvaJZRi4" frameborder="0" allowfullscreen></iframe>
+            <iframe width="100%" height="264" src="${list.youtube_URL}" frameborder="0" allowfullscreen></iframe>
           </div>
-          <div class="col-4">
-            <iframe width="100%" height="264" src="https://www.youtube.com/embed/8pMhvaJZRi4" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="col-4">
-            <iframe width="100%" height="264" src="https://www.youtube.com/embed/8pMhvaJZRi4" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="col-4">
-            <iframe width="100%" height="264" src="https://www.youtube.com/embed/8pMhvaJZRi4" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="col-4">
-            <iframe width="100%" height="264" src="https://www.youtube.com/embed/8pMhvaJZRi4" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="col-4">
-            <iframe width="100%" height="264" src="https://www.youtube.com/embed/8pMhvaJZRi4" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="col-4">
-            <iframe width="100%" height="264" src="https://www.youtube.com/embed/8pMhvaJZRi4" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="col-4">
-            <iframe width="100%" height="264" src="https://www.youtube.com/embed/8pMhvaJZRi4" frameborder="0" allowfullscreen></iframe>
-          </div> 
+          </c:forEach>
+			</c:otherwise>
+			</c:choose>
+			
+	     
+          
+          
         </div>
 	    </div>
 
       <!-- 페이징 -->
       <div class="text-center">
-        <ul class="pagination pagination-sm">
+        <!-- <ul class="pagination pagination-sm">
           <li><a href="#"><i class="chevron-left"></i></a></li>
           <li><a href="#">1</a></li>
           <li><a href="#">2</a></li>
@@ -63,7 +58,8 @@
           <li><a href="#">4</a></li>
           <li><a href="#">5</a></li>
           <li><a href="#"><i class="chevron-right"></i></a></li>
-        </ul>
+        </ul> -->
+        ${pagingString}		
       </div>
       <!-- 페이징 끝 -->
     </div>

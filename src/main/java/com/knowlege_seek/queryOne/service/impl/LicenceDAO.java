@@ -52,6 +52,11 @@ public class LicenceDAO implements LicenceService {
 	public int delete_product(Map map) {
 		return sqlTemplate.delete("liceDelete_product",map);
 	}
+
+	public Licencekey selectOne_newest(Map map) {
+		
+		return sqlTemplate.selectOne("liceSelectOne_newest",map);
+	}
 	
 	
 }

@@ -11,6 +11,9 @@
 	<select id="proSelectOne" parameterType="Product" resultType="Product">
 		select * from Product where proNo=#{proNo}
 	</select>
+	<select id="proselectOne_newest" resultType="Product">
+		select * from Product order by createDate DESC LIMIT 1
+	</select>
 	
 	<select id="proSelectOne_lice" parameterType="Product" resultType="Product">
 		select * from Product where product_id=#{product_id}

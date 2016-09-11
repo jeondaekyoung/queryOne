@@ -12,6 +12,10 @@
 		select * from LicenceKey where liceNo=#{liceNo}
 	</select>
 	
+	<select id="liceSelectOne_newest"  parameterType="java.util.Map"  resultType="LicenceKey">
+		select * from licenceKey where ProNo=#{proNo} order by liceNo DESC LIMIT 1 
+	</select>
+	
 	<insert id="liceInsert" parameterType="LicenceKey">
 	
 		insert into LicenceKey values(default,#{lice_key},#{writer},#{createDate},#{proNo});

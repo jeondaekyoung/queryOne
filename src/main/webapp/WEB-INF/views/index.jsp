@@ -251,44 +251,44 @@
         </div>
         <div class="video-list">
           <ul class="row">
-            <li class="col-3 prefix-2">
-              <iframe src="https://www.youtube.com/embed/DK5gcK2H6mA" width="100%" height="120" frameborder="0"></iframe>
-              <p>DBMS 통함 감사</p>
-            </li>
+          <c:forEach items="${videoLists}" begin="0"  end="7" var="videoList" varStatus="status">
+            <c:if test="${status.count % 4 == 1 }" var="result">
+            <li class="col-3  prefix-2">
+            </c:if>
+            <c:if test="${not result}">
             <li class="col-3">
-              <iframe src="https://www.youtube.com/embed/DK5gcK2H6mA" width="100%" height="120" frameborder="0"></iframe>
-              <p>DB-Query 결재</p>
+            </c:if>
+              <iframe src="${videoList.youtube_URL}" width="100%" height="120" frameborder="0"></iframe>
+              <p>${videoList.title}</p>
             </li>
-            <li class="col-3">
-              <iframe src="https://www.youtube.com/embed/DK5gcK2H6mA" width="100%" height="120" frameborder="0"></iframe>
-              <p>정책 기반 시스템</p>
-            </li>
-            <li class="col-3">
-              <iframe src="https://www.youtube.com/embed/DK5gcK2H6mA" width="100%" height="120" frameborder="0"></iframe>
-              <p>DB 관리 도구 결합</p>
-            </li>
-            <li class="col-3 prefix-2">
-              <iframe src="https://www.youtube.com/embed/DK5gcK2H6mA" width="100%" height="120" frameborder="0"></iframe>
-              <p>이종 시스템 연동</p>
-            </li>
-            <li class="col-3">
-              <iframe src="https://www.youtube.com/embed/DK5gcK2H6mA" width="100%" height="120" frameborder="0"></iframe>
-              <p>정책 기반 시스템</p>
-            </li>
-            <li class="col-3">
-              <iframe src="https://www.youtube.com/embed/DK5gcK2H6mA" width="100%" height="120" frameborder="0"></iframe>
-              <p>DB 관리 도구 결합</p>
-            </li>
-            <li class="col-3">
-              <iframe src="https://www.youtube.com/embed/DK5gcK2H6mA" width="100%" height="120" frameborder="0"></iframe>
-              <p>이종 시스템 연동</p>
-            </li>
-          </ul>
+          </c:forEach>
+            </ul>
         </div>
       </div>
     </div>
     <!-- 끝: .content-03 -->
 
+<script type="text/javascript">
+	var bFlag = false;
+function eclick(pstr,key) {
+	switch (pstr) {
+	case 'pro':
+		alert("다운로드해주셔서 감사합니다. 발급키를 받아주세요.");
+		bFlag =true;
+		break;
+	case 'lice':
+		if(bFlag){
+			alert("발급키는 "+key +" 입니다.");	
+		}
+		else{
+			alert("제품을 먼저  다운로드 해주세요.");
+		}
+		break;
+	}
+	
+		
+}
+</script>
     <!-- 시작: .content-04 -->
     <div class="content-04 carousel slide carousel-fade panel-body" id="a-fade">
       <ol class="carousel-indicators out">
@@ -307,10 +307,12 @@
             <div class="down-btn-group">
               <ul class="row">
                 <li class="col-3 prefix-5 btn01">
-                  <button type="button">Query One<br>다운받기</button>
+                  <a href="<c:url value='/file/down/${product.file_id}'/>"><button type="button" onclick="eclick('pro','')" >Query One<br>다운받기 </button></a>
                 </li>
                 <li class="col-3 btn02">
-                  <button type="button">License Key<br>발급받기</button>
+                  <%-- <a href="<c:url value='/file/down/${lice.file_id}' />" > --%>
+                  <button type="button" onclick="eclick('lice','${licencekey.lice_key}')">License Key<br>발급받기</button>
+                  <!-- </a> -->
                 </li>
               </ul>
             </div>
@@ -353,21 +355,22 @@
           <h3 class="headline">News</h3>
           <div class="news-list">
             <ul class="row">
-              <li class="col-4 prefix-2">
-                <a href=""><img src="" alt="공지사항1" width="100%" height="192">
-                    <p>DBMS 통함 감사</p>
+             <c:forEach items="${notiLists}" begin="0"  end="2" var="notiList" varStatus="status">
+	             <c:if test="${status.count == 1 }" var="result">
+	            <li class="col-4  prefix-2">
+	            </c:if>
+	            <c:if test="${not result}">
+	            <li class="col-4">
+	            </c:if>
+	         	   <a href="<c:url value='/user/news.do?notiNo=${notiList.notiNo }'/>">
+	         	   
+	         	   <!-- <img src="" alt="공지사항1" width="100%" height="192"> -->
+	         	   ${notiList.content }
+                    <p>${notiList.title }</p>
                 </a>
-              </li>
-              <li class="col-4">
-                <a href=""><img src="" alt="공지사항2" width="100%" height="192">
-                    <p>DB-Query 결재</p>
-                </a>
-              </li>
-              <li class="col-4">
-                <a href=""><img src="" alt="공지사항3" width="100%" height="192">
-                    <p>정책 기반 시스템</p>
-                </a>
-              </li>
+              </li>     
+             </c:forEach>
+             
             </ul>
           </div>
         </div>

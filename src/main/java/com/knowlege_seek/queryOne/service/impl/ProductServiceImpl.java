@@ -58,6 +58,11 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return dao.selectOne_lice(product);
 	}
+
+	public Product selectOne_newest() {
+		
+		return dao.selectOne_newest();
+	}
 	
 
 }
