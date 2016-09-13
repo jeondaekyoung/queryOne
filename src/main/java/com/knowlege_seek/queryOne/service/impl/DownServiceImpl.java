@@ -59,4 +59,10 @@ public class DownServiceImpl implements downService {
 		return dao.getTotalRecordCount_search(map);
 	}
 
+	@Override
+	public int update_hits(String downNo) {
+
+		return dao.update_hits(downNo);
+	}
+
 }

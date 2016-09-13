@@ -58,4 +58,11 @@ public class User_downloadController {
 		
 		return "/user/download";
 	}
+	@RequestMapping("/user/downHits.do")
+	public String hits(@RequestParam("downNo") String downNo){
+		
+		down.update_hits(downNo);
+		
+		return "forward:/user/download.do?downNo="+downNo;
+	}
 }

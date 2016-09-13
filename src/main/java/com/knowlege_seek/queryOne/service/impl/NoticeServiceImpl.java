@@ -58,4 +58,10 @@ public class NoticeServiceImpl implements NoticeService {
 		return dao.getTotalRecordCount_search(map);
 	}
 
+	@Override
+	public int update_hits(String notiNo) {
+		return dao.update_hits(notiNo);
+	}
+
+
 }

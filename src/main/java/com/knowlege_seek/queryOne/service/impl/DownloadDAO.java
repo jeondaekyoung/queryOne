@@ -60,6 +60,12 @@ public class DownloadDAO  implements downService{
 	public int getTotalRecordCount_search(Map map) {
 		return sqlTemplate.selectOne("downGetTotalRecordCount_search", map);
 	}
+
+	@Override
+	public int update_hits(String downNo) {
+		// TODO Auto-generated method stub
+		return sqlTemplate.update("downUpdate_hits", downNo);
+	}
 	
 
 }

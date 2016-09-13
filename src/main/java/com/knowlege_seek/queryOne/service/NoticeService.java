@@ -27,6 +27,6 @@ public interface NoticeService {
 		int update(Notice notice);
 		
 		int delete(Notice notice);
-		
-		
+		//Á¶È¸¼ö 
+		int update_hits(String notiNo);
 }

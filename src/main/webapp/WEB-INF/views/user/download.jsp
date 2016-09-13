@@ -6,6 +6,14 @@
 <head>
 <jsp:include page="include-head.jsp" flush="false" />
 </head>
+<script type="text/javascript">
+	function view(no) {
+		var f = document.hitsForm;
+		var input=f.downNo.value;
+		f.downNo.value = no;
+		f.submit();
+	}
+</script>
 <body class="container show-grid">
 
 	<!-- 시작: .page-header -->
@@ -42,17 +50,26 @@
 								</div>
 							</c:when>
 							<c:otherwise>
+							<form action="<c:url value='/user/downHits.do'/>" name="hitsForm">
+									<input type="hidden"  name="downNo"  >
+								</form>
 								<c:forEach items="${lists}" var="list" varStatus="status">
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<a class="accordion-toggle row" data-toggle="collapse"
-												data-parent="#accordion2" href="#collapse${list.downNo }">
+												data-parent="#accordion2" onclick="view('${list.downNo}')"   href="#collapse${list.downNo }">
 												<span class="col-10">${list.title }</span> <span
 												class="col-6">${list.createDate }</span>
 											</a>
 										</div>
+											<c:if test="${param.downNo == list.downNo}" var="result">
+										<div id="collapse${list.downNo }" 
+											class="panel-collapse row in">
+											</c:if>
+											<c:if test="${not result }">
 										<div id="collapse${list.downNo }"
 											class="panel-collapse collapse row">
+											</c:if>
 											<!-- panel-collapse in 내용 목록 보기 -->
 											<div class="panel-body col-12 prefix-2">
 												${list.content }

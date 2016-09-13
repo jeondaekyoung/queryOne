@@ -316,8 +316,8 @@ function eclick(pstr,key) {
                 </li>
               </ul>
             </div>
-            <p class="subline">라이선스 발급 요청을 하게되면 <span>등록 시 작성한 E-mail</span>로 자동 발송됩니다.</p>
-            <p class="subline">제품 구입 문의 : sales@softgarden.co.kr</p>
+            <!-- <p class="subline">라이선스 발급 요청을 하게되면 <span>등록 시 작성한 E-mail</span>로 자동 발송됩니다.</p>
+            <p class="subline">제품 구입 문의 : sales@softgarden.co.kr</p> -->
           </div>
         </li> 
         <!-- //slide-1 -->
@@ -328,11 +328,7 @@ function eclick(pstr,key) {
             <div class="row">
               <ul class="col-8 prefix-4">
                 <li class="li-download"><a href="">Agent 기능 포함</a></li>
-                <li class="li-download"><a href="">Agent 기능 포함</a></li>
-                <li class="li-download"><a href="">Agent 기능 포함</a></li>
-                <li class="li-download"><a href="">Agent 기능 포함</a></li>
-                <li class="li-download"><a href="">Agent 기능 포함</a></li>
-                <li class="li-download"><a href="">Agent 기능 포함</a></li>
+                
               </ul>
             </div>
           </div>
@@ -362,7 +358,7 @@ function eclick(pstr,key) {
 	            <c:if test="${not result}">
 	            <li class="col-4">
 	            </c:if>
-	         	   <a href="<c:url value='/user/news.do?notiNo=${notiList.notiNo }'/>">
+	         	   <a href="<c:url value='/user/newsHits.do?notiNo=${notiList.notiNo }'/>">
 	         	   
 	         	    <img src="" alt="공지사항1" width="100%" height="192">
 	         	   

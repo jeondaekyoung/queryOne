@@ -6,6 +6,14 @@
 <head>
 <jsp:include page="include-head.jsp" flush="false" />
 </head>
+<script type="text/javascript">
+	function view(no) {
+		var f = document.hitsForm;
+		var input=f.notiNo.value;
+		f.notiNo.value = no;
+		f.submit();
+	}
+</script>
 <body class="container show-grid">
 
 	<!-- 시작: .page-header -->
@@ -44,10 +52,14 @@
 								</div>
 							</c:when>
 							<c:otherwise>
+							<form action="<c:url value='/user/newsHits.do'/>" name="hitsForm">
+									<input type="hidden"  name="notiNo"  >
+								</form>
 								<c:forEach items="${lists}" var="list" varStatus="status">
+								
 									<div class="panel panel-default">
 										<div class="panel-heading">
-											<a class="accordion-toggle row" data-toggle="collapse"
+											<a class="accordion-toggle row" onclick="view('${list.notiNo}')" data-toggle="collapse"
 												data-parent="#accordion2" href="#collapse${list.notiNo }">
 												<span class="col-10">${list.title }</span> <span
 												class="col-6">${list.createDate }</span>

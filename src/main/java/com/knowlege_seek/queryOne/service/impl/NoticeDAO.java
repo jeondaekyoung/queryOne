@@ -57,6 +57,12 @@ public class NoticeDAO implements NoticeService {
 		
 		return sqlTemplate.selectOne("notiGetTotalRecordCount_search", map);
 	}
+
+	@Override
+	public int update_hits(String notiNo) {
+
+		return sqlTemplate.update("notiUpdate_hits", notiNo);
+	}
 	
 	
 }

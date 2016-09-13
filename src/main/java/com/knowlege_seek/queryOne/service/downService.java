@@ -27,4 +27,6 @@ public interface downService {
 	int update(Download download);
 	
 	int delete(Download download);
+	//Á¶È¸¼ö 
+	int update_hits(String downNo);
 }

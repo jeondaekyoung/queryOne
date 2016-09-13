@@ -51,4 +51,11 @@ public class User_NewsController {
 		
 		return "/user/news";
 	}
+	@RequestMapping("/user/newsHits.do")
+	public String hits(@RequestParam("notiNo") String notiNo){
+		
+		noti.update_hits(notiNo);
+		
+		return "forward:/user/news.do?notiNo="+notiNo;
+	}
 }

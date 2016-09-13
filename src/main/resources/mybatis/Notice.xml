@@ -22,8 +22,12 @@
 		fileName=if(isnull(#{fileName}),fileName,#{fileName}),
 		file_id= if(isnull(#{file_id}),file_id,#{file_id})
 		 where notiNo=#{notiNo}
-		
 	</update>
+
+	<update id="notiUpdate_hits" parameterType="java.lang.String">
+		update notice set hits=hits+1 where notiNo=#{notiNo}
+	</update>
+		
 	
 	<delete id="notiDelete" parameterType="Notice">
 		delete from notice where notiNo=#{notiNo}

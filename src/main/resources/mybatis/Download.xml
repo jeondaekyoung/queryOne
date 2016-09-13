@@ -24,6 +24,10 @@
 		
 	</update>
 	
+	<update id="downUpdate_hits" parameterType="java.lang.String">
+		update download set hits=hits+1 where downNo=#{downNo}
+	</update>
+	
 	<delete id="downDelete" parameterType="Download">
 		delete from Download where downNo=#{downNo}
 	</delete>
