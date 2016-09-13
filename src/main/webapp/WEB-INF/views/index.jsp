@@ -377,7 +377,7 @@ function view(no) {
 	            </c:if>
 	         	   <a href="<c:url value='/user/newsHits.do?notiNo=${notiList.notiNo }'/>">
 	         	   
-	         	    <img src="" alt="공지사항1" width="100%" height="192">
+	         	    <img src="<c:url value='/resources/images/content-5/news_0${status.index+1}.jpg'/>" alt="공지사항1" width="100%" height="192">
 	         	   
                     <p>${notiList.title }</p>
                 </a>
