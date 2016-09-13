@@ -56,8 +56,9 @@ public class LicenceController {
 			product.setProduct_id(licencekey.getProduct_id());
 			product=pro.selectOne_lice(product);
 			licencekey.setProNo(product.getProNo());
-		int result=lice.insert(licencekey);
-					
+		lice.insert(licencekey);
+		int result=lice.update_create(licencekey);
+			
 		System.out.println(result==1?"성공":"실패");
 		return "redirect:/lice/list.do";
 	}
@@ -77,8 +78,8 @@ public class LicenceController {
 		product.setProduct_id(licencekey.getProduct_id());
 		product=pro.selectOne_lice(product);
 		licencekey.setProNo(product.getProNo());
-		int result=lice.update(licencekey);
-		
+		lice.update(licencekey);
+		int result=lice.update_create(licencekey);
 		System.out.println(result==1?"성공":"실패");
 		return "redirect:/lice/list.do";
 	}

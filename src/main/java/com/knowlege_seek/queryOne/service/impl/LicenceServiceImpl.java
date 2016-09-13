@@ -57,6 +57,12 @@ public class LicenceServiceImpl implements LicenceService {
 		return dao.selectOne_newest(map);
 	}
 
+	@Override
+	public int update_create(Licencekey licence) {
+
+		return dao.update_create(licence);
+	}
+
 	
 
 }

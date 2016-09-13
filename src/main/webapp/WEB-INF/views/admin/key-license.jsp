@@ -116,7 +116,7 @@
                             <tr>
                                 <td><input type="date" name="createDate" value="<fmt:formatDate value="${now}" type="date" pattern="yyyy-MM-dd"/>" class="form-control" ></td>
                                 <td><select name="product_id" class="form-control">
-                                      <!-- 제품ID가 없을때 제품 등록부터 하게 유도하기 -->
+                                      
                                       <option selected="selected">제품ID</option>
                                       <c:forEach items="${proLists }" var="list" >
                                       	<option>${list.product_id }</option>

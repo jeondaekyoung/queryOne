@@ -57,6 +57,12 @@ public class LicenceDAO implements LicenceService {
 		
 		return sqlTemplate.selectOne("liceSelectOne_newest",map);
 	}
+
+	@Override
+	public int update_create(Licencekey licence) {
+		// TODO Auto-generated method stub
+		return sqlTemplate.update("liceUpdate_create",licence);
+	}
 	
 	
 }

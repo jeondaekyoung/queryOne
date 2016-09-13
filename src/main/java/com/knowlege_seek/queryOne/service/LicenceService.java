@@ -22,4 +22,6 @@ public interface LicenceService {
 		int update(Licencekey licence);
 		
 		int delete(Licencekey licence);
+		//시간 더하기용
+		int update_create(Licencekey licence);
 }
