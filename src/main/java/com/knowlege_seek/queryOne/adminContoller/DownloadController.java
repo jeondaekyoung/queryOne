@@ -91,7 +91,7 @@ public class DownloadController {
 		int result=down.insert(download);
 		System.out.println(result==1?"성공":"실패");
 
-		return "forward:/down/list.do";
+		return "redirect:/down/list.do";
 	}
 	@RequestMapping("/editForm.do")
 	public String updateForm(Download download,Model model){

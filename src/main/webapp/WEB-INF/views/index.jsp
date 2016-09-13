@@ -286,7 +286,12 @@ function eclick(pstr,key) {
 		break;
 	}
 	
-		
+}
+function view(no) {
+	var f = document.hitsForm;
+	var input=f.downNo.value;
+	f.downNo.value = no;
+	f.submit();
 }
 </script>
     <!-- 시작: .content-04 -->
@@ -326,8 +331,20 @@ function eclick(pstr,key) {
           <div class="">
             <h3 class="headline">Download</h3>
             <div class="row">
+            					
               <ul class="col-8 prefix-4">
-                <li class="li-download"><a href="">Agent 기능 포함</a></li>
+              <!-- 관리자에서 올린 파일다운로드 -->
+              
+                <c:forEach items="${downLists}" var="list">
+                <c:if test="${not empty list.fileName }">
+                <li class="li-download">
+                 <a href="<c:url value='/file/down/${list.file_id}'/>">
+                 <button type="button"  >${list.fileName} 다운받기 </button>
+                 </a>
+				</li>
+				</c:if>
+                </c:forEach>
+                
                 
               </ul>
             </div>

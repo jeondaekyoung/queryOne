@@ -69,7 +69,6 @@ public class VideoController {
 	@RequestMapping("/update.do")
 	public String update(@RequestParam Map map,@RequestParam("videoNo") String videoNo){
 		System.out.println("수정");
-		System.out.println("번호:"+videoNo+" 제목:"+map.get("title_edit"+videoNo)+" 유튜브URL:"+map.get("youtube_URL_edit"+videoNo));
 		Video video=new Video();
 		video.setTitle(map.get("title_edit"+videoNo).toString());
 		video.setYoutube_URL(map.get("youtube_URL_edit"+videoNo).toString());
@@ -100,7 +99,6 @@ public class VideoController {
 		map.put("start", start);
 		map.put("end",end);
 		System.out.println("totalRecordCount:"+totalRecordCount);
-		System.out.println("동영상 검색"+"account:"+map.get("search_account")+" text:"+map.get("search_text")+" s:"+map.get("start")+" e:"+map.get("end"));
 		List<Video> lists=videoService.search(map);
 		
 		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, 

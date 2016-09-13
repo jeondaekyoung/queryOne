@@ -5,6 +5,10 @@
 <script src="<c:url value='/resources/js/bootstrap.js'/>"></script>
 <script src="<c:url value='/resources/js/app.js'/>"></script>
 <script src="<c:url value='/resources/js/app.plugin.js'/>"></script>
+<!-- wysiwyg -->
+<script src="<c:url value='/resources/js/wysiwyg/jquery.hotkeys.js'/>"></script>
+<script src="<c:url value='/resources/js/wysiwyg/bootstrap-wysiwyg.js'/>"></script>
+<script src="<c:url value='/resources/js/wysiwyg/demo.js'/>"></script>
 
 <!-- datepicker -->
 <script src="<c:url value='/resources/js/datepicker/bootstrap-datepicker.js'/>"></script>

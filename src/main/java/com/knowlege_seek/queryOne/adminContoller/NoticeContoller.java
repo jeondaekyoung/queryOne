@@ -95,7 +95,7 @@ public class NoticeContoller {
 		int result=noti.insert(notice);
 		System.out.println(result==1?"등록 성공":"실패");
 
-		return "forward:/noti/list.do";
+		return "redirect:/noti/list.do";
 	}
 	@RequestMapping("/editForm.do")
 	public String updateForm(Notice notice,Model model){

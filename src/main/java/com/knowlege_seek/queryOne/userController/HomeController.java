@@ -15,10 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.knowlege_seek.queryOne.domain.Download;
 import com.knowlege_seek.queryOne.domain.Licencekey;
 import com.knowlege_seek.queryOne.domain.Notice;
 import com.knowlege_seek.queryOne.domain.Product;
 import com.knowlege_seek.queryOne.domain.Video;
+import com.knowlege_seek.queryOne.service.impl.DownServiceImpl;
 import com.knowlege_seek.queryOne.service.impl.FileServiceImpl;
 import com.knowlege_seek.queryOne.service.impl.LicenceServiceImpl;
 import com.knowlege_seek.queryOne.service.impl.NoticeServiceImpl;
@@ -37,6 +39,9 @@ public class HomeController {
 	
 	@Resource(name="notiService")
 	NoticeServiceImpl noti; 
+	
+	@Resource(name = "downService")
+	DownServiceImpl down;
 	
 	@Resource(name="productService")
 	ProductServiceImpl pro;
@@ -65,6 +70,11 @@ public class HomeController {
 		
 		List <Notice>notiLists =noti.selectList(map); 
 		model.addAttribute("notiLists", notiLists);
+		
+		List <Download>downLists =down.selectList(map); 
+		model.addAttribute("downLists", downLists);
+		
+		
 		return "index";
 	}
 	@RequestMapping("/user/queryone-s.do")

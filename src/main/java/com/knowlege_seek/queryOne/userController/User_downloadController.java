@@ -60,7 +60,7 @@ public class User_downloadController {
 	}
 	@RequestMapping("/user/downHits.do")
 	public String hits(@RequestParam("downNo") String downNo){
-		
+		System.out.println("히트다히트");
 		down.update_hits(downNo);
 		
 		return "forward:/user/download.do?downNo="+downNo;

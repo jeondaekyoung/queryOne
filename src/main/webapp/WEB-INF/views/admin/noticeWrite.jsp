@@ -150,9 +150,9 @@
                           </div>
                           <input type="text" class="form-control-trans pull-left" data-edit="inserttext" id="voiceBtn" x-webkit-speech="" style="width:25px;height:28px;">
                         </div>
-                        <div id="editor" class="form-control" style="overflow:scroll;height:150px;max-height:150px">
-                          Go ahead&hellip;
-                        </div>
+                        <textarea id="editor" name="content" class="form-control" style="overflow:scroll;height:150px;max-height:150px">
+                          
+                        </textarea>
                       </div>
                     </div>
 								<!--내용 끝-->
