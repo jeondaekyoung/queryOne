@@ -364,8 +364,8 @@ function eclick(pstr,key) {
 	            </c:if>
 	         	   <a href="<c:url value='/user/news.do?notiNo=${notiList.notiNo }'/>">
 	         	   
-	         	   <!-- <img src="" alt="공지사항1" width="100%" height="192"> -->
-	         	   ${notiList.content }
+	         	    <img src="" alt="공지사항1" width="100%" height="192">
+	         	   
                     <p>${notiList.title }</p>
                 </a>
               </li>     

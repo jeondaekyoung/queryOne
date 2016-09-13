@@ -46,7 +46,7 @@ public class LoginController {
 	@RequestMapping("/login.do") 
 	public String login(@RequestParam Map map,HttpSession session,Model model) throws Exception{
 		boolean bFlag=login.isAdmin(map);
-/*		
+		
 		if(bFlag) {//회원
 			//로그인 처리를 위해 세션에 아이디 저장
 			session.setAttribute("USERID", map.get("adminId"));
@@ -54,7 +54,7 @@ public class LoginController {
 		} else {//비회원
 			model.addAttribute("loginError", "아이디와 비번이 불일치");
 			return "/admin/login";
-		}*/
+		}
 		return "redirect:/admin/index.do";
 	}
 	//인덱스로
