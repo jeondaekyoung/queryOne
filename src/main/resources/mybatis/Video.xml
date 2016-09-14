@@ -4,33 +4,33 @@
 			PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.Video">
-<select id="videoSelectList" parameterType="java.util.Map" resultType="Video">
+<select id="VideoSelectList" parameterType="java.util.Map" resultType="Video">
 		select * from (select Video.*,@rownum:=@rownum+1 as r from Video, (SELECT @rownum:=0) r order by videoNo desc) a where r between  #{start} and #{end}
 	</select>
 	
-	<select id="videoSelectOne" parameterType="Video" resultType="Video">
+	<select id="VideoSelectOne" parameterType="Video" resultType="Video">
 		select * from Video where videoNo=#{videoNo}
 	</select>
 	
-	<insert id="videoInsert" parameterType="Video">
+	<insert id="VideoInsert" parameterType="Video">
 		insert into Video values(default,#{title},#{writer},#{youtube_URL},default);
 	</insert>	
 	
-	<update id="videoUpdate" parameterType="Video">
+	<update id="VideoUpdate" parameterType="Video">
 		update Video set title=#{title},youtube_URL=#{youtube_URL} where videoNo=#{videoNo}
 		
 	</update>
 	
-	<delete id="videoDelete" parameterType="Video">
+	<delete id="VideoDelete" parameterType="Video">
 		delete from Video where videoNo=#{videoNo}
 	</delete>
 	
-		<select id="videoTotalCount" resultType="int" parameterType="java.util.Map">
+		<select id="VideoTotalCount" resultType="int" parameterType="java.util.Map">
 	SELECT COUNT(*) FROM Video
 	</select>	
 	
-	<select id="videoSearch" parameterType="java.util.Map" resultType="video">
-	select * from (select video.*,@rownum:=@rownum+1 as r from video, (SELECT @rownum:=0) r 
+	<select id="VideoSearch" parameterType="java.util.Map" resultType="Video">
+	select * from (select Video.*,@rownum:=@rownum+1 as r from Video, (SELECT @rownum:=0) r 
 		<choose>
 				<when test="search_account == 0 and search_text != null and search_text !='' ">
 where title LIKE '%${search_text}%'
@@ -45,8 +45,8 @@ where title LIKE '%${search_text}%' or youtube_URL LIKE '%${search_text}%'
 	  order by videoNo desc) a where r between  #{start} and #{end}
 	</select>
 	
-	<select id="videoGetTotalRecordCount_search" parameterType="java.util.Map" resultType="int">
-	select count(*) from (select video.*,@rownum:=@rownum+1 as r from video, (SELECT @rownum:=0) r 
+	<select id="VideoGetTotalRecordCount_search" parameterType="java.util.Map" resultType="int">
+	select count(*) from (select Video.*,@rownum:=@rownum+1 as r from Video, (SELECT @rownum:=0) r 
 	<choose>
 				<when test="search_account == 0 and search_text != null and search_text !='' ">
 where title LIKE '%${search_text}%'

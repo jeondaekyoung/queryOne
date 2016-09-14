@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="mybatis.File">
 
 	<insert id="insertFile" parameterType="fileDTO" useGeneratedKeys="true" keyProperty="file_id">
-		INSERT INTO FILE (
+		INSERT INTO File (
 			FILE_ID, FILE_NAME, FILE_REAL_NAME, FILE_PATH, FILE_EXT, FILE_CONTENT_TYPE, FILE_SIZE, REG_DATE
 		) VALUES (
 			#{file_id}, #{file_name}, #{file_real_name}, #{file_path}, #{file_ext}, #{file_content_type}, #{file_size}, now()
@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<update id="updateFile" parameterType="fileDTO">
-		UPDATE FILE 
+		UPDATE File 
 		SET FILE_NAME = #{file_name},
 			FILE_REAL_NAME = #{file_real_name},
 			FILE_PATH = #{file_path},
@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<delete id="deleteFile" parameterType="fileDTO">
-		DELETE FROM FILE WHERE FILE_ID=#{file_id}
+		DELETE FROM File WHERE FILE_ID=#{file_id}
 		
 	</delete>
 	
@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT
 			FILE_ID, FILE_NAME, FILE_REAL_NAME, FILE_PATH, 
 			FILE_EXT, FILE_CONTENT_TYPE, FILE_SIZE, REG_DATE
-		FROM FILE
+		FROM File
 		WHERE FILE_ID = #{file_id}
 	</select>
 </mapper>

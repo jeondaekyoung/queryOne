@@ -16,7 +16,7 @@
 
  <http>
 
-  <intercept-url pattern="/login" access="ROLE_USER" />
+  <intercept-url pattern="/admin**" access="ROLE_USER" />
 
   <form-login  login-page='/admin/loginForm.do' default-target-url='/admin/index'
 

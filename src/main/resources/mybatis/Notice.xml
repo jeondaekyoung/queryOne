@@ -6,7 +6,7 @@
 <mapper namespace="mybatis.Notice">
 	<select id="notiSelectList" parameterType="java.util.Map" resultType="Notice">
 	
-			select * from (select notice.*,@rownum:=@rownum+1 as r from notice, (SELECT @rownum:=0) r order by notiNo desc) a where r between  #{start} and #{end}
+			select * from (select Notice.*,@rownum:=@rownum+1 as r from Notice, (SELECT @rownum:=0) r order by notiNo desc) a where r between  #{start} and #{end}
 	</select>
 	
 	<select id="notiSelectOne" parameterType="Notice" resultType="Notice">
@@ -14,31 +14,31 @@
 	</select>
 	
 	<insert id="notiInsert" parameterType="Notice">
-		insert into notice values(default,#{title},#{writer},#{content},default ,default,#{fileName},#{file_id});
+		insert into Notice values(default,#{title},#{writer},#{content},default ,default,#{fileName},#{file_id});
 	</insert>	
 	
 	<update id="notiUpdate" parameterType="Notice">
-		update notice set title=#{title},content=#{content},
+		update Notice set title=#{title},content=#{content},
 		fileName=if(isnull(#{fileName}),fileName,#{fileName}),
 		file_id= if(isnull(#{file_id}),file_id,#{file_id})
 		 where notiNo=#{notiNo}
 	</update>
 
 	<update id="notiUpdate_hits" parameterType="java.lang.String">
-		update notice set hits=hits+1 where notiNo=#{notiNo}
+		update Notice set hits=hits+1 where notiNo=#{notiNo}
 	</update>
 		
 	
 	<delete id="notiDelete" parameterType="Notice">
-		delete from notice where notiNo=#{notiNo}
+		delete from Notice where notiNo=#{notiNo}
 	</delete>
 		
 	<select id="NotiTotalCount" resultType="int" parameterType="java.util.Map">
-	SELECT COUNT(*) FROM NOTICE
+	SELECT COUNT(*) FROM Notice
 	</select>	
 	
 	<select id="notiSearch" parameterType="java.util.Map" resultType="Notice">
-	select * from (select notice.*,@rownum:=@rownum+1 as r from notice, (SELECT @rownum:=0) r 
+	select * from (select Notice.*,@rownum:=@rownum+1 as r from Notice, (SELECT @rownum:=0) r 
 		<choose>
 				<when test="search_account == 0 and search_text != null and search_text !='' ">
 where title LIKE '%${search_text}%'
@@ -54,7 +54,7 @@ where title LIKE '%${search_text}%' or content LIKE '%${search_text}%'
 	</select>
 	
 	<select id="notiGetTotalRecordCount_search" parameterType="java.util.Map" resultType="int">
-	select count(*) from (select notice.*,@rownum:=@rownum+1 as r from notice, (SELECT @rownum:=0) r 
+	select count(*) from (select Notice.*,@rownum:=@rownum+1 as r from Notice, (SELECT @rownum:=0) r 
 	<choose>
 				<when test="search_account == 0 and search_text != null and search_text !='' ">
 where title LIKE '%${search_text}%'
