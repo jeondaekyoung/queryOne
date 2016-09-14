@@ -25,8 +25,8 @@ public class FileServiceImpl implements FileService {
 	
 	private static Logger log = LoggerFactory.getLogger(FileServiceImpl.class);
 	@Autowired FileDao fileDao;
-	//private String fileSaveRoot = "/var/data/file";
-	private String fileSaveRoot = "D:/queryOne/upload";
+	private String fileSaveRoot = "/var/data/file";
+	//private String fileSaveRoot = "D:/queryOne/upload";
 	
 	@Override
 	public FileDTO selectFileDetail(String fileId) {

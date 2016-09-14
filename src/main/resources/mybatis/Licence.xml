@@ -5,7 +5,7 @@
 			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.Licence">
 	<select id="liceSelectList" parameterType="java.util.Map" resultType="LicenceKey">
-		select liceNo,lice_key,L.writer,L.createDate,L.proNo,product_id from LicenceKey as L join product ON Product.proNo = L.proNo  order by liceNo DESC
+		select liceNo,lice_key,L.writer,L.createDate,L.proNo,product_id from LicenceKey as L join Product ON Product.proNo = L.proNo  order by liceNo DESC
 	</select>
 	
 	<select id="liceSelectOne" parameterType="LicenceKey" resultType="LicenceKey">
@@ -13,7 +13,7 @@
 	</select>
 	
 	<select id="liceSelectOne_newest"  parameterType="java.util.Map"  resultType="LicenceKey">
-		select * from LicenceKey where ProNo=#{proNo} order by liceNo DESC LIMIT 1 
+		select * from LicenceKey where proNo=#{proNo} order by liceNo DESC LIMIT 1 
 	</select>
 	
 	<insert id="liceInsert" parameterType="LicenceKey">
