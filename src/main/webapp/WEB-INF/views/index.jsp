@@ -284,6 +284,8 @@ function eclick(pstr,key) {
 			alert("제품을 먼저  다운로드 해주세요.");
 		}
 		break;
+	case 'nof':
+		alert("파일 준비 준비중입니다.");
 	}
 	
 }
@@ -312,7 +314,15 @@ function view(no) {
             <div class="down-btn-group">
               <ul class="row">
                 <li class="col-3 prefix-5 btn01">
-                  <a href="<c:url value='/file/down/${product.file_id}'/>"><button type="button" onclick="eclick('pro','')" >Query One<br>다운받기 </button></a>
+                	<c:choose>
+                	<c:when test="${empty product }">
+                	<button type="button" onclick="eclick('nof','')" >Query One<br>다운받기 </button>
+                	</c:when>
+                	<c:otherwise>
+                	<a href="<c:url value='/file/down/${product.file_id}'/>"><button type="button" onclick="eclick('pro','')" >Query One<br>다운받기 </button></a>
+                	</c:otherwise>
+                	</c:choose>
+                  
                 </li>
                 <li class="col-3 btn02">
                   <%-- <a href="<c:url value='/file/down/${lice.file_id}' />" > --%>

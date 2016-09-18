@@ -49,7 +49,7 @@ public class HomeController {
 	@Resource(name="liceService")
 	LicenceServiceImpl lice;
 	
-	@RequestMapping(value = {"/" ,"/index"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/" ,"/index.do"}, method = RequestMethod.GET)
 	public String home(Map map, Model model) {
 	//	logger.info("Welcome home! The client locale is {}.", "서버시작");
 		//시작 및 끝 ROWNUM구하기]
@@ -57,10 +57,17 @@ public class HomeController {
 		int end = 10;
 		map.put("start", start);
 		map.put("end",end);
+	
+		try {
+			Product product=pro.selectOne_newest();
+			map.put("proNo", product.getProNo());
+			model.addAttribute("product", product);
+			
+				
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
 		
-		Product product=pro.selectOne_newest();
-		model.addAttribute("product", product);
-		map.put("proNo", product.getProNo());
 		Licencekey licencekey=lice.selectOne_newest(map);
 		model.addAttribute("licencekey", licencekey);
 		

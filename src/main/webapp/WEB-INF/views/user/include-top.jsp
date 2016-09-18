@@ -5,7 +5,7 @@
   <div class="col-12 prefix-2">
     <!-- 브랜드 영역 -->
     <h1 class="brand">
-      <a href="<c:url value='/' />">
+      <a href="<c:url value='/index.do' />">
         <img src="<c:url value='/resources/images/logo.png'/>" width="152" height="39" alt="Query one">
       </a>
     </h1>
@@ -13,7 +13,7 @@
     <!-- 내비게이션 영역 -->
     <nav class="page-gnb">
       <ul class="clearfix">
-        <li class=""><a href="<c:url value='/' />">QueryOne</a></li>
+        <li class=""><a href="<c:url value='/index.do' />">QueryOne</a></li>
         
         <li><a href="<c:url value='/user/queryone-s.do'/>">QueryOne S</a></li>
         <li><a href="<c:url value='/user/video.do'/>">Video</a></li>
