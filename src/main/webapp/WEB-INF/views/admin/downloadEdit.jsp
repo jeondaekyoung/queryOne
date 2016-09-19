@@ -134,7 +134,7 @@
 										 -
 									</c:if>
 									<c:if test="${!result}">
-										<a href='<c:url value="/file/down/${download.file_id}" />' class="btn btn-info"><i class="fa fa-download"></i>${download.fileName} 다운로드</a>
+										<a href='<c:url value="/file/down/${download.file_id}.do" />' class="btn btn-info"><i class="fa fa-download"></i>${download.fileName} 다운로드</a>
 									</c:if>
 										
 									</div>

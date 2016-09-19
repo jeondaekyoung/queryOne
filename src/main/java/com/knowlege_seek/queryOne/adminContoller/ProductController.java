@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,15 +54,11 @@ public class ProductController {
 				
 		return "redirect:/pro/list.do";
 	}
+	
 	@RequestMapping("/updete.do")
 	public String updete(@RequestParam Map map,Product Product,@RequestParam("proNo") String proNo,MultipartRequest mReq){
 		System.out.println("수정");
-		System.out.println("번호:"+proNo+
-				" 제품ID:"+map.get("product_id"+proNo)+
-				" 제품 명:"+map.get("product_name"+proNo)+ 
-				" file:"+mReq.getFile("file"+proNo).getOriginalFilename()
-				+" fileId:"+map.get("file_id"+proNo)
-				);
+
 		/*if(Product.getFile_id().length()==0){
 			System.out.println(Product.getFile_id()==null?"널임":"널아님");
 			Product.setFile_id(null);
@@ -82,6 +79,7 @@ public class ProductController {
 		System.out.println(result==1?"수정 성공":"실패");
 		return "redirect:/pro/list.do";
 	}
+	
 	@RequestMapping("/delete.do")
 	public String delete(@RequestParam Map map,Product Product,@RequestParam("proNo") String proNo){
 		System.out.println("삭제");

@@ -78,11 +78,11 @@
 												${list.content }
 												<!-- 파일 -->
 												<c:if test="${empty list.fileName}" var="result">
-													<p class="form-control-static">-</p>
+													
 												</c:if>
 												<c:if test="${!result}">
 													<p class="form-control-static">
-														<a href='<c:url value="/file/down/${list.file_id}" />'
+														<a href='<c:url value="/file/down/${list.file_id}.do" />'
 															class="btn btn-info"><i class="fa fa-download"></i>${list.fileName}
 															다운로드</a>
 													</p>

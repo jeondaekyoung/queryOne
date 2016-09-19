@@ -29,9 +29,10 @@ public class FileController {
 	private String whoAmi;
 	@Autowired private FileService fileService;
 	
-	@RequestMapping("/down/{file_id}")
+	@RequestMapping("/down/{file_id}.do")
 	@ResponseBody
 	public ResponseEntity<FileSystemResource> down(@PathVariable("file_id") String fileId){
+		
 		FileDTO fileDto = fileService.selectFileDetail(fileId);
 		
 		File file = new File(fileDto.getFile_path());
@@ -39,7 +40,7 @@ public class FileController {
 		return downloadContent(fileDto, file, true);
 	}
 	
-	@RequestMapping("/down/image/{file_id}")
+	@RequestMapping("/down/image/{file_id}.do")
 	@ResponseBody
 	public ResponseEntity<FileSystemResource> image(@PathVariable("file_id") String fileId){
 		FileDTO fileDto = fileService.selectFileDetail(fileId);
@@ -49,7 +50,7 @@ public class FileController {
 		return downloadContent(fileDto, file, false);
 	}
 	
-	@RequestMapping("/down/file/{file_id}")
+	@RequestMapping("/down/file/{file_id}.do")
 	@ResponseBody
 	public ResponseEntity<FileSystemResource> downfile(@PathVariable("file_id") String fileId){
 		FileDTO fileDto = fileService.selectFileDetail(fileId);

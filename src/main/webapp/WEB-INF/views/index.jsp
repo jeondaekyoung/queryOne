@@ -319,7 +319,7 @@ function view(no) {
                 	<button type="button" onclick="eclick('nof','')" >Query One<br>다운받기 </button>
                 	</c:when>
                 	<c:otherwise>
-                	<a href="<c:url value='/file/down/${product.file_id}'/>"><button type="button" onclick="eclick('pro','')" >Query One<br>다운받기 </button></a>
+                	<a href="<c:url value='/file/down/${product.file_id}.do'/>"><button type="button" onclick="eclick('pro','')" >Query One<br>다운받기 </button></a>
                 	</c:otherwise>
                 	</c:choose>
                   
@@ -348,7 +348,7 @@ function view(no) {
                 <c:forEach items="${downLists}" var="list">
                 <c:if test="${not empty list.fileName }">
                 <li class="li-download">
-                 <a href="<c:url value='/file/down/${list.file_id}'/>">
+                 <a href="<c:url value='/file/down/${list.file_id}.do'/>">
                  <button type="button"  >${list.fileName} 다운받기 </button>
                  </a>
 				</li>

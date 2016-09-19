@@ -59,7 +59,7 @@ public class LicenceController {
 		lice.insert(licencekey);
 		int result=lice.update_create(licencekey);
 			
-		System.out.println(result==1?"성공":"실패");
+		System.out.println(result==1?"licence 시간 성공":" licence 시간 실패");
 		return "redirect:/lice/list.do";
 	}
 	@RequestMapping("/updete.do")

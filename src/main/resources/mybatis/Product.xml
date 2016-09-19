@@ -16,15 +16,15 @@
 	</select>
 	
 	<select id="proSelectOne_lice" parameterType="Product" resultType="Product">
-		select * from Product where Product_id=#{Product_id}
+		select * from Product where Product_id=#{product_id}
 	</select>
 	
 	<insert id="proInsert" parameterType="Product">
-		insert into Product values(default,#{Product_id},#{Product_name},#{writer},#{file_name},default,#{file_id});
+		insert into Product values(default,#{product_id},#{product_name},#{writer},#{file_name},default,#{file_id});
 	</insert>	
 	
 	<update id="proUpdate" parameterType="Product">
-		update Product set Product_id=#{Product_id},Product_name=#{Product_name},
+		update Product set Product_id=#{product_id},Product_name=#{product_name},
 		file_name=if(isnull(#{file_name}),file_name,#{file_name}),
 		file_id= if(isnull(#{file_id}),file_id,#{file_id})
 		 where proNo=#{proNo}

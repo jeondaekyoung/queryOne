@@ -159,7 +159,7 @@
 																<input type="hidden"	name="file_id${list.proNo}" value="${list.file_id}" class="form-control">
 																
 														</td>
-														<td><a href='<c:url value="/file/down/${list.file_id}"></c:url>'>이전파일: ${list.file_name }</a></td>
+														<td><a href='<c:url value="/file/down/${list.file_id}.do"></c:url>'>이전파일: ${list.file_name }</a></td>
 														<td><button type="button" onclick="eclick('mod','${list.proNo}')" class="btn btn-info m-r-xs"><i class="fa fa-edit"></i> 수정</button>
 															<button type="button" onclick="eclick('del','${list.proNo}')" class="btn btn-danger"><i class="fa fa-minus-circle"></i> 삭제</button>
 														 </td>
