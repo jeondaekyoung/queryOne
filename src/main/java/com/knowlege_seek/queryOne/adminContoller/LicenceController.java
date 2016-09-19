@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.lf5.util.DateFormatManager;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,6 +50,7 @@ public class LicenceController {
 		
 		return "/admin/key-history";
 	}
+	@Transactional
 	@RequestMapping("/write.do")
 	public String write(Licencekey licencekey){
 			System.out.println("키 등록 날짜:"+licencekey.getCreateDate()+"제품ID: "+licencekey.getProduct_id()+" 라이선스 키: "+licencekey.getLice_key());
@@ -56,10 +58,11 @@ public class LicenceController {
 			product.setProduct_id(licencekey.getProduct_id());
 			product=pro.selectOne_lice(product);
 			licencekey.setProNo(product.getProNo());
-		lice.insert(licencekey);
+		String liceNo =lice.insert(licencekey);
+		licencekey.setLice_key(liceNo);
 		int result=lice.update_create(licencekey);
 			
-		System.out.println(result==1?"licence 시간 성공":" licence 시간 실패");
+		System.out.println(result==1?"licence 시간 성공: "+liceNo:" licence 시간 실패: "+liceNo);
 		return "redirect:/lice/list.do";
 	}
 	@RequestMapping("/updete.do")

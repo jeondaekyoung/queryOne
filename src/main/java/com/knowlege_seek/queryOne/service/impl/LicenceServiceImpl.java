@@ -33,8 +33,9 @@ public class LicenceServiceImpl implements LicenceService {
 	}
 
 	@Override
-	public int insert(Licencekey Licencekey) {
-		return dao.insert(Licencekey);
+	public String insert(Licencekey Licencekey) {
+			
+		return dao.insert(Licencekey); 
 	}
 
 	@Override

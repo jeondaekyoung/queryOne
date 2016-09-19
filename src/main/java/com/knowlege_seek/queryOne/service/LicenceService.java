@@ -17,7 +17,7 @@ public interface LicenceService {
 		Licencekey selectOne(Licencekey licence);
 		
 		//입력,수정,삭제용
-		int insert(Licencekey licence);
+		String insert(Licencekey licence);
 		
 		int update(Licencekey licence);
 		

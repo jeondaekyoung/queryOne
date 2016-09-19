@@ -35,8 +35,9 @@ public class LicenceDAO implements LicenceService {
 	}
 
 	@Override
-	public int insert(Licencekey licence) {
-		return sqlTemplate.insert("liceInsert",licence);
+	public String insert(Licencekey licence) {
+		sqlTemplate.insert("liceInsert",licence);
+		return licence.getLiceNo();
 	}
 
 	@Override

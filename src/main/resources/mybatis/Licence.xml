@@ -16,9 +16,9 @@
 		select * from LicenceKey where proNo=#{proNo} order by liceNo DESC LIMIT 1 
 	</select>
 	
-	<insert id="liceInsert" parameterType="LicenceKey">
+	<insert id="liceInsert" parameterType="LicenceKey"  useGeneratedKeys="true" keyProperty="liceNo">
 	
-		insert into LicenceKey values(default,#{lice_key},#{writer},#{createDate},#{proNo});
+		insert into LicenceKey values(#{liceNo},#{lice_key},#{writer},#{createDate},#{proNo});
 		
 	</insert>	
 	
