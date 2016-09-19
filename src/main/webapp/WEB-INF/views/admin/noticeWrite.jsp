@@ -14,24 +14,27 @@
     $(document).ready(function(){
         $("li.menu-3").addClass("active");
 	});
-		  function eclick(pstr,liceNo){
+		  function eclick(pstr){
 			var f=document.adForm;
 			switch (pstr){	
 				case 'new':
-					/* if (confirm("맞는 날짜입니까?")!=1) {return false;} */
 					
-					if(f.product_id.value =="제품ID"){
-					   alert("제품아이디을 선택하세요");
-					
-					   return false;
-					}
-					if(!f.lice_key.value){
-					   alert("라이선스 KEY 입력하세요");
+					if(!f.title.value){
+					   alert("제목을 입력하세요.");
 					
 					   return false;
 					}
+				
+					if($("#editor").html()!=0){
+					$("#editorContent").val($("#editor").html());
+					}
+				
+					if(!f.content.value){
+					   alert("내용을 입력하세요.");
+						
+					   return false;
+					}
 					
-					f.action="<c:url value='/lice/write.do'/>";
 					f.submit();	
 					break;
 				case 'cancel':
@@ -68,11 +71,12 @@
 
 						<section class="scrollable wrapper w-f">
 							<form action="<c:url value='/noti/write.do' />" method="post"
-								id="adForm" class="form-horizontal"
+								id="adForm" name="adForm" class="form-horizontal"
 								enctype="multipart/form-data">
+								<input type="hidden" name="content"  id="editorContent" class="form-control"/>
 								<!-- 작성자 -->
 								<input type="hidden" name="writer"
-									value="${sessionScope.USERID}" class="form-control">
+									value="${sessionScope.USERID}" class="form-control" >
 								<!--제목-->
 								<div class="form-group">
 									<label class="col-sm-2 control-label">제목</label>
@@ -93,7 +97,7 @@
 									</div>
 								</div> -->
 					<div class="form-group">
-								  <label class="col-sm-2 control-label">Wysiwyg</label>
+								  <label class="col-sm-2 control-label"></label>
                       <div class="col-sm-10">
                         <div class="btn-toolbar m-b-sm btn-editor" data-role="editor-toolbar" data-target="#editor">
                           <div class="btn-group">
@@ -148,11 +152,11 @@
                             <a class="btn btn-default btn-sm" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
                             <a class="btn btn-default btn-sm" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
                           </div>
-                          <input type="text" class="form-control-trans pull-left" data-edit="inserttext" id="voiceBtn" x-webkit-speech="" style="width:25px;height:28px;">
+                          <input type="text" class="form-control-trans pull-left" data-edit="inserttext"  id="voiceBtn" x-webkit-speech="" style="width:25px;height:28px;">
                         </div>
-                        <textarea id="editor" name="content" class="form-control" style="overflow:scroll;height:150px;max-height:150px">
+                        <div id="editor" class="form-control" style="overflow:scroll;height:450px;max-height:450px">
                           
-                        </textarea>
+                        </div>
                       </div>
                     </div>
 								<!--내용 끝-->
@@ -176,7 +180,7 @@
 										<button type="button" onclick="eclick('cancel')" class="btn btn-default">
 											<i class="fa fa-times"></i> 취소
 										</button>
-										<button type="submit" class="btn btn-primary">
+										<button type="button" class="btn btn-primary" onclick="eclick('new')" >
 											<i class="fa fa-pencil"></i> 등록
 										</button>
 									</div>

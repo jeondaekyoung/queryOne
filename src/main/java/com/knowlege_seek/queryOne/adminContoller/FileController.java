@@ -29,7 +29,7 @@ public class FileController {
 	private String whoAmi;
 	@Autowired private FileService fileService;
 	
-	@RequestMapping("/down/{file_id}.do")
+	@RequestMapping("/down/{file_id}")
 	@ResponseBody
 	public ResponseEntity<FileSystemResource> down(@PathVariable("file_id") String fileId){
 		

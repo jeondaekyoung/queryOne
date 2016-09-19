@@ -65,8 +65,7 @@
 												<c:forEach items="${lists}" var="list" varStatus="status">
 													<tr>
 														<td>${totalRecordCount - (((nowPage - 1) * pageSize) + status.index)}</td>
-														<td><a
-															href="<c:url value='/noti/view.do?notiNo=${list.notiNo}'/>">${list.title}</a></td>
+														<td><a href="<c:url value='/noti/view.do?notiNo=${list.notiNo}'/>">${list.title}</a></td>
 														<td>${list.createDate}</td>
 														<td>${list.hits}</td>
 													</tr>

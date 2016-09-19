@@ -83,7 +83,7 @@
 							<div class="clearfix form-group">
 								<label class="col-sm-2 control-label">내용</label>
 								<div class="col-sm-10">
-									<div id="editor" class="form-control"
+									<div class="form-control"
 										style="overflow: scroll; height: 450px; max-height: 450px"
 										contenteditable="false">${download.content}</div>
 								</div>

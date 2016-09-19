@@ -6,7 +6,7 @@
     <!-- 브랜드 영역 -->
     <h1 class="brand">
       <a href="<c:url value='/index.do' />">
-        <img src="<c:url value='/resources/images/logo.png'/>" width="152" height="39" alt="Query one">
+        <img src="<c:url value='/resources/images/logo.png'/>" height="39" alt="Query one">
       </a>
     </h1>
     <!-- 끝: 브랜드 영역 -->
