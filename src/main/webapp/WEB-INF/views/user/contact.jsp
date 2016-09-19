@@ -25,28 +25,26 @@
       </div>
       <div class="row">
 	    <div class="col-12 prefix-2 contact_map">
-          <script language="javascript" src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey=0788cfc0-7af4-36f7-871e-0e2054b3af9c"></script>
-      	  <script type="text/javascript">
-			function initialize() {
-			    var map = new Tmap.Map({div:"map_div", width:'100%', height:'480px'});
-			    map.addControl(new Tmap.Control.KeyboardDefaults());
-			    var markerLayer = new Tmap.Layer.Markers();
-				map.addLayer(markerLayer);			 
-				var lonlat = new Tmap.LonLat(14128959.98942, 4513159.57659);
-			    map.setCenter(lonlat, 16);
-				var size = new Tmap.Size(24,38);
-				var offset = new Tmap.Pixel(-(size.w/2), -(size.h/2));
-				var icon = new Tmap.IconHtml("<img src= 'https://developers.skplanetx.com/upload/tmap/marker/pin_b_m_q.png'></img>", size, offset);			     
-				var marker = new Tmap.Marker(lonlat, icon);
-				markerLayer.addMarker(marker);
-			}
-			window.onload = function() {
-			    initialize();
-			}
-		  </script>
-		  <div id="map_div"></div>
-		  <p class="location">지하철 9호선 <span>국회의사당역 3번 출구</span>에서 하차 - <span>국민은행</span> 방면으로 횡단 - <span>스누스코리아</span>까지 직진 후 좌측으로 약 370m 이동 - <span>한국기계산업진흥회</span> 건물 4층</p>
-	    </div>
+          <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=kcBpBj64MUbKcq1xcINE"></script>
+          <div id="map" class="box-map" style="width:100%;height:480px;">
+                <p class="location">지하철 9호선 <span>국회의사당역 3번 출구</span>에서 하차 - <span>국민은행</span> 방면으로 횡단 - <span>스누스코리아</span>까지 직진 후 좌측으로 약 370m 이동 - <span>한국기계산업진흥회</span> 건물 4층</p>
+            </div>
+            <script type="text/javascript">
+                var mapOptions = {
+                    center: new naver.maps.LatLng(37.5294566, 126.9226283),
+                    zoom: 14,
+                    scaleControl: false,
+                    logoControl: false,
+                    mapDataControl: false,
+                    zoomControl: true
+                };
+                var marker = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(37.5294566, 126.9226283),
+                    map: map
+                });
+                var map = new naver.maps.Map('map', mapOptions);
+            </script>
+            
 	  </div>
     </div>
     <!-- 끝: .content-01 -->

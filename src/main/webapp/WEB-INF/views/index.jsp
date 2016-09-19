@@ -250,7 +250,12 @@
           <h3 class="headline">Video</h3>
         </div>
         <div class="video-list">
-          <ul class="row">
+        <c:choose>
+            	<c:when test="${empty videoLists}">
+         	 <img src="<c:url value='/resources/images/noData2.png'/>" style="width:400px; margin:0 auto; display: block;"  alt="등록된 데이터가 없습니다."> 
+            	</c:when>
+            	<c:otherwise>
+            	  <ul class="row">
           <c:forEach items="${videoLists}" begin="0"  end="7" var="videoList" varStatus="status">
             <c:if test="${status.count % 4 == 1 }" var="result">
             <li class="col-3  prefix-2">
@@ -263,6 +268,11 @@
             </li>
           </c:forEach>
             </ul>
+            	</c:otherwise>
+            	</c:choose>
+            	
+            
+        
         </div>
       </div>
     </div>
@@ -341,8 +351,12 @@ function view(no) {
           <div class="">
             <h3 class="headline">Download</h3>
             <div class="row">
-            					
-              <ul class="col-8 prefix-4">
+  				<c:choose>
+            	<c:when test="${empty downLists}">
+         	 <img src="<c:url value='/resources/images/noData2.png'/>" style="width:400px; margin:0 auto; display: block;"  alt="등록된 데이터가 없습니다."> 
+            	</c:when>
+           	 <c:otherwise>
+           	    <ul class="col-8 prefix-4">
               <!-- 관리자에서 올린 파일다운로드 -->
               
                 <c:forEach items="${downLists}" var="list">
@@ -353,10 +367,10 @@ function view(no) {
                  </a>
 				</li>
 				</c:if>
-                </c:forEach>
-                
-                
+                </c:forEach>                
               </ul>
+           	 </c:otherwise>
+           	 </c:choose>
             </div>
           </div>
         </li>
@@ -376,8 +390,15 @@ function view(no) {
       <div class="">
         <div class="">
           <h3 class="headline">News</h3>
+          
           <div class="news-list">
-            <ul class="row">
+            <c:choose>
+            <c:when test="${empty notiLists}">
+          <img src="<c:url value='/resources/images/noData.jpg'/>" style="width:400px; margin:0 auto; display: block;"  alt="등록된 데이터가 없습니다."> 
+            </c:when>
+            <c:otherwise>
+              <ul class="row">
+            
              <c:forEach items="${notiLists}" begin="0"  end="2" var="notiList" varStatus="status">
 	             <c:if test="${status.count == 1 }" var="result">
 	            <li class="col-4  prefix-2">
@@ -395,6 +416,10 @@ function view(no) {
              </c:forEach>
              
             </ul>
+            </c:otherwise>
+            </c:choose>
+            
+          
           </div>
         </div>
       </div>

@@ -431,6 +431,9 @@ button:active, button:focus { border:none; outline: none;}
   font-size: 1rem;
   line-height: 2.5;
   margin-bottom: 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .content-04{

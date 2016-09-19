@@ -30,7 +30,7 @@
 	    <c:choose>
 			<c:when test="${empty lists }">
 			<div align="center" class="col-16">
-							<h2>등록한 동영상이 없습니다.</h2>
+			<img src="<c:url value='/resources/images/noData.jpg'/>" style="width:400px; margin:0 auto; display: block;"  alt="등록된 데이터가 없습니다.">
 			</div>
 			</c:when>
 			<c:otherwise>	 
