@@ -169,7 +169,7 @@
 											 -
 											</c:if>
 										<c:if test="${!result}">
-											<a href='<c:url value="/file/down/${notice.file_id}.do" />'	class="btn btn-info"><i class="fa fa-notice"></i>${notice.fileName} 다운로드</a>
+											<a href='<c:url value="/file/down/${notice.file_id}" />'	class="btn btn-info"><i class="fa fa-notice"></i>${notice.fileName} 다운로드</a>
 										</c:if>
 									</div>
 								</div>

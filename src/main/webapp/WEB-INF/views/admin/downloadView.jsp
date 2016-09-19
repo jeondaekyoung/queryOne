@@ -99,7 +99,7 @@
 										<p class="form-control-static">-</p>
 									</c:if>
 									<c:if test="${!result}">
-										<p class="form-control-static"><a href='<c:url value="/file/down/${download.file_id}.do" />' class="btn btn-info"><i class="fa fa-download"></i>${download.fileName} 다운로드</a></p>
+										<p class="form-control-static"><a href='<c:url value="/file/down/${download.file_id}" />' class="btn btn-info"><i class="fa fa-download"></i>${download.fileName} 다운로드</a></p>
 									</c:if>
 								</div>
 							</div>

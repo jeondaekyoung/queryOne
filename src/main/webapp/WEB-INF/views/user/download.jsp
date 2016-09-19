@@ -79,7 +79,7 @@
 												</c:if>
 												<c:if test="${!result}">
 													<p class="form-control-static">
-														<a href='<c:url value="/file/down/${list.file_id}.do" />'
+														<a href='<c:url value="/file/down/${list.file_id}" />'
 															class="btn btn-info"><i class="fa fa-download"></i>${list.fileName}
 															다운로드</a>
 													</p>
