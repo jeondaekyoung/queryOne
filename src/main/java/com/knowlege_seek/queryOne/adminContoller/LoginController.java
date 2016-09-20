@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knowlege_seek.queryOne.domain.Download;
@@ -19,6 +18,7 @@ import com.knowlege_seek.queryOne.service.impl.DownServiceImpl;
 import com.knowlege_seek.queryOne.service.impl.LoginServiceImpl;
 import com.knowlege_seek.queryOne.service.impl.NoticeServiceImpl;
 import com.knowlege_seek.queryOne.service.impl.VideoServiceImpl;
+import com.knowlege_seek.queryOne.util.PasswordUtil;
 
 @Controller
 @RequestMapping("/admin")
@@ -40,11 +40,15 @@ public class LoginController {
 	//로그인 폼
 	@RequestMapping("/loginForm.do")
 	public String loginForm(){
+		
+	
+		
 		return "admin/login";
 	}
 	//로그인
 	@RequestMapping("/login.do") 
 	public String login(@RequestParam Map map,HttpSession session,Model model) throws Exception{
+		map.put("adminPwd", PasswordUtil.encryptPassword(map.get("adminPwd").toString()));
 		boolean bFlag=login.isAdmin(map);
 		
 		if(bFlag) {//회원
