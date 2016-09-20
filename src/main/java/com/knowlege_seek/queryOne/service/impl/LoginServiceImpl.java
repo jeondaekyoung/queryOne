@@ -24,7 +24,7 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public boolean isAdmin(Map map) {
-		// TODO Auto-generated method stub
+		
 		return dao.isAdmin(map);
 	}
 

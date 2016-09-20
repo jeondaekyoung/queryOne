@@ -61,6 +61,10 @@
 		<load-on-startup>1</load-on-startup>
 		
 	</servlet>
+	
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
@@ -70,5 +74,22 @@
 	  <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    <!-- 에러페이지 -->
+	<error-page>
+		<error-code>400</error-code>
+		<location>/error/400.do</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/404.do</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/error/403.do</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error/500.do</location>
+	</error-page>
 
 </web-app>

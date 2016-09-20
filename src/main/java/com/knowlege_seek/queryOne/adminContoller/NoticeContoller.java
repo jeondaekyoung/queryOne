@@ -157,21 +157,12 @@ public class NoticeContoller {
 		
 		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, 
 				req.getContextPath()+"/noti/search.do?search_account="+map.get("search_account")+"&search_text="+map.get("search_text")+"&");
-		
 		model.addAttribute("lists",lists);
 		model.addAttribute("pagingString",pagingString);
 		model.addAttribute("totalPage",totalPage);
 		model.addAttribute("nowPage",nowPage);
 		model.addAttribute("totalRecordCount",totalRecordCount);
 		model.addAttribute("pageSize",pageSize);
-		
-
-		
 		return "/admin/notice";
 	}
-	
-	
-
-
-
 }
