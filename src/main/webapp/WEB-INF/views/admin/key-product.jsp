@@ -174,11 +174,13 @@
                 </form>
             </section>
               
-            <footer class="panel-footer">
-              <div class="row">
-                
-              
-              </div>
+     <footer class="panel-footer">
+            	<div class="text-center padder">
+						<p>
+							<small>copyright 2016. all rights reserved
+								SOFTGARDEN Co. Ltd.</small>
+						</p>
+					</div>
             </footer>
               
           </section>

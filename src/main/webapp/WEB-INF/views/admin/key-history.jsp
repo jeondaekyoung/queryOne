@@ -38,35 +38,23 @@
                 
                 <form action="" method="post" id="adForm" enctype="multipart/form-data">
                   
-                    <!--키워드 검색-->
-                    <div class="row text-sm wrapper">
-                      <div class="col-sm-12 m-b-xs">
-                        <label class="col-sm-2 control-label">키워드 검색</label>
-                        <div class="col-sm-2">
-                          <select class="input-sm form-control input-s-sm inline">
-                              <option value="0">아이디</option>
-                              <option value="1">제품명</option>
-                              <option value="2">이메일</option>
-                          </select>
-                        </div>
-                        <div class="col-sm-4">
-                          <input type="text" class="form-control" id="input-id-1">
-                        </div>
-                      </div>
-                    </div>
-                    <!--키워드 검색-->
-                    
-                    <!--날짜검색-->
-                    <div class="line line-dashed line-lg pull-in"></div>                  
+                <!--날짜검색-->
                     <div class="row text-sm wrapper">
                       <div class="form-group col-sm-12 m-b-xs">
                           <label class="col-sm-2 control-label">날짜검색</label>
                           <div class="col-sm-10">
-                            <input class="input-sm input-s datepicker-input form-control row-r" size="16" type="text" value="12-02-2013" data-date-format="yyyy-mm-dd" >
+                            <input class="input-sm input-s datepicker-input form-control row-r" size="16" type="text" value="2016-09-20" data-date-format="yyyy-mm-dd" >
                             <p class="row-r m-l-sm m-r-sm"> ~ </p>  
-                            <input class="input-sm input-s datepicker-input form-control row-r" size="16" type="text" value="12-02-2013" data-date-format="yyyy-mm-dd" >
-                              
-                            <button type="submit" class="btn btn-s-lg btn-primary pull-right-lg"><i class="fa fa-search"></i> 검색</button>
+                            <input class="input-sm input-s datepicker-input form-control row-r" size="16" type="text" value="2016-09-20" data-date-format="yyyy-mm-dd" >
+                            	<p class="row-r m-l-sm m-r-sm"></p>
+                            	<a class="btn btn-info" href="#" onclick="javascript:eclick('2016-09-20','2016-09-20');return false;" onfocus="this.blur();">오늘</a>
+								<a class="btn btn-info" href="#" onclick="javascript:eclick('2016-09-13','2016-09-20');return false;" onfocus="this.blur();">일주일</a>
+								<a class="btn btn-info" href="#" onclick="javascript:eclick('2016-08-20','2016-09-20');return false;" onfocus="this.blur();">한달</a>
+								<a class="btn btn-info" href="#" onclick="javascript:eclick('2016-07-20','2016-09-20');return false;" onfocus="this.blur();">두달</a>
+                            <button type="submit" class="btn btn-s-lg btn-primary pull-right-lg"><i class="fa fa-search"></i> 검색</button>   
+                            	
+                            
+                            
                           </div>
                       </div>
                     </div>
@@ -74,31 +62,28 @@
                     
                     <div class="line line-dashed line-lg pull-in"></div>
 	                <table class="admin">
-	                    <colgroup><col style="width:20%"><col style="width:25%"><col style="width:20%"><col style="width:25%"><col style="width:10%"></colgroup>
+	                    <colgroup><col style="width:30%"><col style="width:30%"><col style="width:40%"></colgroup>
 	                    <thead>
                             <tr>
-                                <th>아이디</th>
                                 <th>날짜</th>
                                 <th>제품명</th>
-                                <th>이메일</th>
-                                <th>발급횟수</th>
+                                <th>발급 횟수</th>
                             </tr>
                         </thead>
                         <tbody><!--   한 페이지에 30개씩 보여준다    -->
 								<c:choose>
 									<c:when test="${empty notiLists }">
 										<tr bgcolor="white" align="center">
-											<td colspan="4">등록된 메모가 없어요</td>
+											<td colspan="3">검색된 결과가 없습니다.</td>
 										</tr>
 									</c:when>
 									<c:otherwise>
 										<c:forEach items="${notiLists}" begin="0" end="9" var="list"
 											varStatus="status">
 											<tr>
-												<td>okevary</td>
+												
 												<td>2016-08-18 14:12:24</td>
 												<td>QueryOne</td>
-												<td>YSCHOI@DAESUNGIS.CO.KR</td>
 												<td>55</td>
 											</tr>
 										</c:forEach>
@@ -111,38 +96,13 @@
             </section>
               
             <footer class="panel-footer">
-              <div class="row">
-                <!--페이징-->
-                <div class="col-sm-9 text-center text-center-xs">                
-                  <ul class="pagination pagination-sm m-t-none m-b-none">
-                    <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-                  </ul>
-                </div>
-                <!--페이징 끝-->
-                
-                <!--검색-->
-                <div class="col-sm-3">
-                    <div class="input-group">
-                      <!--<select class="input-sm">
-                        <option value="0">제목</option>
-                        <option value="1">작성자</option>
-                        <option value="2">내용</option>
-                        <option value="3">제목+내용</option>
-                      </select>-->
-                      <input type="text" class="input-sm form-control" placeholder="Search">
-                      <span class="input-group-btn">
-                        <button class="btn btn-sm btn-default" type="button">검색</button>
-                      </span>
-                    </div>
-                </div>
-                <!--검색 끝-->
-              </div>
+      			 	<div class="text-center padder">
+											<p>
+												<small>copyright 2016. all rights reserved
+													SOFTGARDEN Co. Ltd.</small>
+											</p>
+										</div>
+              
             </footer>
               
           </section>

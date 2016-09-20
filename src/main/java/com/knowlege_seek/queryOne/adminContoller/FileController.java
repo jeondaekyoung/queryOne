@@ -5,6 +5,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
@@ -18,8 +20,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.knowlege_seek.queryOne.domain.Download;
 import com.knowlege_seek.queryOne.domain.FileDTO;
+import com.knowlege_seek.queryOne.domain.Product;
 import com.knowlege_seek.queryOne.service.FileService;
+import com.knowlege_seek.queryOne.service.impl.DownServiceImpl;
+import com.knowlege_seek.queryOne.service.impl.ProductServiceImpl;
 
 
 @Controller
@@ -28,6 +34,12 @@ public class FileController {
 	
 	private String whoAmi;
 	@Autowired private FileService fileService;
+	
+	@Resource(name="productService")
+	ProductServiceImpl pro;
+	
+	@Resource(name = "downService")
+	DownServiceImpl down;
 	
 	@RequestMapping("/down/{file_id}")
 	@ResponseBody
@@ -40,7 +52,30 @@ public class FileController {
 		return downloadContent(fileDto, file, true);
 	}
 	
-	@RequestMapping("/down/image/{file_id}.do")
+	@RequestMapping("/product/{file_id}")
+	@ResponseBody
+	public ResponseEntity<FileSystemResource> productDown(@PathVariable("file_id") String fileId,
+			Product product){
+		pro.update(product);
+		FileDTO fileDto = fileService.selectFileDetail(fileId);
+		
+		File file = new File(fileDto.getFile_path());
+		
+		return downloadContent(fileDto, file, true);
+	}
+	@RequestMapping("/downNhit/{file_id}/{downNo}")
+	@ResponseBody
+	public ResponseEntity<FileSystemResource> DownNhit(@PathVariable("file_id") String fileId,
+			@PathVariable("downNo") String downNo){
+		down.update_hits(downNo);
+		FileDTO fileDto = fileService.selectFileDetail(fileId);
+		
+		File file = new File(fileDto.getFile_path());
+		
+		return downloadContent(fileDto, file, true);
+	}
+	
+	@RequestMapping("/down/image/{file_id}")
 	@ResponseBody
 	public ResponseEntity<FileSystemResource> image(@PathVariable("file_id") String fileId){
 		FileDTO fileDto = fileService.selectFileDetail(fileId);
@@ -50,7 +85,7 @@ public class FileController {
 		return downloadContent(fileDto, file, false);
 	}
 	
-	@RequestMapping("/down/file/{file_id}.do")
+	@RequestMapping("/down/file/{file_id}")
 	@ResponseBody
 	public ResponseEntity<FileSystemResource> downfile(@PathVariable("file_id") String fileId){
 		FileDTO fileDto = fileService.selectFileDetail(fileId);

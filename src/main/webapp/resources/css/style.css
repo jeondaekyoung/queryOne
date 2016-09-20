@@ -486,6 +486,8 @@ button:active, button:focus { border:none; outline: none;}
   text-overflow: ellipsis;
   background: #fff;
   border-radius: 5px;
+  position: relative;
+  z-index: 11;
 }
 .content-04 .slide-2 .li-download a{
   padding: 3px 42px;
