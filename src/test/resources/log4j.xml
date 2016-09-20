@@ -12,7 +12,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="com.knowlege_seek.queryOne">
-		<level value="info" />
+		<level value="debug" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
