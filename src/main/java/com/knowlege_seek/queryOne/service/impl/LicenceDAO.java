@@ -64,6 +64,24 @@ public class LicenceDAO implements LicenceService {
 		// TODO Auto-generated method stub
 		return sqlTemplate.update("liceUpdate_create",licence);
 	}
+
+	@Override
+	public int history_inNup(Map map) {
+		
+		return sqlTemplate.insert("history_inNup", map);
+	}
+
+	@Override
+	public List<Map> history_SelectList(Map map) {
+		// TODO Auto-generated method stub
+		return sqlTemplate.selectList("history_SelectList", map);
+	}
+
+	@Override
+	public int history_SumHits(Map map) {
+		// TODO Auto-generated method stub
+		return sqlTemplate.selectOne("history_SumHits", map);
+	}
 	
 	
 }

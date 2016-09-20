@@ -40,4 +40,20 @@
 		delete from LicenceKey where proNo=#{proNo}
 	</delete>
 	
+	<insert id="history_inNup"  parameterType="java.util.Map" >
+	
+		INSERT INTO History VALUES(CURDATE(),#{lice_key},1) ON DUPLICATE KEY UPDATE HITS=HITS+1;
+		
+	</insert>
+	
+	
+	<select id="history_SelectList" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT * FROM History order by hitDate DESC
+	</select>
+	
+	<select id="history_SumHits" parameterType="java.util.Map" resultType="int">
+		SELECT sum(hits) FROM History 
+	</select>
+	
+	
 </mapper>

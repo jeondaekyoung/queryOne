@@ -64,6 +64,24 @@ public class LicenceServiceImpl implements LicenceService {
 		return dao.update_create(licence);
 	}
 
+	@Override
+	public int history_inNup(Map map) {
+		
+		return dao.history_inNup(map);
+	}
+
+	@Override
+	public  List<Map> history_SelectList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.history_SelectList(map);
+	}
+
+	@Override
+	public int history_SumHits(Map map) {
+		// TODO Auto-generated method stub
+		return dao.history_SumHits(map);
+	}
+
 	
 
 }

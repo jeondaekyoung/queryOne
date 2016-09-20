@@ -45,11 +45,6 @@ public class LicenceController {
 		return "/admin/key-license";
 	}
 	
-	@RequestMapping("/history.do")
-	public String history(){
-		
-		return "/admin/key-history";
-	}
 	@Transactional
 	@RequestMapping("/write.do")
 	public String write(Licencekey licencekey){
@@ -95,4 +90,43 @@ public class LicenceController {
 		System.out.println(result==1?"성공":"실패");
 		return "redirect:/lice/list.do";
 	}
+	
+	@RequestMapping("/history/list.do")
+	public String history(@RequestParam Map map,Model model){
+		
+		List<Map>lists=lice.history_SelectList(map);
+		
+		int history_sum = lice.history_SumHits(map);
+		
+		model.addAttribute("lists",lists);
+		model.addAttribute("history_sum",history_sum);
+		return "/admin/key-history";
+	}
+	@RequestMapping("/history/search.do")
+	public String history_search(@RequestParam Map map,Model model){
+		
+		List<Map>lists=lice.history_SelectList(map);
+		
+		int history_sum = 0;
+		
+		for(Map listMap :lists){
+			history_sum+=Integer.valueOf(listMap.get("hits").toString());
+			
+		}
+		
+		model.addAttribute("lists",lists);
+		model.addAttribute("history_sum",history_sum);
+		return "/admin/key-history";
+	}
+	
+	@RequestMapping("/history/inNup.do")
+	public String hisory(@RequestParam Map map){
+		
+		lice.history_inNup(map);
+		
+		
+		return "redirect:/";
+	}
+	
+	
 }

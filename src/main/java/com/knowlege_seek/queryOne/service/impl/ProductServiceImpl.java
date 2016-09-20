@@ -64,11 +64,4 @@ public class ProductServiceImpl implements ProductService {
 		return dao.selectOne_newest();
 	}
 
-	@Override
-	public int prohit(Map map) {
-		// TODO Auto-generated method stub
-		return dao.prohit(map);
-	}
-	
-
 }

@@ -29,7 +29,7 @@
                   </a>
                 </li>
                 <li >
-                  <a href="<c:url value='/lice/history.do'/>" >
+                  <a href="<c:url value='/lice/history/list.do'/>" >
                     <i class="fa fa-angle-right"></i><span>라이센스 키 발급내역</span>
                   </a>
                 </li>

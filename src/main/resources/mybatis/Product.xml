@@ -35,10 +35,4 @@
 		delete from Product where proNo=#{proNo}
 	</delete>
 	
-	<insert id="prohit_update"  parameterType="java.util.Map" >
-	
-		INSERT INTO ProHit VALUES(CURDATE(),#{proNo},1) ON DUPLICATE KEY UPDATE HITS=HITS+1;
-		
-		
-	</insert>
 </mapper>

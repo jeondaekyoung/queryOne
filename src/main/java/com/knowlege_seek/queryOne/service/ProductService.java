@@ -23,5 +23,4 @@ public interface ProductService {
 		
 		int delete(Product product);
 		
-		int prohit(Map map);
 }

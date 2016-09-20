@@ -56,6 +56,9 @@
                             
                             
                           </div>
+                          <div class="line line-dashed line-lg pull-in"></div>
+                          <label class="col-sm-2 control-label">총 발급 횟수</label>
+                        <button type="button" class="btn btn-info" > <i class="fa fa-hand-o-right"></i>	${history_sum } </button> 
                       </div>
                     </div>
                     <!--날짜검색 끝-->
@@ -66,25 +69,25 @@
 	                    <thead>
                             <tr>
                                 <th>날짜</th>
-                                <th>제품명</th>
+                                <th>라이센스 키</th>
                                 <th>발급 횟수</th>
                             </tr>
                         </thead>
                         <tbody><!--   한 페이지에 30개씩 보여준다    -->
 								<c:choose>
-									<c:when test="${empty notiLists }">
+									<c:when test="${empty lists}">
 										<tr bgcolor="white" align="center">
 											<td colspan="3">검색된 결과가 없습니다.</td>
 										</tr>
 									</c:when>
 									<c:otherwise>
-										<c:forEach items="${notiLists}" begin="0" end="9" var="list"
+										<c:forEach items="${lists}" begin="0" end="9" var="list"
 											varStatus="status">
 											<tr>
 												
-												<td>2016-08-18 14:12:24</td>
-												<td>QueryOne</td>
-												<td>55</td>
+												<td>${list.hitDate }</td>
+												<td>${list.lice_key }</td>
+												<td>${list.hits }</td>
 											</tr>
 										</c:forEach>
 

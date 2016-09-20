@@ -169,6 +169,8 @@
 									</tbody>
 	                </table>
                 </form>
+                  <h3>※유의사항※</h3>
+            <h4>최신 제품ID에 맞는 라이센스를 등록하지 않으면 사용자에게 키를 발급 할 수 없습니다.</h4>
             </section>
               
             <footer class="panel-footer">

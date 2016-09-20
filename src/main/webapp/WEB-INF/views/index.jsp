@@ -287,11 +287,18 @@ function eclick(pstr,key) {
 		bFlag =true;
 		break;
 	case 'lice':
+		if(key=="null"){
+			alert("발급키 준비 중입니다.");
+			return;
+		}
+		
 		if(bFlag){
-			alert("발급키는 "+key +" 입니다.");	
+			alert("발급키는 "+key +" 입니다.");
+			$("#inNup").attr("href","<c:url value='/lice/history/inNup.do?lice_key=${licence.lice_key }' />");
 		}
 		else{
 			alert("제품을 먼저  다운로드 해주세요.");
+			
 		}
 		break;
 	case 'nof':
@@ -329,15 +336,22 @@ function view(no) {
                 	<button type="button" onclick="eclick('nof','')" >Query One<br>다운받기 </button>
                 	</c:when>
                 	<c:otherwise>
-                	<a href="<c:url value='/file/product/${product.file_id}?proNo=${product.proNo}'/>"><button type="button" onclick="eclick('pro','')" >Query One<br>다운받기 </button></a>
+                	<a href="<c:url value='/file/down/${product.file_id}'/>"><button type="button" onclick="eclick('pro','')" >Query One<br>다운받기 </button></a>
                 	</c:otherwise>
                 	</c:choose>
                   
                 </li>
                 <li class="col-3 btn02">
-                  <%-- <a href="<c:url value='/file/down/${lice.file_id}' />" > --%>
-                  <button type="button" onclick="eclick('lice','${licencekey.lice_key}')">License Key<br>발급받기</button>
-                  <!-- </a> -->
+                  	<c:if test="${empty licence}" var="lice_result">
+                  	<button type="button" onclick="eclick('lice','null'); ">License Key<br>발급받기</button>	
+                  	</c:if>
+                  	<c:if test="${not lice_result}">
+                  <a id="inNup" href="" >
+                  <button type="button" onclick="eclick('lice','${licence.lice_key}'); ">License Key<br>발급받기</button>
+                  		</a>
+                  	
+                  	</c:if>	
+                  
                 </li>
               </ul>
             </div>

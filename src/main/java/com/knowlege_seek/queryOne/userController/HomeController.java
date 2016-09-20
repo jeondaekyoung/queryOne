@@ -63,13 +63,19 @@ public class HomeController {
 			map.put("proNo", product.getProNo());
 			model.addAttribute("product", product);
 			
-				
+			
+			
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
+		Licencekey licence=lice.selectOne_newest(map);
+		System.out.println(licence);
 		
-		Licencekey licencekey=lice.selectOne_newest(map);
-		model.addAttribute("licencekey", licencekey);
+		if(licence!=null){
+			model.addAttribute("licence", licence);	
+			System.out.println("!!!");
+		}
+		
 		
 		List<Video> videoLists=videoService.selectList(map);
 		model.addAttribute("videoLists", videoLists);

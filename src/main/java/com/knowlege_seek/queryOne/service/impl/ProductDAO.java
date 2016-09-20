@@ -60,11 +60,5 @@ public class ProductDAO implements ProductService {
 		return sqlTemplate.selectOne("proselectOne_newest");
 	}
 
-	@Override
-	public int prohit(Map map) {
-		
-		return sqlTemplate.insert("prohit_update", map);
-	}
-	
-	
+
 }

@@ -37,9 +37,6 @@ public class FileController {
 	private String whoAmi;
 	@Autowired private FileService fileService;
 	
-	@Resource(name="productService")
-	ProductServiceImpl pro;
-	
 	@Resource(name = "downService")
 	DownServiceImpl down;
 	
@@ -54,18 +51,6 @@ public class FileController {
 		return downloadContent(fileDto, file, true);
 	}
 	
-	@RequestMapping("/product/{file_id}")
-	@ResponseBody
-	public ResponseEntity<FileSystemResource> productDown(@PathVariable("file_id") String fileId,
-			@RequestParam Map map){
-		System.out.println("???????"+map.get("proNo"));
-		pro.prohit(map);
-		FileDTO fileDto = fileService.selectFileDetail(fileId);
-		
-		File file = new File(fileDto.getFile_path());
-		
-		return downloadContent(fileDto, file, true);
-	}
 	@RequestMapping("/downNhit/{file_id}/{downNo}")
 	@ResponseBody
 	public ResponseEntity<FileSystemResource> DownNhit(@PathVariable("file_id") String fileId,

@@ -24,4 +24,11 @@ public interface LicenceService {
 		int delete(Licencekey licence);
 		//시간 더하기용
 		int update_create(Licencekey licence);
+
+		//발급내역 용
+		int history_inNup(Map map);
+		
+		 List<Map> history_SelectList(Map map);
+		
+		int history_SumHits(Map map);
 }
