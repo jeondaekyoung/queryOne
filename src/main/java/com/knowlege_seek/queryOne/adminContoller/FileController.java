@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -18,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knowlege_seek.queryOne.domain.Download;
@@ -55,8 +57,9 @@ public class FileController {
 	@RequestMapping("/product/{file_id}")
 	@ResponseBody
 	public ResponseEntity<FileSystemResource> productDown(@PathVariable("file_id") String fileId,
-			Product product){
-		pro.update(product);
+			@RequestParam Map map){
+		System.out.println("???????"+map.get("proNo"));
+		pro.prohit(map);
 		FileDTO fileDto = fileService.selectFileDetail(fileId);
 		
 		File file = new File(fileDto.getFile_path());

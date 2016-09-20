@@ -22,4 +22,6 @@ public interface ProductService {
 		int update(Product product);
 		
 		int delete(Product product);
+		
+		int prohit(Map map);
 }

@@ -46,11 +46,10 @@ public class ProductController {
 			MultipartFile multpartfile = Product.getFile();
 			Product.setFile_name(multpartfile.getOriginalFilename());
 			Product.setFile_id(fileServiceImpl.save(multpartfile));
-			System.out.println("파일이 있음");
+		
 		}
-		System.out.println("등록");
+		
 		int result=pro.insert(Product);
-		System.out.println(result==1?"등록 성공":"실패");
 				
 		return "redirect:/pro/list.do";
 	}
@@ -76,16 +75,13 @@ public class ProductController {
 				Product.setFile_id(fileServiceImpl.update(multpartfile, FileDto));	
 		}
 		int result=pro.update(Product);
-		System.out.println(result==1?"수정 성공":"실패");
+		
 		return "redirect:/pro/list.do";
 	}
 	
 	@RequestMapping("/delete.do")
 	public String delete(@RequestParam Map map,Product Product,@RequestParam("proNo") String proNo){
-		System.out.println("삭제");
-		System.out.println(" fileId:"+map.get("file_id"+proNo));
 		int lice_delete=lice.delete_product(map);
-		System.out.println(lice_delete+"행이 삭제 되었습니다.");
 		Product.setFile_id(map.get("file_id"+proNo).toString());
 		Product=pro.selectOne(Product);
 		int result=pro.delete(Product);
@@ -94,7 +90,6 @@ public class ProductController {
 			FileDTO FileDto =fileServiceImpl.selectFileDetail(Product.getFile_id());
 			System.out.println(fileServiceImpl.delete(Product.getFile(), FileDto));
 		}
-		System.out.println(result==1?"삭제 성공":"실패");
 		
 		return "redirect:/pro/list.do";
 	}
