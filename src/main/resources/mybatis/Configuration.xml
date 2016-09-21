@@ -11,6 +11,7 @@
 		<typeAlias alias="FileDTO" type="com.knowlege_seek.queryOne.domain.FileDTO"/>
 		<typeAlias alias="Video" type="com.knowlege_seek.queryOne.domain.Video"/>
 		<typeAlias alias="Product" type="com.knowlege_seek.queryOne.domain.Product"/>
+		<typeAlias alias="QnA" type="com.knowlege_seek.queryOne.domain.QnA"/>
 		
 	</typeAliases>
 	<mappers>
@@ -21,6 +22,7 @@
 	<mapper resource="mybatis/Video.xml"/>
 	<mapper resource="mybatis/Product.xml"/>
 	<mapper resource="mybatis/Licence.xml"/>
+	<mapper resource="mybatis/QnA.xml"/>
 	
 	
 	</mappers>

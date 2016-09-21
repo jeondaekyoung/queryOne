@@ -97,11 +97,11 @@ public class HomeController {
 	
 
 	
-	@RequestMapping("/user/contact.do")
-	public String contact(Locale locale, Model model) {
+	@RequestMapping("/user/qna.do")
+	public String qna(Locale locale, Model model) {
 		
 		
-		return "/user/contact";
+		return "/user/qna";
 	}
 	
 	

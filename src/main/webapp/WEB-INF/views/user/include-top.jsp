@@ -19,7 +19,7 @@
         <li><a href="<c:url value='/user/video.do'/>">Video</a></li>
         <li><a href="<c:url value='/user/download.do'/>">Download</a></li>
         <li><a href="  <c:url value='/user/news.do'/>">News</a></li>
-        <li><a href="<c:url value='/user/contact.do'/>">Contact</a></li>
+        <li><a href="<c:url value='/user/qna.do'/>">QnA</a></li>
         
       </ul>
     </nav>

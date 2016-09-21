@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+			PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.QnA">
+	<select id="qnaSelectList" parameterType="java.util.Map" resultType="QnA">
+	
+			select * from (select QnA.*,@rownum:=@rownum+1 as r from QnA, (SELECT @rownum:=0) r order by qnaNo desc) a where r between  #{start} and #{end}
+	</select>
+	
+	<select id="qnaSelectOne" parameterType="QnA" resultType="QnA">
+		select * from QnA where qnaNo=#{qnaNo}
+	</select>
+	
+	<insert id="qnaInsert" parameterType="QnA">
+		insert into QnA values(default,#{title},#{writer},#{content},default ,default,#{fileName},#{file_id});
+	</insert>	
+	
+	<update id="qnaUpdate" parameterType="QnA">
+		update QnA set title=#{title},content=#{content},
+		fileName=if(isnull(#{fileName}),fileName,#{fileName}),
+		file_id= if(isnull(#{file_id}),file_id,#{file_id})
+		 where qnaNo=#{qnaNo}
+	</update>
+
+	<update id="qnaUpdate_hits" parameterType="java.lang.String">
+		update QnA set hits=hits+1 where qnaNo=#{qnaNo}
+	</update>
+		
+	
+	<delete id="qnaDelete" parameterType="QnA">
+		delete from QnA where qnaNo=#{qnaNo}
+	</delete>
+		
+	<select id="qnaTotalCount" resultType="int" parameterType="java.util.Map">
+	SELECT COUNT(*) FROM QnA
+	</select>	
+	
+	<select id="qnaSearch" parameterType="java.util.Map" resultType="QnA">
+	select * from (select QnA.*,@rownum:=@rownum+1 as r from QnA, (SELECT @rownum:=0) r 
+		<choose>
+				<when test="search_account == 0 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%'
+				</when>
+				<when test="search_account == 1 and search_text != null and search_text !='' ">
+where content LIKE '%${search_text}%'	
+				</when>
+				<when test="search_account == 2 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%' or content LIKE '%${search_text}%'
+				</when>
+	</choose>
+	  order by qnaNo desc) a where r between  #{start} and #{end}
+	</select>
+	
+	<select id="qnaGetTotalRecordCount_search" parameterType="java.util.Map" resultType="int">
+	select count(*) from (select QnA.*,@rownum:=@rownum+1 as r from QnA, (SELECT @rownum:=0) r 
+	<choose>
+				<when test="search_account == 0 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%'
+				</when>
+				<when test="search_account == 1 and search_text != null and search_text !='' ">
+where content LIKE '%${search_text}%'	
+				</when>
+				<when test="search_account == 2 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%' or content LIKE '%${search_text}%'
+				</when>
+	</choose>
+	  order by qnaNo desc) a 
+	</select>
+	
+		
+</mapper>

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ErrorController {
 	
 	@RequestMapping(value = {"/404.do","/403.do","/405.do","/500.do"})
-	public String contact(Model model) {
+	public String errorPage(Model model) {
 		
 		
 		return "/common/webError";

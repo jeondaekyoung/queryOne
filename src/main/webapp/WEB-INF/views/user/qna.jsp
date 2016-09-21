@@ -18,13 +18,13 @@
       <div class="top">
       	<div class="row">
 	      	<div class="col-12 prefix-2">
-	      		<h3>Contact</h3>
-	      		<h4>오시는 길</h4>
+	      		<h3>QnA</h3>
+	      		<h4>문의 하기</h4>
 	      	</div>
       	</div>
       </div>
       <div class="row">
-      	<div class="col-8 prefix-4 suffix-4 contact">
+      	<div class="col-8 prefix-4 suffix-4 qna">
           <p>궁금한 사항이 있으시면 언제든 문의해주세요.</p>
           <input type="text" placeholder="제목">
           <textarea placeholder="내용"></textarea>

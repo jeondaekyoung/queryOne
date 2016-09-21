@@ -686,37 +686,37 @@ div.bg-blue {
   font-size: 0;
 }
 
-.detail-01 .contact p {
+.detail-01 .qna p {
     margin-bottom: 1em;
     font-size: 1.5em
 }
-.detail-01 .contact textarea,
-.detail-01 .contact input {
+.detail-01 .qna textarea,
+.detail-01 .qna input {
     width: 100%;
     padding: 5px;
     border: 1px solid #ccc;
     margin-bottom: 10px
 }
-.detail-01 .contact textarea {
+.detail-01 .qna textarea {
     height: 400px;
 }
-.detail-01 .contact button {
+.detail-01 .qna button {
     padding: 5px;
     margin-bottom: 4em;
     border-radius: 5px;
     color: #fff;
     box-shadow: 1px 1px 3px #aaa
 }
-.detail-01 .contact button[type="reset"] {
+.detail-01 .qna button[type="reset"] {
     background: #ff3333;
 }
-.detail-01 .contact button[type="submit"] {
+.detail-01 .qna button[type="submit"] {
     background: #4C67AD;
 }
-.detail-01 .contact button[type="reset"]:hover {
+.detail-01 .qna button[type="reset"]:hover {
     background: #ff2211;
 }
-.detail-01 .contact button[type="submit"]:hover {
+.detail-01 .qna button[type="submit"]:hover {
     background: #4455bb;
 }
 

@@ -54,7 +54,7 @@
             </li>
             
             <li class="menu-5">
-              <a  href="<c:url value='/qna/contact.do'/>">
+              <a  href="<c:url value='/qna/list.do'/>">
                 <i class="fa fa-comment icon"><b class="bg-warning"></b></i><span>문의하기</span>
               </a>
             </li>

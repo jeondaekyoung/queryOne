@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/qna")
 public class QnAController {
 	
-	@RequestMapping("/contact.do")
+	@RequestMapping("/list.do")
 	public String list(){
 		
 	
 		
-		return "admin/contact";
+		return "admin/qna";
 	}
 }
