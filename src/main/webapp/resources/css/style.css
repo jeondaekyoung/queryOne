@@ -686,37 +686,37 @@ div.bg-blue {
   font-size: 0;
 }
 
-.contact p {
+.detail-01 .contact p {
     margin-bottom: 1em;
     font-size: 1.5em
 }
-.contact textarea,
-.contact input {
+.detail-01 .contact textarea,
+.detail-01 .contact input {
     width: 100%;
     padding: 5px;
     border: 1px solid #ccc;
     margin-bottom: 10px
 }
-.contact textarea {
+.detail-01 .contact textarea {
     height: 400px;
 }
-.contact button {
+.detail-01 .contact button {
     padding: 5px;
     margin-bottom: 4em;
     border-radius: 5px;
     color: #fff;
     box-shadow: 1px 1px 3px #aaa
 }
-.contact button[type="reset"] {
+.detail-01 .contact button[type="reset"] {
     background: #ff3333;
 }
-.contact button[type="submit"] {
+.detail-01 .contact button[type="submit"] {
     background: #4C67AD;
 }
-.contact button[type="reset"]:hover {
+.detail-01 .contact button[type="reset"]:hover {
     background: #ff2211;
 }
-.contact button[type="submit"]:hover {
+.detail-01 .contact button[type="submit"]:hover {
     background: #4455bb;
 }
 

@@ -48,7 +48,6 @@ public class LicenceController {
 	@Transactional
 	@RequestMapping("/write.do")
 	public String write(Licencekey licencekey){
-			System.out.println("키 등록 날짜:"+licencekey.getCreateDate()+"제품ID: "+licencekey.getProduct_id()+" 라이선스 키: "+licencekey.getLice_key());
 			Product product=new Product();
 			product.setProduct_id(licencekey.getProduct_id());
 			product=pro.selectOne_lice(product);
@@ -56,19 +55,12 @@ public class LicenceController {
 		String liceNo =lice.insert(licencekey);
 		licencekey.setLice_key(liceNo);
 		int result=lice.update_create(licencekey);
-			
-		System.out.println(result==1?"licence 시간 성공: "+liceNo:" licence 시간 실패: "+liceNo);
+		System.out.println(result==1?"라이센스 등록 성공":"라이센스 등록 실패");
 		return "redirect:/lice/list.do";
 	}
 	@RequestMapping("/updete.do")
 	public String updete(@RequestParam Map map,@RequestParam("liceNo") String liceNo, Licencekey licencekey){
-		System.out.println("키 수정");
-		System.out.println("수정");
-		System.out.println("번호:"+liceNo+
-				"날짜:" +map.get("createDate"+liceNo)+
-				" 제품ID:"+map.get("product_id"+liceNo)+
-				" 제품 명:"+map.get("lice_key"+liceNo));
-		
+
 		licencekey.setCreateDate(Date.valueOf(map.get("createDate"+liceNo).toString()));
 		licencekey.setProduct_id(map.get("product_id"+liceNo).toString());
 		licencekey.setLice_key(map.get("lice_key"+liceNo).toString());
@@ -78,7 +70,7 @@ public class LicenceController {
 		licencekey.setProNo(product.getProNo());
 		lice.update(licencekey);
 		int result=lice.update_create(licencekey);
-		System.out.println(result==1?"성공":"실패");
+		System.out.println(result==1?"라이센스 수정 성공":"라이센스 수정  실패");
 		return "redirect:/lice/list.do";
 	}
 	@RequestMapping("/delete.do")
@@ -87,7 +79,7 @@ public class LicenceController {
 		
 		int result=lice.delete(licencekey);
 		
-		System.out.println(result==1?"성공":"실패");
+		System.out.println(result==1?"라이센스 삭제 성공":"라이센스 삭제 실패");
 		return "redirect:/lice/list.do";
 	}
 	
@@ -104,7 +96,20 @@ public class LicenceController {
 	}
 	@RequestMapping("/history/search.do")
 	public String history_search(@RequestParam Map map,Model model){
+		String when=map.get("when").toString();
 		
+		if(when.equals("1d")){
+			
+		}else if(when.equals(2d)){
+			
+		}else if(when.equals(1d)){
+			
+		}else if(when.equals(1d)){
+			
+		}
+		
+		
+	
 		List<Map>lists=lice.history_SelectList(map);
 		
 		int history_sum = 0;

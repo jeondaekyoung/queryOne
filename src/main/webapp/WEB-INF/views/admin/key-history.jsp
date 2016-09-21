@@ -47,22 +47,24 @@
                             <p class="row-r m-l-sm m-r-sm"> ~ </p>  
                             <input class="input-sm input-s datepicker-input form-control row-r" size="16" type="text" value="2016-09-20" data-date-format="yyyy-mm-dd" >
                             	<p class="row-r m-l-sm m-r-sm"></p>
-                            	<a class="btn btn-info" href="#" onclick="javascript:eclick('2016-09-20','2016-09-20');return false;" onfocus="this.blur();">오늘</a>
-								<a class="btn btn-info" href="#" onclick="javascript:eclick('2016-09-13','2016-09-20');return false;" onfocus="this.blur();">일주일</a>
-								<a class="btn btn-info" href="#" onclick="javascript:eclick('2016-08-20','2016-09-20');return false;" onfocus="this.blur();">한달</a>
-								<a class="btn btn-info" href="#" onclick="javascript:eclick('2016-07-20','2016-09-20');return false;" onfocus="this.blur();">두달</a>
+                            	<a class="btn btn-info" href="<c:url value='lice/history/search.do?when=1d'/>" >오늘</a>
+								<a class="btn btn-info" href="<c:url value='lice/history/search.do?when=1w'/>" >일주일</a>
+								<a class="btn btn-info" href="<c:url value='lice/history/search.do?when=1m'/>" >한달</a>
+								<a class="btn btn-info" href="<c:url value='lice/history/search.do?when=2m'/>" >두달</a>
+								
                             <button type="submit" class="btn btn-s-lg btn-primary pull-right-lg"><i class="fa fa-search"></i> 검색</button>   
                             	
                             
                             
                           </div>
-                          <div class="line line-dashed line-lg pull-in"></div>
-                          <label class="col-sm-2 control-label">총 발급 횟수</label>
-                        <button type="button" class="btn btn-info" > <i class="fa fa-hand-o-right"></i>	${history_sum } </button> 
+                          
+                          
                       </div>
                     </div>
                     <!--날짜검색 끝-->
-                    
+                    <div class="line line-dashed line-lg pull-in"></div>
+                    <label class="col-sm-3 control-label"> 총 발급 횟수</label>
+                        <button type="button" class="btn btn-info" > <i class="fa fa-hand-o-right"></i>	${history_sum } </button> 
                     <div class="line line-dashed line-lg pull-in"></div>
 	                <table class="admin">
 	                    <colgroup><col style="width:30%"><col style="width:30%"><col style="width:40%"></colgroup>
