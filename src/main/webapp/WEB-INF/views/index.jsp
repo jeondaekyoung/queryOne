@@ -440,6 +440,38 @@ function view(no) {
     </div>
     <!-- 끝: .content-05 -->
 
+	<!-- 시작: .content-06 -->
+    <div class="content-06">
+      <div class="row">
+        <div class="col-12 prefix-2">
+          <h3 class="headline">Contact</h3>
+        </div>
+        <div class="map">
+          <div class="row">
+            <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=kcBpBj64MUbKcq1xcINE"></script>
+            <div id="map" class="box-map" style="width:100%;height:450px;"></div>
+            <p class="location">지하철 9호선 <span>국회의사당역 3번 출구</span>에서 하차 - <span>국민은행</span> 방면으로 횡단 - <span>스누스코리아</span>까지 직진 후 좌측으로 약 370m 이동 - <span>한국기계산업진흥회</span> 건물 4층</p>
+            <script type="text/javascript">
+                var mapOptions = {
+                    center: new naver.maps.LatLng(37.5294566, 126.9226283),
+                    zoom: 14,
+                    scaleControl: false,
+                    logoControl: false,
+                    mapDataControl: false,
+                    zoomControl: true
+                };
+                var marker = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(37.5294566, 126.9226283),
+                    map: map
+                });
+                var map = new naver.maps.Map('map', mapOptions);
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 끝: .content-06 -->
+	
   </div>
   <!-- 끝: .page-container -->
 
