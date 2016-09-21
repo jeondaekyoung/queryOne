@@ -107,7 +107,7 @@ public class NoticeContoller {
 	@RequestMapping("/edit.do")
 	public String update(Notice notice){
 		if(notice.getFile_id().length()==0){
-			System.out.println(notice.getFile_id()==null?"Ёнюс":"Ён╬ф╢т");
+			
 			notice.setFile_id(null);
 		}
 		

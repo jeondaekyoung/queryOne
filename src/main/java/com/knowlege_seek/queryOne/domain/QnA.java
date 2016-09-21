@@ -10,7 +10,15 @@ public class QnA {
 	private String email;
 	private String title;
 	private String content;
+	private String tel;
 	private Date createDate;
+	
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	public String getQnaNo() {
 		return qnaNo;
 	}

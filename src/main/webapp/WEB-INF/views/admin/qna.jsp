@@ -13,6 +13,13 @@
     /* addClass : .active */
     $(document).ready(function(){
         $("li.menu-5").addClass("active");
+        
+        $("button#noAnswer").click(function(){
+        	alert("토글");
+        	$("button#noAnswer").css('display','none');
+        	$("button#chkAnswer").css('display','inline');
+        });
+      
 	});
     </script>
 <!-- //head -->
@@ -32,7 +39,7 @@
 				<section id="content">
 					<section class="vbox">
 						<header class="header bg-white b-b b-light">
-							<p>자료실</p>
+							<p>문의하기</p>
 						</header>
 
 						<section class="scrollable wrapper w-f">
@@ -40,7 +47,7 @@
 								enctype="multipart/form-data">
 								<!-- .accordion -->
 				                  <div class="panel-group m-b" id="accordion2">
-				                    <div class="panel panel-default">
+				               <!--      <div class="panel panel-default">
 				                      <div class="panel-heading">
 				                        <a class="accordion-toggle clearfix" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">                          
 				                            <div class="col-sm-11">안녕하세요. 문의합니다.<br><span>2016-05-08</span></div>
@@ -52,21 +59,63 @@
 				                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
 				                        </div>
 				                      </div>
-				                    </div>
-				                    <div class="panel panel-default">
-				                      <div class="panel-heading">
-				                        <a class="accordion-toggle clearfix" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-				                          <div class="col-sm-11">안녕하세요. 문의합니다.<br><span>2016-05-08</span></div>
-				                          <div class="col-sm-1"><i class="fa fa-square-o"></i>답변대기</div>
-				                        </a>
-				                      </div>
-				                      <div id="collapseTwo" class="panel-collapse collapse">
-				                        <div class="panel-body text-sm">
-				                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-				                        </div>
-				                      </div>
-				                    </div>
-				                  </div>
+				                    </div> -->
+				                    
+										  <c:choose>
+				                    	<c:when test="${empty lists }">
+											<table class="admin">
+												<colgroup>
+													<col style="width: 100%">
+
+												</colgroup>
+												<tr>
+													<th>문의 내용</th>
+
+												</tr>
+												<tr bgcolor="white" align="center">
+													<td colspan="1">등록된 게시물이 없거나 검색한 결과가 없습니다.</td>
+												</tr>
+											</table>
+										</c:when>
+				                    	<c:otherwise>
+					             		
+					                  
+					                  <table class="admin">
+												<colgroup>
+													<col style="width: 100%">
+
+												</colgroup>
+												<tr>
+													<th>문의 내용</th>
+
+												</tr>
+												</table>
+												<c:forEach items="${lists}" var="list" varStatus="status">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+						                        <a class="accordion-toggle clearfix" data-toggle="collapse" data-parent="#accordion2" href="#collapse${list.qnaNo }">
+						                          <div class="col-sm-10">${list.title}<br><span>${list.createDate}</span></div>
+						                        </a>
+						                          <div class="col-sm-12 text-right">
+						                          <button type="button" id="noAnswer" class="btn btn-danger"><i class="fa fa-square-o"></i>답변 대기</button> 
+						                          <button  type="button" id="chkAnswer"  style="display: none;" class="btn btn-info"><i class="fa fa-check-square-o"></i>답변 완료</button> 
+						                      </div>
+						                      </div>
+						                      <div id="collapse${list.qnaNo}" class="panel-collapse collapse">
+						                        <div class="panel-body text-sm">
+						                          ${list.content}
+						                        </div>
+						                      </div>
+					                    </div>
+												</c:forEach>
+					                      
+					                  	            	
+				                    	</c:otherwise>
+				                    </c:choose>
+									
+				                   
+				                  
+								</div>	
 				                  <!-- / .accordion -->	
 							</form>
 						</section>
