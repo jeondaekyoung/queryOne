@@ -25,8 +25,8 @@ public class LicenceDAO implements LicenceService {
 
 	@Override
 	public int getTotalRecordCount(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlTemplate.selectOne("hisTotalCount", map);
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    <jsp:useBean id="now" class="java.util.Date"/>
 <!DOCTYPE html>
 <html lang="ko-KR" class="app">
 <head>
@@ -36,21 +38,21 @@
             
             <section class="scrollable wrapper w-f">
                 
-                <form action="" method="post" id="adForm" enctype="multipart/form-data">
-                  
+                <form action="<c:url value='/lice/history/search.do'/>" method="post" id="adForm" enctype="multipart/form-data">
+                  	<input type="hidden" name="history_Search" value="OK">
                 <!--날짜검색-->
                     <div class="row text-sm wrapper">
                       <div class="form-group col-sm-12 m-b-xs">
                           <label class="col-sm-2 control-label">날짜검색</label>
                           <div class="col-sm-10">
-                            <input class="input-sm input-s datepicker-input form-control row-r" size="16" type="text" value="2016-09-20" data-date-format="yyyy-mm-dd" >
+                            <input class="input-sm input-s datepicker-input form-control row-r" name="Search1" size="16" type="text" value="${aMonth}" data-date-format="yyyy-mm-dd" >
                             <p class="row-r m-l-sm m-r-sm"> ~ </p>  
-                            <input class="input-sm input-s datepicker-input form-control row-r" size="16" type="text" value="2016-09-20" data-date-format="yyyy-mm-dd" >
+                            <input class="input-sm input-s datepicker-input form-control row-r" name="Search2" size="16" type="text" value="<fmt:formatDate value="${now}" type="date" pattern="yyyy-MM-dd"/>" data-date-format="yyyy-mm-dd" >
                             	<p class="row-r m-l-sm m-r-sm"></p>
-                            	<a class="btn btn-info" href="<c:url value='lice/history/search.do?when=1d'/>" >오늘</a>
-								<a class="btn btn-info" href="<c:url value='lice/history/search.do?when=1w'/>" >일주일</a>
-								<a class="btn btn-info" href="<c:url value='lice/history/search.do?when=1m'/>" >한달</a>
-								<a class="btn btn-info" href="<c:url value='lice/history/search.do?when=2m'/>" >두달</a>
+                            	<a class="btn btn-info" href="<c:url value='/lice/history/search.do?when=1d&Search1=${aMonth}'/>" >오늘</a>
+								<a class="btn btn-info" href="<c:url value='/lice/history/search.do?when=1w&Search1=${aMonth}'/>" >일주일</a>
+								<a class="btn btn-info" href="<c:url value='/lice/history/search.do?when=1m&Search1=${aMonth}'/>" >한달</a>
+								<a class="btn btn-info" href="<c:url value='/lice/history/search.do?when=2m&Search1=${aMonth}'/>" >두달</a>
 								
                             <button type="submit" class="btn btn-s-lg btn-primary pull-right-lg"><i class="fa fa-search"></i> 검색</button>   
                             	
@@ -69,9 +71,15 @@
                     </p> 
                     <div class="line line-dashed line-lg pull-in"></div>
 	                <table class="admin">
-	                    <colgroup><col style="width:30%"><col style="width:30%"><col style="width:40%"></colgroup>
+	                    <colgroup>
+	                    <col style="width:15%">
+	                    <col style="width:30%">
+	                    <col style="width:35%">
+	                    <col style="width:20%">
+	                    </colgroup>
 	                    <thead>
                             <tr>
+                            	<th>No.</th>
                                 <th>날짜</th>
                                 <th>라이센스 키</th>
                                 <th>발급 횟수</th>
@@ -88,7 +96,7 @@
 										<c:forEach items="${lists}" begin="0" end="9" var="list"
 											varStatus="status">
 											<tr>
-												
+										<td>${totalRecordCount - (((nowPage - 1) * pageSize) + status.index)}</td>
 												<td>${list.hitDate }</td>
 												<td>${list.lice_key }</td>
 												<td>${list.hits }</td>
@@ -104,11 +112,12 @@
               
             <footer class="panel-footer">
       			 	<div class="text-center padder">
-											<p>
-												<small>copyright 2016. all rights reserved
-													SOFTGARDEN Co. Ltd.</small>
-											</p>
-										</div>
+								<!--페이징-->
+								<div class="col-sm-9 text-center text-center-xs">
+									 ${pagingString}
+								</div>
+								<!--페이징 끝-->
+						</div>
               
             </footer>
               

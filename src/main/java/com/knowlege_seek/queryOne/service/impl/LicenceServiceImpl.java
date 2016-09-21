@@ -24,7 +24,7 @@ public class LicenceServiceImpl implements LicenceService {
 
 	@Override
 	public int getTotalRecordCount(Map map) {
-		return 0;
+		return dao.getTotalRecordCount(map);
 	}
 
 	@Override

@@ -5,12 +5,15 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.lf5.util.DateFormatManager;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -26,11 +29,18 @@ import com.knowlege_seek.queryOne.domain.Product;
 import com.knowlege_seek.queryOne.service.impl.FileServiceImpl;
 import com.knowlege_seek.queryOne.service.impl.LicenceServiceImpl;
 import com.knowlege_seek.queryOne.service.impl.ProductServiceImpl;
+import com.knowlege_seek.queryOne.util.PagingUtil;
 
 
 @Controller
 @RequestMapping("/lice")
 public class LicenceController {
+	
+	@Value("${PAGESIZE}")
+	private int pageSize; 
+	@Value("${BLOCKPAGE}")
+	private int blockPage;
+	
 	@Resource(name="liceService")
 	LicenceServiceImpl lice;
 	@Resource(name="productService")
@@ -84,46 +94,76 @@ public class LicenceController {
 	}
 	
 	@RequestMapping("/history/list.do")
-	public String history(@RequestParam Map map,Model model){
-		map.put("start",1);
-		map.put("end",10);
+	public String history(@RequestParam Map map,Model model,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage
+			,HttpServletRequest req){
+		
+		//페이징
+		int totalRecordCount =lice.getTotalRecordCount(map);
+		int totalPage= (int)(Math.ceil(((double)totalRecordCount/pageSize)));
+		
+		//시작 및 끝 ROWNUM구하기]
+		int start= (nowPage-1)*pageSize+1;
+		int end = nowPage*pageSize;		
+		map.put("start", start);
+		map.put("end",end);
 		List<Map>lists=lice.history_SelectList(map);
 		
-		int history_sum = lice.history_SumHits(map);
+		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/lice/history/list.do?");
 		
 		model.addAttribute("lists",lists);
+		model.addAttribute("pagingString",pagingString);
+		model.addAttribute("totalPage",totalPage);
+		model.addAttribute("nowPage",nowPage);
+		model.addAttribute("totalRecordCount",totalRecordCount);
+		model.addAttribute("pageSize",pageSize);
+		
+
+		int history_sum = lice.history_SumHits(map);
 		model.addAttribute("history_sum",history_sum);
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.MONTH, -1);    // 한달 전
+		java.util.Date date = calendar.getTime();
+		model.addAttribute("aMonth",new SimpleDateFormat("yyyy-MM-dd").format(date));
+		
 		return "/admin/key-history";
 	}
 	@RequestMapping("/history/search.do")
-	public String history_search(@RequestParam Map map,Model model){
-		String when=map.get("when").toString();
-		map.put("start",1);
-		map.put("end",10);
-		if(when.equals("1d")){
-			System.out.println("오늘");
-			
-		}else if(when.equals("1w")){
-			System.out.println("일주일");
-		}else if(when.equals("1m")){
-			System.out.println("한달");
-		}else if(when.equals("2m")){
-			System.out.println("두달");
-		}
+	public String history_search(@RequestParam Map map,Model model,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage
+			,HttpServletRequest req){
+		//페이징
+				int totalRecordCount =lice.getTotalRecordCount(map);
+				int totalPage= (int)(Math.ceil(((double)totalRecordCount/pageSize)));
+				
+				//시작 및 끝 ROWNUM구하기]
+				int start= (nowPage-1)*pageSize+1;
+				int end = nowPage*pageSize;		
+				map.put("start", start);
+				map.put("end",end);
+				List<Map>lists=lice.history_SelectList(map);
+				
+				String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/lice/history/search.do?when="+map.get("when")+"&");
+				
+				model.addAttribute("lists",lists);
+				model.addAttribute("pagingString",pagingString);
+				model.addAttribute("totalPage",totalPage);
+				model.addAttribute("nowPage",nowPage);
+				model.addAttribute("totalRecordCount",totalRecordCount);
+				model.addAttribute("pageSize",pageSize);
+
 		
 		
-	
-		List<Map>lists=lice.history_SelectList(map);
 		
 		int history_sum = 0;
-		
 		for(Map listMap :lists){
 			history_sum+=Integer.valueOf(listMap.get("hits").toString());
 			
 		}
-		
-		model.addAttribute("lists",lists);
 		model.addAttribute("history_sum",history_sum);
+		
+		
+		model.addAttribute("aMonth",map.get("Search1"));
+		
 		return "/admin/key-history";
 	}
 	

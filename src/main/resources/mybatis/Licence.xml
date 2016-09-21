@@ -40,6 +40,29 @@
 		delete from LicenceKey where proNo=#{proNo}
 	</delete>
 	
+	<select id="hisTotalCount" resultType="int" parameterType="java.util.Map">
+	SELECT COUNT(*) FROM History
+	 <choose>
+				<when test="when=='1d'">
+where hitDate = curdate()
+				</when>
+				<when test="when=='1w'">
+where hitDate >= date_add(curdate(), interval -7 day)
+				</when>
+				<when test="when=='1m'">
+where hitDate >= date_add(curdate(), interval -1 month)
+				</when>
+				<when test="when=='2m'">
+where hitDate >= date_add(curdate(), interval -2 month)
+				</when>
+				<when test="history_Search != null">
+where hitDate between #{Search1} and #{Search2}				
+				</when>
+	</choose>
+	
+	</select>	
+	
+	
 	<insert id="history_inNup"  parameterType="java.util.Map" >
 	
 		INSERT INTO History VALUES(CURDATE(),#{lice_key},1) ON DUPLICATE KEY UPDATE HITS=HITS+1;
@@ -48,7 +71,27 @@
 	
 	
 	<select id="history_SelectList" parameterType="java.util.Map" resultType="java.util.Map">
-		SELECT * FROM (select History.*,@rownum:=@rownum+1 as r from History, (SELECT @rownum:=0) r order by hitDate desc)  a where r between #{start} and #{end} 
+		SELECT * FROM (select History.*,@rownum:=@rownum+1 as r from History, (SELECT @rownum:=0) r order by hitDate desc) 
+		 a where r between #{start} and #{end}
+		 <choose>
+				<when test="when=='1d'">
+and hitDate = curdate()
+				</when>
+				<when test="when=='1w'">
+and hitDate >= date_add(curdate(), interval -7 day)
+				</when>
+				<when test="when=='1m'">
+and hitDate >= date_add(curdate(), interval -1 month)
+				</when>
+				<when test="when=='2m'">
+and hitDate >= date_add(curdate(), interval -2 month)
+				</when>
+				<when test="history_Search != null">
+and hitDate between #{Search1} and #{Search2}				
+				</when>
+	</choose>
+		 
+		  
 		
 	</select>
 	
