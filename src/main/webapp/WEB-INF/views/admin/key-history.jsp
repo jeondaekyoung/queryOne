@@ -64,7 +64,7 @@
                     <!--날짜검색 끝-->
                     <div class="line line-dashed line-lg pull-in"></div>
                     <label class="col-sm-3 control-label"> 총 발급 횟수</label>
-                    <p class="text-warning text-md">
+                    <p class="text-warning text-lg font-bold">
                     	${history_sum }
                     </p> 
                     <div class="line line-dashed line-lg pull-in"></div>
