@@ -24,28 +24,19 @@
       	</div>
       </div>
       <div class="row">
-	    <div class="col-12 prefix-2 contact_map">
-          <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=kcBpBj64MUbKcq1xcINE"></script>
-          <div id="map" class="box-map" style="width:100%;height:480px;">
-                <p class="location">지하철 9호선 <span>국회의사당역 3번 출구</span>에서 하차 - <span>국민은행</span> 방면으로 횡단 - <span>스누스코리아</span>까지 직진 후 좌측으로 약 370m 이동 - <span>한국기계산업진흥회</span> 건물 4층</p>
-            </div>
-            <script type="text/javascript">
-                var mapOptions = {
-                    center: new naver.maps.LatLng(37.5294566, 126.9226283),
-                    zoom: 14,
-                    scaleControl: false,
-                    logoControl: false,
-                    mapDataControl: false,
-                    zoomControl: true
-                };
-                var marker = new naver.maps.Marker({
-                    position: new naver.maps.LatLng(37.5294566, 126.9226283),
-                    map: map
-                });
-                var map = new naver.maps.Map('map', mapOptions);
-            </script>
-            
-	  </div>
+      	<div class="col-8 prefix-4 suffix-4 contact">
+          <p>궁금한 사항이 있으시면 언제든 문의해주세요.</p>
+          <input type="text" placeholder="제목">
+          <textarea placeholder="내용"></textarea>
+          <span>입력하신 정보로 답변을 보내드립니다.</span>
+          <input type="text" placeholder="이름">
+          <input type="text" placeholder="이메일">
+          <div class="col-16">
+            <button type="reset" class="col-8">취소</button>
+            <button type="submit" class="col-8">확인</button>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- 끝: .content-01 -->
 

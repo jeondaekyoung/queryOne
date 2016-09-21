@@ -27,6 +27,8 @@
   .admin td {background-color:#fff; height: 35px}
   .admin th, .admin td {text-align:center; border:1px solid #ccc;}
   .admin td>a {display: inline-block; width: 100%; line-height: 35px;}
+  #accordion2 .accordion-toggle span {font-size: 12px; color: #bbb}
+  #accordion2 .accordion-toggle .col-sm-1 {color: #FB6B5B}
 </style>
   
 <!--[if lt IE 9]>

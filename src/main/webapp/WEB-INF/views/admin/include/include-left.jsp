@@ -38,7 +38,7 @@
               
             <li class="menu-2">
               <a href="<c:url value='/down/list.do'/>">
-                <i class="fa fa-download icon"><b class="bg-success"></b></i><span>자료실</span>
+                <i class="fa fa-download icon"><b class="bg-info"></b></i><span>자료실</span>
               </a>
             </li>
             <li class="menu-3">
@@ -49,7 +49,13 @@
               
             <li class="menu-4">
               <a href="<c:url value='/video/list.do'/>">
-                <i class="fa fa-video-camera icon"><b class="bg-warning"></b></i><span>동영상</span>
+                <i class="fa fa-video-camera icon"><b class="bg-success"></b></i><span>동영상</span>
+              </a>
+            </li>
+            
+            <li class="menu-5">
+              <a  href="<c:url value='/contact.do'/>">
+                <i class="fa fa-comment icon"><b class="bg-warning"></b></i><span>문의하기</span>
               </a>
             </li>
             <li>

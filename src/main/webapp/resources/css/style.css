@@ -417,7 +417,8 @@ button:active, button:focus { border:none; outline: none;}
 }
 .content-03 .headline,
 .content-04 .headline,
-.content-05 .headline {
+.content-05 .headline,
+.content-06 .headline {
   font-size: 3rem;
   line-height: 1;
   margin-top: 48px;
@@ -497,8 +498,8 @@ button:active, button:focus { border:none; outline: none;}
   color: #444;
 }
 
-
-.content-05 .headline {
+.content-05 .headline,
+.content-06 .headline {
   color: #444
 }
 .news-list  {
@@ -514,6 +515,19 @@ button:active, button:focus { border:none; outline: none;}
   text-align: center;
   text-overflow: ellipsis;
   background: #e5e5e5;
+}
+
+.content-06 {
+    background: #f7f7f7;
+}
+.map .location {
+  margin-top: 24px;
+  margin-bottom: 48px;
+  color: #444;
+  text-align: center;
+}
+.map .location span {
+  color: #4c67ad;
 }
 
 .footer {
@@ -576,16 +590,6 @@ div.bg-blue {
   font-size: 0.875rem;
   line-height: 1.7143;
   padding-bottom: 96px;
-}
-
-.contact_map .location {
-  margin-top: 24px;
-  margin-bottom: 48px;
-  color: #444;
-  text-align: center;
-}
-.contact_map .location span {
-  color: #4c67ad;
 }
 
 .queryone .q-1{
@@ -680,6 +684,40 @@ div.bg-blue {
 .video .col-4 {
   margin-bottom: 24px;
   font-size: 0;
+}
+
+.contact p {
+    margin-bottom: 1em;
+    font-size: 1.5em
+}
+.contact textarea,
+.contact input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px
+}
+.contact textarea {
+    height: 400px;
+}
+.contact button {
+    padding: 5px;
+    margin-bottom: 4em;
+    border-radius: 5px;
+    color: #fff;
+    box-shadow: 1px 1px 3px #aaa
+}
+.contact button[type="reset"] {
+    background: #ff3333;
+}
+.contact button[type="submit"] {
+    background: #4C67AD;
+}
+.contact button[type="reset"]:hover {
+    background: #ff2211;
+}
+.contact button[type="submit"]:hover {
+    background: #4455bb;
 }
 
 @media screen and (max-width: 1366px) {
