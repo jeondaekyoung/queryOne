@@ -48,7 +48,8 @@
 	
 	
 	<select id="history_SelectList" parameterType="java.util.Map" resultType="java.util.Map">
-		SELECT * FROM History order by hitDate DESC
+		SELECT * FROM (select History.*,@rownum:=@rownum+1 as r from History, (SELECT @rownum:=0) r order by hitDate desc)  a where r between #{start} and #{end} 
+		
 	</select>
 	
 	<select id="history_SumHits" parameterType="java.util.Map" resultType="int">

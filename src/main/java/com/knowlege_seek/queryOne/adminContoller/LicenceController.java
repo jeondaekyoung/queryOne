@@ -85,7 +85,8 @@ public class LicenceController {
 	
 	@RequestMapping("/history/list.do")
 	public String history(@RequestParam Map map,Model model){
-		
+		map.put("start",1);
+		map.put("end",10);
 		List<Map>lists=lice.history_SelectList(map);
 		
 		int history_sum = lice.history_SumHits(map);
@@ -97,15 +98,17 @@ public class LicenceController {
 	@RequestMapping("/history/search.do")
 	public String history_search(@RequestParam Map map,Model model){
 		String when=map.get("when").toString();
-		
+		map.put("start",1);
+		map.put("end",10);
 		if(when.equals("1d")){
+			System.out.println("오늘");
 			
-		}else if(when.equals(2d)){
-			
-		}else if(when.equals(1d)){
-			
-		}else if(when.equals(1d)){
-			
+		}else if(when.equals("1w")){
+			System.out.println("일주일");
+		}else if(when.equals("1m")){
+			System.out.println("한달");
+		}else if(when.equals("2m")){
+			System.out.println("두달");
 		}
 		
 		
