@@ -72,14 +72,28 @@ public class LicenceServiceImpl implements LicenceService {
 
 	@Override
 	public  List<Map> history_SelectList(Map map) {
-		// TODO Auto-generated method stub
 		return dao.history_SelectList(map);
 	}
 
 	@Override
 	public int history_SumHits(Map map) {
-		// TODO Auto-generated method stub
 		return dao.history_SumHits(map);
+	}
+
+	@Override
+	public int hisTotalCount(Map map) {
+		return dao.hisTotalCount(map);
+	}
+
+	@Override
+	public int getTotalRecordCount_search(Map map) {
+		return dao.getTotalRecordCount_search(map);
+	}
+
+	@Override
+	public List<Licencekey> search(Map map) {
+		
+		return dao.search(map);
 	}
 
 	

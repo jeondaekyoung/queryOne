@@ -47,15 +47,59 @@ public class LicenceController {
 	ProductServiceImpl pro;
 	
 	@RequestMapping("/list.do")
-	public String list(@RequestParam Map map,Model model){
-		List<Licencekey> lists=lice.selectList(map);
-		List<Product> proLists=pro.selectList(map);
-		model.addAttribute("lists",lists);
-		model.addAttribute("proLists",proLists);
+	public String list(@RequestParam Map map,Model model,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage
+			,HttpServletRequest req){
+		//페이징
+				int totalRecordCount =lice.getTotalRecordCount(map);
+				int totalPage= (int)(Math.ceil(((double)totalRecordCount/pageSize)));
+				
+				//시작 및 끝 ROWNUM구하기]
+				int start= (nowPage-1)*pageSize+1;
+				int end = nowPage*pageSize;		
+				map.put("start", start);
+				map.put("end",end);
+				List<Licencekey> lists=lice.selectList(map);		
+				String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/lice/list.do?");
+				
+				model.addAttribute("lists",lists);
+				model.addAttribute("pagingString",pagingString);
+				model.addAttribute("totalPage",totalPage);
+				model.addAttribute("nowPage",nowPage);
+				model.addAttribute("totalRecordCount",totalRecordCount);
+				model.addAttribute("pageSize",pageSize);
+				
+				List<Product> proLists=pro.selectList(map);
+				model.addAttribute("proLists",proLists);
 		return "/admin/key-license";
 	}
 	
-	@Transactional
+	@RequestMapping("/search.do")
+	public String search(@RequestParam Map map,Model model,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage
+			,HttpServletRequest req){
+		//페이징
+		int totalRecordCount =lice.getTotalRecordCount_search(map);
+		int totalPage= (int)(Math.ceil(((double)totalRecordCount/pageSize)));
+		
+		//시작 및 끝 ROWNUM구하기]
+		int start= (nowPage-1)*pageSize+1;
+		int end = nowPage*pageSize;		
+		map.put("start", start);
+		map.put("end",end);
+		List<Licencekey> lists=lice.search(map);		
+		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/lice/search.do?search_account="+map.get("search_account")+"&search_text="+map.get("search_text")+"&");
+		
+		model.addAttribute("lists",lists);
+		model.addAttribute("pagingString",pagingString);
+		model.addAttribute("totalPage",totalPage);
+		model.addAttribute("nowPage",nowPage);
+		model.addAttribute("totalRecordCount",totalRecordCount);
+		model.addAttribute("pageSize",pageSize);
+		
+		List<Product> proLists=pro.selectList(map);
+		model.addAttribute("proLists",proLists);
+		return "/admin/key-license";
+	}
+		@Transactional
 	@RequestMapping("/write.do")
 	public String write(Licencekey licencekey){
 			Product product=new Product();
@@ -92,13 +136,12 @@ public class LicenceController {
 		System.out.println(result==1?"라이센스 삭제 성공":"라이센스 삭제 실패");
 		return "redirect:/lice/list.do";
 	}
-	
 	@RequestMapping("/history/list.do")
 	public String history(@RequestParam Map map,Model model,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage
 			,HttpServletRequest req){
 		
 		//페이징
-		int totalRecordCount =lice.getTotalRecordCount(map);
+		int totalRecordCount =lice.hisTotalCount(map);
 		int totalPage= (int)(Math.ceil(((double)totalRecordCount/pageSize)));
 		
 		//시작 및 끝 ROWNUM구하기]
@@ -128,11 +171,12 @@ public class LicenceController {
 		
 		return "/admin/key-history";
 	}
+
 	@RequestMapping("/history/search.do")
 	public String history_search(@RequestParam Map map,Model model,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage
 			,HttpServletRequest req){
 		//페이징
-				int totalRecordCount =lice.getTotalRecordCount(map);
+				int totalRecordCount =lice.hisTotalCount(map);
 				int totalPage= (int)(Math.ceil(((double)totalRecordCount/pageSize)));
 				
 				//시작 및 끝 ROWNUM구하기]
@@ -150,9 +194,6 @@ public class LicenceController {
 				model.addAttribute("nowPage",nowPage);
 				model.addAttribute("totalRecordCount",totalRecordCount);
 				model.addAttribute("pageSize",pageSize);
-
-		
-		
 		
 		int history_sum = 0;
 		for(Map listMap :lists){

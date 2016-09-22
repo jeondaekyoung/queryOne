@@ -173,13 +173,34 @@
             <h4>최신 제품ID에 맞는 라이센스를 등록하지 않으면 사용자에게 키를 발급 할 수 없습니다.</h4>
             </section>
               
-            <footer class="panel-footer">
-            	<div class="text-center padder">
-						<p>
-							<small>copyright 2016. all rights reserved
-								SOFTGARDEN Co. Ltd.</small>
-						</p>
-					</div>
+         <footer class="panel-footer">
+      			 	<div class="row">
+								<!--페이징-->
+								<div class="col-sm-9 text-center text-center-xs">
+									 ${pagingString}
+								</div>
+								<!--페이징 끝-->
+								<!--검색-->
+								<div class="col-sm-3">
+								<form action='<c:url value="/lice/search.do"/>' method="post" >
+									<select name ="search_account" class="input-sm">
+										<option value="0">제품ID</option>
+										<option value="1">라이선스 KEY</option>
+									</select>
+									<div class="input-group">
+							
+										<input id="Search_input" type="text" name="search_text" class="input-sm form-control"
+											placeholder="Search"> 
+											<span class="input-group-btn">
+											<button id="Search" class="btn btn-sm btn-default" type="submit">검색</button>
+										</span>
+										
+									</div>
+									</form>
+								</div>
+								<!--검색 끝-->
+						</div>
+              
             </footer>
               
           </section>

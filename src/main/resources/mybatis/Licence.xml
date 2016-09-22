@@ -5,7 +5,10 @@
 			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.Licence">
 	<select id="liceSelectList" parameterType="java.util.Map" resultType="LicenceKey">
-		select liceNo,lice_key,L.writer,L.createDate,L.proNo,product_id from LicenceKey as L join Product ON Product.proNo = L.proNo  order by liceNo DESC
+select * from	(SELECT *,@rownum:=@rownum+1 as r FROM (select liceNo,lice_key,L.writer,L.createDate,L.proNo,product_id  from LicenceKey as L join Product ON Product.proNo = L.proNo, (SELECT @rownum:=0) r order by liceNo DESC)
+ a ) b where r between #{start} and #{end}
+
+
 	</select>
 	
 	<select id="liceSelectOne" parameterType="LicenceKey" resultType="LicenceKey">
@@ -39,6 +42,43 @@
 	<delete id="liceDelete_product" parameterType="java.util.Map">
 		delete from LicenceKey where proNo=#{proNo}
 	</delete>
+	
+	<select id="liceSelectOne_search" parameterType="java.util.Map" resultType="LicenceKey">
+	select * from	(SELECT *,@rownum:=@rownum+1 as r FROM (select liceNo,lice_key,L.writer,L.createDate,L.proNo,product_id  from LicenceKey as L join Product ON Product.proNo = L.proNo, (SELECT @rownum:=0) r
+ 
+		<choose>
+				<when test="search_account == 0 and search_text != null and search_text !='' ">
+where product_id LIKE '%${search_text}%'
+				</when>
+				<when test="search_account == 1 and search_text != null and search_text !='' ">
+where L.lice_key LIKE '%${search_text}%'	
+				</when>
+				
+	</choose>
+	 order by liceNo DESC)
+ a ) b where r between #{start} and #{end}
+
+	</select>
+	
+	<select id="getTotalRecordCount_search" parameterType="java.util.Map" resultType="int">
+select count(*) from (SELECT *,@rownum:=@rownum+1 as r FROM (select liceNo,lice_key,L.writer,L.createDate,L.proNo,product_id  from LicenceKey as L join Product ON Product.proNo = L.proNo, (SELECT @rownum:=0) r
+	<choose>
+				<when test="search_account == 0 ">
+where product_id LIKE '%${search_text}%'
+				</when>
+				<when test="search_account == 1 ">
+where L.lice_key LIKE '%${search_text}%'	
+				</when>
+	</choose>
+	 order by liceNo DESC) a ) b 
+
+	</select>
+	
+	
+	
+	<select id="getTotalRecordCount" resultType="int" parameterType="java.util.Map">
+	SELECT COUNT(*) FROM LicenceKey
+	</select>
 	
 	<select id="hisTotalCount" resultType="int" parameterType="java.util.Map">
 	SELECT COUNT(*) FROM History

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.knowlege_seek.queryOne.domain.Licencekey;
+import com.knowlege_seek.queryOne.domain.Notice;
 
 public interface LicenceService {
 	
@@ -12,6 +13,11 @@ public interface LicenceService {
 				
 		//전체 레코드 수
 		int getTotalRecordCount(Map map);
+		
+		//검색용
+		int getTotalRecordCount_search(Map map);
+		
+		List<Licencekey> search(Map map);
 		
 		//상세 보기용
 		Licencekey selectOne(Licencekey licence);
@@ -27,6 +33,8 @@ public interface LicenceService {
 
 		//발급내역 용
 		int history_inNup(Map map);
+		
+		int hisTotalCount(Map map);
 		
 		 List<Map> history_SelectList(Map map);
 		

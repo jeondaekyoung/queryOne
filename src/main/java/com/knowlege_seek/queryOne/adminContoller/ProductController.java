@@ -93,4 +93,5 @@ public class ProductController {
 		
 		return "redirect:/pro/list.do";
 	}
+	
 }

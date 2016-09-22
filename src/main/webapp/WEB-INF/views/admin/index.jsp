@@ -45,10 +45,10 @@
                         <option value="2">내용</option>
                         <option value="3">제목+내용</option>
                       </select>-->
-                      <input type="text" name="search_text" class="form-control" placeholder="Search">
+                      <input id="Search_input" type="text" name="search_text" class="form-control" placeholder="Search">
                       <input type="hidden" name ="search_account"  value="2">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit">검색</button>
+                        <button id="Search" class="btn btn-default" type="submit">검색</button>
                       </span>
                       </div>
                     </form>

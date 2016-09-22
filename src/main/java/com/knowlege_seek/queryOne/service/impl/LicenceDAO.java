@@ -26,7 +26,7 @@ public class LicenceDAO implements LicenceService {
 	@Override
 	public int getTotalRecordCount(Map map) {
 		
-		return sqlTemplate.selectOne("hisTotalCount", map);
+		return sqlTemplate.selectOne("getTotalRecordCount", map);
 	}
 
 	@Override
@@ -66,6 +66,19 @@ public class LicenceDAO implements LicenceService {
 	}
 
 	@Override
+	public int getTotalRecordCount_search(Map map) {
+	
+		return  sqlTemplate.selectOne("getTotalRecordCount_search", map);
+	}
+
+	@Override
+	public List<Licencekey> search(Map map) {
+		
+		return sqlTemplate.selectList("liceSelectOne_search", map);
+	}
+	
+	
+	@Override
 	public int history_inNup(Map map) {
 		
 		return sqlTemplate.insert("history_inNup", map);
@@ -82,6 +95,14 @@ public class LicenceDAO implements LicenceService {
 		// TODO Auto-generated method stub
 		return sqlTemplate.selectOne("history_SumHits", map);
 	}
+
+	@Override
+	public int hisTotalCount(Map map) {
+		
+		return sqlTemplate.selectOne("hisTotalCount", map);
+	}
+
+
 	
 	
 }
