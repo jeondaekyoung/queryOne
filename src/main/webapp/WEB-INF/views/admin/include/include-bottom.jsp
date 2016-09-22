@@ -14,6 +14,15 @@
 <script src="<c:url value='/resources/js/datepicker/bootstrap-datepicker.js'/>"></script>
 <!-- file input -->  
 <script src="<c:url value='/resources/js/file-input/bootstrap-filestyle.min.js'/>"></script>
+<script>
+$(document).ready(function() {
+	$('Button#Search').click(function(){
+		/* if
+		('Input#Search_input').val(); */
+		
+	});
+});
+</script>
 <!-- wysiwyg -->
 <!--
 <script src="js/wysiwyg/jquery.hotkeys.js"></script>

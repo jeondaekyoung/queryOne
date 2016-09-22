@@ -19,6 +19,11 @@
 		location.href="<c:url value='/admin/loginForm.do'/>";
 	</script>
 </c:if>
+<script>
+
+
+
+</script>
 
 <style>
   *{font-size: 14px}

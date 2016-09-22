@@ -99,10 +99,10 @@
 									</select>
 									<div class="input-group">
 							
-										<input type="text" name="search_text" class="input-sm form-control"
+										<input id="Search_input" type="text" name="search_text" class="input-sm form-control"
 											placeholder="Search"> 
 											<span class="input-group-btn">
-											<button class="btn btn-sm btn-default" type="submit">검색</button>
+											<button id="Search" class="btn btn-sm btn-default" type="submit">검색</button>
 										</span>
 										
 									</div>
