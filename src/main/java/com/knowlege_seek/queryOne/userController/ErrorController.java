@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/error")
 public class ErrorController {
 	
-	@RequestMapping(value = {"/404.do","/403.do","/405.do","/500.do"})
+	@RequestMapping(value = {"/400.do","/403.do","/404.do","/405.do","/500.do"})
 	public String errorPage(Model model) {
 		
 		

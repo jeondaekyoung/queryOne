@@ -13,14 +13,15 @@
     /* addClass : .active */
     $(document).ready(function(){
         $("li.menu-5").addClass("active");
-        
-        $("button#noAnswer").click(function(){
-        	alert("토글");
-        	$("button#noAnswer").css('display','none');
-        	$("button#chkAnswer").css('display','inline');
-        });
-      
+     
 	});
+		function del() {
+			if (confirm("문의사항을 정말로 삭제하시겠습니까?")!=1) {
+				event.preventDefault();
+				return false;
+			}
+		}
+	
     </script>
 <!-- //head -->
 </head>
@@ -47,21 +48,7 @@
 								enctype="multipart/form-data">
 								<!-- .accordion -->
 				                  <div class="panel-group m-b" id="accordion2">
-				               <!--      <div class="panel panel-default">
-				                      <div class="panel-heading">
-				                        <a class="accordion-toggle clearfix" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">                          
-				                            <div class="col-sm-11">안녕하세요. 문의합니다.<br><span>2016-05-08</span></div>
-				                            <div class="col-sm-1 check"><i class="fa fa-check-square-o"></i>답변완료</div>
-				                        </a>
-				                      </div>
-				                      <div id="collapseOne" class="panel-collapse in">
-				                        <div class="panel-body text-sm">
-				                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-				                        </div>
-				                      </div>
-				                    </div> -->
-				                    
-										  <c:choose>
+				      				  <c:choose>
 				                    	<c:when test="${empty lists }">
 											<table class="admin">
 												<colgroup>
@@ -78,35 +65,54 @@
 											</table>
 										</c:when>
 				                    	<c:otherwise>
-					             		
-					                  
 					                  <table class="admin">
-												<colgroup>
-													<col style="width: 100%">
+										<colgroup>
+											<col style="width: 100%">
 
-												</colgroup>
-												<tr>
-													<th>문의 내용</th>
+										</colgroup>
+										<tr>
+											<th>문의 내용</th>
 
-												</tr>
-												</table>
-												<c:forEach items="${lists}" var="list" varStatus="status">
-									<div class="panel panel-default">
-										<div class="panel-heading">
-						                        <a class="accordion-toggle clearfix" data-toggle="collapse" data-parent="#accordion2" href="#collapse${list.qnaNo }">
-						                          <div class="col-sm-10">${list.title}<br><span>${list.createDate}</span></div>
-						                        </a>
-						                          <div class="col-sm-12 text-right">
-						                          <button type="button" id="noAnswer" class="btn btn-danger"><i class="fa fa-square-o"></i>답변 대기</button> 
-						                          <button  type="button" id="chkAnswer"  style="display: none;" class="btn btn-info"><i class="fa fa-check-square-o"></i>답변 완료</button> 
-						                      </div>
-						                      </div>
-						                      <div id="collapse${list.qnaNo}" class="panel-collapse collapse">
-						                        <div class="panel-body text-sm">
-						                          ${list.content}
-						                        </div>
-						                      </div>
-					                    </div>
+										</tr>
+										</table>
+										<c:forEach items="${lists}" var="list" varStatus="status">
+						                 <div class="panel panel-default">
+					                        <!--제목 영역-->
+					                        <div class="panel-heading pos-rlt">
+					                          <a class="accordion-toggle clearfix" data-toggle="collapse" data-parent="#accordion2" href="#collapse${list.qnaNo }">
+					                            <div class="col-sm-12">${list.title}<br><span class="text-md">${list.createDate}</span></div>
+					                          </a>
+					                          <div class="pos-abt">                            
+					                        <a href="<c:url value='/qna/answerChk.do?qnaNo=${list.qnaNo}&answerChk=${list.answerChk}&nowPage=${nowPage}'/>">
+				                     	  <c:choose>
+				                          	<c:when test="${list.answerChk==0}">
+				                          	<button type="button" id="noAnswer${list.qnaNo}"class="btn btn-default"><i class="fa fa-square-o"></i> 답변 대기</button> 
+				                             </c:when>
+				                          	<c:otherwise>
+					                     	<button  type="button" id="chkAnswer${list.qnaNo}" class="btn btn-info"><i class="fa fa-check-square-o"></i>답변 완료</button> 
+				                          	</a>
+				                            </c:otherwise>
+				                          </c:choose>
+				                          </a>
+				                          <a href="<c:url value='/qna/delete.do?qnaNo=${list.qnaNo}&nowPage=${nowPage}'/>">
+					                            <button type="button" onclick="del()" class="btn btn-danger"><i class="fa fa-trash-o"></i> 삭제</button></a>
+					                          </div>
+					                        </div>
+					                        <!--끝: 제목 영역-->
+					                          
+					                        <!--시작: 내용 영역-->
+					                        <div id="collapse${list.qnaNo}" class="panel-collapse collapse">
+					                          <div class="panel-body">
+					                            <p class="text-md">이름: ${list.name}</p>
+					                            <p class="text-md">이메일: ${list.email}</p>
+					                            <p class="text-md m-b">연락처:${list.tel}</p>
+					                            <div class="line line-dashed"></div>
+					                            ${list.content}
+					                          </div>
+					                        </div>
+					                        <!--끝: 내용 영역-->
+                    						</div>
+        
 												</c:forEach>
 					                      
 					                  	            	
@@ -130,7 +136,7 @@
 
 								<!--검색-->
 								<div class="col-sm-3">
-								<form action='<c:url value="/down/search.do"/>' method="post" >
+								<form action='<c:url value="/qna/search.do"/>' method="post" >
 									<select name ="search_account" class="input-sm">
 										<option value="0">제목</option>
 										<option value="1">내용</option>

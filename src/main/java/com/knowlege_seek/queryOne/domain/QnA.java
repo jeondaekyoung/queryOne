@@ -11,8 +11,16 @@ public class QnA {
 	private String title;
 	private String content;
 	private String tel;
-	private Date createDate;
+	private int answerChk ;
 	
+	private Date createDate;
+
+	public int getAnswerChk() {
+		return answerChk;
+	}
+	public void setAnswerChk(int answerChk) {
+		this.answerChk = answerChk;
+	}
 	public String getTel() {
 		return tel;
 	}

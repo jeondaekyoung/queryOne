@@ -121,7 +121,7 @@ public class NoticeContoller {
 		}
 		int result=noti.update(notice);
 
-		System.out.println(result==1?"수정 성공":"실패");
+		System.out.println(result==1?"공지 수정 성공":"실패");
 
 		return "redirect:/noti/list.do";
 	}
@@ -135,7 +135,7 @@ public class NoticeContoller {
 			FileDTO FileDto =fileServiceImpl.selectFileDetail(notice.getFile_id());
 			System.out.println(fileServiceImpl.delete(notice.getFile(), FileDto));
 		}
-		System.out.println(result==1?"삭제 성공":"실패");
+		System.out.println(result==1?"공지 삭제 성공":"실패");
 		return "redirect:/noti/list.do";
 	}
 	@RequestMapping("/search.do")
@@ -151,8 +151,6 @@ public class NoticeContoller {
 		int end = nowPage*pageSize;		
 		map.put("start", start);
 		map.put("end",end);
-		System.out.println("totalRecordCount:"+totalRecordCount);
-		System.out.println("검색"+"account:"+map.get("search_account")+" text:"+map.get("search_text")+" s:"+map.get("start")+" e:"+map.get("end"));
 		List<Notice> lists=noti.search(map);
 		
 		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, 
