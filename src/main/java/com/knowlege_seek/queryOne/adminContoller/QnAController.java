@@ -107,8 +107,10 @@ public class QnAController {
 		}
 		qnaService.update(qna);
 		
-		if(req.getHeader("referer").contains("search.do")){
-			return "redirect:/qna/search.do?nowPage="+nowPage;
+		if(req.getHeader("referer")!=null){
+			if(req.getHeader("referer").contains("search.do")){
+				return "redirect:/qna/search.do?nowPage="+nowPage;
+			}
 		}
 		
 		return "redirect:/qna/list.do?nowPage="+nowPage;
@@ -120,11 +122,11 @@ public class QnAController {
 		qna=qnaService.selectOne(qna);
 		int result=qnaService.delete(qna);
 		System.out.println(result==1?"문의 삭제 성공":"실패");
-		
-		if(req.getHeader("referer").contains("search.do")){
-			return "redirect:/qna/search.do?nowPage="+nowPage;
+		if(req.getHeader("referer")!=null){
+			if(req.getHeader("referer").contains("search.do")){
+				return "redirect:/qna/search.do?nowPage="+nowPage;
+			}
 		}
-
 		
 		return "redirect:/qna/list.do?nowPage="+nowPage;
 	}

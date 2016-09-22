@@ -83,19 +83,19 @@
 					                            <div class="col-sm-12">${list.title}<br><span class="text-md">${list.createDate}</span></div>
 					                          </a>
 					                          <div class="pos-abt">                            
-					                        <a href="<c:url value='/qna/answerChk.do?qnaNo=${list.qnaNo}&answerChk=${list.answerChk}&nowPage=${nowPage}'/>">
-				                     	  <c:choose>
+					                        <a  href="<c:url value='/qna/answerChk.do?qnaNo=${list.qnaNo}&answerChk=${list.answerChk}&nowPage=${nowPage}'/>">
+				                    		  <c:choose>
 				                          	<c:when test="${list.answerChk==0}">
-				                          	<button type="button" id="noAnswer${list.qnaNo}"class="btn btn-default"><i class="fa fa-square-o"></i> 답변 대기</button> 
+				                          	<p id="noAnswer${list.qnaNo}"class="btn btn-default"><i class="fa fa-square-o"></i> 답변 대기</p> 
 				                             </c:when>
 				                          	<c:otherwise>
-					                     	<button  type="button" id="chkAnswer${list.qnaNo}" class="btn btn-info"><i class="fa fa-check-square-o"></i>답변 완료</button> 
-				                          	</a>
+					                     	<p id="chkAnswer${list.qnaNo}" class="btn btn-info"><i class="fa fa-check-square-o"></i>답변 완료</p> 
 				                            </c:otherwise>
 				                          </c:choose>
 				                          </a>
 				                          <a href="<c:url value='/qna/delete.do?qnaNo=${list.qnaNo}&nowPage=${nowPage}'/>">
-					                            <button type="button" onclick="del()" class="btn btn-danger"><i class="fa fa-trash-o"></i> 삭제</button></a>
+					                            <p onclick="del()" class="btn btn-danger"><i class="fa fa-trash-o"></i> 삭제</p>
+					                      </a>
 					                          </div>
 					                        </div>
 					                        <!--끝: 제목 영역-->
@@ -131,6 +131,7 @@
 								<!--페이징-->
 								<div class="col-sm-9 text-center text-center-xs">
 									 ${pagingString}
+									 
 								</div>
 								<!--페이징 끝-->
 
