@@ -35,7 +35,7 @@ public class QnAController {
 	@RequestMapping("/list.do")
 	public String list(@RequestParam Map map,Model model,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage
 			,HttpServletRequest req){
-		System.out.println("관리자 문의 리스트");
+		
 		int totalRecordCount =qnaService.getTotalRecordCount(map);
 		int totalPage= (int)(Math.ceil(((double)totalRecordCount/pageSize)));
 		
@@ -84,7 +84,7 @@ public class QnAController {
 	
 	@RequestMapping("/write.do")
 	public String write(QnA qna){
-	System.out.println("사용자 문의 등록");
+	
 
 	qnaService.insert(qna);
 	
@@ -97,7 +97,7 @@ public class QnAController {
 	@RequestMapping("/answerChk.do")
 	public String answerChk(QnA qna,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage,
 			HttpServletRequest req){
-		System.out.println("사용자 문의 답변 완료");
+		
 		
 		if(qna.getAnswerChk()==1){
 			qna.setAnswerChk(0);
@@ -120,8 +120,8 @@ public class QnAController {
 	public String delete(QnA qna,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage,
 			HttpServletRequest req){
 		qna=qnaService.selectOne(qna);
-		int result=qnaService.delete(qna);
-		System.out.println(result==1?"문의 삭제 성공":"실패");
+		qnaService.delete(qna);
+		
 		if(req.getHeader("referer")!=null){
 			if(req.getHeader("referer").contains("search.do")){
 				return "redirect:/qna/search.do?nowPage="+nowPage;

@@ -69,11 +69,10 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		Licencekey licence=lice.selectOne_newest(map);
-		System.out.println(licence);
+		
 		
 		if(licence!=null){
 			model.addAttribute("licence", licence);	
-			System.out.println("!!!");
 		}
 		
 		

@@ -82,7 +82,6 @@ public class LoginController {
 	public String indexSeach(@RequestParam Map map,Model model) throws Exception{
 		map.put("start",1);
 		map.put("end",10);
-		System.out.println("°Ë»ö"+"account:"+map.get("search_account")+" text:"+map.get("search_text")+" s:"+map.get("start")+" e:"+map.get("end"));
 		List<Notice> notiLists=noti.search(map);
 		model.addAttribute("notiLists",notiLists);
 		

@@ -162,7 +162,7 @@ public class FileServiceImpl implements FileService {
 	public String delete(MultipartFile file,FileDTO dto) {
 		
 		File fileObj = new File(dto.getFile_path());
-		System.out.println("삭제할 파일아이디:"+dto.getFile_id());
+		
 		fileDao.delete(dto);
 		return String.valueOf(fileObj.delete());
 		

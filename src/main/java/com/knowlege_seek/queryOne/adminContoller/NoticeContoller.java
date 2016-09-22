@@ -92,8 +92,8 @@ public class NoticeContoller {
 
 		}
 
-		int result=noti.insert(notice);
-		System.out.println(result==1?"등록 성공":"실패");
+		noti.insert(notice);
+		
 
 		return "redirect:/noti/list.do";
 	}
@@ -119,9 +119,7 @@ public class NoticeContoller {
 			//객체가 존재할때 파일 업데이트
 				notice.setFile_id(fileServiceImpl.update(multpartfile, FileDto));	
 		}
-		int result=noti.update(notice);
-
-		System.out.println(result==1?"공지 수정 성공":"실패");
+		noti.update(notice);
 
 		return "redirect:/noti/list.do";
 	}
@@ -129,13 +127,13 @@ public class NoticeContoller {
 	@RequestMapping("/delete.do")
 	public String delete(Notice notice){
 		notice=noti.selectOne(notice);
-		int result=noti.delete(notice);
+		noti.delete(notice);
 		if(notice.getFile_id()!=null){
 			//파일 삭제 
 			FileDTO FileDto =fileServiceImpl.selectFileDetail(notice.getFile_id());
-			System.out.println(fileServiceImpl.delete(notice.getFile(), FileDto));
+			
 		}
-		System.out.println(result==1?"공지 삭제 성공":"실패");
+		
 		return "redirect:/noti/list.do";
 	}
 	@RequestMapping("/search.do")

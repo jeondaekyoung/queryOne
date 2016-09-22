@@ -49,14 +49,14 @@ public class ProductController {
 		
 		}
 		
-		int result=pro.insert(Product);
+		pro.insert(Product);
 				
 		return "redirect:/pro/list.do";
 	}
 	
 	@RequestMapping("/updete.do")
 	public String updete(@RequestParam Map map,Product Product,@RequestParam("proNo") String proNo,MultipartRequest mReq){
-		System.out.println("수정");
+		
 
 		/*if(Product.getFile_id().length()==0){
 			System.out.println(Product.getFile_id()==null?"널임":"널아님");
@@ -74,7 +74,7 @@ public class ProductController {
 			//객체가 존재할때 파일 업데이트
 				Product.setFile_id(fileServiceImpl.update(multpartfile, FileDto));	
 		}
-		int result=pro.update(Product);
+		pro.update(Product);
 		
 		return "redirect:/pro/list.do";
 	}
@@ -84,11 +84,11 @@ public class ProductController {
 		int lice_delete=lice.delete_product(map);
 		Product.setFile_id(map.get("file_id"+proNo).toString());
 		Product=pro.selectOne(Product);
-		int result=pro.delete(Product);
+		pro.delete(Product);
 		if(Product.getFile_id()!=null){
 			//파일 삭제 
 			FileDTO FileDto =fileServiceImpl.selectFileDetail(Product.getFile_id());
-			System.out.println(fileServiceImpl.delete(Product.getFile(), FileDto));
+			
 		}
 		
 		return "redirect:/pro/list.do";
