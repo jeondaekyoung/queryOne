@@ -26,8 +26,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public int getTotalRecordCount(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.getTotalRecordCount(map);
 	}
 
 	@Override
@@ -62,6 +61,18 @@ public class ProductServiceImpl implements ProductService {
 	public Product selectOne_newest() {
 		
 		return dao.selectOne_newest();
+	}
+
+	@Override
+	public int getTotalRecordCount_search(Map map) {
+
+		return dao.getTotalRecordCount_search(map);
+	}
+
+	@Override
+	public List<Product> search(Map map) {
+
+		return dao.search(map);
 	}
 
 }

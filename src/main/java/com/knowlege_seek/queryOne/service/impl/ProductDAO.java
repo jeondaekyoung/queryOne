@@ -26,8 +26,7 @@ public class ProductDAO implements ProductService {
 
 	@Override
 	public int getTotalRecordCount(Map map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlTemplate.selectOne("proTotalCount", map);
 	}
 
 	@Override
@@ -58,6 +57,18 @@ public class ProductDAO implements ProductService {
 	public Product selectOne_newest() {
 		
 		return sqlTemplate.selectOne("proselectOne_newest");
+	}
+
+	@Override
+	public int getTotalRecordCount_search(Map map) {
+		
+		return sqlTemplate.selectOne("proTotalCount_search", map);
+	}
+
+	@Override
+	public List<Product> search(Map map) {
+
+		return sqlTemplate.selectList("proSearch",map);
 	}
 
 

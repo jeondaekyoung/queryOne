@@ -26,7 +26,7 @@ public class LicenceDAO implements LicenceService {
 	@Override
 	public int getTotalRecordCount(Map map) {
 		
-		return sqlTemplate.selectOne("getTotalRecordCount", map);
+		return sqlTemplate.selectOne("liceTotalCount", map);
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class LicenceDAO implements LicenceService {
 	@Override
 	public int getTotalRecordCount_search(Map map) {
 	
-		return  sqlTemplate.selectOne("getTotalRecordCount_search", map);
+		return  sqlTemplate.selectOne("liceTotalCount_search", map);
 	}
 
 	@Override

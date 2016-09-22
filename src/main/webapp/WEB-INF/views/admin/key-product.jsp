@@ -185,9 +185,8 @@
 								<div class="col-sm-3">
 								<form action='<c:url value="/pro/search.do"/>' method="post" >
 									<select name ="search_account" class="input-sm">
-										<option value="0">제목</option>
-										<option value="1">내용</option>
-										<option value="2">제목+내용</option>
+										<option value="0">제품명</option>
+										<option value="1">파일명</option>
 									</select>
 									<div class="input-group">
 							

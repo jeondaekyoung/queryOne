@@ -5,8 +5,7 @@
 			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.Notice">
 	<select id="notiSelectList" parameterType="java.util.Map" resultType="Notice">
-	
-			select * from (select Notice.*,@rownum:=@rownum+1 as r from Notice, (SELECT @rownum:=0) r order by notiNo desc) a where r between  #{start} and #{end}
+		select * from (select Notice.*,@rownum:=@rownum+1 as r from Notice, (SELECT @rownum:=0) r order by notiNo desc) a where r between  #{start} and #{end}
 	</select>
 	
 	<select id="notiSelectOne" parameterType="Notice" resultType="Notice">

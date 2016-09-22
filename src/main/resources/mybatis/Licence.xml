@@ -60,7 +60,7 @@ where L.lice_key LIKE '%${search_text}%'
 
 	</select>
 	
-	<select id="getTotalRecordCount_search" parameterType="java.util.Map" resultType="int">
+	<select id="liceTotalCount_search" parameterType="java.util.Map" resultType="int">
 select count(*) from (SELECT *,@rownum:=@rownum+1 as r FROM (select liceNo,lice_key,L.writer,L.createDate,L.proNo,product_id  from LicenceKey as L join Product ON Product.proNo = L.proNo, (SELECT @rownum:=0) r
 	<choose>
 				<when test="search_account == 0 ">
@@ -76,7 +76,7 @@ where L.lice_key LIKE '%${search_text}%'
 	
 	
 	
-	<select id="getTotalRecordCount" resultType="int" parameterType="java.util.Map">
+	<select id="liceTotalCount" resultType="int" parameterType="java.util.Map">
 	SELECT COUNT(*) FROM LicenceKey
 	</select>
 	

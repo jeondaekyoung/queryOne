@@ -5,12 +5,17 @@
 			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.Product">
 	<select id="proSelectList" parameterType="java.util.Map" resultType="Product">
-		select * from Product order by proNo DESC
+		select * from (select Product.*,@rownum:=@rownum+1 as r from Product, (SELECT @rownum:=0) r order by proNo desc) a where r between  #{start} and #{end}
 	</select>
 	
 	<select id="proSelectOne" parameterType="Product" resultType="Product">
 		select * from Product where proNo=#{proNo}
 	</select>
+	
+	<select id="proTotalCount" resultType="int" parameterType="java.util.Map">
+	SELECT COUNT(*) FROM Product
+	</select>	
+	
 	<select id="proselectOne_newest" resultType="Product">
 		select * from Product order by createDate DESC LIMIT 1
 	</select>
@@ -34,5 +39,34 @@
 	<delete id="proDelete" parameterType="Product">
 		delete from Product where proNo=#{proNo}
 	</delete>
+	
+	<select id="proSearch" parameterType="java.util.Map" resultType="Product">
+	select * from (select Product.*,@rownum:=@rownum+1 as r from Product, (SELECT @rownum:=0) r 
+		<choose>
+				<when test="search_account == 0 and search_text != null and search_text !='' ">
+where product_id LIKE '%${search_text}%'
+				</when>
+				<when test="search_account == 1 and search_text != null and search_text !='' ">
+where file_name LIKE '%${search_text}%'	
+				</when>
+			
+	</choose>
+	  order by proNo desc) a where r between  #{start} and #{end}
+	</select>
+	
+	<select id="proTotalCount_search" parameterType="java.util.Map" resultType="int">
+	select count(*) from (select Product.*,@rownum:=@rownum+1 as r from Product, (SELECT @rownum:=0) r 
+	<choose>
+				<when test="search_account == 0 and search_text != null and search_text !='' ">
+where product_id LIKE '%${search_text}%'
+				</when>
+				<when test="search_account == 1 and search_text != null and search_text !='' ">
+where file_name LIKE '%${search_text}%'	
+				</when>
+		
+	</choose>
+	  order by proNo desc) a 
+	</select>
+	
 	
 </mapper>
