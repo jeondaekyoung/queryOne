@@ -29,23 +29,27 @@ body { margin: 0; font-family: 'Jeju Gothic'; font-size: 1rem; line-height: 1.5;
   left: 0;
   right: 0;
   z-index: 10;
-	background: #fff;
-  padding-top: 24px;
-	padding-bottom: 24px;
+  background: #fff;
+  padding-top: 14px;
+  padding-bottom: 10px;
+  box-shadow: 1px 1px 1px #ededed;
   /*width: 100%;*/
 	/* width: 1344px;
 	position: absolute; */
 }
 .page-header * { margin-top: 0;}
 .page-header a { display: block;}
+.page-header .brand a {
+    font-size: 0;
+}
 .page-header .brand {
   /*margin-top: 30px;*/
   float: left;
-}
-.page-header img { padding-top: 9px;}
-.nav-up{
-  padding-top: 0;
   padding-bottom: 0;
+}
+.page-header img { margin: 0px;}
+.nav-up{
+  padding: 5px 0 0;
 }
 
 /* gnb */
@@ -65,7 +69,7 @@ body { margin: 0; font-family: 'Jeju Gothic'; font-size: 1rem; line-height: 1.5;
   display: block;
   color: #444;
   line-height: 1;
-  padding: 10px 0;
+  padding: 15px 0;
   margin: 0 15px;
 }
 
@@ -81,10 +85,11 @@ body { margin: 0; font-family: 'Jeju Gothic'; font-size: 1rem; line-height: 1.5;
 
 /* 컨테이너 */
 .container {
-  padding-top: 96px;
+  padding-top: 70px;
 	margin-left: auto;
 	margin-right: auto;
 }
+
 [class*="content-0"]{
   position: relative;
   overflow: hidden; 
@@ -347,7 +352,7 @@ button:active, button:focus { border:none; outline: none;}
 }
 .down-btn-group li.btn01 button{
   background: url(../images/content-4/btn-bg01.svg) no-repeat center 30px;
-  background-size: 82px 82px;
+  background-size: 46px 82px;
 }
 .down-btn-group li.btn02 button{
   background: url(../images/content-4/btn-bg02.svg) no-repeat center 30px;
