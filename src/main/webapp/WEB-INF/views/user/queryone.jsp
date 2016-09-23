@@ -50,8 +50,9 @@
           
         <!-- 시작: .q-3 -->
         <div class="q-3 row">
-          <h5>Tool 기능 소개</h5>
+          
           <ul class="col-12 prefix-2 row">
+          <h5>Tool 기능 소개</h5>
             <li class="row">                    
                 <div class="col-16">
                   <p class="title">Editor</p>
