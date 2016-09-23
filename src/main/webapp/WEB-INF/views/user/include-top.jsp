@@ -13,7 +13,7 @@
     <!-- 내비게이션 영역 -->
     <nav class="page-gnb">
       <ul class="clearfix">
-        <li class=""><a href="<c:url value='/index.do' />">QueryOne</a></li>
+        <li class=""><a href="<c:url value='/user/queryOne.do' />">QueryOne</a></li>
         
         <li><a href="<c:url value='/user/queryone-s.do'/>">QueryOne S</a></li>
         <li><a href="<c:url value='/user/video.do'/>">Video</a></li>

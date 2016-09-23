@@ -87,6 +87,7 @@
                         </p>
                       </c:if>                      
                     </div>
+                    </div>
                   </div> <!-- 끝: .panel -->
                 </c:forEach>
                 

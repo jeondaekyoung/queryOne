@@ -88,6 +88,12 @@ public class HomeController {
 		
 		return "index";
 	}
+	
+	
+		@RequestMapping("/user/queryOne.do")
+	public String queryOne() {
+		return "/user/queryone";
+	}
 	@RequestMapping("/user/queryone-s.do")
 	public String S() {
 		return "/user/queryone-s";

@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
 import com.knowlege_seek.queryOne.domain.FileDTO;
-import com.knowlege_seek.queryOne.domain.Licencekey;
+
 import com.knowlege_seek.queryOne.domain.Product;
 import com.knowlege_seek.queryOne.service.impl.FileServiceImpl;
 import com.knowlege_seek.queryOne.service.impl.LicenceServiceImpl;
