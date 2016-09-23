@@ -99,9 +99,6 @@ public class HomeController {
 		return "/user/queryone-s";
 	}
 	
-	
-
-	
 	@RequestMapping("/user/qna.do")
 	public String qna(Locale locale, Model model) {
 		
