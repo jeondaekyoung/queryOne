@@ -7,6 +7,7 @@ import java.net.URLEncoder;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,25 +43,25 @@ public class FileController {
 	
 	@RequestMapping("/down/{file_id}")
 	@ResponseBody
-	public ResponseEntity<FileSystemResource> down(@PathVariable("file_id") String fileId){
+	public ResponseEntity<FileSystemResource> down(@PathVariable("file_id") String fileId,HttpServletRequest req){
 		
 		FileDTO fileDto = fileService.selectFileDetail(fileId);
 		
 		File file = new File(fileDto.getFile_path());
 		
-		return downloadContent(fileDto, file, true);
+		return downloadContent(fileDto, file, true,req);
 	}
 	
 	@RequestMapping("/downNhit/{file_id}/{downNo}")
 	@ResponseBody
 	public ResponseEntity<FileSystemResource> DownNhit(@PathVariable("file_id") String fileId,
-			@PathVariable("downNo") String downNo){
+			@PathVariable("downNo") String downNo,HttpServletRequest req){
 		down.update_hits(downNo);
 		FileDTO fileDto = fileService.selectFileDetail(fileId);
 		
 		File file = new File(fileDto.getFile_path());
 		
-		return downloadContent(fileDto, file, true);
+		return downloadContent(fileDto, file, true,req);
 	}
 	
 	@RequestMapping("/down/image/{file_id}")
@@ -70,7 +71,7 @@ public class FileController {
 		
 		File file = new File(fileDto.getFile_path());
 		
-		return downloadContent(fileDto, file, false);
+		return downloadContent(fileDto, file, false,null);
 	}
 	
 	@RequestMapping("/down/file/{file_id}")
@@ -80,7 +81,7 @@ public class FileController {
 		
 		File file = new File(fileDto.getFile_path());
 		
-		return downloadContent(fileDto, file, false);
+		return downloadContent(fileDto, file, false,null);
 	}
 	
 	@RequestMapping("/down/thumb/w/{width}/{file_id}")
@@ -90,11 +91,12 @@ public class FileController {
 		
 		File file = fileService.loadFileThumbnail(fileId, width);
 		
-		return downloadContent(filedto, file, false);
+		return downloadContent(filedto, file, false,null);
 	}
 
 	
-	private ResponseEntity<FileSystemResource> downloadContent(FileDTO filedto, File file, boolean isDownload) {
+	private ResponseEntity<FileSystemResource> downloadContent(FileDTO filedto, File file, boolean isDownload, HttpServletRequest req) {
+		
 		HttpHeaders header = new HttpHeaders();
 		header.setContentLength(filedto.getFile_size());
 		whoAmi = Thread.currentThread().getStackTrace()[1].toString();
@@ -102,6 +104,14 @@ public class FileController {
 		ResponseEntity<FileSystemResource> entity = null;
 		try {
 			fileName = URLEncoder.encode(filedto.getFile_real_name(), "UTF-8");
+			if(req!=null){
+				String userAgent=req.getHeader("user-agent");
+				 if(userAgent.contains("Trident")){
+				fileName = URLEncoder.encode(filedto.getFile_real_name(), "EUC-KR");
+				System.out.println("IE");
+				 }
+			}
+			
 			fileName = URLDecoder.decode(fileName, "ISO8859_1");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
