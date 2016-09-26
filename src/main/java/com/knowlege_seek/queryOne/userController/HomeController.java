@@ -62,7 +62,7 @@ public class HomeController {
 		
 			Product product=pro.selectOne_newest();
 			if(product !=null){
-				System.out.println("product null");
+				
 			map.put("proNo", product.getProNo());
 			model.addAttribute("product", product);
 			}

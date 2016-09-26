@@ -182,8 +182,10 @@ function eclick(pstr,key) {
 		}
 		
 		if(bFlag){
-			alert("발급키는 "+key +" 입니다.");
-			$("#inNup").attr("href","<c:url value='/lice/history/inNup.do?lice_key=${licence.lice_key }' />");
+		
+			$("#myModal").css({'display' : 'block'});
+			$("#modal_value").html(key);
+			
 		}
 		else{
 			alert("제품을 먼저  다운로드 해주세요.");
@@ -195,6 +197,12 @@ function eclick(pstr,key) {
 	}
 	
 }
+
+function modal_button(){
+	$("#myModal").css({'display' : 'none'});
+	$("#inNup").attr("href","<c:url value='/lice/history/inNup.do?lice_key=${licence.lice_key }' />");
+}
+
 function view(no) {
 	var f = document.hitsForm;
 	var input=f.downNo.value;
@@ -234,13 +242,31 @@ function view(no) {
                  	<button type="button" onclick="eclick('lice','null'); ">License Key<br>발급받기</button>	
                   </c:if>
                   <c:if test="${not lice_result}">
-                    <a id="inNup" href="" >
+                    
                   	  <button type="button" onclick="eclick('lice','${licence.lice_key}'); ">License Key<br>발급받기</button>
-                  	</a>
+            
                   </c:if>                  
                 </li>
               </ul>
             </div>
+              <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content --> 
+      <div class="modal-content" id="modal">
+        <h3>라이센스 키가 발급되었습니다.</h3>
+        <p id="modal_value">날카로우나 이상 인생의 그들에게 사는가 그들을 것이다.</p>
+          <div class="row">
+            <a id="inNup"  >
+            <button type="button" id="modal_button" onclick="modal_button()" class="col-4 prefix-6 ok">확인</button>
+                  	</a>
+            <!--<button type="button" class="col-4 prefix-4 ok">확인</button>
+            <button type="button" class="col-4 cancel">취소</button>-->
+          </div>
+      </div>
+
+    </div>
+            
             <!-- <p class="subline">라이선스 발급 요청을 하게되면 <span>등록 시 작성한 E-mail</span>로 자동 발송됩니다.</p>
             <p class="subline">제품 구입 문의 : sales@softgarden.co.kr</p> -->
           </div>
