@@ -59,10 +59,13 @@ public class HomeController {
 		map.put("end",end);
 	
 		try {
+		
 			Product product=pro.selectOne_newest();
+			if(product !=null){
+				System.out.println("product null");
 			map.put("proNo", product.getProNo());
 			model.addAttribute("product", product);
-			
+			}
 			
 			
 		} catch (NullPointerException e) {
