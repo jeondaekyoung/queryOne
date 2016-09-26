@@ -86,7 +86,8 @@ body { margin: 0; font-family: 'Jeju Gothic'; font-size: 1rem; line-height: 1.5;
 /*************
 *** 모달 팝업 디자인
 **************/
-.modal {            
+.modal {
+	  display: none;
       position: fixed;
       z-index: 999999;
       left: 0;
