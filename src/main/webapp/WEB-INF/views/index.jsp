@@ -255,7 +255,7 @@ function view(no) {
       <!-- Modal content --> 
       <div class="modal-content" id="modal">
         <h3>라이센스 키가 발급되었습니다.</h3>
-        <p id="modal_value">날카로우나 이상 인생의 그들에게 사는가 그들을 것이다.</p>
+        <p id="modal_value">라이센스 키</p>
           <div class="row">
             <a id="inNup"  >
             <button type="button" id="modal_button" onclick="modal_button()" class="col-4 prefix-6 ok">확인</button>

@@ -36,33 +36,64 @@ public class User_downloadController {
 	@RequestMapping("/user/download.do")
 	public String download(@RequestParam Map map,Model model,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage,
 			HttpServletRequest req) {
-		int totalRecordCount =down.getTotalRecordCount(map);
-		int totalPage= (int)(Math.ceil(((double)totalRecordCount/pageSize)));
-		
-		//시작 및 끝 ROWNUM구하기]
-				int start= (nowPage-1)*pageSize+1;
-				int end = nowPage*pageSize;		
-				map.put("start", start);
-				map.put("end",end);
-		
-		List<Download> lists=down.selectList(map);
-		
-		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/user/download.do?");
-		model.addAttribute("lists",lists);
-		model.addAttribute("pagingString",pagingString);
-		model.addAttribute("totalPage",totalPage);
-		model.addAttribute("nowPage",nowPage);
-		model.addAttribute("totalRecordCount",totalRecordCount);
-		model.addAttribute("pageSize",pageSize);
-		
-		
+		//패치목록 페이징
+		{
+			map.put("user", "use");
+			map.put("account","패치");
+			int totalRecordCount =down.getTotalRecordCount(map);
+			int totalPage= (int)(Math.ceil(((double)totalRecordCount/pageSize)));
+			//시작 및 끝 ROWNUM구하기]
+					int start= (nowPage-1)*pageSize+1;
+					int end = nowPage*pageSize;		
+					map.put("start", start);
+					map.put("end",end);
+					
+			String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/user/download.do?");
+			model.addAttribute("pagingString1",pagingString);
+			
+			List<Download> p_lists=down.selectList(map);
+			model.addAttribute("p_lists",p_lists);
+			model.addAttribute("nowPage",nowPage);
+			/*model.addAttribute("totalPage1",totalPage);
+			
+			model.addAttribute("totalRecordCount1",totalRecordCount);
+			model.addAttribute("pageSize1",pageSize);
+			 */
+			
+		}
+		//문서목록 페이징
+		{
+			map.put("user", "use");
+			map.put("account","문서");
+			int totalRecordCount =down.getTotalRecordCount(map);
+			int totalPage= (int)(Math.ceil(((double)totalRecordCount/pageSize)));
+			//시작 및 끝 ROWNUM구하기]
+					int start= (nowPage-1)*pageSize+1;
+					int end = nowPage*pageSize;		
+					map.put("start", start);
+					map.put("end",end);
+					
+			String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/user/download.do?");
+			model.addAttribute("pagingString2",pagingString);
+
+			List<Download> d_lists=down.selectList(map);
+			model.addAttribute("d_lists",d_lists);	
+			model.addAttribute("nowPage",nowPage);
+			/*model.addAttribute("totalPage2",totalPage);
+			
+			model.addAttribute("totalRecordCount2",totalRecordCount);
+			model.addAttribute("pageSize2",pageSize);*/
+
+			
+		}
 		return "/user/download";
 	}
+	//Ajax로 바꾸기
 	@RequestMapping("/user/downHits.do")
-	public String hits(@RequestParam("downNo") String downNo){
-		
+	public String hits(@RequestParam("downNo") String downNo,@RequestParam("nowPage") String nowPage){
+		System.out.println(nowPage);
 		down.update_hits(downNo);
 		
-		return "forward:/user/download.do?downNo="+downNo;
+		return "forward:/user/download.do?downNo="+downNo+"&nowPage="+nowPage;
 	}
 }
