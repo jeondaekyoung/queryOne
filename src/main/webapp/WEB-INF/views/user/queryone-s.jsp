@@ -20,14 +20,14 @@
       	<div class="row">
 	      	<div class="col-12 prefix-2">
 	      		<h3>QueryOne S</h3>
-	      		<h4>DB 보안 및 감사 대응 솔루션</h4>
+	      		<h4>Database End-point Control(DEC)</h4>
 	      	</div>
       	</div>
       </div>
       <div class="row">
         <!-- 시작: .q-2 -->
         <div class="q-2">
-            <h5 class="col-12 prefix-2">DB보안 필요성</h5>
+            <h5 class="col-12 prefix-2">Database End-point Control(DEC)의 필요성</h5>
             <ul class="row">
             	<li class="col-4 prefix-2">
             		<img src="<c:url value='/resources/images/detail/img00.jpg'/>" alt="보안 필요성 1" height="96">
@@ -39,59 +39,212 @@
             	</li>
             	<li class="col-4">
             		<img src="<c:url value='/resources/images/detail/img01.jpg'/>" alt="보안 필요성 2" height="96">
-            		<p class="title">현행 IT 보안 체계의 취약성</p>
-            		<p>주로 O/S와 N/W 계층에서의 침입탐지에 치중<br>
-            			상대적으로 DB 보안은 취약<br>
-            			기술적 보안 체계의 강화와 더불어 관리적인 보안 체계 정비 시급
-            		</p>
+            		<p class="title">DEC 관련 법률 및 규정 제정 및 확대</p>
+            		<p>전자금융  감독규정 13조, 15조, 27조, 28조, 전자금융감독규정 시행세칙 22조, 개인정보보호법(점검항목)</p>
             	</li>
             	<li class="col-4">
-            		<img src="<c:url value='/resources/images/detail/img03.jpg'/>" alt="보안 필요성 3" height="96">
-            		<p class="title">데이터 자산가치 증가</p>
-            		<p>지적 재산이 기업의 생존과 연결<br>
-            			인터넷으로 인한 네트워크 개방<br>
-            			일반적으로 정보 보호의 근원인 데이터에 대한 방어에 취약함<br>
-            			보안 사고 발생시 피해 복구 및 소송 등 막대한 비용 발생
-            		</p>
+            		<img src="<c:url value='/resources/images/detail/img02.jpg'/>" alt="보안 필요성 3" height="96">
+            		<p class="title">결재를 기반으로 DB작업을 수행할 수 있는<br>통합보안 DB Tool 필요</p>
+            		<p>DB 사용 Application상에서 이뤄지는 파일 다운로드, 클립보드 카피에 대한 관리 필요성 증대 </p>
             	</li>
+           	</ul>
+           	<ul class="row">
             	<li class="col-4 prefix-2">
-            		<img src="<c:url value='/resources/images/detail/img02.jpg'/>" alt="보안 필요성 4" height="96">
-            		<p class="title">상용 DBMS의 보안 취약성</p>
-            		<p>사용자 관리 기능 미약<br>
-            			접근제어 및 암호화 등 보안설정 관리에 어려움 존재
-            		</p>
+            		<img src="<c:url value='/resources/images/detail/img03.jpg'/>" alt="보안 필요성 4" height="96">
+            		<p class="title">원장변경관리에 대한 필요성 증대 <span class="d-block txt-sm">(DB 원장에 대한 DML 관리의 프로세스화)</span></p>
+            		<p>원장 변경시 요구되는 결재 수준을 만족 시키며, 수행자를 지정 관리 할 수 있도록 구현해야 하는 상황에 적합한 솔루션</p>
             	</li>
             	<li class="col-4">
             		<img src="<c:url value='/resources/images/detail/img04.jpg'/>" alt="보안 필요성 5" height="96">
-            		<p class="title">개인정보 유출에 대한 불안감 고조</p>
-            		<p>잦은 개인정보 유출로 인한 개인정보 제공 기피 분위기 팽배<br>
-            			개인정보 보유 기업/기관의 데이터 보호 능력에 대한 불신
-            		</p>
+            		<p class="title">DB 계정 관리 필요</p>
+            		<p>QueryOne S는 사용자에게, DB계정을 노출 시키지 않고, QueryOne S 의 계정으로 사용 DB를 매칭시켜주는 방법을 통해 계정을 관리함으로써, DB계정 패스워드 주기적 변경, 패스워드 분배 관리 등의 번거로움 없이 사용 가능</p>
             	</li>
             	<li class="col-4">
             		<img src="<c:url value='/resources/images/detail/img05.jpg'/>" alt="보안 필요성 6" height="96">
-            		<p class="title">DB 정보보호에 대한 국내외 법률 제정</p>
-            		<p>
-            			정보보호법 28조 (개인정보 유출 또는 변조에 대한 기술/관리적 조치)<br>
-            			개인정보보호법(2011.9.30 시행)<br>
-            			Sarbanes-Oxley/Acts (내부통제 구축/운영 책임이 경영진에게 있음)
-            		</p>
+            		<p class="title">DB Tool 기능 분배</p>
+            		<p>QueryOne S는 DB Tool 기능을 세분화 시켜, 인원별 그룹별 분배가 가능</p>
             	</li>
             </ul>
         </div>
         <!-- 끝: .q-2 -->
 
         <!-- 시작: .q-1 -->
-      	<div class="col-16 q-1">
-      		<h5>Queryone S</h5>
-      		<p>QueryOne S는 데이터베이스에 저장된 정보가 유출되지 않도록 사전에 방지하고,<br>감사 대응이라는 기업의 부담을 완벽히 해결하기 위해 개발되었습니다.<br>
-      			Queryone S는 DB사용 권환을 관리하고, 모든 사용 기록을 보관하여<br>DB 정보의 유출방지와 책임소재를 명확히 파악할 수 있도록 설계된 솔루션입니다.
-      		</p>
+      	<div class="row q-1">
+      		<div class="col-10 prefix-3 news">
+	      		<h5>Queryone S의 특징?</h5>
+	      		<p>QueryOne S는 15종의 DBMS를 지원하는 DB Tool인 QueryOne을 기반으로 DB 사용에 대한 결재솔루션입니다.</p>
+	      		<p class="txt-darkblue">DB Tool 입장에서는 수평적으로는 14종의 DBMS를 지원하지만, 단순 ODBC 커넥션 기반 Editor수준의 Tool이 아닌, 각 DBMS에서 제공하는 특별 기능을 지원합니다. 예를 들자면, Oracle의 PL/SQL Editor, 튜닝을 위한 SQL Advisor, Top N SQL, Health Check 리포트 등 타 상용 DB Tool 기능 이상을 제공합니다.
+					<br>또한 Multi-DBMS환경에 필요한 이기종 DBMS간 데이터 마이그레이션 기능을 제공하며, 간단하게 테스트 데이터 변환 기능도 제공합니다.</p>
+	      		<p>그리고, QueryOne S의 보안 및 관리적인 특징은 크게 6가지로 분류 할 수 있습니다.</p>
+	      		
+	      		<div class="panel-group" id="accordion2">
+		            <div class="panel panel-default">
+		              <div class="panel-heading">
+		                <a class="accordion-toggle row" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+		                  <span>1) DBMS 계정 관리의 편의성을 제공합니다.</span>
+		                </a>
+		              </div>
+		              <div id="collapseOne" class="panel-collapse collapse">
+		                <div class="panel-body col-14 prefix-2">
+		                	QueryOne S의 DBMS계정 관리 기준은 사용자가 모르게 입니다. 사용자는 QueryOne S의 계정만으로 DBMS에 접근하게 되며, 이때, 관리자가 사용자가 사용 가능한 DBMS를 사전에 할당 시켜줌으로써, DBMS계정 노출을 원천적으로 막아줍니다.
+		                </div>
+		              </div>
+		            </div>
+		            <div class="panel panel-default">
+		              <div class="panel-heading">
+		                <a class="accordion-toggle row" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+		                  <span>2) DBMS 변경에 관한 프로세스를 갖고 있습니다.</span>
+		                </a>
+		              </div>
+		              <div id="collapseTwo" class="panel-collapse collapse">
+		                <div class="panel-body col-14 prefix-1">
+					                원장에 대한 변경이나, 개인정보 데이터 변경 등의 리스크 있는 작업에 대한 별도 프로세스를 갖고 있습니다. 운영DBMS에 대한 변경작업 프로세스는 개발자가 해당 DML문에 대한 결재를 받고 이를 DBA에게 전달하여, DBA가 수행토록 하는 프로세스를 갖고 있으며, 이는 전자금융감독규정이나 개인정보보호법의 관련 내용을 준수합니다. 또한 변경, 추가, 삭제에 대한 작업은 사전/사후 이미지 저장 및 수행 쿼리에 대한 저장을 통해 사후 감사자료로 활용이 가능합니다.
+		                </div>
+		              </div>
+		            </div>
+		            <div class="panel panel-default">
+		              <div class="panel-heading">
+		                <a class="accordion-toggle row" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+		                  <span>3) DBMS 조회에 대한 관리가 가능합니다.</span>
+		                </a>
+		              </div>
+		              <div id="collapseThree" class="panel-collapse collapse">
+		                <div class="panel-body col-14 prefix-1">
+					                개인정보가 포함된 DBMS에 대한 과다 조회를 한다든지, 민감한 데이터는 마스킹 처리를 한다든지 하는 방안을 통해서, DBMS안의 데이터 유출에 대한 관리 기능도 제공합니다. 하지만 차단이나 허용이라는 이분법적인 관리를 주로 하는 DB접근제어와는 다르게, QueryOne S는 필요에 의해 해당 내용으로 금지된 테이블이라도 결재를 받으면, 해당 승인 건에 대해서는 차단된 데이터라도 조회가 가능하도록 운영이 가능합니다. 또, 1,000건 이상 조회가 불가능한 테이블이라도, 결재를 통해 10,000건 이상 조회를 할 수 있도록 사용이 가능합니다. 한마디로, 차단/허용이 아니라, 차단된 내용이지만 결재를 통해서 허용. 등 DBMS에 대한 운영을 유연하게 할 수 있다는 점이 QueryOne S의 큰 장점입니다.
+		                </div>
+		              </div>
+		            </div>
+		            <div class="panel panel-default">
+		              <div class="panel-heading">
+		                <a class="accordion-toggle row" data-toggle="collapse" data-parent="#accordion2" href="#collapse4">
+		                  <span>4) 수행 결과 및 쿼리에 대한 로깅이 가능합니다.</span>
+		                </a>
+		              </div>
+		              <div id="collapse4" class="panel-collapse collapse">
+		                <div class="panel-body col-14 prefix-1">
+		                	QueryOne S는 수행되었던 쿼리를 언제, 어디서, 누가, 무엇을, 어떻게, 왜 라는 5W1H의 조건에 맞게 로깅을 하고 있습니다. 특히 DB접근제어에서 관리가 힘들었던 “왜?”라는 부분은 결재를 통해 사유를 남김으로써, 감사를 받을 때에도, 사용자는 DB작업에 정당성을 인정 받게 되며, 이를 통해 관리자는 DBMS를 안전하게 관리 할 수 있습니다. 리포트 종류 또한 여러 형태로 제공 가능합니다. 기본 제공하는 리포트 외에, 사용자 지정 리포트 기능을 통해, 필요에 맞게 가공 생성할 수 있습니다.
+		                </div>
+		              </div>
+		            </div>
+		            <div class="panel panel-default">
+		              <div class="panel-heading">
+		                <a class="accordion-toggle row" data-toggle="collapse" data-parent="#accordion2" href="#collapse5">
+		                  <span>5) QueryOne S는 DB Tool 기능 분배 기능을 갖고 있습니다.</span>
+		                </a>
+		              </div>
+		              <div id="collapse5" class="panel-collapse collapse">
+		                <div class="panel-body col-14 prefix-1">
+		               	 QueryOne S는 관리자가 사용 가능한 Tool 기능을 인원별 그룹별 분배시켜줄 수 있어, 기능별 권한 관리 체계를 갖고 있습니다.		                
+		                </div>
+		              </div>
+		            </div>
+		            <div class="panel panel-default">
+		              <div class="panel-heading">
+		                <a class="accordion-toggle row" data-toggle="collapse" data-parent="#accordion2" href="#collapse6">
+		                  <span>6) 마지막으로 QueryOne S는 우수한 사내 시스템과의 연동을 제공함으로써 편리한 운영 및 사용 환경을 제공합니다.</span>
+		                </a>
+		              </div>
+		              <div id="collapse6" class="panel-collapse collapse">
+		                <div class="panel-body col-14 prefix-1">
+		             	   문서관리시스템(DRM)과의 연동, 내부 그룹웨어와의 연동, SMS 연동 등 연동을 원활하게 지원할 수 있는 확장 커넥터를 제공합니다.		                
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+      		</div>
       	</div>
       	<!-- 끝: .q-1 -->
 
       	<!-- 시작: .q-3 -->
         <div class="q-3 row">
+            <div class="col-12 prefix-2 row">
+           	  <h5>전자금융감독규정 기준 QueryOne S 기능</h5>
+              <table>
+              	<colgroup>
+              		<col style="width: 16%">
+              		<col style="width: 16%">
+              		<col style="width: 68%">
+              	</colgroup>
+              	<thead>
+              		<tr>
+              			<th>분류</th>
+              			<th>기능</th>
+              			<th>관련 법규</th>
+              		</tr>
+              	</thead>
+              	
+              	<tbody>
+              		<tr>
+              			<th>DB 계정 관리</th>
+              			<td>가상계정</td>
+              			<td>13조 2. 외부사용자에게 사용자계정을 부여하는 경우 최소한의 작업권한만 할당하고 적절한 통제장치를 갖출 것</td>
+              		</tr>
+              		<tr>
+              			<th rowspan="2">DB 변경 차단/통제</th>
+              			<td>원장 변경 프로세스</td>
+              			<td rowspan="2">28조 3. ② 금융회사 또는 전자금융업자는 전산원장, 주요정보 또는 이용자 정보 등이 저장된 정보처리시스템에 대한 중요작업 수행 시 책임자가 이중확인을 해야 한다.<개정 2013.12.3.></td>
+              		</tr>
+              		<tr>
+              			<td>DML/DDL/DCL 통제</td>
+              		</tr>
+              		<tr>
+              			<th rowspan="4">DB 조회 차단/통제</th>
+              			<td>접근 DB 관리</td>
+              			<td>13조 2. 외부사용자에게 사용자계정을 부여하는 경우 최소한의 작업권한만 할당하고 적절한 통제장치를 갖출 것</td>
+              		</tr>
+              		<tr>
+              			<td>최대 조회 관리</td>
+              			<td>13조 10. 이용자 정보의 조회·출력에 대한 통제를 하고 테스트 시 이용자 정보 사용 금지(다만, 부하 테스트 등 사용이 불가피한 경우 이용자 정보를 변환하여 사용하고 테스트 종료 즉시 삭제하여야 한다)<개정 2013.12.3.></td>
+              		</tr>
+              		<tr>
+              			<td>다운로드 관리</td>
+              			<td>13조 13. 단말기에 이용자 정보 등 주요정보를 보관하지 아니하고, 단말기를 공유하지 아니할 것(다만, 불가피하게 단말기에 보관할 필요가 있는 경우 보관사유, 보관기간 및 관리 비밀번호 등을 정하여 책임자의 승인을 받아야 한다)</td>
+              		</tr>
+              		<tr>
+              			<td>마스킹</td>
+              			<td></td>
+              		</tr>
+              		<tr>
+              			<th rowspan="3">로깅</th>
+              			<td>사용 기록 관리</td>
+              			<td>14조 3. 금융회사 또는 전자금융업자는 단말기를 통한 이용자 정보 조회 시 사용자, 사용일시, 변경·조회내용, 접속방법이 정보처리시스템에 자동적으로 기록되도록 하고, 그 기록을 1년 이상 보존하여야 한다.<개정 2013.12.3.></td>
+              		</tr>
+              		<tr>
+              			<td>조회 결과 저장</td>
+              			<td></td>
+              		</tr>
+              		<tr>
+              			<td>데이터 변경 전후 기록</td>
+              			<td>27조 2. ② 제1항의 절차에는 변경 대상 및 방법, 변경 권한자 지정, 변경 전후내용 자동기록 및 보존, 변경내용의 정당여부에 대한 제3자 확인 등이 포함되어야 한다.</td>
+              		</tr>
+              		<tr>
+              			<th>DB Tool 관리</th>
+              			<td>Tool 기능 분배</td>
+              			<td>15조 4. 내부통신망에서의 파일 배포기능은 통합 및 최소화하여 운영하고, 이를 배포할 경우에는 무결성 검증을 수행할 것<신설 2013.12.3.></td>
+              		</tr>
+              	</tbody>
+              </table>
+            </div>
+        </div>
+        <!-- 끝: .q-3 -->
+        
+        
+      	<!-- 시작: .q-3 -->
+        <div class="q-3 row" style="background: #eee;">
+            <div class="col-12 prefix-2 row">
+            	<h5>구축사례</h5>
+            	<ul class="ex">
+            		<li>접근제어 솔루션은 QueryOne을 제외한 타 쿼리 툴 차단 기능 사용</li>
+            		<li>접근 권한 및 결재는 QueryOne 기능  사용</li>
+            		<li>OTP 서버와 연동하여 2채널 인증 지원, 매일 1회 인사 DB 연동으로 사용자 정보 자동 갱신</li>
+            	</ul>
+            	<img src="<c:url value='/resources/images/detail/ex.jpg'/>" alt="구축 사례 이미지" width="100%" class="img-ex">
+            </div>
+        </div>
+        <!-- 끝: .q-3 -->
+        
+        <!-- 시작: .q-3 -->
+        <%-- <div class="q-3 row">
             <ul class="col-12 prefix-2 row">
                 <li class="col-16 row">
                 	<div class="col-2 ico"><img src="<c:url value='/resources/images/content-2/ico01.svg'/>" alt="아이콘"></div>
@@ -128,7 +281,7 @@
                     </div>
                 </li>
             </ul>
-        </div>
+        </div> --%>
         <!-- 끝: .q-3 -->
       </div>
     </div>

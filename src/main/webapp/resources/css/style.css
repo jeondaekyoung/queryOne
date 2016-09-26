@@ -21,7 +21,33 @@ body { margin: 0; font-family: 'Jeju Gothic'; font-size: 1rem; line-height: 1.5;
 .txt-white {
 	color: #fff;
 }
-
+.txt-darkblue {
+	color: #4C67AB !important;
+}
+.txt-center {
+	text-align: center;
+}
+.txt-normal{
+	font-size: 1rem !important;
+	line-height: 1.5 !important;
+}
+.txt-sm{
+	font-size: 0.8125rem !important;
+	line-height: 1.5 !important;
+}
+.p-sm {
+	padding-top: 1rem !important;
+	padding-bottom: 0.5rem !important;
+}
+.h-auto {
+	height: auto !important;
+}
+.bg-ltgrey{
+	background: #f5f5f5 !important;
+}
+.d-block{
+	display: block;
+}
 /* 헤더 */
 .page-header {
   position: fixed;
@@ -231,8 +257,6 @@ button:active, button:focus { border:none; outline: none;}
   background-size: cover;
   background-attachment: fixed;
 }
-.content-02 .slide-1 {
-}
 .content-02 .slide-1 .headline{
   font-size: 1.5rem;
   line-height: 2;
@@ -267,6 +291,9 @@ button:active, button:focus { border:none; outline: none;}
   line-height: 3;
   color: #fff
 }
+.content-02 .slide-2 {
+  background: #fff;
+}
 .content-02 .slide-2 .headline,
 .content-02 .slide-3 .headline{
   font-size: 1.5rem;
@@ -280,9 +307,44 @@ button:active, button:focus { border:none; outline: none;}
 .content-02 .slide-3 .headline>span{
   color: #4C67AB;
 }
-.content-02 .slide-2 .func *,
 .content-02 .slide-3 .func *{
   text-align: center;
+}
+.content-02.h-auto{
+	margin-top: 5rem;
+}
+.content-02 .slide-2 .func h4{
+	font-size: 1rem;
+	text-align: left;
+}
+.content-02 .slide-2 .func li.txt-sm{
+	list-style: disc;
+	text-align: left;
+}
+.content-02 .slide-2.bg-ltgrey{
+	padding-bottom: 3rem;
+}
+.content-02 .slide-2 table {
+	width: 100%;
+}
+.q-3 table td,
+.q-3 table th,
+.content-02 .slide-2 table td,
+.content-02 .slide-2 table th {
+	border: 1px solid #eee;
+	padding: 5px;
+}
+.q-3 table thead tr th,
+.q-3 table tbody tr th,
+.content-02 .slide-2 table thead tr th,
+.content-02 .slide-2 table tbody tr th {
+	background: #eee;
+	text-align: center;
+	border: 1px solid #fff;
+}
+.q-3 table thead td,
+.content-02 .slide-2 table td {
+	background: #fff;
 }
 
 .content-02 .slide-3 {
@@ -519,6 +581,11 @@ div.bg-blue {
   padding-bottom: 96px;
 }
 
+.queryone .content-02 .slide-1 {
+  background: url(../images/content-1/bg03.jpg) no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
 .queryone .q-1{
   height: 360px;
   background: url(../images/content-1/bg02.jpg) no-repeat;
@@ -526,12 +593,21 @@ div.bg-blue {
   background-attachment: fixed;
   color: #fff;
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 3em;
+}
+.queryone .content-02 .slide-1 .headline {
+    text-align: center;
+}
+.queryone.detail-01 h3 {
+    margin-top: 2em;
+}
+.queryone .ico{
+  background: none;
 }
 [class*=q-] h5 {
   font-size: 1.5rem;
   line-height: 2;
-  padding-top: 96px;
+  padding-top: 6em;
 }
 [class*=q-] p {
   font-size: 0.875rem;
@@ -567,17 +643,23 @@ div.bg-blue {
 .queryone-s li {
   font-size: 0px;
 }
+.queryone-s ul.ex li {
+	font-size: 1rem;
+	line-height: 1.5;
+	list-style: circle;
+	margin-bottom: 0;
+}
+.queryone-s .img-ex {
+	margin: 3em 0;
+}
 .queryone-s .col-8 {
   margin-bottom: 24px;
 }
 .queryone-s .q-1{
-  height: 360px;
-  background: url(../images/content-1/bg03.jpg) no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  color: #fff;
+  background: #f5f5f5;
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 3em;
+  padding-bottom: 5em;
 }
 
 .queryone-s [class*=q-] h5 {
@@ -601,17 +683,22 @@ div.bg-blue {
 }
 .queryone-s .q-2 .col-4 .title {
   color: #4c67ad;
-  font-size: 1.25rem;
+  font-size: 1rem;
   line-height: 2.4;
   margin-top: 0;
 }
 .queryone-s .q-3 li {
   margin-bottom: 24px;
 }
-.queryone-s .q-3 li .title{
+.queryone-s .q-3 li .title {
   font-size: 1.5rem;
   line-height: 1;
 }
+.queryone-s .q-3 table {
+	margin-bottom: 5rem;
+}
+
+
 
 .video .col-4 {
   margin-bottom: 24px;
