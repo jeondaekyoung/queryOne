@@ -288,7 +288,7 @@ function view(no) {
 	                  <c:if test="${not empty list.fileName }">
 	                	<li class="li-download">
 	                 	  <a href="<c:url value='/file/downNhit/${list.file_id}/${list.downNo}'/>">
-	                 		<button type="button"  >${list.fileName} 다운받기 </button>
+	                 		<button type="button"  >[${list.account}]${list.fileName} 다운받기 </button>
 	                 	  </a>
 						</li>
 					  </c:if>
