@@ -211,14 +211,12 @@
                   </ul>
                 </div> -->
                 <!--페이징 끝-->
-                
-         
-                	<div class="text-center padder">
-											<p>
-												<small>copyright 2016. all rights reserved
-													SOFTGARDEN Co. Ltd.</small>
-											</p>
-										</div>
+               	<div class="text-center padder">
+					<p>
+						<small>copyright 2016. all rights reserved
+							SOFTGARDEN Co. Ltd.</small>
+					</p>
+				</div>
               </div>
             </footer>
               

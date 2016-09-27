@@ -24,13 +24,12 @@ import com.knowlege_seek.queryOne.util.PagingUtil;
 @RequestMapping("/video")
 public class VideoController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(VideoController.class);
+	
 	@Value("${PAGESIZE}")
 	private int pageSize; 
 	@Value("${BLOCKPAGE}")
 	private int blockPage;
-	
-	
-	private static final Logger logger = LoggerFactory.getLogger(VideoController.class);
 	
 	@Resource(name="videoService")
 	VideoServiceImpl videoService; 
@@ -60,29 +59,26 @@ public class VideoController {
 	}
 	@RequestMapping("/write.do")
 	public String write(Video video){		
-		System.out.println("등록");
 		int result=videoService.insert(video);
-		System.out.println(result==1?"등록 성공":"실패");
-		
 		return "redirect:/video/list.do";
 	}
 	@RequestMapping("/update.do")
 	public String update(@RequestParam Map map,@RequestParam("videoNo") String videoNo){
-		System.out.println("수정");
+		
 		Video video=new Video();
 		video.setTitle(map.get("title_edit"+videoNo).toString());
 		video.setYoutube_URL(map.get("youtube_URL_edit"+videoNo).toString());
 		video.setVideoNo(videoNo);
 		
 		int result=videoService.update(video);
-		System.out.println(result==1?"수정 성공":"실패");
+		
 		return "redirect:/video/list.do";
 	}
 	@RequestMapping("/delete.do")
 	public String delete(Video video){
-		System.out.println("번호:"+video.getVideoNo());
+		
 		int result=videoService.delete(video);
-		System.out.println(result==1?"삭제 성공":"실패");
+		
 		return "redirect:/video/list.do";
 	}
 	@RequestMapping("/search.do")
@@ -98,7 +94,7 @@ public class VideoController {
 		int end = nowPage*pageSize;		
 		map.put("start", start);
 		map.put("end",end);
-		System.out.println("totalRecordCount:"+totalRecordCount);
+		
 		List<Video> lists=videoService.search(map);
 		
 		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, 

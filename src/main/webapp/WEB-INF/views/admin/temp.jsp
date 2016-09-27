@@ -32,9 +32,6 @@
             <header class="header bg-white b-b b-light">
               <p>최근 게시물</p>
             </header>
-            
-       	
-              
           </section>
         </section>
       </section>

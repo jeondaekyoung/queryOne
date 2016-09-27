@@ -114,13 +114,8 @@
                     						</div>
         
 												</c:forEach>
-					                      
-					                  	            	
 				                    	</c:otherwise>
 				                    </c:choose>
-									
-				                   
-				                  
 								</div>	
 				                  <!-- / .accordion -->	
 							</form>
@@ -156,7 +151,6 @@
 								<!--검색 끝-->
 							</div>
 						</footer>
-
 					</section>
 				</section>
 			</section>

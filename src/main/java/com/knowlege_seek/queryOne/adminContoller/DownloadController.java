@@ -29,7 +29,6 @@ import com.knowlege_seek.queryOne.service.impl.DownServiceImpl;
 public class DownloadController {
 	private static final Logger logger = LoggerFactory.getLogger(DownloadController.class);
 	
-
 	@Value("${PAGESIZE}")
 	private int pageSize; 
 	@Value("${BLOCKPAGE}")
@@ -62,6 +61,7 @@ public class DownloadController {
 		model.addAttribute("nowPage",nowPage);
 		model.addAttribute("totalRecordCount",totalRecordCount);
 		model.addAttribute("pageSize",pageSize);
+		
 		return "/admin/download";
 	}
 	@RequestMapping("/view.do")
@@ -89,7 +89,7 @@ public class DownloadController {
 		}
 
 		int result=down.insert(download);
-		System.out.println(result==1?"성공":"실패");
+		
 
 		return "redirect:/down/list.do";
 	}
@@ -103,22 +103,20 @@ public class DownloadController {
 	@RequestMapping("/edit.do")
 	public String update(Download download){
 		if(download.getFile_id().length()==0){
-			System.out.println(download.getFile_id()==null?"널임":"널아님");
+			
 			download.setFile_id(null);
 		}
 		if(download.getFile().getSize()!=0){
 			//올린파일 mutipartFile 객체에 저장, 파일 이름 저장
 			MultipartFile multpartfile = download.getFile();
 			download.setFileName(multpartfile.getOriginalFilename());
-			System.out.println(download.getFile_id());
+			
 			FileDTO FileDto =fileServiceImpl.selectFileDetail(download.getFile_id());//fileId로 정보가지고오기
 			//객체가 존재할때 파일 업데이트
 				download.setFile_id(fileServiceImpl.update(multpartfile, FileDto));	
 		}
 		
 		int result=down.update(download);
-
-		System.out.println(result==1?"성공":"실패");
 
 		return "redirect:/down/list.do";
 	}
@@ -130,9 +128,9 @@ public class DownloadController {
 		if(download.getFile_id()!=null){
 			//파일 삭제 
 			FileDTO FileDto =fileServiceImpl.selectFileDetail(download.getFile_id());
-			System.out.println(fileServiceImpl.delete(download.getFile(), FileDto));
+			
 		}
-		System.out.println(result==1?"성공":"실패");
+		
 		return "redirect:/down/list.do";
 	}
 	@RequestMapping("/search.do")
@@ -146,11 +144,9 @@ public class DownloadController {
 		int end = nowPage*pageSize;		
 		map.put("start", start);
 		map.put("end",end);
-		System.out.println("totalRecordCount:"+totalRecordCount);
-		System.out.println("검색"+"account:"+map.get("search_account")+" text:"+map.get("search_text")+" s:"+map.get("start")+" e:"+map.get("end"));
 		List<Download> lists=down.search(map);
 		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, 
-				req.getContextPath()+"/down/search.do?search_account="+map.get("search_account")+"&search_text="+map.get("search_text")+"&");
+			 req.getContextPath()+"/down/search.do?search_account="+map.get("search_account")+"&search_text="+map.get("search_text")+"&");
 		model.addAttribute("lists",lists);
 		model.addAttribute("pagingString",pagingString);
 		model.addAttribute("totalPage",totalPage);

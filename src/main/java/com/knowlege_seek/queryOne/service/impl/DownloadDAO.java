@@ -17,10 +17,9 @@ public class DownloadDAO  implements downService{
 	@Resource(name="sqlSessionTemplate")
 	private SqlSessionTemplate sqlTemplate;
 
-	
 	@Override
 	public List<Download> selectList(Map map) {
-		// TODO Auto-generated method stub
+		
 		return sqlTemplate.selectList("downSelectList",map);
 	}
 

@@ -49,7 +49,7 @@ public class QnAServiceImpl implements QnAService {
 
 	@Override
 	public List<QnA> search(Map map) {
-		// TODO Auto-generated method stub
+		
 		return dao.search(map);
 	}
 	@Override

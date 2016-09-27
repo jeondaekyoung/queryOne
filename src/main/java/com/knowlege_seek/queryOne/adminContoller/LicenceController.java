@@ -13,6 +13,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.lf5.util.DateFormatManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +37,8 @@ import com.knowlege_seek.queryOne.util.PagingUtil;
 @Controller
 @RequestMapping("/lice")
 public class LicenceController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(LicenceController.class);
 	
 	@Value("${PAGESIZE}")
 	private int pageSize; 
@@ -109,7 +113,7 @@ public class LicenceController {
 		String liceNo =lice.insert(licencekey);
 		licencekey.setLice_key(liceNo);
 		int result=lice.update_create(licencekey);
-		System.out.println(result==1?"라이센스 등록 성공":"라이센스 등록 실패");
+		
 		return "redirect:/lice/list.do";
 	}
 	@RequestMapping("/updete.do")
@@ -124,16 +128,16 @@ public class LicenceController {
 		licencekey.setProNo(product.getProNo());
 		lice.update(licencekey);
 		int result=lice.update_create(licencekey);
-		System.out.println(result==1?"라이센스 수정 성공":"라이센스 수정  실패");
+		
 		return "redirect:/lice/list.do";
 	}
 	@RequestMapping("/delete.do")
 	public String delete(@RequestParam Map map,Licencekey licencekey){
-		System.out.println("키 삭제");
+		
 		
 		int result=lice.delete(licencekey);
 		
-		System.out.println(result==1?"라이센스 삭제 성공":"라이센스 삭제 실패");
+		
 		return "redirect:/lice/list.do";
 	}
 	@RequestMapping("/history/list.do")

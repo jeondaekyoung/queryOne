@@ -31,14 +31,13 @@ import com.knowlege_seek.queryOne.util.PagingUtil;
 @RequestMapping("/noti")
 public class NoticeContoller {
 
+	private static final Logger logger = LoggerFactory.getLogger(NoticeContoller.class);
+	
 	@Value("${PAGESIZE}")
 	private int pageSize; 
 	@Value("${BLOCKPAGE}")
 	private int blockPage;
 	
-	
-	private static final Logger logger = LoggerFactory.getLogger(NoticeContoller.class);
-
 	@Resource(name="notiService")
 	NoticeServiceImpl noti; 
 	@Resource(name="fileService")

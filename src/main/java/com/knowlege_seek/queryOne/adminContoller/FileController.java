@@ -10,6 +10,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpEntity;
@@ -34,7 +36,7 @@ import com.knowlege_seek.queryOne.service.impl.ProductServiceImpl;
 @Controller
 @RequestMapping("/file")
 public class FileController {
-	
+	private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 	private String whoAmi;
 	@Autowired private FileService fileService;
 	
@@ -108,7 +110,7 @@ public class FileController {
 				String userAgent=req.getHeader("user-agent");
 				 if(userAgent.contains("Trident")){
 				fileName = URLEncoder.encode(filedto.getFile_real_name(), "EUC-KR");
-				System.out.println("IE");
+				
 				 }
 			}
 			

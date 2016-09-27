@@ -55,12 +55,7 @@
 								<a class="btn btn-info" href="<c:url value='/lice/history/search.do?when=2m&Search1=${aMonth}'/>" >두달</a>
 								
                             <button type="submit" class="btn btn-s-lg btn-primary pull-right-lg"><i class="fa fa-search"></i> 검색</button>   
-                            	
-                            
-                            
                           </div>
-                          
-                          
                       </div>
                     </div>
                     <!--날짜검색 끝-->
@@ -112,13 +107,12 @@
               
             <footer class="panel-footer">
       			 	<div class="text-center padder">
-								<!--페이징-->
-								<div class="col-sm-9 text-center text-center-xs">
-									 ${pagingString}
-								</div>
-								<!--페이징 끝-->
-						</div>
-              
+							<!--페이징-->
+							<div class="col-sm-9 text-center text-center-xs">
+								 ${pagingString}
+							</div>
+							<!--페이징 끝-->
+					</div>
             </footer>
               
           </section>

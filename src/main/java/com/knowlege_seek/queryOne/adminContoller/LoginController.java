@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,8 @@ import com.knowlege_seek.queryOne.util.PasswordUtil;
 @Controller
 @RequestMapping("/admin")
 public class LoginController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	@Resource(name="loginService")
 	LoginServiceImpl login;
@@ -93,8 +97,6 @@ public class LoginController {
 		
 		return "admin/index";
 	}
-	
-	
 	
 	//관리자 로그아웃 처리...
 		@RequestMapping("/logout.do")

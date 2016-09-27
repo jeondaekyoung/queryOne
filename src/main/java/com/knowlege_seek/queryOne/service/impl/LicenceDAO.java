@@ -61,7 +61,7 @@ public class LicenceDAO implements LicenceService {
 
 	@Override
 	public int update_create(Licencekey licence) {
-		// TODO Auto-generated method stub
+		
 		return sqlTemplate.update("liceUpdate_create",licence);
 	}
 
@@ -86,13 +86,13 @@ public class LicenceDAO implements LicenceService {
 
 	@Override
 	public List<Map> history_SelectList(Map map) {
-		// TODO Auto-generated method stub
+		
 		return sqlTemplate.selectList("history_SelectList", map);
 	}
 
 	@Override
 	public int history_SumHits(Map map) {
-		// TODO Auto-generated method stub
+		
 		return sqlTemplate.selectOne("history_SumHits", map);
 	}
 

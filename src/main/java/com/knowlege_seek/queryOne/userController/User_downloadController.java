@@ -91,7 +91,7 @@ public class User_downloadController {
 	//Ajax로 바꾸기
 	@RequestMapping("/user/downHits.do")
 	public String hits(@RequestParam("downNo") String downNo,@RequestParam("nowPage") String nowPage){
-		System.out.println(nowPage);
+		
 		down.update_hits(downNo);
 		
 		return "forward:/user/download.do?downNo="+downNo+"&nowPage="+nowPage;

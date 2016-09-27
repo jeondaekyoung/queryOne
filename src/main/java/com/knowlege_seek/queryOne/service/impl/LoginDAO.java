@@ -20,13 +20,13 @@ public class LoginDAO implements  LoginService{
 
 		@Override
 		public Map selectOne(Map map) {
-			// TODO Auto-generated method stub
+			
 			return sqlTemplate.selectOne("MemberInfo", map);
 		}
 
 		@Override
 		public boolean isAdmin(Map map) {
-			// TODO Auto-generated method stub
+			
 			int count = sqlTemplate.selectOne("IsAdmin", map);
 			if (count ==0) {
 				return false;

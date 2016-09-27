@@ -26,39 +26,26 @@
       </div>
 	
 	    <div class="row">
-	    <div class="col-14 prefix-1">
-	    <c:choose>
-			<c:when test="${empty lists }">
-			<div align="center" class="col-16">
-			<img src="<c:url value='/resources/images/noData.jpg'/>" style="width:400px; margin:0 auto; display: block;"  alt="등록된 데이터가 없습니다.">
-			</div>
-			</c:when>
-			<c:otherwise>	 
-          <c:forEach items="${lists}" var="list" varStatus="status">
-          <div class="col-4">
-            <iframe width="100%" height="264" src="${list.youtube_URL}" frameborder="0" allowfullscreen></iframe>
-          </div>
-          </c:forEach>
-			</c:otherwise>
-			</c:choose>
-			
-	     
-          
-          
-        </div>
+		    <div class="col-14 prefix-1">
+			    <c:choose>
+					<c:when test="${empty lists }">
+						<div align="center" class="col-16">
+						<img src="<c:url value='/resources/images/noData.jpg'/>" style="width:400px; margin:0 auto; display: block;"  alt="등록된 데이터가 없습니다.">
+						</div>
+					</c:when>
+					<c:otherwise>	 
+			          <c:forEach items="${lists}" var="list" varStatus="status">
+			          <div class="col-4">
+			            <iframe width="100%" height="264" src="${list.youtube_URL}" frameborder="0" allowfullscreen></iframe>
+			          </div>
+			          </c:forEach>
+					</c:otherwise>
+				</c:choose>
+		    </div>
 	    </div>
-
       <!-- 페이징 -->
       <div class="text-center">
-        <!-- <ul class="pagination pagination-sm">
-          <li><a href="#"><i class="chevron-left"></i></a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#"><i class="chevron-right"></i></a></li>
-        </ul> -->
+   
         ${pagingString}		
       </div>
       <!-- 페이징 끝 -->
@@ -66,7 +53,6 @@
     <!-- 끝: .content-01 -->
   </div>
   <!-- 끝: .page-container -->
-
 
   <jsp:include page="include-bottom.jsp" flush="false" />
 </body>

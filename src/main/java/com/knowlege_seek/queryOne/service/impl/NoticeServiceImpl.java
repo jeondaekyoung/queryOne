@@ -49,7 +49,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public List<Notice> search(Map map) {
-		// TODO Auto-generated method stub
+		
 		return dao.search(map);
 	}
 	@Override

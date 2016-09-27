@@ -200,9 +200,7 @@
 								</div>
 								<!--검색 끝-->
 						</div>
-              
-            </footer>
-              
+        	    </footer>
           </section>
         </section>
       </section>
