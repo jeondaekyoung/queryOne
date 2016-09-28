@@ -81,11 +81,12 @@
 		            <div class="panel panel-default">
 		              <div class="panel-heading">
 		                <a class="accordion-toggle row" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-		                  <span>1) DBMS 계정 관리의 편의성을 제공합니다.</span>
+		                  <span class="col-14 txt-left">1) DBMS 계정 관리의 편의성을 제공합니다.</span>
+		                  <span class="col-2 txt-darkblue">+MORE</span>
 		                </a>
 		              </div>
 		              <div id="collapseOne" class="panel-collapse collapse">
-		                <div class="panel-body col-14 prefix-2">
+		                <div class="panel-body col-14 prefix-1">
 		                	QueryOne S의 DBMS계정 관리 기준은 사용자가 모르게 입니다. 사용자는 QueryOne S의 계정만으로 DBMS에 접근하게 되며, 이때, 관리자가 사용자가 사용 가능한 DBMS를 사전에 할당 시켜줌으로써, DBMS계정 노출을 원천적으로 막아줍니다.
 		                </div>
 		              </div>
@@ -93,7 +94,8 @@
 		            <div class="panel panel-default">
 		              <div class="panel-heading">
 		                <a class="accordion-toggle row" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-		                  <span>2) DBMS 변경에 관한 프로세스를 갖고 있습니다.</span>
+		                  <span class="col-14 txt-left">2) DBMS 변경에 관한 프로세스를 갖고 있습니다.</span>
+		                  <span class="col-2 txt-darkblue">+MORE</span>
 		                </a>
 		              </div>
 		              <div id="collapseTwo" class="panel-collapse collapse">
@@ -105,7 +107,8 @@
 		            <div class="panel panel-default">
 		              <div class="panel-heading">
 		                <a class="accordion-toggle row" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-		                  <span>3) DBMS 조회에 대한 관리가 가능합니다.</span>
+		                  <span class="col-14 txt-left">3) DBMS 조회에 대한 관리가 가능합니다.</span>
+		                  <span class="col-2 txt-darkblue">+MORE</span>
 		                </a>
 		              </div>
 		              <div id="collapseThree" class="panel-collapse collapse">
@@ -117,7 +120,8 @@
 		            <div class="panel panel-default">
 		              <div class="panel-heading">
 		                <a class="accordion-toggle row" data-toggle="collapse" data-parent="#accordion2" href="#collapse4">
-		                  <span>4) 수행 결과 및 쿼리에 대한 로깅이 가능합니다.</span>
+		                  <span class="col-14 txt-left">4) 수행 결과 및 쿼리에 대한 로깅이 가능합니다.</span>
+		                  <span class="col-2 txt-darkblue">+MORE</span>
 		                </a>
 		              </div>
 		              <div id="collapse4" class="panel-collapse collapse">
@@ -129,7 +133,8 @@
 		            <div class="panel panel-default">
 		              <div class="panel-heading">
 		                <a class="accordion-toggle row" data-toggle="collapse" data-parent="#accordion2" href="#collapse5">
-		                  <span>5) QueryOne S는 DB Tool 기능 분배 기능을 갖고 있습니다.</span>
+		                  <span class="col-14 txt-left">5) QueryOne S는 DB Tool 기능 분배 기능을 갖고 있습니다.</span>
+		                  <span class="col-2 txt-darkblue">+MORE</span>
 		                </a>
 		              </div>
 		              <div id="collapse5" class="panel-collapse collapse">
@@ -141,7 +146,8 @@
 		            <div class="panel panel-default">
 		              <div class="panel-heading">
 		                <a class="accordion-toggle row" data-toggle="collapse" data-parent="#accordion2" href="#collapse6">
-		                  <span>6) 마지막으로 QueryOne S는 우수한 사내 시스템과의 연동을 제공함으로써 편리한 운영 및 사용 환경을 제공합니다.</span>
+		                  <span class="col-14 txt-left">6) 마지막으로 QueryOne S는 우수한 사내 시스템과의 연동을 제공함으로써 편리한 운영 및 사용 환경을 제공합니다.</span>
+		                  <span class="col-2 txt-darkblue">+MORE</span>
 		                </a>
 		              </div>
 		              <div id="collapse6" class="panel-collapse collapse">

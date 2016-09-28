@@ -27,6 +27,12 @@ body { margin: 0; font-family: 'Jeju Gothic'; font-size: 1rem; line-height: 1.5;
 .txt-center {
 	text-align: center;
 }
+.txt-left {
+	text-align: left !important;
+}
+.txt-right {
+	text-align: right;
+}
 .txt-normal{
 	font-size: 1rem !important;
 	line-height: 1.5 !important;
@@ -696,6 +702,9 @@ div.bg-blue {
 }
 .queryone-s .q-3 table {
 	margin-bottom: 5rem;
+}
+.queryone-s .panel-heading:hover {
+	background: #f9f9f9;
 }
 
 
