@@ -47,7 +47,7 @@
             </div>
             <div class="col-7 prefix-1">
                 <h4>현재 지원 DBMS 목록</h4>
-                <img src="<c:url value='/resources/images/content-1/database-list.png'/>" alt="지원 database : mysql, mssql, oracle, sybase, greenplum, netezza, altibase, sap hana, sdb, teradata, tibero, vertica,postgreSQL, db2"></div>
+                <img src="<c:url value='/resources/images/content-1/database-list.png'/>" width="100%" alt="지원 database : mysql, mssql, oracle, sybase, greenplum, netezza, altibase, sap hana, sdb, teradata, tibero, vertica,postgreSQL, db2"></div>
           </div>
         </li>
         <!-- //slide-2 -->
