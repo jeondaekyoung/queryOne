@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.service;
+package com.knowledge_seek.queryOne.service;
 
 import java.util.Map;
 

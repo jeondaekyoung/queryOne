@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.service.impl;
+package com.knowledge_seek.queryOne.service.impl;
 
 import java.util.Map;
 
@@ -7,8 +7,8 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
-import com.knowlege_seek.queryOne.service.LoginService;
-import com.knowlege_seek.queryOne.service.impl.LoginDAO;
+import com.knowledge_seek.queryOne.service.LoginService;
+import com.knowledge_seek.queryOne.service.impl.LoginDAO;
 @Service("loginService")
 public class LoginServiceImpl implements LoginService {
 	

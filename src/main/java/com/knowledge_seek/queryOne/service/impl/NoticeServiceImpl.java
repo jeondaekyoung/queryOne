@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.service.impl;
+package com.knowledge_seek.queryOne.service.impl;
 
 import java.util.List;
 import java.util.Map;
@@ -7,8 +7,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.knowlege_seek.queryOne.domain.Notice;
-import com.knowlege_seek.queryOne.service.NoticeService;
+import com.knowledge_seek.queryOne.domain.Notice;
+import com.knowledge_seek.queryOne.service.NoticeService;
 
 @Service("notiService")
 public class NoticeServiceImpl implements NoticeService {

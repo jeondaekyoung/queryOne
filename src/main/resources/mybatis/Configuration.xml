@@ -5,13 +5,13 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias alias="Download" type="com.knowlege_seek.queryOne.domain.Download"/>
-		<typeAlias alias="LicenceKey" type="com.knowlege_seek.queryOne.domain.Licencekey"/>
-		<typeAlias alias="Notice" type="com.knowlege_seek.queryOne.domain.Notice"/>
-		<typeAlias alias="FileDTO" type="com.knowlege_seek.queryOne.domain.FileDTO"/>
-		<typeAlias alias="Video" type="com.knowlege_seek.queryOne.domain.Video"/>
-		<typeAlias alias="Product" type="com.knowlege_seek.queryOne.domain.Product"/>
-		<typeAlias alias="QnA" type="com.knowlege_seek.queryOne.domain.QnA"/>
+		<typeAlias alias="Download" type="com.knowledge_seek.queryOne.domain.Download"/>
+		<typeAlias alias="LicenceKey" type="com.knowledge_seek.queryOne.domain.Licencekey"/>
+		<typeAlias alias="Notice" type="com.knowledge_seek.queryOne.domain.Notice"/>
+		<typeAlias alias="FileDTO" type="com.knowledge_seek.queryOne.domain.FileDTO"/>
+		<typeAlias alias="Video" type="com.knowledge_seek.queryOne.domain.Video"/>
+		<typeAlias alias="Product" type="com.knowledge_seek.queryOne.domain.Product"/>
+		<typeAlias alias="QnA" type="com.knowledge_seek.queryOne.domain.QnA"/>
 		
 	</typeAliases>
 	<mappers>

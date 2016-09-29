@@ -1,10 +1,10 @@
-package com.knowlege_seek.queryOne.service;
+package com.knowledge_seek.queryOne.service;
 
 import java.io.File;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.knowlege_seek.queryOne.domain.FileDTO;
+import com.knowledge_seek.queryOne.domain.FileDTO;
 
 public interface FileService {
 	/**

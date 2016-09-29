@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.service.impl;
+package com.knowledge_seek.queryOne.service.impl;
 
 import java.util.List;
 import java.util.Map;
@@ -8,8 +8,8 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.knowlege_seek.queryOne.domain.Download;
-import com.knowlege_seek.queryOne.service.downService;
+import com.knowledge_seek.queryOne.domain.Download;
+import com.knowledge_seek.queryOne.service.downService;
 
 @Repository
 public class DownloadDAO  implements downService{

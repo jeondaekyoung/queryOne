@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.util;
+package com.knowledge_seek.queryOne.util;
 
 public class PagingUtil {
 

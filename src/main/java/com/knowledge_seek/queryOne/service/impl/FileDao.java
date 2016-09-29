@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.service.impl;
+package com.knowledge_seek.queryOne.service.impl;
 
 import javax.annotation.Resource;
 
@@ -6,7 +6,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.knowlege_seek.queryOne.domain.FileDTO;
+import com.knowledge_seek.queryOne.domain.FileDTO;
 @Repository
 public class FileDao {
 	

@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.service.impl;
+package com.knowledge_seek.queryOne.service.impl;
 
 import java.util.List;
 import java.util.Map;
@@ -7,8 +7,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.knowlege_seek.queryOne.domain.QnA;
-import com.knowlege_seek.queryOne.service.QnAService;
+import com.knowledge_seek.queryOne.domain.QnA;
+import com.knowledge_seek.queryOne.service.QnAService;
 
 @Service("qnaService")
 public class QnAServiceImpl implements QnAService {

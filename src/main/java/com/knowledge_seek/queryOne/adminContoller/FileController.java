@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.adminContoller;
+package com.knowledge_seek.queryOne.adminContoller;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -25,12 +25,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.knowlege_seek.queryOne.domain.Download;
-import com.knowlege_seek.queryOne.domain.FileDTO;
-import com.knowlege_seek.queryOne.domain.Product;
-import com.knowlege_seek.queryOne.service.FileService;
-import com.knowlege_seek.queryOne.service.impl.DownServiceImpl;
-import com.knowlege_seek.queryOne.service.impl.ProductServiceImpl;
+import com.knowledge_seek.queryOne.domain.Download;
+import com.knowledge_seek.queryOne.domain.FileDTO;
+import com.knowledge_seek.queryOne.domain.Product;
+import com.knowledge_seek.queryOne.service.FileService;
+import com.knowledge_seek.queryOne.service.impl.DownServiceImpl;
+import com.knowledge_seek.queryOne.service.impl.ProductServiceImpl;
 
 
 @Controller

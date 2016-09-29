@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.domain;
+package com.knowledge_seek.queryOne.domain;
 
 import java.sql.Date;
 

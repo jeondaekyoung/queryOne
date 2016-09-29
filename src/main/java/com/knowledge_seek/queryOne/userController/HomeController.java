@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.userController;
+package com.knowledge_seek.queryOne.userController;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -15,17 +15,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.knowlege_seek.queryOne.domain.Download;
-import com.knowlege_seek.queryOne.domain.Licencekey;
-import com.knowlege_seek.queryOne.domain.Notice;
-import com.knowlege_seek.queryOne.domain.Product;
-import com.knowlege_seek.queryOne.domain.Video;
-import com.knowlege_seek.queryOne.service.impl.DownServiceImpl;
-import com.knowlege_seek.queryOne.service.impl.FileServiceImpl;
-import com.knowlege_seek.queryOne.service.impl.LicenceServiceImpl;
-import com.knowlege_seek.queryOne.service.impl.NoticeServiceImpl;
-import com.knowlege_seek.queryOne.service.impl.ProductServiceImpl;
-import com.knowlege_seek.queryOne.service.impl.VideoServiceImpl;
+import com.knowledge_seek.queryOne.domain.Download;
+import com.knowledge_seek.queryOne.domain.Licencekey;
+import com.knowledge_seek.queryOne.domain.Notice;
+import com.knowledge_seek.queryOne.domain.Product;
+import com.knowledge_seek.queryOne.domain.Video;
+import com.knowledge_seek.queryOne.service.impl.DownServiceImpl;
+import com.knowledge_seek.queryOne.service.impl.FileServiceImpl;
+import com.knowledge_seek.queryOne.service.impl.LicenceServiceImpl;
+import com.knowledge_seek.queryOne.service.impl.NoticeServiceImpl;
+import com.knowledge_seek.queryOne.service.impl.ProductServiceImpl;
+import com.knowledge_seek.queryOne.service.impl.VideoServiceImpl;
 
 /**
  * Handles requests for the application home page.

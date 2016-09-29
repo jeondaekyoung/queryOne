@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.userController;
+package com.knowledge_seek.queryOne.userController;
 
 import java.util.Locale;
 

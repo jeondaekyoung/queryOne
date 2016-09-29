@@ -23,7 +23,7 @@
 		 
 	</beans:bean>
 	
-	<context:component-scan base-package="com.knowlege_seek.queryOne" />
+	<context:component-scan base-package="com.knowledge_seek.queryOne" />
 	
 	 <!-- File Upload 를 위한 세팅 -->
       <!-- commons-fileupload, io 를 maven 세팅 필요 -->

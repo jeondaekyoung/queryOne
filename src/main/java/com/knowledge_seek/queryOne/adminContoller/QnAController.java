@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.adminContoller;
+package com.knowledge_seek.queryOne.adminContoller;
 
 import java.util.List;
 import java.util.Map;
@@ -14,11 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.knowlege_seek.queryOne.domain.FileDTO;
-import com.knowlege_seek.queryOne.domain.Notice;
-import com.knowlege_seek.queryOne.domain.QnA;
-import com.knowlege_seek.queryOne.service.impl.QnAServiceImpl;
-import com.knowlege_seek.queryOne.util.PagingUtil;
+import com.knowledge_seek.queryOne.domain.FileDTO;
+import com.knowledge_seek.queryOne.domain.Notice;
+import com.knowledge_seek.queryOne.domain.QnA;
+import com.knowledge_seek.queryOne.service.impl.QnAServiceImpl;
+import com.knowledge_seek.queryOne.util.PagingUtil;
 
 @Controller
 @RequestMapping("/qna")

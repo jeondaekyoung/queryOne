@@ -3,8 +3,8 @@ import javax.annotation.Resource;
 
 import org.junit.*;
 
-import com.knowlege_seek.queryOne.domain.Product;
-import com.knowlege_seek.queryOne.service.impl.ProductServiceImpl;
+import com.knowledge_seek.queryOne.domain.Product;
+import com.knowledge_seek.queryOne.service.impl.ProductServiceImpl;
 
 public class TestQuery {
 	@Resource(name="productService")

@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.service.impl;
+package com.knowledge_seek.queryOne.service.impl;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.knowlege_seek.queryOne.domain.FileDTO;
-import com.knowlege_seek.queryOne.service.FileService;
+import com.knowledge_seek.queryOne.domain.FileDTO;
+import com.knowledge_seek.queryOne.service.FileService;
 
 @Service("fileService")
 public class FileServiceImpl implements FileService {

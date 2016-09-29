@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.adminContoller;
+package com.knowledge_seek.queryOne.adminContoller;
 
 
 import java.sql.Date;
@@ -25,13 +25,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
-import com.knowlege_seek.queryOne.domain.FileDTO;
-import com.knowlege_seek.queryOne.domain.Licencekey;
-import com.knowlege_seek.queryOne.domain.Product;
-import com.knowlege_seek.queryOne.service.impl.FileServiceImpl;
-import com.knowlege_seek.queryOne.service.impl.LicenceServiceImpl;
-import com.knowlege_seek.queryOne.service.impl.ProductServiceImpl;
-import com.knowlege_seek.queryOne.util.PagingUtil;
+import com.knowledge_seek.queryOne.domain.FileDTO;
+import com.knowledge_seek.queryOne.domain.Licencekey;
+import com.knowledge_seek.queryOne.domain.Product;
+import com.knowledge_seek.queryOne.service.impl.FileServiceImpl;
+import com.knowledge_seek.queryOne.service.impl.LicenceServiceImpl;
+import com.knowledge_seek.queryOne.service.impl.ProductServiceImpl;
+import com.knowledge_seek.queryOne.util.PagingUtil;
 
 
 @Controller

@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.adminContoller;
+package com.knowledge_seek.queryOne.adminContoller;
 
 
 import java.util.List;
@@ -19,12 +19,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.knowlege_seek.queryOne.domain.FileDTO;
-import com.knowlege_seek.queryOne.domain.Notice;
-import com.knowlege_seek.queryOne.service.impl.FileServiceImpl;
-import com.knowlege_seek.queryOne.service.impl.NoticeServiceImpl;
-
-import com.knowlege_seek.queryOne.util.PagingUtil;
+import com.knowledge_seek.queryOne.domain.FileDTO;
+import com.knowledge_seek.queryOne.domain.Notice;
+import com.knowledge_seek.queryOne.service.impl.FileServiceImpl;
+import com.knowledge_seek.queryOne.service.impl.NoticeServiceImpl;
+import com.knowledge_seek.queryOne.util.PagingUtil;
 
 
 @Controller

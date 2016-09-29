@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.userController;
+package com.knowledge_seek.queryOne.userController;
 
 import java.util.List;
 import java.util.Locale;
@@ -13,10 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.knowlege_seek.queryOne.domain.Download;
-import com.knowlege_seek.queryOne.service.impl.DownServiceImpl;
-import com.knowlege_seek.queryOne.service.impl.FileServiceImpl;
-import com.knowlege_seek.queryOne.util.PagingUtil;
+import com.knowledge_seek.queryOne.domain.Download;
+import com.knowledge_seek.queryOne.service.impl.DownServiceImpl;
+import com.knowledge_seek.queryOne.service.impl.FileServiceImpl;
+import com.knowledge_seek.queryOne.util.PagingUtil;
 
 @Controller
 public class User_downloadController {

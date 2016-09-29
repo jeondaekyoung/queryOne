@@ -1,4 +1,4 @@
-package com.knowlege_seek.queryOne.service.impl;
+package com.knowledge_seek.queryOne.service.impl;
 
 import java.util.List;
 import java.util.Map;
@@ -7,8 +7,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.knowlege_seek.queryOne.domain.Licencekey;
-import com.knowlege_seek.queryOne.service.LicenceService;
+import com.knowledge_seek.queryOne.domain.Licencekey;
+import com.knowledge_seek.queryOne.service.LicenceService;
 
 @Service("liceService")
 public class LicenceServiceImpl implements LicenceService {
