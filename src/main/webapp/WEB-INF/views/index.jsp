@@ -181,16 +181,9 @@ function eclick(pstr,key) {
 			return;
 		}
 		
-		if(bFlag){
-		
 			$("#myModal").css({'display' : 'block'});
 			$("#modal_value").html(key);
-			
-		}
-		else{
-			alert("제품을 먼저  다운로드 해주세요.");
-			
-		}
+		
 		break;
 	case 'nof':
 		alert("파일 준비 준비중입니다.");
