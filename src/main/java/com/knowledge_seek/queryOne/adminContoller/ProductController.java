@@ -141,7 +141,7 @@ public class ProductController {
 		if(Product.getFile_id()!=null){
 			//파일 삭제 
 			FileDTO FileDto =fileServiceImpl.selectFileDetail(Product.getFile_id());
-			
+			fileServiceImpl.delete(FileDto);
 		}
 		
 		return "redirect:/pro/list.do";

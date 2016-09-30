@@ -127,7 +127,7 @@ public class DownloadController {
 		if(download.getFile_id()!=null){
 			//파일 삭제 
 			FileDTO FileDto =fileServiceImpl.selectFileDetail(download.getFile_id());
-			
+			fileServiceImpl.delete(FileDto);
 		}
 		
 		return "redirect:/down/list.do";

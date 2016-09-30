@@ -131,7 +131,7 @@ public class NoticeContoller {
 		if(notice.getFile_id()!=null){
 			//파일 삭제 
 			FileDTO FileDto =fileServiceImpl.selectFileDetail(notice.getFile_id());
-			
+			fileServiceImpl.delete(FileDto);
 		}
 		
 		return "redirect:/noti/list.do";
