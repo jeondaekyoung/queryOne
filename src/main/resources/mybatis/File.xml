@@ -21,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			FILE_PATH = #{file_path},
 			FILE_EXT = #{file_ext},
 			FILE_CONTENT_TYPE = #{file_content_type},
+			FILE_SIZE = #{file_size},
 			REG_DATE = now()
 		WHERE FILE_ID = #{file_id}
 	</update>
