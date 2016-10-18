@@ -354,7 +354,7 @@ function view(no) {
             <div id="map" class="box-map" style="width:100%;height:450px;"></div>
             <p class="location">지하철 9호선 <span>국회의사당역 3번 출구</span>에서 하차 - <span>국민은행</span> 방면으로 횡단 - <span>스누스코리아</span>까지 직진 후 좌측으로 약 370m 이동 - <span>한국기계산업진흥회</span> 건물 4층</p>
             <script type="text/javascript">
-                var mapOptions = {
+               /*  var mapOptions = {
                     center: new naver.maps.LatLng(37.5294566, 126.9226283),
                     zoom: 14,
                     scaleControl: false,
@@ -366,7 +366,47 @@ function view(no) {
                     position: new naver.maps.LatLng(37.5294566, 126.9226283),
                     map: map
                 });
-                var map = new naver.maps.Map('map', mapOptions);
+                var map = new naver.maps.Map('map', mapOptions); 
+             
+                var soft = new naver.maps.LatLng(37.5294566, 126.9226283),
+                map = new naver.maps.Map('map', {
+                    center: soft.destinationPoint(180, 500),
+                    zoom: 12
+                }),
+                marker = new naver.maps.Marker({
+                    map: map,
+                    position: soft
+                });
+                */
+				
+                var HOME_PATH = window.HOME_PATH || '.';
+                var position = new naver.maps.LatLng(37.5294566, 126.9226283);
+
+                var map = new naver.maps.Map('map', {
+                    center: position.destinationPoint(180,100),
+                    scrollWheel : false,
+                    scaleControl: false,
+                    logoControl: false,
+                    mapDataControl: false,
+                    zoomControl: true,
+                    minZoom: 1,
+                    zoom: 12
+                });
+
+                var markerOptions = {
+                    position: position.destinationPoint(0, 15),
+                    map: map,
+                    icon: {
+                        url: HOME_PATH +'/resources/images/map_marker.png',
+                        size: new naver.maps.Size(52, 62),
+                        origin: new naver.maps.Point(0, 0),
+                        anchor: new naver.maps.Point(25, 26)
+                    }
+                };
+
+                var marker = new naver.maps.Marker(markerOptions);
+                
+       
             </script>
           </div>
         </div>
