@@ -514,6 +514,7 @@ button:active, button:focus { border:none; outline: none;}
 
 .content-06 {
     background: #f7f7f7;
+    height: auto;
 }
 .map .location {
   margin-top: 24px;

@@ -15,7 +15,7 @@
   <!-- 시작: .page-container -->
   <div class="page-container">
     <!-- 시작: .content-01 -->
-    <div class="content-01 carousel slide carousel-fade auto panel-body" id="c-fade">
+    <div class="content-01 carousel slide auto panel-body" id="c-fade">
       <ol class="carousel-indicators out">
         <li data-target="#c-fade" data-slide-to="0" class="active"></li>
         <li data-target="#c-fade" data-slide-to="1" class=""></li>
@@ -62,7 +62,7 @@
     <!-- 끝: .content-01 -->
 
     <!-- 시작: .content-02 -->
-    <div class="content-02 carousel slide carousel-fade auto panel-body" id="b-fade">
+    <div class="content-02 carousel slide auto panel-body" id="b-fade">
       <ol class="carousel-indicators out">
         <li data-target="#b-fade" data-slide-to="0" class="active"></li>
         <li data-target="#b-fade" data-slide-to="1" class=""></li>
