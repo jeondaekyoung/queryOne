@@ -18,9 +18,22 @@
 		select * from Download where downNo=#{downNo}
 	</select>
 	
-	<insert id="downInsert" parameterType="Download">
+	<!-- <insert id="downInsert" parameterType="Download">
 		insert into Download values(default,#{title},#{writer},#{content},default ,default,#{fileName},#{file_id},#{account})
-	</insert>	
+	</insert>	 -->
+	
+	<insert id="downInsert" parameterType="Download">
+		insert into Download values(default,#{title},#{writer},#{content},default,default,#{account},
+<foreach collection="file_id" item="item" index="index" separator=",">
+    #{item}
+</foreach>
+,
+<foreach collection="file_name" item="item" index="index" separator="," >
+    #{item}
+</foreach>
+		);
+	</insert>
+	
 	
 	<update id="downUpdate" parameterType="Download">
 		update Download set title=#{title},content=#{content},account=#{account},

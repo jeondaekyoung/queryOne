@@ -18,7 +18,22 @@ public class DownServiceImpl implements downService {
 	
 	@Override
 	public List<Download> selectList(Map map) {
-		return dao.selectList(map);
+		List<Download> dowload_list =dao.selectList(map);
+		
+		for(Download p:dowload_list){
+			
+			p.getFile_id().add(p.getFile_id1());
+			p.getFile_id().add(p.getFile_id2());
+			p.getFile_id().add(p.getFile_id3());
+			p.getFile_id().add(p.getFile_id4());
+			p.getFile_name().add(p.getFile_name1());
+			p.getFile_name().add(p.getFile_name2());
+			p.getFile_name().add(p.getFile_name3());
+			p.getFile_name().add(p.getFile_name4());
+			
+		}
+		
+		return dowload_list;
 	}
 
 	@Override
@@ -29,7 +44,19 @@ public class DownServiceImpl implements downService {
 
 	@Override
 	public Download selectOne(Download download) {
-		return dao.selectOne(download);
+		Download d=dao.selectOne(download);
+		d.getFile_id().add(d.getFile_id1());
+		d.getFile_id().add(d.getFile_id2());
+		d.getFile_id().add(d.getFile_id3());
+		d.getFile_id().add(d.getFile_id4());
+		
+		d.getFile_name().add(d.getFile_name1());
+		d.getFile_name().add(d.getFile_name2());
+		d.getFile_name().add(d.getFile_name3());
+		d.getFile_name().add(d.getFile_name4());
+		
+		return d;
+		
 	}
 
 	@Override

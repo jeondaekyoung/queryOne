@@ -182,16 +182,24 @@
 								<!--내용 끝-->
 
 								<!--첨부파일-->
-								<div class="line line-dashed line-lg pull-in"></div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">첨부파일</label>
-									<div class="col-sm-10">
-										<input type="file"  name="file" class="filestyle" data-icon="false"
-											data-classButton="btn btn-default"
-											data-classInput="form-control inline input-s">
-									</div>
+							<!-- 이미지 최대 4개 -->
+							<div class="line line-dashed line-lg pull-in"></div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">첨부파일</label>
+								<div class="col-sm-9">
+									<input type="file" class="filestyle" name="file" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
 								</div>
-								<!--첨부파일 끝-->
+								<div class="col-sm-9 col-sm-push-2">
+									<input type="file" class="filestyle" name="file" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
+								</div>
+								<div class="col-sm-9 col-sm-push-2">
+									<input type="file" class="filestyle" name="file" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
+								</div>
+								<div class="col-sm-9 col-sm-push-2">
+									<input type="file" class="filestyle" name="file" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
+								</div>
+							</div>
+							<!--첨부파일 끝-->
 
 								<!--버튼그룹-->
 								<div class="line line-dashed line-lg pull-in"></div>

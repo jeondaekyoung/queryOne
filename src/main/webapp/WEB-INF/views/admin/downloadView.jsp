@@ -95,12 +95,15 @@
 							<div class="clearfix form-group">
 								<label class="col-sm-2 control-label">첨부파일</label>
 								<div class="col-sm-10">
-									<c:if test="${empty download.fileName}" var="result">
-										<p class="form-control-static">-</p>
+								<c:forEach items="${download.file_id}" varStatus="status">
+								
+										<c:if test="${empty download.file_id[status.index]}" var="result">
+										<p class="form-control-static">${status.count} -</p>
 									</c:if>
 									<c:if test="${!result}">
-										<p class="form-control-static"><a href='<c:url value="/file/down/${download.file_id}" />' class="btn btn-info"><i class="fa fa-download"></i>${download.fileName} 다운로드</a></p>
+										<p class="form-control-static">${status.count} <a href='<c:url value="/file/down/${download.file_id[status.index]}" />' class="btn btn-info"><i class="fa fa-download"></i>${download.file_name[status.index]} 다운로드</a></p>
 									</c:if>
+								</c:forEach>
 								</div>
 							</div>
 							<!--첨부파일 끝-->

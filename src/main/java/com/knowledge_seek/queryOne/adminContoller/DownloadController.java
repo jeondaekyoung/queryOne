@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.knowledge_seek.queryOne.util.PagingUtil;
 import com.knowledge_seek.queryOne.domain.Download;
@@ -66,6 +67,7 @@ public class DownloadController {
 	@RequestMapping("/view.do")
 	public String view(Download download,Model model){
 		download=down.selectOne(download);
+		logger.debug("download:"+download.getFile_id()+download.getFile_id1());
 		//띄워쓰기 jsp에 맞게 변환
 		if(download.getContent()!=null)
 			download.setContent(download.getContent().replace("\r\n","<br/>"));
@@ -79,14 +81,26 @@ public class DownloadController {
 	}
 
 	@RequestMapping(value ="/write.do",method =RequestMethod.POST)
-	public String write(Download download){
-		if(download.getFile().getSize()!=0){
-			MultipartFile multpartfile = download.getFile();
-			download.setFileName(multpartfile.getOriginalFilename());
-			download.setFile_id(fileServiceImpl.save(multpartfile));
-
-		}
-
+	public String write(Download download,MultipartRequest mhsq){
+		
+		List<MultipartFile> mf =mhsq.getFiles("file");
+		if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
+            
+        } else {
+        	logger.debug("파일 다중 업로드 mf.size():"+mf.size());
+        	for (int i = 0; i < mf.size(); i++) {
+            	if(mf.get(i).getSize()!=0){
+            	download.file_name.add(mf.get(i).getOriginalFilename());
+            	download.file_id.add(fileServiceImpl.save(mf.get(i)));
+            	}
+            	else{
+            		download.file_name.add("null");
+            		download.file_id.add(null);
+            	}
+            }
+                 
+        }
+		
 		int result=down.insert(download);
 		
 
@@ -100,20 +114,45 @@ public class DownloadController {
 		return "/admin/downloadEdit";
 	}
 	@RequestMapping("/edit.do")
-	public String update(Download download){
-		if(download.getFile_id().length()==0){
+	public String update(Download download,MultipartRequest mhsq,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage){
+		
+		List<MultipartFile> mf =mhsq.getFiles("file");
+		
+		/*if(download.getFileId().length()==0){
 			
-			download.setFile_id(null);
+			download.setFileId(null);
 		}
 		if(download.getFile().getSize()!=0){
 			//올린파일 mutipartFile 객체에 저장, 파일 이름 저장
 			MultipartFile multpartfile = download.getFile();
 			download.setFileName(multpartfile.getOriginalFilename());
 			
-			FileDTO FileDto =fileServiceImpl.selectFileDetail(download.getFile_id());//fileId로 정보가지고오기
+			FileDTO FileDto =fileServiceImpl.selectFileDetail(download.getFileId());//fileId로 정보가지고오기
 			//객체가 존재할때 파일 업데이트
-				download.setFile_id(fileServiceImpl.update(multpartfile, FileDto));	
+				download.setFileId(fileServiceImpl.update(multpartfile, FileDto));	
+		}*/
+		
+		for (int i = 0; i < mf.size(); i++) {
+        	if(mf.get(i).getSize()!=0){
+        		
+        	download.file_name.set(i,mf.get(i).getOriginalFilename());
+        	FileDTO FileDto =fileServiceImpl.selectFileDetail(download.getFile_id().get(i));//fileId로 정보가지고오기
+			//객체가 존재할때 파일 업데이트
+			download.file_id.set(i,fileServiceImpl.update(mf.get(i), FileDto));
+        	}
+        	download.setFile_name1(download.file_name.get(0));
+        	download.setFile_name2(download.file_name.get(1));
+        	download.setFile_name3(download.file_name.get(2));
+        	download.setFile_name4(download.file_name.get(3));
+        	
+        	download.setFile_id1(download.file_id.get(0));
+        	download.setFile_id2(download.file_id.get(1));
+        	download.setFile_id3(download.file_id.get(2));
+        	download.setFile_id4(download.file_id.get(3));
+        	
+        	
 		}
+		
 		
 		int result=down.update(download);
 
@@ -124,9 +163,9 @@ public class DownloadController {
 	public String delete(Download download){
 		download=down.selectOne(download);
 		int result=down.delete(download);
-		if(download.getFile_id()!=null){
+		if(download.getFileId()!=null){
 			//파일 삭제 
-			FileDTO FileDto =fileServiceImpl.selectFileDetail(download.getFile_id());
+			FileDTO FileDto =fileServiceImpl.selectFileDetail(download.getFileId());
 			fileServiceImpl.delete(FileDto);
 		}
 		
