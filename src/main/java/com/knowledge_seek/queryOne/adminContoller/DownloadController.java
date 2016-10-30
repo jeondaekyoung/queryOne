@@ -101,7 +101,7 @@ public class DownloadController {
                  
         }
 		
-		int result=down.insert(download);
+		down.insert(download);
 		
 
 		return "redirect:/down/list.do";
@@ -115,61 +115,58 @@ public class DownloadController {
 	}
 	@RequestMapping("/edit.do")
 	public String update(Download download,MultipartRequest mhsq,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage){
+		//수정한 내용
+		String account=download.getAccount();
+		String title=download.getTitle();
+		String content=download.getContent();
 		
 		List<MultipartFile> mf =mhsq.getFiles("file");
 		
-		/*if(download.getFileId().length()==0){
-			
-			download.setFileId(null);
-		}
-		if(download.getFile().getSize()!=0){
-			//올린파일 mutipartFile 객체에 저장, 파일 이름 저장
-			MultipartFile multpartfile = download.getFile();
-			download.setFileName(multpartfile.getOriginalFilename());
-			
-			FileDTO FileDto =fileServiceImpl.selectFileDetail(download.getFileId());//fileId로 정보가지고오기
-			//객체가 존재할때 파일 업데이트
-				download.setFileId(fileServiceImpl.update(multpartfile, FileDto));	
-		}*/
+		download = down.selectOne(download);
 		
 		for (int i = 0; i < mf.size(); i++) {
         	if(mf.get(i).getSize()!=0){
-        		
-        	download.file_name.set(i,mf.get(i).getOriginalFilename());
-        	FileDTO FileDto =fileServiceImpl.selectFileDetail(download.getFile_id().get(i));//fileId로 정보가지고오기
+        		FileDTO FileDto =fileServiceImpl.selectFileDetail(download.getFile_id().get(i));//fileId로 정보가지고오기
 			//객체가 존재할때 파일 업데이트
+        	
 			download.file_id.set(i,fileServiceImpl.update(mf.get(i), FileDto));
+			download.file_name.set(i,mf.get(i).getOriginalFilename());
         	}
-        	download.setFile_name1(download.file_name.get(0));
-        	download.setFile_name2(download.file_name.get(1));
-        	download.setFile_name3(download.file_name.get(2));
-        	download.setFile_name4(download.file_name.get(3));
-        	
-        	download.setFile_id1(download.file_id.get(0));
-        	download.setFile_id2(download.file_id.get(1));
-        	download.setFile_id3(download.file_id.get(2));
-        	download.setFile_id4(download.file_id.get(3));
-        	
-        	
+        
 		}
+		//137라인~150라인 구현후 리펙토링하기
+		download.setAccount(account);
+		download.setTitle(title);
+		download.setContent(content);
 		
-		
-		int result=down.update(download);
+		download.setFile_name1(download.file_name.get(0));
+    	download.setFile_name2(download.file_name.get(1));
+    	download.setFile_name3(download.file_name.get(2));
+    	download.setFile_name4(download.file_name.get(3));
+    	
+    	download.setFile_id1(download.file_id.get(0));
+    	download.setFile_id2(download.file_id.get(1));
+    	download.setFile_id3(download.file_id.get(2));
+    	download.setFile_id4(download.file_id.get(3));
+
+    	down.update(download);
 
 		return "redirect:/down/list.do";
 	}
 	
 	@RequestMapping("/delete.do")
-	public String delete(Download download){
+	public String delete(Download download,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage){
 		download=down.selectOne(download);
-		int result=down.delete(download);
-		if(download.getFileId()!=null){
+		down.delete(download);
 			//파일 삭제 
-			FileDTO FileDto =fileServiceImpl.selectFileDetail(download.getFileId());
-			fileServiceImpl.delete(FileDto);
+			for(String s:download.getFile_id()){
+				System.out.println(s);
+				if(s!=null){
+					FileDTO FileDto =fileServiceImpl.selectFileDetail(s);
+					System.out.println(fileServiceImpl.delete(FileDto));
+				}
 		}
-		
-		return "redirect:/down/list.do";
+		return "redirect:/down/list.do?nowPage="+nowPage;
 	}
 	@RequestMapping("/search.do")
 	public String search(@RequestParam Map map,Model model,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage

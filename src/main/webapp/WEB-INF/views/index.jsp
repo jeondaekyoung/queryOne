@@ -208,6 +208,7 @@ function view(no) {
       <ol class="carousel-indicators out">
         <li data-target="#a-fade" data-slide-to="0" class="active"></li>
         <li data-target="#a-fade" data-slide-to="1" class=""></li>
+        <li data-target="#a-fade" data-slide-to="2" class=""></li>
       </ol>
       <div class="slider">
        <ul class="carousel-inner">
@@ -268,23 +269,26 @@ function view(no) {
         <!-- slide-2 -->
         <li class="slide slide-2 item">
           <div class="">
-            <h3 class="headline">Download</h3>
+            <h3 class="headline">Download (패치)</h3>
             <div class="row">
   			  <c:choose>
-            	<c:when test="${empty downLists}">
+            	<c:when test="${empty p_lists}">
          	 	  <img src="<c:url value='/resources/images/noData2.png'/>" style="width:400px; margin:0 auto; display: block;"  alt="등록된 데이터가 없습니다."> 
             	</c:when>
 	           	<c:otherwise>
 	           	  <ul class="col-8 prefix-4">
 	                <!-- 관리자에서 올린 파일다운로드 -->              
-	                <c:forEach items="${downLists}" var="list">
-	                  <c:if test="${not empty list.fileName }">
-	                	<li class="li-download">
-	                 	  <a href="<c:url value='/file/downNhit/${list.file_id}/${list.downNo}'/>">
-	                 		<button type="button"  >[${list.account}]${list.fileName} 다운받기 </button>
-	                 	  </a>
-						</li>
-					  </c:if>
+	                <c:forEach items="${p_lists}" var="list">
+		                <c:forEach items="${list.file_id}" var="file" varStatus="status">
+		                <c:if test="${not (list.file_id[status.index] eq null) }">
+		                	<li class="li-download">
+		                 	  <a href="<c:url value='/file/downNhit/${list.file_id[status.index]}/${list.downNo}'/>">
+		                 		<button type="button" >[${list.account}]${list.file_name[status.index]} 다운받기 </button>
+		                 	  </a>
+							</li>
+						  </c:if>
+		                </c:forEach>
+	                  
 	                </c:forEach>                
 	              </ul>
 	           	</c:otherwise>
@@ -293,6 +297,37 @@ function view(no) {
           </div>
         </li>
         <!-- //slide-2 -->
+          <!-- slide-2 -->
+        <li class="slide slide-2 item">
+          <div class="">
+            <h3 class="headline">Download (문서)</h3>
+            <div class="row">
+  			  <c:choose>
+            	<c:when test="${empty d_lists}">
+         	 	  <img src="<c:url value='/resources/images/noData2.png'/>" style="width:400px; margin:0 auto; display: block;"  alt="등록된 데이터가 없습니다."> 
+            	</c:when>
+	           	<c:otherwise>
+	           	  <ul class="col-8 prefix-4">
+	                <!-- 관리자에서 올린 파일다운로드 -->              
+	                <c:forEach items="${d_lists}" var="list">
+		                <c:forEach items="${list.file_id}" var="file" varStatus="status">
+		                <c:if test="${not (list.file_id[status.index] eq null)}" var="result">
+		                	<li class="li-download">
+		                 	  <a href="<c:url value='/file/downNhit/${list.file_id[status.index]}/${list.downNo}'/>">
+		                 		<button type="button" >[${list.account}]${list.file_name[status.index]} 다운받기 </button>
+		                 	  </a>
+							</li>
+						  </c:if>
+				        </c:forEach>
+	                </c:forEach>                
+	              </ul>
+	           	</c:otherwise>
+           	  </c:choose>
+            </div>
+          </div>
+        </li>
+        <!-- //slide-2 -->
+        
        </ul>
       </div>
       

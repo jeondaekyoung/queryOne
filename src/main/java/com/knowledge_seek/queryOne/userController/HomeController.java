@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.hamcrest.core.IsNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -84,11 +85,46 @@ public class HomeController {
 		
 		List <Notice>notiLists =noti.selectList(map); 
 		model.addAttribute("notiLists", notiLists);
-		
-		List <Download>downLists =down.selectList(map); 
-		model.addAttribute("downLists", downLists);
-		
-		
+		{//'패치'로 구분하여 올린파일 유무 확인 
+			map.put("user", "use");
+			map.put("account","패치");
+			List<Download> p_lists=down.selectList(map);
+			boolean file_check = false;
+			for(Download d : p_lists){
+				if(file_check==false){
+					for(String s:d.file_name){
+						if(!s.equals("null")){//file_name - 문자열"null",file_id - null
+							model.addAttribute("p_lists",p_lists);
+							file_check =true;
+							break;
+						}
+					}
+				}
+				else{
+					break;
+				}
+			}
+		}
+		{//'문서'로 구분하여 올린파일 유무 확인
+			map.put("user", "use");
+			map.put("account","문서");
+			List<Download> d_lists=down.selectList(map);
+			boolean file_check = false;
+			for(Download d : d_lists){
+				if(file_check==false){
+					for(String s:d.file_name){
+						if(!s.equals("null")){
+							model.addAttribute("d_lists",d_lists);
+							file_check =true;
+							break;
+						}
+					}
+				}
+				else{
+					break;
+				}
+			}
+		}
 		return "index";
 	}
 	

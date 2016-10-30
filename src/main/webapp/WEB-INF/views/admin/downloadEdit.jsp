@@ -80,7 +80,7 @@
 												<!-- 작성자 -->
 								<input type="hidden" name="writer"	value="${sessionScope.USERID}" class="form-control"> 
 								<input type="hidden" name="downNo" value="${download.downNo}"class="form-control"> 
-								<input type="hidden"	name="file_id" value="${download.file_id}" class="form-control">
+								<%-- <input type="hidden"	name="file_id" value="${download.file_id}" class="form-control"> --%>
 									<input type="hidden" name="content" id="editorContent" class="form-control"/>
 
 								<!--구분-->
@@ -195,17 +195,49 @@
 								<div class="line line-dashed line-lg pull-in"></div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label">첨부파일</label>
-									<div class="col-sm-10">
+									<div class="col-sm-9">
 										<input type="file" class="filestyle" name="file"	data-icon="false" data-classButton="btn btn-default"	data-classInput="form-control inline input-s">
 										이전파일 :
-										<c:if test="${empty download.fileName}" var="result">
+									<c:if test="${empty download.file_id1}" var="result">
 										 -
 									</c:if>
 									<c:if test="${!result}">
-										<a href='<c:url value="/file/down/${download.file_id}" />' class="btn btn-info"><i class="fa fa-download"></i>${download.fileName} 다운로드</a>
+										<a href='<c:url value="/file/down/${download.file_id1}" />' class="btn btn-info"><i class="fa fa-download"></i>${download.file_name1} 다운로드</a>
 									</c:if>
 										
 									</div>
+									<div class="col-sm-9 col-sm-push-2">
+										<input type="file" class="filestyle" name="file" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
+										이전파일 :
+										<c:if test="${empty download.file_id2}" var="result">
+											 -
+										</c:if>
+										<c:if test="${!result}">
+											<a href='<c:url value="/file/down/${download.file_id2}" />' class="btn btn-info"><i class="fa fa-download"></i>${download.file_name2} 다운로드</a>
+										</c:if>
+									</div>
+									<div class="col-sm-9 col-sm-push-2">
+										<input type="file" class="filestyle" name="file" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
+										이전파일 :
+										<c:if test="${empty download.file_id3}" var="result">
+											 -
+										</c:if>
+										<c:if test="${!result}">
+											<a href='<c:url value="/file/down/${download.file_id3}" />' class="btn btn-info"><i class="fa fa-download"></i>${download.file_name3} 다운로드</a>
+										</c:if>
+									</div>
+									<div class="col-sm-9 col-sm-push-2">
+										<input type="file" class="filestyle" name="file" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s">
+										이전파일 :
+										<c:if test="${empty download.file_id4}" var="result">
+											 -
+										</c:if>
+										<c:if test="${!result}">
+											<a href='<c:url value="/file/down/${download.file_id4}" />' class="btn btn-info"><i class="fa fa-download"></i>${download.file_name4} 다운로드</a>
+										</c:if>
+									</div>
+										
+									
 								</div>
 								<!--첨부파일 끝-->
 
