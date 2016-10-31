@@ -89,10 +89,14 @@
 														<td>${status.index+1}</td>
 														<td><a href="<c:url value='/down/view.do?downNo=${list.downNo}'/>">[${list.account}]${list.title}</a></td>
 														<td>
-														<c:if test="${empty list.file_id}">
-															-
+														<c:forEach items="${list.file_id}" varStatus="status">
+														<c:if test="${empty list.file_id[status.index]}" var="result">
+															-<br>
 														</c:if>
-														<a href='<c:url value="/file/down/${list.file_id}"></c:url>'>${list.fileName}</a>
+														<c:if test="${!result }">
+														<a href='<c:url value="/file/down/${list.file_id[status.index]}"></c:url>'>${list.file_name[status.index]}</a>
+														</c:if>
+														</c:forEach>
 														</td>
 														<td>${list.createDate}</td>
 														<td>${list.hits }</td>

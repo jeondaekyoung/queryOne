@@ -98,10 +98,14 @@
 								<c:forEach items="${download.file_id}" varStatus="status">
 								
 										<c:if test="${empty download.file_id[status.index]}" var="result">
-										<p class="form-control-static">${status.count} -</p>
+										<p class="form-control-static"> - </p>
 									</c:if>
 									<c:if test="${!result}">
-										<p class="form-control-static">${status.count} <a href='<c:url value="/file/down/${download.file_id[status.index]}" />' class="btn btn-info"><i class="fa fa-download"></i>${download.file_name[status.index]} 다운로드</a></p>
+										<p class="form-control-static">
+										<a href='<c:url value="/file/down/${download.file_id[status.index]}" />' class="btn btn-info">
+										<i class="fa fa-download"></i>${download.file_name[status.index]} 다운로드
+										</a>
+										</p>
 									</c:if>
 								</c:forEach>
 								</div>
