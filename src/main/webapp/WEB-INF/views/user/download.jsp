@@ -83,38 +83,44 @@
                  <c:if test="${param.downNo == list.downNo}" var="result">
                      <div id="collapse${list.downNo}" class="panel-collapse row in">
                       <!-- panel-collapse in 내용 목록 보기 -->
-	                    <div class="panel-body col-12 prefix-2">
-	                      ${list.content }
-	                      <!-- 파일 -->
-	                      <c:if test="${empty list.fileName}" var="result">
-	
-	                      </c:if>
-	                      
-	                      <c:if test="${!result}">
-	                        <p class="form-control-static">
-	                          <a href='<c:url value="/file/down/${list.file_id}" />' class="btn btn-info"><i class="fa fa-download"></i>${list.fileName}  다운로드</a>
-	                        </p>
-	                      </c:if>                      
-	                    </div>
+		                    <div class="panel-body col-12 prefix-2">
+			                      ${list.content }
+			                      <!-- 파일 -->
+			                      <c:forEach items="${list.file_id}" var="file" varStatus="status">
+			                      <c:if test="${list.file_id[status.index] eq null}" var="result">
+									-<br>
+			                      </c:if>
+			                      
+			                      <c:if test="${!result}">
+			                        <p class="form-control-static">
+			                          <a href='<c:url value="/file/down/${list.file_id[status.index]}" />' class="btn btn-info"><i class="fa fa-download"></i>${list.file_name[status.index]}  다운로드</a>
+			                        </p>
+			                      </c:if>                      
+			
+			                      </c:forEach>
+		                      </div>
 	                    </div><!--끝 : panel-collapse -->
                  </c:if>
                     
                  <c:if test="${not result }">
                      <div id="collapse${list.downNo}" class="panel-collapse collapse row">
                       <!-- panel-collapse in 내용 목록 보기 -->
-	                    <div class="panel-body col-12 prefix-2">
-	                      ${list.content }
-	                      <!-- 파일 -->
-	                      <c:if test="${empty list.fileName}" var="result">
-	
-	                      </c:if>
-	                      
-	                      <c:if test="${!result}">
-	                        <p class="form-control-static">
-	                          <a href='<c:url value="/file/down/${list.file_id}" />' class="btn btn-info"><i class="fa fa-download"></i>${list.fileName}  다운로드</a>
-	                        </p>
-	                      </c:if>                      
-	                    </div>
+	                        <div class="panel-body col-12 prefix-2">
+			                      ${list.content }
+			                      <!-- 파일 -->
+			                      <c:forEach items="${list.file_id}" var="file" varStatus="status">
+			                      <c:if test="${list.file_id[status.index] eq null}" var="result">
+									-<br>
+			                      </c:if>
+			                      
+			                      <c:if test="${!result}">
+			                        <p class="form-control-static">
+			                          <a href='<c:url value="/file/down/${list.file_id[status.index]}" />' class="btn btn-info"><i class="fa fa-download"></i>${list.file_name[status.index]}  다운로드</a>
+			                        </p>
+			                      </c:if>                      
+			
+			                      </c:forEach>
+		                      </div>
 	                    </div><!--끝 : panel-collapse -->
                   </c:if>
                     
@@ -151,46 +157,54 @@
 								</div>
 
 								<c:if test="${param.downNo == list.downNo}" var="result">
-									<div id="collapse${list.downNo }" class="panel-collapse row in">
-									<!-- panel-collapse in 내용 목록 보기 -->
-								<div class="panel-body col-12 prefix-2">
-									${list.content }
-									<!-- 파일 -->
-									<c:if test="${empty list.fileName}" var="result">
-
-									</c:if>
-
-									<c:if test="${!result}">
-										<p class="form-control-static">
-											<a href='<c:url value="/file/down/${list.file_id}" />'
-												class="btn btn-info"><i class="fa fa-download"></i>${list.fileName}
-												다운로드</a>
-										</p>
-									</c:if>
-								</div>
-							</div>
+						            <div id="collapse${list.downNo}" class="panel-collapse row in">
+                      					<!-- panel-collapse in 내용 목록 보기 -->
+			                    <div class="panel-body col-12 prefix-2">
+				                      ${list.content }
+				                      <!-- 파일 -->
+				                      <c:forEach items="${list.file_id}" var="file" varStatus="status">
+				                      <c:if test="${list.file_id[status.index] eq null}" var="result">
+										-<br>
+				                      </c:if>
+				                      
+				                      <c:if test="${!result}">
+				                        <p class="form-control-static">
+				                          <a href='<c:url value="/file/down/${list.file_id[status.index]}" />' class="btn btn-info"><i class="fa fa-download"></i>${list.file_name[status.index]}  다운로드</a>
+				                        </p>
+				                      </c:if>                      
+				
+				                      </c:forEach>
+			                      </div>
+	                    </div><!--끝 : panel-collapse -->
 								</c:if>
 
 								<c:if test="${not result }">
-									<div id="collapse${list.downNo }"
-										class="panel-collapse collapse row">
+								<div id="collapse${list.downNo}" class="panel-collapse collapse row">
 										<!-- panel-collapse in 내용 목록 보기 -->
-								<div class="panel-body col-12 prefix-2">
-									${list.content }
-									<!-- 파일 -->
-									<c:if test="${empty list.fileName}" var="result">
+										<div class="panel-body col-12 prefix-2">
+											${list.content }
+											<!-- 파일 -->
+											<c:forEach items="${list.file_id}" var="file"
+												varStatus="status">
+												<c:if test="${list.file_id[status.index] eq null}"
+													var="result">
+													-<br>
+												</c:if>
 
-									</c:if>
+												<c:if test="${!result}">
+													<p class="form-control-static">
+														<a
+															href='<c:url value="/file/down/${list.file_id[status.index]}" />'
+															class="btn btn-info"><i class="fa fa-download"></i>${list.file_name[status.index]}
+															다운로드</a>
+													</p>
+												</c:if>
 
-									<c:if test="${!result}">
-										<p class="form-control-static">
-											<a href='<c:url value="/file/down/${list.file_id}" />'
-												class="btn btn-info"><i class="fa fa-download"></i>${list.fileName}
-												다운로드</a>
-										</p>
-									</c:if>
-								</div>
-							</div>
+											</c:forEach>
+										</div>
+									</div>
+									<!--끝 : panel-collapse -->
+							
 								</c:if>
 
 								

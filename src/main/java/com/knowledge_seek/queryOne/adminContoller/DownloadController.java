@@ -87,7 +87,7 @@ public class DownloadController {
 		if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
             
         } else {
-        	logger.debug("파일 다중 업로드 mf.size():"+mf.size());
+        	
         	for (int i = 0; i < mf.size(); i++) {
             	if(mf.get(i).getSize()!=0){
             	download.file_name.add(mf.get(i).getOriginalFilename());
