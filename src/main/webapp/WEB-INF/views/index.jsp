@@ -277,10 +277,12 @@ function view(no) {
             	</c:when>
 	           	<c:otherwise>
 	           	  <ul class="col-8 prefix-4">
-	                <!-- 관리자에서 올린 파일다운로드 -->              
+	                <!-- 관리자에서 올린 파일다운로드 -->
+					<c:set var="count" value="0" />             
 	                <c:forEach items="${p_lists}" var="list">
 		                <c:forEach items="${list.file_id}" var="file" varStatus="status">
-		                <c:if test="${not (list.file_id[status.index] eq null) }">
+		                <c:if test="${not (list.file_id[status.index] eq null) and count<6 }">
+		                	<c:set var="count" value="${count+1}" />
 		                	<li class="li-download">
 		                 	  <a href="<c:url value='/file/downNhit/${list.file_id[status.index]}/${list.downNo}'/>">
 		                 		<button type="button" >[${list.account}]${list.file_name[status.index]} 다운받기 </button>
@@ -308,13 +310,15 @@ function view(no) {
             	</c:when>
 	           	<c:otherwise>
 	           	  <ul class="col-8 prefix-4">
-	                <!-- 관리자에서 올린 파일다운로드 -->              
+	                <!-- 관리자에서 올린 파일다운로드 -->
+	                <c:set var="count" value="0" />              
 	                <c:forEach items="${d_lists}" var="list">
 		                <c:forEach items="${list.file_id}" var="file" varStatus="status">
-		                <c:if test="${not (list.file_id[status.index] eq null)}" var="result">
+		                <c:if test="${not (list.file_id[status.index] eq null) and count<6 }" var="result">
+		            		<c:set var="count" value="${count+1}" />       	
 		                	<li class="li-download">
 		                 	  <a href="<c:url value='/file/downNhit/${list.file_id[status.index]}/${list.downNo}'/>">
-		                 		<button type="button" >[${list.account}]${list.file_name[status.index]} 다운받기 </button>
+		                 		<button type="button" >${count}. [${list.account}]${list.file_name[status.index]} 다운받기 </button>
 		                 	  </a>
 							</li>
 						  </c:if>
