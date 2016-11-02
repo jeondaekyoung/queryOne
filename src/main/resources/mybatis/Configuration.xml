@@ -4,6 +4,10 @@
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+	<settings>
+	<setting name="logImpl" value="LOG4J"/>
+	</settings>
+
 	<typeAliases>
 		<typeAlias alias="Download" type="com.knowledge_seek.queryOne.domain.Download"/>
 		<typeAlias alias="LicenceKey" type="com.knowledge_seek.queryOne.domain.Licencekey"/>

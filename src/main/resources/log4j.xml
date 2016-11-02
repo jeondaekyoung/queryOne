@@ -11,9 +11,14 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.knowledge_seek.queryOne">
+	<!-- <logger name="com.knowledge_seek.queryOne">
+		<level value="info" />
+	</logger> -->
+	<logger name="com.journaldev.spring">
 		<level value="info" />
 	</logger>
+	
+	
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
