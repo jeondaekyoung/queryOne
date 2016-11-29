@@ -149,7 +149,7 @@ public class FileController {
 	}
 	
 	//특정 경로에 ftp로 업로드한 파일 찾아 파일 다운로드
-		@RequestMapping("/path/{file_name:.+}")
+		@RequestMapping("/patch/{file_name:.+}")
 		@ResponseBody
 		public ResponseEntity<FileSystemResource> ftp_down(@PathVariable("file_name") String file_name, HttpServletRequest req){
 			
