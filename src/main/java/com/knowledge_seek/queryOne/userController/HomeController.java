@@ -160,6 +160,10 @@ public class HomeController {
 		@ResponseBody
 		public ResponseEntity<FileSystemResource> ftp_down(@PathVariable("file_name") String file_name, HttpServletRequest req){
 			
+			if(file_name.equals("favicon.ico")){
+				return null;
+			}
+			
 			File file = new File( "/home/queryOne/"+file_name);
 			//File file = new File( "D:/queryOne/upload/"+file_name);
 			
@@ -167,6 +171,7 @@ public class HomeController {
 			System.out.println("file:"+file.getPath());
 			HttpHeaders header = new HttpHeaders();
 			header.setContentLength(file.length());
+			
 			//whoAmi = Thread.currentThread().getStackTrace()[1].toString();
 			String fileName="";
 			ResponseEntity<FileSystemResource> entity = null;
