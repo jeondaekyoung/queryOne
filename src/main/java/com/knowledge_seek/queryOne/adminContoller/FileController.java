@@ -34,16 +34,18 @@ import com.knowledge_seek.queryOne.service.impl.ProductServiceImpl;
 
 
 @Controller
-@RequestMapping("/file")
+
 public class FileController {
 	private static final Logger logger = LoggerFactory.getLogger(FileController.class);
+	
 	private String whoAmi;
+	
 	@Autowired private FileService fileService;
 	
 	@Resource(name = "downService")
 	DownServiceImpl down;
 	
-	@RequestMapping("/down/{file_id}")
+	@RequestMapping("/file/down/{file_id}")
 	@ResponseBody
 	public ResponseEntity<FileSystemResource> down(@PathVariable("file_id") String fileId,HttpServletRequest req){
 		
@@ -54,7 +56,7 @@ public class FileController {
 		return downloadContent(fileDto, file, true,req);
 	}
 	
-	@RequestMapping("/downNhit/{file_id}/{downNo}")
+	@RequestMapping("/file/downNhit/{file_id}/{downNo}")
 	@ResponseBody
 	public ResponseEntity<FileSystemResource> DownNhit(@PathVariable("file_id") String fileId,
 			@PathVariable("downNo") String downNo,HttpServletRequest req){
@@ -66,7 +68,7 @@ public class FileController {
 		return downloadContent(fileDto, file, true,req);
 	}
 	
-	@RequestMapping("/down/image/{file_id}")
+	@RequestMapping("/file/down/image/{file_id}")
 	@ResponseBody
 	public ResponseEntity<FileSystemResource> image(@PathVariable("file_id") String fileId){
 		FileDTO fileDto = fileService.selectFileDetail(fileId);
@@ -76,7 +78,7 @@ public class FileController {
 		return downloadContent(fileDto, file, false,null);
 	}
 	
-	@RequestMapping("/down/file/{file_id}")
+	@RequestMapping("/file/down/file/{file_id}")
 	@ResponseBody
 	public ResponseEntity<FileSystemResource> downfile(@PathVariable("file_id") String fileId){
 		FileDTO fileDto = fileService.selectFileDetail(fileId);
@@ -86,7 +88,7 @@ public class FileController {
 		return downloadContent(fileDto, file, false,null);
 	}
 	
-	@RequestMapping("/down/thumb/w/{width}/{file_id}")
+	@RequestMapping("/file/down/thumb/w/{width}/{file_id}")
 	@ResponseBody
 	public HttpEntity<FileSystemResource> thumbnail(@PathVariable("width") String width, @PathVariable("file_id") String fileId){
 		FileDTO filedto = fileService.selectFileDetail(fileId);
@@ -146,5 +148,57 @@ public class FileController {
 		return entity;
 	}
 	
+	//특정 경로에 ftp로 업로드한 파일 찾아 파일 다운로드
+		@RequestMapping("/path/{file_name:.+}")
+		@ResponseBody
+		public ResponseEntity<FileSystemResource> ftp_down(@PathVariable("file_name") String file_name, HttpServletRequest req){
+			
+			File file = new File( "/home/queryOne/"+file_name);
+			//File file = new File( "D:/queryOne/upload/"+file_name);
+			
+			
+			System.out.println("file:"+file.getPath());
+			HttpHeaders header = new HttpHeaders();
+			header.setContentLength(file.length());
+			//whoAmi = Thread.currentThread().getStackTrace()[1].toString();
+			String fileName="";
+			ResponseEntity<FileSystemResource> entity = null;
+			try {
+				
+				fileName = URLEncoder.encode(file_name, "UTF-8");
+				if(req!=null){
+					String userAgent=req.getHeader("user-agent");
+					 if(userAgent.contains("Trident")){//IE 일 때
+					fileName = URLEncoder.encode(file_name, "EUC-KR");
+					
+					 }
+				}
+				
+				fileName = URLDecoder.decode(fileName, "ISO8859_1");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+				
+			}
+			try {
+				/*if(ext.equals("zip")){
+					header.set("Content-Type", "application/zip");
+				  else{
+				  	header.set("Content-Type", "application/xml");
+				  }
+				}*/
+				header.set("Content-disposition", "attachment; filename="+ fileName);
+				System.out.println("file.exists():"+file.exists());
+			if(file.exists()){
+				
+				entity = new ResponseEntity<FileSystemResource>(new FileSystemResource(file), header, HttpStatus.OK);
+			}
+			} catch (Exception e) {
+
+				e.printStackTrace();
+
+			}
+			return entity;
+			
+		}
 	
 }
