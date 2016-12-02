@@ -9,10 +9,31 @@
 <script type="text/javascript">
   //조회수 함수
   function view(no,nowPage) {
-    var f = document.hitsForm;
+	//로컬과 실서버 구분 로직
+	  if( window.location.host =='localhost:9999'){
+		  var rootPath = window.location.protocol + '//' + window.location.host+'/queryOne';  
+	  }
+	  else
+	  var rootPath = window.location.protocol + '//' + window.location.host;
+	  console.log(rootPath);
+	  $.ajax({
+			url : rootPath + "/user/downHits.do",
+			type : "POST",
+			data : {
+				downNo : no,
+				nowPage : nowPage
+			},
+			success : console.log("success"),
+			error : console.log("error")
+		});
+	  
+	  
+	  /* var f = document.hitsForm;
     f.downNo.value = no;
     f.nowPage.value = nowPage;
-   f.submit();
+   f.submit(); */
+   
+   
   } 
 </script>
 <body class="container show-grid">

@@ -7,11 +7,15 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knowledge_seek.queryOne.domain.Download;
 import com.knowledge_seek.queryOne.service.impl.DownServiceImpl;
@@ -20,6 +24,8 @@ import com.knowledge_seek.queryOne.util.PagingUtil;
 
 @Controller
 public class User_downloadController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(User_downloadController.class);
 	
 	@Value("${PAGESIZE}")
 	private int pageSize; 
@@ -89,11 +95,21 @@ public class User_downloadController {
 		return "/user/download";
 	}
 	//Ajax로 바꾸기
-	@RequestMapping("/user/downHits.do")
+	/*@RequestMapping("/user/downHits.do")
 	public String hits(@RequestParam("downNo") String downNo,@RequestParam("nowPage") String nowPage){
 		
 		down.update_hits(downNo);
 		
 		return "forward:/user/download.do?downNo="+downNo+"&nowPage="+nowPage;
+	}*/
+	@RequestMapping(value = "/user/downHits.do", method=RequestMethod.POST)
+	@ResponseBody
+	public String hits(@RequestParam("downNo") String downNo,@RequestParam("nowPage") String nowPage){
+		logger.info("qa/list.do - 페이지번호 : " + nowPage + "downNo : " +  downNo);
+		
+		int result = down.update_hits(downNo);
+		System.out.println("result : "+result);
+		return result == 1?"success":"fail";
 	}
+	
 }
