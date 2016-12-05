@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko-KR" class="app">
 <head>
@@ -80,7 +81,9 @@
 					                        <!--제목 영역-->
 					                        <div class="panel-heading pos-rlt">
 					                          <a class="accordion-toggle clearfix" data-toggle="collapse" data-parent="#accordion2" href="#collapse${list.qnaNo }">
-					                            <div class="col-sm-12">${list.title}<br><span class="text-md">${list.createDate}</span></div>
+					                            <div class="col-sm-12">${list.title}<br>
+					                            <span class="text-md"><fmt:formatDate value="${list.createDate}" type="date" pattern="yyyy-MM-dd a hh:ss"/></span>
+					                            </div>
 					                          </a>
 					                          <div class="pos-abt">                            
 					                        <a  href="<c:url value='/qna/answerChk.do?qnaNo=${list.qnaNo}&answerChk=${list.answerChk}&nowPage=${nowPage}'/>">

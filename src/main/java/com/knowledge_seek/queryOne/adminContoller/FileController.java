@@ -148,5 +148,56 @@ public class FileController {
 		return entity;
 	}
 	
-	
+//특정 경로에 ftp로 업로드한 파일 찾아 파일 다운로드		
+ 		@RequestMapping("/patch/{file_name:.+}")		
+ 		@ResponseBody		
+		public ResponseEntity<FileSystemResource> ftp_down(@PathVariable("file_name") String file_name, HttpServletRequest req){		
+ 					
+ 			File file = new File( "/home/queryOne/"+file_name);		
+ 			//File file = new File( "D:/queryOne/upload/"+file_name);		
+ 			//System.out.println("file:"+file.getPath());		
+ 			HttpHeaders header = new HttpHeaders();		
+ 			header.setContentLength(file.length());		
+ 			//whoAmi = Thread.currentThread().getStackTrace()[1].toString();		
+ 			String fileName="";		
+ 			ResponseEntity<FileSystemResource> entity = null;		
+ 			try {		
+ 						
+ 				fileName = URLEncoder.encode(file_name, "UTF-8");		
+ 				if(req!=null){		
+ 					String userAgent=req.getHeader("user-agent");		
+ 					 if(userAgent.contains("Trident")){//IE 일 때		
+ 					fileName = URLEncoder.encode(file_name, "EUC-KR");		
+ 							
+ 					 }		
+ 				}		
+ 						
+ 				fileName = URLDecoder.decode(fileName, "ISO8859_1");		
+ 			} catch (UnsupportedEncodingException e) {		
+ 				e.printStackTrace();		
+ 						
+ 			}		
+ 			try {		
+ 				/*if(ext.equals("zip")){		
+ 					header.set("Content-Type", "application/zip");		
+ 				  else{		
+ 				  	header.set("Content-Type", "application/xml");		
+ 				  }		
+ 				}*/		
+ 				header.set("Content-disposition", "attachment; filename="+ fileName);		
+ 				//System.out.println("file.exists():"+file.exists());		
+ 			if(file.exists()){		
+ 						
+ 			entity = new ResponseEntity<FileSystemResource>(new FileSystemResource(file), header, HttpStatus.OK);		
+ 			}		
+ 			} catch (Exception e) {		
+ 		
+ 				e.printStackTrace();		
+ 		
+ 			}		
+ 			return entity;		
+ 					
+ 		}		
+  			  	
+  
 }

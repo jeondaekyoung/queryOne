@@ -140,7 +140,7 @@ public class HomeController {
 	}
 	
 	
-		@RequestMapping("/user/queryOne.do")
+	@RequestMapping("/user/queryOne.do")
 	public String queryOne() {
 		return "/user/queryone";
 	}
@@ -152,70 +152,7 @@ public class HomeController {
 	@RequestMapping("/user/qna.do")
 	public String qna(Locale locale, Model model) {
 		
-		
 		return "/user/qna";
 	}
-//특정 경로에 ftp로 업로드한 파일 찾아 파일 다운로드
-		@RequestMapping("/{file_name:.+}")
-		@ResponseBody
-		public ResponseEntity<FileSystemResource> ftp_down(@PathVariable("file_name") String file_name, HttpServletRequest req){
-			
-			if(file_name.equals("favicon.ico")){
-				return null;
-			}
-			
-			File file = new File( "/home/queryOne/"+file_name);
-			//File file = new File( "D:/queryOne/upload/"+file_name);
-			
-			
-			System.out.println("file:"+file.getPath());
-			HttpHeaders header = new HttpHeaders();
-			header.setContentLength(file.length());
-			
-			//whoAmi = Thread.currentThread().getStackTrace()[1].toString();
-			String fileName="";
-			ResponseEntity<FileSystemResource> entity = null;
-			try {
-				
-				fileName = URLEncoder.encode(file_name, "UTF-8");
-				if(req!=null){
-					String userAgent=req.getHeader("user-agent");
-					 if(userAgent.contains("Trident")){//IE 일 때
-					fileName = URLEncoder.encode(file_name, "EUC-KR");
-					
-					 }
-				}
-				
-				fileName = URLDecoder.decode(fileName, "ISO8859_1");
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-				
-			}
-			try {
-				/*if(ext.equals("zip")){
-					header.set("Content-Type", "application/zip");
-				  else{
-				  	header.set("Content-Type", "application/xml");
-				  }
-				}*/
-				header.set("Content-disposition", "attachment; filename="+ fileName);
-				System.out.println("file.exists():"+file.exists());
-			if(file.exists()){
-				
-				entity = new ResponseEntity<FileSystemResource>(new FileSystemResource(file), header, HttpStatus.OK);
-			}
-				else{
-					entity = new ResponseEntity<FileSystemResource>(new FileSystemResource(file), header, HttpStatus.NOT_FOUND);
-				}
-			} catch (Exception e) {
-
-				e.printStackTrace();
-
-			}
-			return entity;
-			
-		}
-	
-	
 	
 }
