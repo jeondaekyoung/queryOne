@@ -1,6 +1,7 @@
 package com.knowledge_seek.queryOne.domain;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 
 
@@ -13,7 +14,7 @@ public class QnA {
 	private String tel;
 	private int answerChk ;
 	
-	private Date createDate;
+	private Timestamp createDate;
 
 	public int getAnswerChk() {
 		return answerChk;
@@ -57,10 +58,10 @@ public class QnA {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getCreateDate() {
+	public Timestamp getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(Timestamp createDate) {
 		this.createDate = createDate;
 	}
 	

@@ -1,5 +1,6 @@
 package com.knowledge_seek.queryOne.adminContoller;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +51,7 @@ public class QnAController {
 		map.put("end",end);
 		
 		List<QnA> lists=qnaService.selectList(map);
+		
 		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/qna/list.do?");
 		
 		model.addAttribute("lists",lists);
@@ -58,6 +60,8 @@ public class QnAController {
 		model.addAttribute("nowPage",nowPage);
 		model.addAttribute("totalRecordCount",totalRecordCount);
 		model.addAttribute("pageSize",pageSize);
+		
+		
 		return "admin/qna";
 	}
 	@RequestMapping("/search.do")
@@ -88,12 +92,7 @@ public class QnAController {
 	
 	@RequestMapping("/write.do")
 	public String write(QnA qna){
-	
-
-	qnaService.insert(qna);
-	
-		
-		
+		qnaService.insert(qna);
 		return "redirect:/user/qna.do";
 	}
 	

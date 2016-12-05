@@ -105,7 +105,10 @@
 										<a href='<c:url value="/file/down/${download.file_id[status.index]}" />' class="btn btn-info">
 										<i class="fa fa-download"></i>${download.file_name[status.index]} 다운로드
 										</a>
+										절대경로: <a href='<c:url value="/file/down/${download.file_id[status.index]}" />'>${file_path[status.index]}</a>
+										
 										</p>
+										
 									</c:if>
 								</c:forEach>
 								</div>

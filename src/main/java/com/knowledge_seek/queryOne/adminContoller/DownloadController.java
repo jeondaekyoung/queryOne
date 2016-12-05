@@ -1,5 +1,6 @@
 package com.knowledge_seek.queryOne.adminContoller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -67,10 +68,23 @@ public class DownloadController {
 	@RequestMapping("/view.do")
 	public String view(Download download,Model model){
 		download=down.selectOne(download);
-		logger.debug("download:"+download.getFile_id()+download.getFile_id1());
+		
+		
 		//띄워쓰기 jsp에 맞게 변환
 		if(download.getContent()!=null)
 			download.setContent(download.getContent().replace("\r\n","<br/>"));
+		
+		//절대경로  가져오기
+		ArrayList<String> file_path=new ArrayList<String>();
+		for(String s:download.getFile_id()){
+				if(s!=null){
+					FileDTO f =fileServiceImpl.selectFileDetail(s);
+					System.out.println(f.getFile_path());
+					file_path.add(f.getFile_path());
+				}
+				
+			}	
+		model.addAttribute("file_path", file_path);
 		model.addAttribute("download", download);
 		return "/admin/downloadView";
 	}

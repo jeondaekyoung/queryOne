@@ -15,7 +15,7 @@
 	  }
 	  else
 	  var rootPath = window.location.protocol + '//' + window.location.host;
-	  console.log(rootPath);
+	  //console.log(rootPath);
 	  $.ajax({
 			url : rootPath + "/user/downHits.do",
 			type : "POST",
@@ -23,8 +23,19 @@
 				downNo : no,
 				nowPage : nowPage
 			},
-			success : console.log("success"),
-			error : console.log("error")
+			success : function(response) {        
+			    if(response=='success')
+			    {
+			   		console.log(response);
+			    }
+			    
+			   },
+			error : function(request, status, error) {
+			    if (request.status != '0') {
+			        console.log("code : " + request.status + "\r\nmessage : "
+			          + request.reponseText + "\r\nerror : " + error);
+			       }
+			}
 		});
 	  
 	  

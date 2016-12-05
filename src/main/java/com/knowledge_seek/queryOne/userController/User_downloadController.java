@@ -105,10 +105,8 @@ public class User_downloadController {
 	@RequestMapping(value = "/user/downHits.do", method=RequestMethod.POST)
 	@ResponseBody
 	public String hits(@RequestParam("downNo") String downNo,@RequestParam("nowPage") String nowPage){
-		logger.info("qa/list.do - 페이지번호 : " + nowPage + "downNo : " +  downNo);
-		
+		/*	logger.info("qa/list.do - 페이지번호 : " + nowPage + "downNo : " +  downNo);*/
 		int result = down.update_hits(downNo);
-		System.out.println("result : "+result);
 		return result == 1?"success":"fail";
 	}
 	
