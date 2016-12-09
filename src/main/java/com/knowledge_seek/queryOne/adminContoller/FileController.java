@@ -62,8 +62,12 @@ public class FileController {
 			@PathVariable("downNo") String downNo,HttpServletRequest req){
 		down.update_hits(downNo);
 		FileDTO fileDto = fileService.selectFileDetail(fileId);
-		
-		File file = new File(fileDto.getFile_path());
+		String path = fileDto.getFile_path();
+		if(path!=null){
+			logger.debug("File_Path is null");
+			return null;
+		}
+		File file = new File(path);
 		
 		return downloadContent(fileDto, file, true,req);
 	}
@@ -110,7 +114,7 @@ public class FileController {
 			fileName = URLEncoder.encode(filedto.getFile_real_name(), "UTF-8");
 			if(req!=null){
 				String userAgent=req.getHeader("user-agent");
-				 if(userAgent.contains("Trident")){
+				 if(userAgent!=null&&userAgent.contains("Trident")){
 				fileName = URLEncoder.encode(filedto.getFile_real_name(), "EUC-KR");
 				
 				 }
@@ -155,7 +159,6 @@ public class FileController {
  					
  			File file = new File( "/home/queryOne/"+file_name);		
  			//File file = new File( "D:/queryOne/upload/"+file_name);		
- 			//System.out.println("file:"+file.getPath());		
  			HttpHeaders header = new HttpHeaders();		
  			header.setContentLength(file.length());		
  			//whoAmi = Thread.currentThread().getStackTrace()[1].toString();		
