@@ -166,7 +166,8 @@ public class FileController {
  				fileName = URLEncoder.encode(file_name, "UTF-8");		
  				if(req!=null){		
  					String userAgent=req.getHeader("user-agent");		
- 					 if(userAgent.contains("Trident")){//IE 일 때		
+ 					 
+ 					if(userAgent!=null&&userAgent.contains("Trident")){//IE 일 때		
  					fileName = URLEncoder.encode(file_name, "EUC-KR");		
  							
  					 }		
