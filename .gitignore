@@ -1,2 +1,5 @@
 /target/
 /.gitignore
+/.classpath
+/org.eclipse.wst.common.component
+
