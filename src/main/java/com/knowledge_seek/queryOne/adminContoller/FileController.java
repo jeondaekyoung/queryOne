@@ -63,7 +63,7 @@ public class FileController {
 		down.update_hits(downNo);
 		FileDTO fileDto = fileService.selectFileDetail(fileId);
 		String path = fileDto.getFile_path();
-		if(path!=null){
+		if(path==null){
 			logger.debug("File_Path is null");
 			return null;
 		}

@@ -8,9 +8,11 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knowledge_seek.queryOne.domain.Download;
@@ -50,7 +52,7 @@ public class LoginController {
 		return "admin/login";
 	}
 	//·Î±×ÀÎ
-	@RequestMapping("/login.do") 
+	@RequestMapping(value="/login.do", method=RequestMethod.POST)
 	public String login(@RequestParam Map map,HttpSession session,Model model) throws Exception{
 		map.put("adminPwd", PasswordUtil.encryptPassword(map.get("adminPwd").toString()));
 		boolean bFlag=login.isAdmin(map);

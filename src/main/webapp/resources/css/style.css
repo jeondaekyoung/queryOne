@@ -486,12 +486,18 @@ button:active, button:focus { border:none; outline: none;}
   z-index: 11;
 }
 .content-04 .slide-2 .li-download a{
-  padding: 3px 42px;
+  padding: 3px;
+  text-decoration: none;
+  color: #444;
+}
+.content-04 .slide-2 .li-download span{
+  padding: 3px 28px;
   background: url('../images/content-4/list-bg01.svg') no-repeat;
   background-size: 24px;
   text-decoration: none;
   color: #444;
 }
+
 
 .content-05 .headline,
 .content-06 .headline {

@@ -284,8 +284,12 @@ function view(no) {
 		                <c:if test="${not (list.file_id[status.index] eq null) and count<6 }">
 		                	<c:set var="count" value="${count+1}" />
 		                	<li class="li-download">
+		                	<a href="<c:url value='/user/download.do?downNo=${list.downNo }'/>">
+		                	<span>title. ${list.title }</span>
+		                	</a>
 		                 	  <a href="<c:url value='/file/downNhit/${list.file_id[status.index]}/${list.downNo}'/>">
-		                 		<button type="button" >[${list.account}]${list.file_name[status.index]} 다운받기 </button>
+		                 	  
+		                 		<button type="button" >file. [${list.account}]${list.file_name[status.index]} 다운받기 </button>
 		                 	  </a>
 							</li>
 						  </c:if>
@@ -317,8 +321,11 @@ function view(no) {
 		                <c:if test="${not (list.file_id[status.index] eq null) and count<6 }" var="result">
 		            		<c:set var="count" value="${count+1}" />       	
 		                	<li class="li-download">
+		                	  <a href="<c:url value='/user/download.do?downNo=${list.downNo }'/>">
+		                	<span>title. ${list.title }</span>
+		                	</a>
 		                 	  <a href="<c:url value='/file/downNhit/${list.file_id[status.index]}/${list.downNo}'/>">
-		                 		<button type="button" >${count}. [${list.account}]${list.file_name[status.index]} 다운받기 </button>
+		                 		<button type="button" >file. [${list.account}]${list.file_name[status.index]} 다운받기 </button>
 		                 	  </a>
 							</li>
 						  </c:if>
@@ -363,7 +370,7 @@ function view(no) {
 		            <c:if test="${not result}">
 		              <li class="col-4">
 		            </c:if>
-		         	   	<a href="<c:url value='/user/newsHits.do?notiNo=${notiList.notiNo }'/>">		         	   
+		         	   	<a href="<c:url value='/user/news.do?notiNo=${notiList.notiNo }'/>">		         	   
 		         	      <img src="<c:url value='/resources/images/content-5/news_0${status.index+1}.jpg'/>" alt="공지사항1" width="100%" height="192">		         	
 	                      <p>${notiList.title }</p>
 	                    </a>

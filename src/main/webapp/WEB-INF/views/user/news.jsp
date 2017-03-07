@@ -8,10 +8,17 @@
 </head>
 <script type="text/javascript">
 	function view(no) {
-		var f = document.hitsForm;
-		var input=f.notiNo.value;
-		f.notiNo.value = no;
-		f.submit();
+		if($("#collapse"+no).attr("class")=='panel-collapse row in') return false;
+		var param = {
+			notiNo : no
+		};
+		$.ajax({
+			type : 'POST',
+			url : '${pageContext.request.contextPath}/user/newsHits.do',
+			cache : false,
+			data : param,
+			timeout : 60000
+		}); 
 	}
 </script>
 <body class="container show-grid">
@@ -50,10 +57,6 @@
 					<div class="row">
 						<div class="col-12 prefix-2 news">
 							<div class="panel-group" id="accordion2">
-								<form action="<c:url value='/user/newsHits.do'/>"
-									name="hitsForm">
-									<input type="hidden" name="notiNo">
-								</form>
 								<c:forEach items="${lists}" var="list" varStatus="status">
 
 									<div class="panel panel-default">

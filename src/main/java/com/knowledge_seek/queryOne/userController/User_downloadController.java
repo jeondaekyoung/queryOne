@@ -42,6 +42,10 @@ public class User_downloadController {
 	@RequestMapping("/user/download.do")
 	public String download(@RequestParam Map map,Model model,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage,
 			HttpServletRequest req) {
+
+		if(null!=req.getParameter("downNo")){
+				down.update_hits(req.getParameter("downNo"));
+			}
 		//패치목록 페이징
 		{
 			map.put("user", "use");
