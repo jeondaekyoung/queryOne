@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knowledge_seek.queryOne.domain.Notice;
 import com.knowledge_seek.queryOne.service.impl.NoticeServiceImpl;
@@ -39,6 +40,10 @@ public class User_NewsController {
 		map.put("start", start);
 		map.put("end",end);
 		
+		if(null!=req.getParameter("notiNo")){
+			noti.update_hits(req.getParameter("notiNo"));
+		}
+		
 		List<Notice> lists=noti.selectList(map);
 		String pagingString = PagingUtil.pagingText(totalRecordCount, pageSize, blockPage, nowPage, req.getContextPath()+"/user/news.do?");
 		
@@ -51,11 +56,21 @@ public class User_NewsController {
 		
 		return "/user/news";
 	}
-	@RequestMapping("/user/newsHits.do")
+	/*@RequestMapping("/user/newsHits.do")
 	public String hits(@RequestParam("notiNo") String notiNo){
 		
 		noti.update_hits(notiNo);
 		
 		return "forward:/user/news.do?notiNo="+notiNo;
+	}*/
+	//ajax ±¸Çö
+	@RequestMapping("/user/newsHits.do")
+	@ResponseBody
+	public String hitsAjax(@RequestParam("notiNo") String notiNo){
+
+		noti.update_hits(notiNo);
+		
+		return "";
 	}
+	
 }
