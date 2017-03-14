@@ -113,15 +113,16 @@
 	                  <img src="<c:url value='/resources/images/detail/queryone2-03.jpg'/>" width="100%" alt="Database Monitor, Session Monitor 화면">
 	                  <h4 class="txt-darkblue p-sm">Database Monitor</h4>
 	                  <ul>
-		                  <li class="txt-sm">각 DB별로 세션 접속 상태를 조회 가능</li>
-		                  <li class="txt-sm">상세 세션 정보 조회와 문제가 있는 세션의 접속을 끊을 수 있으며 최종 실행된 Query를 확인이 가능</li>
-		                  <li class="txt-sm">일정 시간 간격으로 갱신하여 모니터링</li>
+		                <li class="txt-sm">DB내의 통계 데이터들을 차트로 확인</li>
+		                  <li class="txt-sm">각 차트의 더블클릭으로 상세 내용 확인 가능</li>
 	                  </ul>
 	                  
 	                  <h4 class="txt-darkblue p-sm">Session Monitor</h4>
 	                  <ul>
-		                  <li class="txt-sm">DB내의 통계 데이터들을 차트로 확인</li>
-		                  <li class="txt-sm">각 차트의 더블클릭으로 상세 내용 확인 가능</li>
+	                    <li class="txt-sm">각 DB별로 세션 접속 상태를 조회 가능</li>
+		                  <li class="txt-sm">상세 세션 정보 조회와 문제가 있는 세션의 접속을 끊을 수 있으며 최종 실행된 Query를 확인이 가능</li>
+		                  <li class="txt-sm">일정 시간 간격으로 갱신하여 모니터링</li>
+		                  
 	                  </ul>
 	                </li>
 	              </ul>
