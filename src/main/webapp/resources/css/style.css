@@ -449,14 +449,13 @@ button:active, button:focus { border:none; outline: none;}
   color: #99D2FE;
 }
 .down-btn-group{
-  margin-bottom: 24px;
+  margin: 24px 0;
 }
-.down-btn-group li.btn01 {
+
+.down-btn-group li.btn01,
+.down-btn-group li.btn02{
   background: #FDFDFD;
-  border-radius: 15px;
-}
-.down-btn-group li.btn02 {
-  background: #FDFDFD;
+  border: 1px solid #496d7b;
   border-radius: 15px;
 }
 .down-btn-group button {
@@ -539,7 +538,7 @@ button:active, button:focus { border:none; outline: none;}
 padding: 94px 0;
   border-bottom: 1px solid #666;
 }
-.footer>.row>.col-4>img {
+.footer>.row>div>img {
   display: block;
   margin: 9px auto 0;
 }

@@ -58,6 +58,56 @@
 				</div>
 			</div>
 
+<div class="wrapper">
+            <div class="script txt-center">
+              <p class="subline">QueryOne은 <span>100일간 무상</span>으로 사용할 수있는 평가판 라이선스를 제공합니다.<br>Data Server Provider가 내장되어 있으므로 별도의 DB Client를 설치하실 필요가 없습니다.</p>
+            </div>
+            <div class="down-btn-group">
+              <ul class="row">
+                <li class="col-3 prefix-5 btn01">
+                  <c:choose>
+                	<c:when test="${empty product }">
+                	  <button type="button" onclick="eclick('nof','')" >Query One<br>다운받기 </button>
+                	</c:when>
+                	<c:otherwise>
+                	  <a href="<c:url value='/file/down/${product.file_id}'/>"><button type="button" onclick="eclick('pro','')" >Query One<br>다운받기 </button></a>
+                	</c:otherwise>
+                  </c:choose>                  
+                </li>
+                <li class="col-3 btn02">
+                  <c:if test="${empty licence}" var="lice_result">
+                 	<button type="button" onclick="eclick('lice','null'); ">License Key<br>발급받기</button>	
+                  </c:if>
+                  <c:if test="${not lice_result}">
+                    
+                  	  <button type="button" onclick="eclick('lice','${licence.lice_key}'); ">License Key<br>발급받기</button>
+            
+                  </c:if>                  
+                </li>
+              </ul>
+            </div>
+              <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content --> 
+      <div class="modal-content" id="modal">
+        <h3>라이센스 키가 발급되었습니다.</h3>
+        <p id="modal_value">라이센스 키</p>
+          <div class="row">
+            <a id="inNup"  >
+            <button type="button" id="modal_button" onclick="modal_button()" class="col-4 prefix-6 ok">확인</button>
+                  	</a>
+            <!--<button type="button" class="col-4 prefix-4 ok">확인</button>
+            <button type="button" class="col-4 cancel">취소</button>-->
+          </div>
+      </div>
+
+    </div>
+            
+            <!-- <p class="subline">라이선스 발급 요청을 하게되면 <span>등록 시 작성한 E-mail</span>로 자동 발송됩니다.</p>
+            <p class="subline">제품 구입 문의 : sales@softgarden.co.kr</p> -->
+          </div>
+
 			<c:choose>
 				<c:when test="${empty p_lists and empty d_lists }">
 					<img src="<c:url value='/resources/images/noData.jpg'/>"
