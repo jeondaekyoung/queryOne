@@ -21,7 +21,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
@@ -212,13 +214,13 @@ public class LicenceController {
 		return "/admin/key-history";
 	}
 	
-	@RequestMapping("/history/inNup.do")
+	@RequestMapping( value= "/history/inNup.do" , method=RequestMethod.POST)
+	@ResponseBody
 	public String hisory(@RequestParam Map map){
+		int result =lice.history_inNup(map);
+		//DUPLICATE
+		return result == 2?"success":"fail";
 		
-		lice.history_inNup(map);
-		
-		
-		return "redirect:/";
 	}
 	
 	

@@ -6,6 +6,43 @@
 <head>
   	<jsp:include page="include-head.jsp" flush="false" />
 </head>
+<script>
+var bFlag = false;
+function eclick(pstr,key) {
+	switch (pstr) {
+	case 'pro':
+		alert("Thank you for downloading. Please accept the License key.");
+		bFlag =true;
+		break;
+	case 'lice':
+		if(key=="null"){
+			alert("License key is being prepared.");
+			return;
+		}
+		
+			$("#myModal").css({'display' : 'block'});
+			$("#modal_value").html(key);
+		
+		break;
+	case 'nof':
+		alert("Product files are being prepared.");
+	}
+	
+}
+function modal_button(){
+	$("#myModal").css({'display' : 'none'});
+	var param = {
+			lice_key : "${licence.lice_key }"
+		};
+		$.ajax({
+			type : 'POST',
+			url : '${pageContext.request.contextPath}/lice/history/inNup.do',
+			cache : false,
+			data : param,
+			timeout : 60000
+		}); 
+}
+</script>
 <body class="container show-grid">
 
   <!-- 시작: .page-header -->

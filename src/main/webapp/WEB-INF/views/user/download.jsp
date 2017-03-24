@@ -38,6 +38,41 @@
 		f.submit(); */
 
 	}
+	var bFlag = false;
+	function eclick(pstr,key) {
+		switch (pstr) {
+		case 'pro':
+			alert("다운로드해주셔서 감사합니다. 발급키를 받아주세요.");
+			bFlag =true;
+			break;
+		case 'lice':
+			if(key=="null"){
+				alert("발급키 준비 중입니다.");
+				return;
+			}
+			
+				$("#myModal").css({'display' : 'block'});
+				$("#modal_value").html(key);
+			
+			break;
+		case 'nof':
+			alert("파일 준비 준비중입니다.");
+		}
+		
+	}
+	function modal_button(){
+		$("#myModal").css({'display' : 'none'});
+		var param = {
+				lice_key : "${licence.lice_key }"
+			};
+			$.ajax({
+				type : 'POST',
+				url : '${pageContext.request.contextPath}/lice/history/inNup.do',
+				cache : false,
+				data : param,
+				timeout : 60000
+			}); 
+	}
 </script>
 <body class="container show-grid">
 

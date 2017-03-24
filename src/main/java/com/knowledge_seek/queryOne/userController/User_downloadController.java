@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knowledge_seek.queryOne.domain.Download;
+import com.knowledge_seek.queryOne.domain.Licencekey;
+import com.knowledge_seek.queryOne.domain.Product;
 import com.knowledge_seek.queryOne.service.impl.DownServiceImpl;
 import com.knowledge_seek.queryOne.service.impl.FileServiceImpl;
+import com.knowledge_seek.queryOne.service.impl.LicenceServiceImpl;
+import com.knowledge_seek.queryOne.service.impl.ProductServiceImpl;
 import com.knowledge_seek.queryOne.util.PagingUtil;
 
 @Controller
@@ -38,6 +42,11 @@ public class User_downloadController {
 	@Resource(name="fileService")
 	FileServiceImpl fileServiceImpl;
 	
+	@Resource(name="productService")
+	ProductServiceImpl pro;
+	
+	@Resource(name="liceService")
+	LicenceServiceImpl lice;
 	
 	@RequestMapping("/user/download.do")
 	public String download(@RequestParam Map map,Model model,@RequestParam(defaultValue="1",required=false,value="nowPage") int nowPage,
@@ -64,12 +73,6 @@ public class User_downloadController {
 			List<Download> p_lists=down.selectList(map);
 			model.addAttribute("p_lists",p_lists);
 			model.addAttribute("nowPage",nowPage);
-			/*model.addAttribute("totalPage1",totalPage);
-			
-			model.addAttribute("totalRecordCount1",totalRecordCount);
-			model.addAttribute("pageSize1",pageSize);
-			 */
-			
 		}
 		//문서목록 페이징
 		{
@@ -89,23 +92,22 @@ public class User_downloadController {
 			List<Download> d_lists=down.selectList(map);
 			model.addAttribute("d_lists",d_lists);	
 			model.addAttribute("nowPage",nowPage);
-			/*model.addAttribute("totalPage2",totalPage);
-			
-			model.addAttribute("totalRecordCount2",totalRecordCount);
-			model.addAttribute("pageSize2",pageSize);*/
-
 			
 		}
+		//2017.03.24 일 다운로드 추가
+		Product product=pro.selectOne_newest();
+		if(product !=null){
+		map.put("proNo", product.getProNo());
+		model.addAttribute("product", product);
+		}
+		Licencekey licence=lice.selectOne_newest(map);
+		if(licence!=null){
+			model.addAttribute("licence", licence);	
+		}
+		
+		
 		return "/user/download";
 	}
-	//Ajax로 바꾸기
-	/*@RequestMapping("/user/downHits.do")
-	public String hits(@RequestParam("downNo") String downNo,@RequestParam("nowPage") String nowPage){
-		
-		down.update_hits(downNo);
-		
-		return "forward:/user/download.do?downNo="+downNo+"&nowPage="+nowPage;
-	}*/
 	@RequestMapping(value = "/user/downHits.do", method=RequestMethod.POST)
 	@ResponseBody
 	public String hits(@RequestParam("downNo") String downNo,@RequestParam("nowPage") String nowPage){

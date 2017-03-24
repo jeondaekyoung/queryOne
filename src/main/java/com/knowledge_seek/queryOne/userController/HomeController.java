@@ -79,17 +79,15 @@ public class HomeController {
 			model.addAttribute("product", product);
 			}
 			
-			
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		}
 		Licencekey licence=lice.selectOne_newest(map);
 		
 		
 		if(licence!=null){
 			model.addAttribute("licence", licence);	
 		}
-		
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
 		
 		List<Video> videoLists=videoService.selectList(map);
 		model.addAttribute("videoLists", videoLists);
@@ -145,7 +143,27 @@ public class HomeController {
 		return "/user/queryone";
 	}
 	@RequestMapping("/user/queryOne-en.do")
-	public String queryOne_en() {
+	public String queryOne_en(Map map, Model model) {
+		
+		try {
+			
+			Product product=pro.selectOne_newest();
+			if(product !=null){
+				
+			map.put("proNo", product.getProNo());
+			model.addAttribute("product", product);
+			}
+			
+		Licencekey licence=lice.selectOne_newest(map);
+		
+		
+		if(licence!=null){
+			model.addAttribute("licence", licence);	
+		}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		
 		return "/user/queryone-en";
 	}
 	@RequestMapping("/user/queryone-s.do")
@@ -154,7 +172,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/user/qna.do")
-	public String qna(Locale locale, Model model) {
+	public String qna() {
 		
 		return "/user/qna";
 	}

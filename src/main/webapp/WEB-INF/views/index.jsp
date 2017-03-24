@@ -193,7 +193,16 @@ function eclick(pstr,key) {
 
 function modal_button(){
 	$("#myModal").css({'display' : 'none'});
-	$("#inNup").attr("href","<c:url value='/lice/history/inNup.do?lice_key=${licence.lice_key }' />");
+	var param = {
+			lice_key : "${licence.lice_key }"
+		};
+		$.ajax({
+			type : 'POST',
+			url : '${pageContext.request.contextPath}/lice/history/inNup.do',
+			cache : false,
+			data : param,
+			timeout : 60000
+		}); 
 }
 
 function view(no) {
