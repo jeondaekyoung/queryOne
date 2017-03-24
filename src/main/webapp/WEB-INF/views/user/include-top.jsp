@@ -10,7 +10,7 @@
       </a>
     </h1>
     <!-- 끝: 브랜드 영역 -->
-    <div style="float:right;"><a href="queryone-en.jsp" style="line-height:3.5;color:#ccc">ENG</a></div>
+    <div style="float:right;"><a href="<c:url value='/user/queryOne-en.do'/>" style="line-height:3.5;color:#ccc">ENG</a></div>
     <!-- 내비게이션 영역 -->
     <nav class="page-gnb" style="float:none; text-align:center">
       <ul class="clearfix" style="display:inline-block">

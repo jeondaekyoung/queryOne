@@ -144,6 +144,10 @@ public class HomeController {
 	public String queryOne() {
 		return "/user/queryone";
 	}
+	@RequestMapping("/user/queryOne-en.do")
+	public String queryOne_en() {
+		return "/user/queryone-en";
+	}
 	@RequestMapping("/user/queryone-s.do")
 	public String S() {
 		return "/user/queryone-s";
