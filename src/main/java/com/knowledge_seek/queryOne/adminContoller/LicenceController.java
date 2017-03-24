@@ -166,9 +166,12 @@ public class LicenceController {
 		model.addAttribute("totalRecordCount",totalRecordCount);
 		model.addAttribute("pageSize",pageSize);
 		
-
-		int history_sum = lice.history_SumHits(map);
-		model.addAttribute("history_sum",history_sum);
+		try {
+			int history_sum = lice.history_SumHits(map);
+			model.addAttribute("history_sum",history_sum);
+		} catch (NullPointerException e) {
+			System.out.println("데이터가 없습니다.");
+		}
 		
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.MONTH, -1);    // 한달 전
