@@ -1,6 +1,5 @@
 package com.knowledge_seek.queryOne.domain;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 

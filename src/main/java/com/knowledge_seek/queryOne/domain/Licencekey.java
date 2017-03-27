@@ -2,7 +2,6 @@ package com.knowledge_seek.queryOne.domain;
 
 import java.sql.Date;
 
-import org.springframework.web.multipart.MultipartFile;
 
 public class Licencekey {
 	private String liceNo;

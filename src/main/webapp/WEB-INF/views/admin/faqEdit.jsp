@@ -65,19 +65,19 @@
 
 						<section class="scrollable wrapper w-f">
 
-							<form action="<c:url value="/noti/edit.do"/>" method="post"
+							<form action="<c:url value="/faq/edit.do"/>" method="post"
 								id="adForm" name="adForm" class="form-horizontal"
 								enctype="multipart/form-data">
 								<!-- 작성자 -->
 								<input type="hidden" name="writer"	value="${sessionScope.USERID}" class="form-control"> 
-								<input type="hidden" name="notiNo" value="${notice.notiNo}" class="form-control"> 
-								<input type="hidden"	name="file_id" value="${notice.file_id}" class="form-control">
+								<input type="hidden" name="faqNo" value="${faq.faqNo}" class="form-control"> 
+								<input type="hidden"	name="file_id" value="${faq.file_id}" class="form-control">
 								<input type="hidden" name="content" id="editorContent"class="form-control" />
 								<!--제목-->
 								<div class="form-group">
 									<label class="col-sm-2 control-label">제목</label>
 									<div class="col-sm-10">
-										<input type="text" value="${notice.title}" name="title"
+										<input type="text" value="${faq.title}" name="title"
 											class="form-control">
 									</div>
 								</div>
@@ -90,7 +90,7 @@
 									<div class="col-sm-10">
 										<textarea id="editor" name="content" class="form-control"
 											style="overflow: scroll; height: 450px; max-height: 450px"
-											contenteditable="true">${notice.content}</textarea>
+											contenteditable="true">${faq.content}</textarea>
 									</div>
 								</div> --%>
 								<div class="form-group">
@@ -152,7 +152,7 @@
                           <input type="text" class="form-control-trans pull-left" data-edit="inserttext"  id="voiceBtn" x-webkit-speech="" style="width:25px;height:28px;">
                         </div>
                         <div id="editor" class="form-control" style="overflow:scroll;height:450px;max-height:450px">
-                          ${notice.content}
+                          ${faq.content}
                         </div>
                       </div>
                     </div>
@@ -165,11 +165,11 @@
 									<div class="col-sm-10">
 										<input type="file" class="filestyle" name="file" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline input-s"> 
 										이전파일 :
-										<c:if test="${empty notice.fileName}" var="result">
+										<c:if test="${empty faq.fileName}" var="result">
 											 -
 											</c:if>
 										<c:if test="${!result}">
-											<a href='<c:url value="/file/down/${notice.file_id}" />'	class="btn btn-info"><i class="fa fa-notice"></i>${notice.fileName} 다운로드</a>
+											<a href='<c:url value="/file/down/${faq.file_id}" />'	class="btn btn-info"><i class="fa fa-faq"></i>${faq.fileName} 다운로드</a>
 										</c:if>
 									</div>
 								</div>

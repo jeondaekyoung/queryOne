@@ -65,7 +65,7 @@
 												<c:forEach items="${lists}" var="list" varStatus="status">
 													<tr>
 														<td>${totalRecordCount - (((nowPage - 1) * pageSize) + status.index)}</td>
-														<td><a href="<c:url value='/noti/view.do?notiNo=${list.notiNo}'/>">${list.title}</a></td>
+														<td><a href="<c:url value='/faq/view.do?faqNo=${list.faqNo}'/>">${list.title}</a></td>
 														<td>${list.createDate}</td>
 														<td>${list.hits}</td>
 													</tr>
@@ -75,7 +75,7 @@
 										</c:choose>
 									</tbody>
 								</table>
-								<a href="<c:url value='/noti/writeForm.do'/>"
+								<a href="<c:url value='/faq/writeForm.do'/>"
 									class="btn btn-primary" style="margin-top: 20px"><i
 									class="fa fa-pencil"></i> 글쓰기</a>
 							</form>
@@ -91,7 +91,7 @@
 
 								<!--검색-->
 								<div class="col-sm-3">
-								<form action='<c:url value="/noti/search.do"/>' method="post" >
+								<form action='<c:url value="/faq/search.do"/>' method="post" >
 									<select name ="search_account" class="input-sm">
 										<option value="0">제목</option>
 										<option value="1">내용</option>

@@ -55,7 +55,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-12 prefix-2 news">
+						<div class="col-12 prefix-2 surfix-2 news">
 							<div class="panel-group" id="accordion2">
 								<c:forEach items="${lists}" var="list" varStatus="status">
 

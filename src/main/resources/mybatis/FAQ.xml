@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+			PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.FAQ">
+	<select id="faqSelectList" parameterType="java.util.Map" resultType="FAQ">
+		select * from (select FAQ.*,@rownum:=@rownum+1 as r from FAQ, (SELECT @rownum:=0) r order by faqNo desc) a where r between  #{start} and #{end}
+	</select>
+	
+	<select id="faqSelectOne" parameterType="FAQ" resultType="FAQ">
+		select * from FAQ where faqNo=#{faqNo}
+	</select>
+	
+	<insert id="faqInsert" parameterType="FAQ">
+		insert into FAQ values(default,#{title},#{writer},#{content},default ,default,#{fileName},#{file_id});
+	</insert>	
+	
+	<update id="faqUpdate" parameterType="FAQ">
+		update FAQ set title=#{title},content=#{content},
+		fileName=if(isnull(#{fileName}),fileName,#{fileName}),
+		file_id= if(isnull(#{file_id}),file_id,#{file_id})
+		 where faqNo=#{faqNo}
+	</update>
+
+	<update id="faqUpdate_hits" parameterType="java.lang.String">
+		update FAQ set hits=hits+1 where faqNo=#{faqNo}
+	</update>
+		
+	
+	<delete id="faqDelete" parameterType="FAQ">
+		delete from FAQ where faqNo=#{faqNo}
+	</delete>
+		
+	<select id="faqTotalCount" resultType="int" parameterType="java.util.Map">
+	SELECT COUNT(*) FROM FAQ
+	</select>	
+	
+	<select id="faqSearch" parameterType="java.util.Map" resultType="FAQ">
+	select * from (select FAQ.*,@rownum:=@rownum+1 as r from FAQ, (SELECT @rownum:=0) r 
+		<choose>
+				<when test="search_account == 0 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%'
+				</when>
+				<when test="search_account == 1 and search_text != null and search_text !='' ">
+where content LIKE '%${search_text}%'	
+				</when>
+				<when test="search_account == 2 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%' or content LIKE '%${search_text}%'
+				</when>
+	</choose>
+	  order by faqNo desc) a where r between  #{start} and #{end}
+	</select>
+	
+	<select id="faqGetTotalRecordCount_search" parameterType="java.util.Map" resultType="int">
+	select count(*) from (select FAQ.*,@rownum:=@rownum+1 as r from FAQ, (SELECT @rownum:=0) r 
+	<choose>
+				<when test="search_account == 0 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%'
+				</when>
+				<when test="search_account == 1 and search_text != null and search_text !='' ">
+where content LIKE '%${search_text}%'	
+				</when>
+				<when test="search_account == 2 and search_text != null and search_text !='' ">
+where title LIKE '%${search_text}%' or content LIKE '%${search_text}%'
+				</when>
+	</choose>
+	  order by faqNo desc) a 
+	</select>
+	
+		
+</mapper>

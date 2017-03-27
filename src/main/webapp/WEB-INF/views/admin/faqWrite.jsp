@@ -70,7 +70,7 @@
 						</header>
 
 						<section class="scrollable wrapper w-f">
-							<form action="<c:url value='/noti/write.do' />" method="post"
+							<form action="<c:url value='/faq/write.do' />" method="post"
 								id="adForm" name="adForm" class="form-horizontal"
 								enctype="multipart/form-data">
 								<input type="hidden" name="content"  id="editorContent" class="form-control"/>
