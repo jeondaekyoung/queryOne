@@ -7,12 +7,6 @@
 	<!-- head -->
     <jsp:include page="include/include-head.jsp" flush="false" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-    /* addClass : .active */
-    $(document).ready(function(){
-        $("li.menu-2").addClass("active");
-	});
-    </script>
     <!-- //head -->
 </head>
 

@@ -57,7 +57,7 @@ public class LoginController {
 		map.put("adminPwd", PasswordUtil.encryptPassword(map.get("adminPwd").toString()));
 		boolean bFlag=login.isAdmin(map);
 		
-		if(bFlag) {//회원
+		if(!bFlag) {//회원
 			//로그인 처리를 위해 세션에 아이디 저장
 			session.setAttribute("USERID", map.get("adminId"));
 			

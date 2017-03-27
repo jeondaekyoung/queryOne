@@ -34,8 +34,8 @@
 			<div class="top">
 				<div class="row">
 					<div class="col-12 prefix-2">
-						<h3>NEWS</h3>
-						<h4>공지사항</h4>
+						<h3>FAQ</h3>
+						<h4>자주 묻는 질문</h4>
 					</div>
 				</div>
 			</div>

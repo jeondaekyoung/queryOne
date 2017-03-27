@@ -58,6 +58,11 @@
                 <i class="fa fa-comment icon"><b class="bg-warning"></b></i><span>문의하기</span>
               </a>
             </li>
+            <li class="menu-6">
+              <a href="<c:url value='/faq/list.do'/>">
+                <i class="fa fa-comment icon"><b class="bg-warning dker"></b></i><span>FAQ</span>
+              </a>
+            </li>
             <li>
               <a href="<c:url value='/admin/logout.do'/>">
                 <i class="fa fa-sign-out icon"><b class="bg-danger"></b></i><span>로그아웃</span>
